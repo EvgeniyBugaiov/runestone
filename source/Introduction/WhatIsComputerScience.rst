@@ -7,82 +7,83 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-What Is Computer Science?
+Что такое информатика?
 -------------------------
 
-Computer science is often difficult to define. This is probably due to
-the unfortunate use of the word “computer” in the name. As you are
-perhaps aware, computer science is not simply the study of computers.
-Although computers play an important supporting role as a tool in the
-discipline, they are just that–tools.
+Очень часто сложно дать определение понятию "computer science". Может
+быть, причиной этого является неудачное использование в названии слова
+"computer". Как вы возможно знаете, информатика - это не только
+изучение компьютеров. Хотя они и играют важную вспомогательную роль в
+данной дисциплине, но всё равно остаются всего лишь инструментами.
 
-Computer science is the study of problems, problem-solving, and the
-solutions that come out of the problem-solving process. Given a problem,
-a computer scientist’s goal is to develop an **algorithm**, a
-step-by-step list of instructions for solving any instance of the
-problem that might arise. Algorithms are finite processes that if
-followed will solve the problem. Algorithms are solutions.
+Информатика занимается изучением задач, процессом их решения и
+получившимися результатами. Для каждой поставленной задачи
+учёный-информатик должен разработать **алгоритм** - пошаговую
+инструкцию для получения решения любого её частного случая, который
+только может возникнуть. Алгоритм считается законченным, если
+следование ему приводит к решению проблемы. Алгоритм и есть это решение.
 
-Computer science can be thought of as the study of algorithms. However,
-we must be careful to include the fact that some problems may not have a
-solution. Although proving this statement is beyond the scope of this
-text, the fact that some problems cannot be solved is important for
-those who study computer science. We can fully define computer science,
-then, by including both types of problems and stating that computer
-science is the study of solutions to problems as well as the study of
-problems with no solutions.
+Информатику можно рассматривать как науку, исследующую алгоритмы.
+Однако, нам стоит быть осторожнее, принимая во внимание тот факт, что
+некоторые задачи могут и не иметь решения. Хотя доказательство этого
+положения выходит за пределы данной книги, сам факт, что не все задачи
+можно решить, очень важен для решившего заняться изучением информатики.
+Мы сможем полностью сформулировать понятие "информатика" только включив
+в него оба типа задач и положив, что эта наука занимается изучением как
+решаемых задач, так тех, что решения не имеют.
 
-It is also very common to include the word **computable** when
-describing problems and solutions. We say that a problem is computable
-if an algorithm exists for solving it. An alternative definition for
-computer science, then, is to say that computer science is the study of
-problems that are and that are not computable, the study of the
-existence and the nonexistence of algorithms. In any case, you will note
-that the word “computer” did not come up at all. Solutions are
-considered independent from the machine.
+Так же при описании задач и их решений часто встречается слово
+**"вычислимый"**. Мы говорим, что задача вычислима, если существует
+алгоритм для её решения. Таким образом, можно сформулировать
+альтернативное определение информатики, как науки, занимающейся
+изучением вычислимых и не вычислимых задач, существующих и не
+существующих алгоритмов. В любом случае, вы легко можете заметить,
+что слово "компьютер" здесь нигде не употребляется. Решение
+рассматривает независимо от машины.
 
-Computer science, as it pertains to the problem-solving process itself,
-is also the study of **abstraction**. Abstraction allows us to view the
-problem and solution in such a way as to separate the so-called logical
-and physical perspectives. The basic idea is familiar to us in a common
-example.
+Информатика, имея отношение к процессу решения различных задач, также
+занимается изучением абстракций. Абстракция позволяет нам рассматривать
+задачу и её решение, разделяя так называемые логический и физический
+ракурсы. Основа этой идеи знакома нам по широко распространённому примеру.
 
-Consider the automobile that you may have driven to school or work
-today. As a driver, a user of the car, you have certain interactions
-that take place in order to utilize the car for its intended purpose.
-You get in, insert the key, start the car, shift, brake, accelerate, and
-steer in order to drive. From an abstraction point of view, we can say
-that you are seeing the logical perspective of the automobile. You are
-using the functions provided by the car designers for the purpose of
-transporting you from one location to another. These functions are
-sometimes also referred to as the **interface**.
+Рассмотрим автомобиль, который, возможно, ежедневно отвозит вас в школу
+или на работу. Как водитель (пользователь автомобиля) вы определённым
+образом взаимодействуете с машиной, чтобы использовать её по прямому
+назначению. Вы садитесь, вставляете ключ зажигания, заводите машину,
+переключаете передачи, тормозите, жмёте на газ и крутите руль в процессе
+езды. С абстрактной точки зрения мы можем сказать, что вы рассматриваете
+автомобиль с логического ракурса. Вы используете набор функций,
+предоставленный вам конструкторами автомобиля, с целью перемещения
+себя из пункта А в пункт Б. Эти функции так же иногда называют
+**интерфейсом**.
 
-On the other hand, the mechanic who must repair your automobile takes a
-very different point of view. She not only knows how to drive but must
-know all of the details necessary to carry out all the functions that we
-take for granted. She needs to understand how the engine works, how the
-transmission shifts gears, how temperature is controlled, and so on.
-This is known as the physical perspective, the details that take place
-“under the hood.”
+С другой стороны, механик, который должен чинить ваш автомобиль, имеет
+абсолютно другой взгляд на него. Ему нужно не только знать, как
+управлять машиной, но и быть в курсе всех подробностей тех функций,
+которые мы воспринимаем как должные. Например, как работают двигатель
+и коробка передач, контролируется температура и тому подобное. Этот
+подход известен как "физический ракурс" - детали, лежащие "под капотом".
 
-The same thing happens when we use computers. Most people use computers
-to write documents, send and receive email, surf the web, play music,
-store images, and play games without any knowledge of the details that
-take place to allow those types of applications to work. They view
-computers from a logical or user perspective. Computer scientists,
-programmers, technology support staff, and system administrators take a
-very different view of the computer. They must know the details of how
-operating systems work, how network protocols are configured, and how to
-code various scripts that control function. They must be able to control
-the low-level details that a user simply assumes.
+Тоже самое имеет место и при использовании компьютера. Большинство людей
+используют компьютер, чтобы писать документы, отправлять и получать
+почты, сёрфить в интернете, проигрывать музыку, хранить картинки и
+играть в игры, не имея при этом ни малейшего представления о деталях
+работы всех этих приложений. Они смотрят на компьютер с логической
+(или пользовательской) точки зрения. Учёные-информатики, программисты,
+персонал технической поддержки и системные администраторы имеют
+совершенно другое виденье компьютера. Они должны знать детали того,
+как работает операционная система, настраиваются сетевые протоколы,
+пишутся скрипты для выполнения тех или иных функций. Они должны быть
+готовы управлять всеми низкоуровневыми деталями, которые для
+пользователей подразумеваются сами собой.
 
-The common point for both of these examples is that the user of the
-abstraction, sometimes also called the client, does not need to know the
-details as long as the user is aware of the way the interface works.
-This interface is the way we as users communicate with the underlying
-complexities of the implementation. As another example of abstraction,
-consider the Python ``math`` module. Once we import the module, we can
-perform computations such as
+Общим в этих двух примерах является то, что пользователю абстракции
+(иногда его называют "клиентом") нет необходимости знать детали до тех
+пор, пока интерфейс нормально работает. Этот интерфейс - способ,
+которым мы как пользователи общаемся с лежащей в глубине сложностью
+реализации. Как ещё один пример абстракции можно рассмотреть модуль
+```math``` языка Python. Единожды импортировав модуль, мы можем
+совершать вычисления вида:
 
 ::
 
@@ -91,16 +92,15 @@ perform computations such as
     4.0
     >>>
 
-This is an example of **procedural abstraction**. We do not necessarily
-know how the square root is being calculated, but we know what the
-function is called and how to use it. If we perform the import
-correctly, we can assume that the function will provide us with the
-correct results. We know that someone implemented a solution to the
-square root problem but we only need to know how to use it. This is
-sometimes referred to as a “black box” view of a process. We simply
-describe the interface: the name of the function, what is needed (the
-parameters), and what will be returned. The details are hidden inside
-(see :ref:`Figure 1 <fig_procabstraction>`).
+Это пример **процедурной абстракции**. Нам не нужно знать, как будет
+вычислен квадратный корень, - достаточно информации о том, какую
+функцию нужно вызвать и как её использовать. Если мы осуществили
+корректный вызов, то можем смело полагать, что получим корректный же
+результат. Мы знаем, что кто-то реализовал нахождение квадратного корня,
+но всё что нам по-настоящему необходимо - это знать как его использовать.
+Такой подход иногда называют "чёрным ящиком". Мы просто описываем
+интерфейс: имя функции, её параметры и результат. Детали же скрыты
+внутри (см. :ref:`Рисунок 1 <fig_procabstraction>`).
 
 .. _fig_procabstraction:
 
@@ -108,5 +108,4 @@ parameters), and what will be returned. The details are hidden inside
    :scale: 50 %
    :align: center
 
-   Figure 1: Procedural Abstraction
-
+   Figure 1: Процедурная Абстракция

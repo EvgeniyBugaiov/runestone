@@ -7,41 +7,13 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Why Study Algorithms?
+Для чего изучать алгоритмы?
 ~~~~~~~~~~~~~~~~~~~~~
 
-Computer scientists learn by experience. We learn by seeing others solve
-problems and by solving problems by ourselves. Being exposed to
-different problem-solving techniques and seeing how different algorithms
-are designed helps us to take on the next challenging problem that we
-are given. By considering a number of different algorithms, we can begin
-to develop pattern recognition so that the next time a similar problem
-arises, we are better able to solve it.
+Учёные - информатики учатся на собственном опыте - глядя, как другие решают задачи, и решая их самостоятельно. Применение различных методологий для поиска решения и рассмотрение конструкций алгоритмов помогает нам справляться с последующими сложными задачами, за которые мы берёмся. Рассмотрев некоторое количество различных алгоритмов, мы можем приступить к разработке шаблона для распознавания, чтобы, когда похожая проблема возникнет в следующий раз, быть лучше подготовленными к её решению.
 
-Algorithms are often quite different from one another. Consider the
-example of ``sqrt`` seen earlier. It is entirely possible that there are
-many different ways to implement the details to compute the square root
-function. One algorithm may use many fewer resources than another. One
-algorithm might take 10 times as long to return the result as the other.
-We would like to have some way to compare these two solutions. Even
-though they both work, one is perhaps “better” than the other. We might
-suggest that one is more efficient or that one simply works faster or
-uses less memory. As we study algorithms, we can learn analysis
-techniques that allow us to compare and contrast solutions based solely
-on their own characteristics, not the characteristics of the program or
-computer used to implement them.
+Алгоритмы часто сильно отличаются друг от друга. Рассмотрим пример с ``sqrt``, к которому мы прибегали ранее. Вполне возможно, что существует множество различных способов реализации деталей вычисления квадратного корня. Один алгоритм может использовать для этого много меньше ресурсов, другой - работать до получения результата в десять раз дольше, и тому подобное. Мы бы хотели иметь возможность сравнивать эти два решения. Хотя они оба работают, одно из них, возможно, "лучше", чем другое. Мы можем предположить, что оно более эффективно или просто работает быстрее, занимая меньше памяти. Как мы изучаем алгоритмы, так можем и изучать аналитические техники, позволяющие сравнивать и противопоставлять решения, основываясь исключительно на их собственных характеристиках, а не на характеристиках программ или компьютеров, используемых для их реализации.
 
-In the worst case scenario, we may have a problem that is intractable,
-meaning that there is no algorithm that can solve the problem in a
-realistic amount of time. It is important to be able to distinguish
-between those problems that have solutions, those that do not, and those
-where solutions exist but require too much time or other resources to
-work reasonably.
+В самом наихудшем случае мы можем столкнуться с труднообрабатываемой проблемой, что означает невозможность решить её за разумное количество времени. Очень важно уметь различать задачи, имеющие решение, не имеющие такового и те, для которых решение существует, но занимает чересчур много времени или других ресурсов, чтобы его использование было разумным.
 
-There will often be trade-offs that we will need to identify and decide
-upon. As computer scientists, in addition to our ability to solve
-problems, we will also need to know and understand solution evaluation
-techniques. In the end, there are often many ways to solve a problem.
-Finding a solution and then deciding whether it is a good one are tasks
-that we will do over and over again.
-
+Здесь часто нужен компромисс, который необходимо видеть и принимать по нему решение. Как учёным-информатикам, в дополнение к нашим способностям находить решение, нам нужно также знать и понимать техники его вычисления. В конце-концов, очень часто существует множество способов решить проблему. Найти решение и убедиться, что оно хорошо, - вот задача, над которой мы работаем снова и снова.

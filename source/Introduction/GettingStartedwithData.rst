@@ -7,35 +7,19 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Getting Started with Data
+Приступая к работе с данными
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We stated above that Python supports the object-oriented programming
-paradigm. This means that Python considers data to be the focal point of
-the problem-solving process. In Python, as well as in any other
-object-oriented programming language, we define a **class** to be a
-description of what the data look like (the state) and what the data can
-do (the behavior). Classes are analogous to abstract data types because
-a user of a class only sees the state and behavior of a data item. Data
-items are called **objects** in the object-oriented paradigm. An object
-is an instance of a class.
+Выше мы уже отмечали, что Python поддерживает парадигму объектно-ориентированного программирования. Это означает, что в фокус процесса решения задачи Python ставит данные. В Python, как и в любом другом объектно-ориентированном языке программирования, мы определяем **класс**, являющийся описанием того, как, собственно, выглядят данные (состояние) и что они могут делать (поведение). Классы аналогичны абстрактным типам данных, поскольку пользователь класса видит только состояние и поведение единицы данных. Такие единицы в объектно-ориентированной парадигме называются **объектами**. Объект является экземпляром класса.
 
-Built-in Atomic Data Types
+Встроенные элементарные типы данных
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We will begin our review by considering the atomic data types. Python
-has two main built-in numeric classes that implement the integer and
-floating point data types. These Python classes are called ``int`` and
-``float``. The standard arithmetic operations, +, -, \*, /, and \*\*
-(exponentiation), can be used with parentheses forcing the order of
-operations away from normal operator precedence. Other very useful
-operations are the remainder (modulo) operator, %, and integer division,
-//. Note that when two integers are divided, the result is a floating
-point. The integer division operator returns the integer portion of the
-quotient by truncating any fractional part.
+Начнём наш обзор с рассмотрения элементарных типов данных. У Python есть два основных встроенных числовых класса, реализующих типы для целых чисел и чисел с плавающей запятой. Они называются ``int`` и ``float``. Стандартные арифметические операции +, -, *, / и ** (возведение в степень) могут использоваться со скобками, задающими порядок операций, отличный от обусловленного обычным приоритетом операторов. Другими полезными операциями являются оператор остатка целочисленного деления % и собственно целочисленного деления //. Обратите внимание, что при делении двух целых чисел результат - число с плавающей запятой. Оператор целочисленного деления возвращает целую часть частного путём отсечения от неё дробной части.
+
 
 .. activecode:: intro_1
-    :caption: Basic Arithmetic Operators
+    :caption: Основные арифметические операторы
 
     print 2+3*4
     print (2+3)*4
@@ -49,11 +33,8 @@ quotient by truncating any fractional part.
     print 3%6
     print 2**100
 
+Логический тип данных, реализованный в Python как класс ``bool``, будет весьма полезен для представления значений истинности. Возможными значениями для логического объекта являются ``True`` и ``False`` со стандартными булевыми операторами ``and``, ``or`` и ``not``.
 
-The boolean data type, implemented as the Python ``bool`` class, will be
-quite useful for representing truth values. The possible state values
-for a boolean object are ``True`` and ``False`` with the standard
-boolean operators, ``and``, ``or``, and ``not``.
 
 ::
 
@@ -68,30 +49,26 @@ boolean operators, ``and``, ``or``, and ``not``.
     >>> True and True
     True
 
-Boolean data objects are also used as results for comparison operators
-such as equality (==) and greater than (:math:`>`). In addition,
-relational operators and logical operators can be combined together to
-form complex logical questions. :ref:`Table 1 <tab_relational>` shows the relational
-and logical operators with examples shown in the session that follows.
+Объекты булева типа данных также используются в качестве результатов операций сравнения, таких как "равно" (==) и "больше, чем" (:math:`>`). Кроме того, операторы отношений и логических операций могут быть скомбинированы вместе в форме сложных логических вопросов. В :ref:`Таблице 1 <tab_relational>` показаны операторы отношений и логические операторы вместе с примерами их использования.
+
 
 .. _tab_relational:
 
-.. table:: **Table 1: Relational and Logical Operators**
+.. table:: **Таблица 1: Логические операторы и операторы отношений**
 
     =========================== ============== =================================================================
-             **Operation Name**   **Operator**                                                   **Explanation**
+             **Название**        **Оператор**                                                       **Описание**
     =========================== ============== =================================================================
-                      less than    :math:`<`                                                Less than operator
-                   greater than    :math:`>`                                             Greater than operator
-             less than or equal   :math:`<=`                                    Less than or equal to operator
-          greater than or equal   :math:`>=`                                 Greater than or equal to operator
-                          equal   :math:`==`                                                 Equality operator
-                      not equal   :math:`!=`                                                Not equal operator
-                    logical and  :math:`and`                          Both operands True for result to be True
-                     logical or   :math:`or`        One or the other operand is True for the result to be True
-                    logical not  :math:`not`   Negates the truth value, False becomes True, True becomes False
+                      меньше      :math:`<`                                                Оператор "меньше"
+                      больше      :math:`>`                                                Оператор "больше"
+              меньше или равно    :math:`<=`                                     Оператор "меньше или равно"
+              больше или равно    :math:`>=`                                     Оператор "больше или равно"
+                         равно    :math:`==`                                              Оператор равенства
+                      не равно    :math:`!=`                                            Оператор неравенства
+                логическое "и"    :math:`and`            Если оба операнда истинны, то результат тоже истина
+              логическое "или"    :math:`or`    Если хотя бы один из операндов истина, то результат - истина
+               логическое "не"    :math:`not`         Инвертирует значение: False становится True и наоборот
     =========================== ============== =================================================================
-
 
 
 .. activecode:: intro_2
@@ -101,17 +78,10 @@ and logical operators with examples shown in the session that follows.
     print(10 > 5)
     print((5 >= 1) and (5 <= 10))
 
-Identifiers are used in programming languages as names. In Python,
-identifiers start with a letter or an underscore (_), are case
-sensitive, and can be of any length. Remember that it is always a good
-idea to use names that convey meaning so that your program code is
-easier to read and understand.
+В качестве имён в языках программирования используются идентификаторы. В Python они начинаются с буквы или подчёркивания (_), чувствительны к регистру и могут быть произвольной длины. Не забывайте о том, что давать имена, отражающие смысл переменной, - всегда здравая идея, делающая ваш код более простым для чтения и понимания.
 
-A Python variable is created when a name is used for the first time on
-the left-hand side of an assignment statement. Assignment statements
-provide a way to associate a name with a value. The variable will hold a
-reference to a piece of data and not the data itself. Consider the
-following session:
+В Python переменная создаётся при первом использовании имени с левой стороны от оператора присваивания. Присваивание предоставляет возможность ассоциировать имя со значением. Переменная будет содержать ссылку на кусочек данных, а не сами данные. Рассмотрим следующий код:
+
 
 ::
 
@@ -125,32 +95,22 @@ following session:
     >>> theSum
     True
 
-The assignment statement ``theSum = 0`` creates a variable called
-``theSum`` and lets it hold the reference to the data object ``0`` (see
-:ref:`Figure 3 <fig_assignment1>`). In general, the right-hand side of the assignment
-statement is evaluated and a reference to the resulting data object is
-“assigned” to the name on the left-hand side. At this point in our
-example, the type of the variable is integer as that is the type of the
-data currently being referred to by ``thesum``. If the type of the data
-changes (see :ref:`Figure 4 <fig_assignment2>`), as shown above with the boolean
-value ``True``, so does the type of the variable (``thesum`` is now of
-the type boolean). The assignment statement changes the reference being
-held by the variable. This is a dynamic characteristic of Python. The
-same variable can refer to many different types of data.
+Присваивание ``theSum = 0`` создаёт переменную с именем ``theSum``, содержащую ссылку на объект данных ``0`` (см. :ref:`Рисунок 3 <fig_assignment1>`). В целом, когда правая часть оператора присваивания вычисляется, ссылка на результат "назначается" имени в левой части. В данный момент в нашем примере тип переменной - целое, и это тип данных, на которые сейчас ссылается ``theSum``. Если он изменится (см. :ref:`Рисунок 4 <fig_assignment2>`), как показано выше, на булево значение ``True``, то изменится и тип переменной (сейчас ``theSum`` имеет тип ``bool``). Оператор присваивания меняет ссылки, хранящиеся в переменной. Это динамическая характеристика Python. Одна и та же переменная может ссылаться на различные типы данных.
+
 
 .. _fig_assignment1:
 
 .. figure:: Figures/assignment1.png
    :align: center
 
-   Figure 3: Variables Hold References to Data Objects
+   Рисунок 3: Переменная содержит ссылку на объект данных
 
 .. _fig_assignment2:
 
 .. figure:: Figures/assignment2.png
    :align: center
 
-   Figure 4: Assignment Changes the Reference
+   Рисунок 4: Присваивание изменяет ссылку
 
 Built-in Collection Data Types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

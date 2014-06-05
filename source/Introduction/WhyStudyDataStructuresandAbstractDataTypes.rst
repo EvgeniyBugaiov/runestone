@@ -7,36 +7,36 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Why Study Data Structures and Abstract Data Types?
+Для чего изучать структуры и абстрактные типы данных?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To manage the complexity of problems and the problem-solving process,
-computer scientists use abstractions to allow them to focus on the “big
-picture” without getting lost in the details. By creating models of the
-problem domain, we are able to utilize a better and more efficient
-problem-solving process. These models allow us to describe the data that
-our algorithms will manipulate in a much more consistent way with
-respect to the problem itself.
 
-Earlier, we referred to procedural abstraction as a process that hides
-the details of a particular function to allow the user or client to view
-it at a very high level. We now turn our attention to a similar idea,
-that of **data abstraction**. An **abstract data type**, sometimes
-abbreviated **ADT**, is a logical description of how we view the data
-and the operations that are allowed without regard to how they will be
-implemented. This means that we are concerned only with what the data is
-representing and not with how it will eventually be constructed. By
-providing this level of abstraction, we are creating an
-**encapsulation** around the data. The idea is that by encapsulating the
-details of the implementation, we are hiding them from the user’s view.
-This is called **information hiding**.
+Чтобы управлять сложностью задач и процессом их решения, учёные-информатики
+используют абстракции, позволяющие им сфокусироваться на картине в
+целом, без блуждания в деталях. Создавая модель предметной области, мы
+можем использовать лучший и более эффективный процесс поиска решения.
+Такие модели позволяют нам описывать данные, которыми будут манипулировать
+наши алгоритмы, намного более подходящим для данной задачи образом.
 
-:ref:`Figure 2 <fig_adt>` shows a picture of what an abstract data type is and how it
-operates. The user interacts with the interface, using the operations
-that have been specified by the abstract data type. The abstract data
-type is the shell that the user interacts with. The implementation is
-hidden one level deeper. The user is not concerned with the details of
-the implementation.
+Ранее мы ссылались на процедурную абстракцию, как на процесс сокрытия
+деталей конкретной функции, чтобы дать пользователю (или клиенту)
+возможность рассматривать её на очень высоком уровне. Сейчас мы
+переключаем наше внимание на аналогичную идею **абстракции данных**.
+**Абстрактный тип данных**, иногда обозначаемый аббревиатурой **АТД**,
+это логическое описание того, как мы рассматриваем данные и разрешённые
+для них операции, безотносительно их реализации. Это значит, что мы
+сосредотачиваемся только на том, что данные из себя представляют, а не
+на том, как они в итоге будут сконструированы. Обеспечивая такой уровень
+абстракции, мы достигаем **инкапсуляции данных**. Идея здесь в том, что,
+инкапсулируя детали реализации, мы скрываем их от взгляда пользователя.
+Это называется **сокрытием информации**.
+
+:ref:`Рисунок 2 <fig_adt>` наглядно демонстрирует, что такое абстрактный
+тип данных и как он работает. Пользователь взаимодействует с интерфейсом,
+используя операции, определённые в абстрактном типе данных. По сути,
+абстрактный тип данных - это оболочка, с которой контактирует клиент.
+Реализация скрыта на уровень ниже, и её детали совершенно не беспокоят
+пользователя.
 
 .. _fig_adt:
 
@@ -44,18 +44,17 @@ the implementation.
    :align: center
    :scale: 50 %
 
-   Figure 2: Abstract Data Type
+   Рисунок 2: Абстрактный Тип Данных
 
-The implementation of an abstract data type, often referred to as a
-**data structure**, will require that we provide a physical view of the
-data using some collection of programming constructs and primitive data
-types. As we discussed earlier, the separation of these two perspectives
-will allow us to define the complex data models for our problems without
-giving any indication as to the details of how the model will actually
-be built. This provides an **implementation-independent** view of the
-data. Since there will usually be many different ways to implement an
-abstract data type, this implementation independence allows the
-programmer to switch the details of the implementation without changing
-the way the user of the data interacts with it. The user can remain
-focused on the problem-solving process.
-
+Реализация абстрактного типа данных, часто называемая **структурой данных**,
+требует, чтобы мы смотрели на данные с физической точки зрения, используя
+при этом некий набор из конструкций программирования и примитивных типов
+данных. Как мы уже обсуждали ранее, разделение этих двух точек зрения
+приводит нас к определению сложных моделей данных для наших задач без
+углубления в подробности того, как эти модели в итоге будут реализованы.
+Так обеспечивается **независящий от реализации** взгляд на данные. Так
+как обычно существует множество различных способов воплотить абстрактный
+тип данных, независимость реализации позволяет программисту изменять её
+детали, не меняя при этом способа взаимодействия пользователя с данными.
+Таким образом, пользователь остаётся сфокусированным только на процессе
+решения задачи.

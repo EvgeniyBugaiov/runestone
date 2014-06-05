@@ -7,35 +7,37 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Getting Started
+Приступая к работе
 ---------------
 
-The way we think about programming has undergone many changes in the
-years since the first electronic computers required patch cables and
-switches to convey instructions from human to machine. As is the case
-with many aspects of society, changes in computing technology provide
-computer scientists with a growing number of tools and platforms on
-which to practice their craft. Advances such as faster processors,
-high-speed networks, and large memory capacities have created a spiral
-of complexity through which computer scientists must navigate.
-Throughout all of this rapid evolution, a number of basic principles
-have remained constant. The science of computing is concerned with using
-computers to solve problems.
+Наше восприятие программирования претерпело множество изменений за
+годы, прошедшие с момента появления первых электронных компьютеров,
+требовавших жгуты соединительных кабелей и массу переключателей, чтобы
+передавать простейшие инструкции от человека к машине. Как и в случае
+со многими аспектами человеческого общества, изменения в области
+вычислительных технологий предоставили учёным - информатикам огромное
+количество инструментов и платформ для практики своего ремесла.
+Прогресс в лице более быстрых процессоров, высокоскоростных сетей и
+больших объёмов памяти создал спираль сложности, в которой учёные
+должны свободно ориентироваться. Но на всём этом крутом эволюционном
+пути некоторое количество базовых принципов остаётся неизменным.
+Вычислительные науки тесно связаны с использованием вычислителей
+(компьютеров) для решения задач.
 
-You have no doubt spent considerable time learning the basics of
-problem-solving and hopefully feel confident in your ability to take a
-problem statement and develop a solution. You have also learned that
-writing computer programs is often hard. The complexity of large
-problems and the corresponding complexity of the solutions can tend to
-overshadow the fundamental ideas related to the problem-solving process.
+Вы наверняка потратили много времени на изучение основ методики
+решения задач и, надеюсь, умеете уверенно формулировать вопросы и
+разрабатывать для них решения. Вы так же хорошо усвоили, что писать
+компьютерные программы часто совсем не легко. Сложность больших задач
+и связанная с нею сложность их решений имеют тенденцию перекрывать
+фундаментальные идеи, связанные с собственно процессом решения.
 
-This chapter emphasizes two important areas for the rest of the text.
-First, it reviews the framework within which computer science and the
-study of algorithms and data structures must fit, in particular, the
-reasons why we need to study these topics and how understanding these
-topics helps us to become better problem solvers. Second, we review the
-Python programming language. Although we cannot provide a detailed,
-exhaustive reference, we will give examples and explanations for the
-basic constructs and ideas that will occur throughout the remaining
-chapters.
-
+В этой главе мы выделим две важные области, которые будут подробно
+рассматриваться в дальнейшем тексте. Во-первых, структуру, рамкам
+которой должны соответствовать теория информатики и изучение
+алгоритмов и структур данных. В частности, упомянем о причинах,
+почему эту тему стоит изучать и как её понимание помогает лучше
+решать возникающие задачи. Во-вторых, мы рассмотрим язык
+программирования Python. Не смотря на то, что мы не можем предоставить
+детальные, исчерпывающие ссылки, мы приведём примеры и объяснения
+основных конструкций и идей, с которыми нам предстоит встретиться в
+последующих главах.

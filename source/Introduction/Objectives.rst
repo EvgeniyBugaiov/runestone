@@ -7,16 +7,13 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Objectives
+Цели
 ----------
 
--  To review the ideas of computer science, programming, and
-   problem-solving.
+-  Обзор понятий "информатика", "программирование" и "решение проблем".
 
--  To understand abstraction and the role it plays in the
-   problem-solving process.
+-  Понять, что значит "абстракция", и какую роль она играет в процессе решения проблемы.
 
--  To understand and implement the notion of an abstract data type.
+-  Понять и воплотить идею абстрактного типа данных.
 
--  To review the Python programming language.
-
+-  Обзор языка программирования Python.

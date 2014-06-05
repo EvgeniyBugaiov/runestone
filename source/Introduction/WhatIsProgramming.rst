@@ -7,55 +7,54 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-What Is Programming?
+Что такое программирование?
 ~~~~~~~~~~~~~~~~~~~~
 
-**Programming** is the process of taking an algorithm and encoding it
-into a notation, a programming language, so that it can be executed by a
-computer. Although many programming languages and many different types
-of computers exist, the important first step is the need to have the
-solution. Without an algorithm there can be no program.
+**Программирование** - это процесс превращения алгоритма в нотацию,
+написанную на языке программирования, которая может быть выполнена
+компьютером. Несмотря на существование большого количества различных
+языков программирования и типов компьютеров, самый первый и важный шаг
+- это иметь решение. Без алгоритма никакой программы быть не может.
 
-Computer science is not the study of programming. Programming, however,
-is an important part of what a computer scientist does. Programming is
-often the way that we create a representation for our solutions.
-Therefore, this language representation and the process of creating it
-becomes a fundamental part of the discipline.
+Информатика - это не наука о программировании. Однако, программирование
+- важная часть того, чем занимаются учёные-информатики. Часто
+программирование для нас - это способ создать представление найденного
+решения. Вот почему воплощение в языке и процесс его создания являются
+фундаментальной частью дисциплины.
 
-Algorithms describe the solution to a problem in terms of the data
-needed to represent the problem instance and the set of steps necessary
-to produce the intended result. Programming languages must provide a
-notational way to represent both the process and the data. To this end,
-languages provide control constructs and data types.
+Алгоритмы описывают решение задачи в терминах данных, необходимых для
+представления сущностей задачи, и набора шагов, нужных для получения
+конечного результата. Язык программирования должен предоставить способ
+для записи их обоих - данных и процесса.Для этой цели в языках
+предусмотрены типы данных и управляющие конструкции.
 
-Control constructs allow algorithmic steps to be represented in a
-convenient yet unambiguous way. At a minimum, algorithms require
-constructs that perform sequential processing, selection for
-decision-making, and iteration for repetitive control. As long as the
-language provides these basic statements, it can be used for algorithm
-representation.
+Управляющие конструкции позволяют шагам алгоритма воплотиться подходящим
+и однозначным образом. Как минимум алгоритму требуются конструкции для
+последовательной обработки, отбора с целью принятия решения и итераций
+для повторяющегося управления. Пока язык предоставляет эти основные
+положения, он может использоваться для реализации алгоритмов.
 
-All data items in the computer are represented as strings of binary
-digits. In order to give these strings meaning, we need to have **data
-types**. Data types provide an interpretation for this binary data so
-that we can think about the data in terms that make sense with respect
-to the problem being solved. These low-level, built-in data types
-(sometimes called the primitive data types) provide the building blocks
-for algorithm development.
+Все элементы данных представляются в компьютере как последовательности
+из нулей и единиц. Для того, чтобы придать смысл этим последовательностям,
+нам нужны типы данных. Они предоставляют интерпретацию бинарных данных,
+благодаря которой мы можем думать о данных в терминах, имеющих смысл по
+отношению к решаемой задаче. Эти низкоуровневые встроенные типы данных
+(иногда называемые примитивными) обеспечивают строительные блоки для
+разработки алгоритмов.
 
-For example, most programming languages provide a data type for
-integers. Strings of binary digits in the computer’s memory can be
-interpreted as integers and given the typical meanings that we commonly
-associate with integers (e.g. 23, 654, and -19). In addition, a data
-type also provides a description of the operations that the data items
-can participate in. With integers, operations such as addition,
-subtraction, and multiplication are common. We have come to expect that
-numeric types of data can participate in these arithmetic operations.
+Например, большинство языков программирования предлагают тип данных
+для целых чисел. Строки бинарных цифр в памяти компьютера могут быть
+интерпретированы как целые числа, с учётом тех характерных смыслов,
+которые мы обычно с ними ассоциируем (например, 23, 654 или -19).
+Кроме того, типы данных также предоставляют описание операций, в
+которых могут принимать участие их элементы. Для целых чисел такими
+операциями обычно являются сложение, вычитание и умножение. Мы
+закономерно ожидаем, что числовые типы данных могут участвовать в этих
+арифметических операциях.
 
-The difficulty that often arises for us is the fact that problems and
-their solutions are very complex. These simple, language-provided
-constructs and data types, although certainly sufficient to represent
-complex solutions, are typically at a disadvantage as we work through
-the problem-solving process. We need ways to control this complexity and
-assist with the creation of solutions.
-
+Часто возникающая у нас трудность заключается в том факте, что задачи
+и их решения очень сложны. Простые, предлагаемые языком конструкции и
+типы данных (которых, конечно, бывает достаточно для представления
+сложного решения) как правило невыгодно использовать в процессе поиска
+решения. Нам нужны способы управлять этой сложностью и помогать с
+созданием решения.
