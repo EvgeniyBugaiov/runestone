@@ -7,41 +7,44 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Exception Handling
+Обработка исключений
 ~~~~~~~~~~~~~~~~~~
 
-There are two types of errors that typically occur when writing
-programs. The first, known as a syntax error, simply means that the
-programmer has made a mistake in the structure of a statement or
-expression. For example, it is incorrect to write a for statement and
-forget the colon.
+Существует два типа ошибок, которые обычно возникают при написании
+программы. Первый известен как синтаксические ошибки, когда программист
+ошибается в написании структуры оператора или выражения. Вот пример
+неправильно написанного оператора и пропущенного двоеточия:
+
 
 ::
 
     >>> for i in range(10)
     SyntaxError: invalid syntax (<pyshell#61>, line 1)
 
-In this case, the Python interpreter has found that it cannot complete
-the processing of this instruction since it does not conform to the
-rules of the language. Syntax errors are usually more frequent when you
-are first learning a language.
+В этом случае интерпретатор Python находит, что не может выполнить эту
+инструкцию до тех пор, пока она не будет удовлетворять языковым правилам.
+Чаще всего синтаксические ошибки встречаются, когда вы только начинаете
+изучать новый язык программирования.
 
-The other type of error, known as a logic error, denotes a situation
-where the program executes but gives the wrong result. This can be due
-to an error in the underlying algorithm or an error in your translation
-of that algorithm. In some cases, logic errors lead to very bad
-situations such as trying to divide by zero or trying to access an item
-in a list where the index of the item is outside the bounds of the list.
-In this case, the logic error leads to a runtime error that causes the
-program to terminate. These types of runtime errors are typically called
-**exceptions**.
 
-Most of the time, beginning programmers simply think of exceptions as
-fatal runtime errors that cause the end of execution. However, most
-programming languages provide a way to deal with these errors that will
-allow the programmer to have some type of intervention if they so
-choose. In addition, programmers can create their own exceptions if they
-detect a situation in the program execution that warrants it.
+Другой тип ошибок, известный как логические ошибки, имеет отношение к тем
+ситуациям, когда код выполняется, но выдаёт неправильный результат. Причиной
+может быть ошибка в основном алгоритме или неверная трансляция вами этого
+алгоритма. В некоторых случаях логические ошибки приводят к очень плохим
+ситуациям: делению на нуль или попыткам получить доступ к элементу списка,
+чей индекс выходит за списковые границы. В таком случае логическая ошибка
+влечёт за собой ошибку времени выполнения, которая вызывает завершение
+программы. Ошибки такого типа во время выполнения обычно называют **исключениями**.
+
+
+Большую часть времени начинающие программисты думают об исключениях, как
+о фатальных ошибках во время выполнения, приводящих экстренному завершению
+программы. Однако, большинство языков программирования предоставляют способ
+иметь дело с такого рода ошибками, что позволяет программисту вмешиваться в
+процесс, если он того пожелает. Более того, программисты могут создавать
+свои собственные исключения, если они обнаруживают в программе ситуацию,
+когда это может быть оправдано.
+
 
 When an exception occurs, we say that it has been “raised.” You can
 “handle” the exception that has been raised by using a ``try``
@@ -51,6 +54,16 @@ math library. If the user enters a value that is greater than or equal
 to 0, the print will show the square root. However, if the user enters a
 negative value, the square root function will report a ``ValueError``
 exception.
+
+Когда возникает исключение, мы говорим, что оно "вызывается". Вы можете
+"обработать" вызванное исключение, используя оператор <code>try</code>.
+Рассмотрим, например, следующий код, который запрашивает у пользователя
+целое число, а затем вызывает функцию извлечения квадратного корня из
+математической библиотеки. Если пользователь вводит значение, которое
+больше или равно нулю, ``print`` выведет квадратный корень. Однако, если
+пользователь введёт отрицательное значение, то функция квадратного корня
+сообщит об исключении ``ValueError``.
+
 
 ::
 
@@ -63,10 +76,11 @@ exception.
     ValueError: math domain error
     >>>
 
-We can handle this exception by calling the print function from within a
-``try`` block. A corresponding ``except`` block “catches” the exception
-and prints a message back to the user in the event that an exception
-occurs. For example:
+Мы можем обработать это исключение, вызвав функцию ``print`` внутри ``try``
+блока. Соответствующий ``except``-блок "поймает" исключение и напечатает
+сообщение пользователю, в котором сообщит о возникновении исключения.
+Например:
+
 
 ::
 
@@ -82,19 +96,21 @@ occurs. For example:
     4.79583152331
     >>>
 
-will catch the fact that an exception is raised by ``sqrt`` and will
-instead print the messages back to the user and use the absolute value
-to be sure that we are taking the square root of a non-negative number.
-This means that the program will not terminate but instead will continue
-on to the next statements.
+поймает тот факт, что при выполнении ``sqrt`` возникло исключение,
+напечатает сообщение об этом пользователю и возьмёт абсолютное значение
+аргумента, чтобы быть уверенным в его неотрицательности. Всё вместе это
+означает, что программа не завершится, а продолжит выполнение следующих
+операторов.
 
-It is also possible for a programmer to cause a runtime exception by
-using the ``raise`` statement. For example, instead of calling the
-square root function with a negative number, we could have checked the
-value first and then raised our own exception. The code fragment below
-shows the result of creating a new ``RuntimeError`` exception. Note that
-the program would still terminate but now the exception that caused the
-termination is something explicitly created by the programmer.
+
+У программиста также существует возможность искусственно вызвать исключение
+во время выполнения, используя оператор ``raise``. Например, вместо вызова
+функции квадратного корня для отрицательного числа, мы прежде можем проверить
+значение и вызвать наше собственное исключение. Код ниже показывает результат
+создания нового исключения ``RuntimeError``. Заметьте, что программа по-прежнему
+будет завершаться, но теперь исключением, вызывающим такое поведение, является
+нечто явно созданное программистом.
+
 
 ::
 
@@ -108,7 +124,8 @@ termination is something explicitly created by the programmer.
     RuntimeError: You can't use a negative number
     >>>
 
-There are many kinds of exceptions that can be raised in addition to the
-``RuntimeError`` shown above. See the Python reference manual for a list
-of all the available exception types and for how to create your own.
+Существует множество типов исключений кроме показанного выше ``RuntimeError``
+, которые могут быть вызваны. Смотрите ссылку на руководство по Python, где
+представлены список всех доступных типов исключений и инструкция по созданию
+своих собственных.
 

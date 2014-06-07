@@ -7,17 +7,18 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Control Structures
+Управляющие структуры
 ~~~~~~~~~~~~~~~~~~
 
-As we noted earlier, algorithms require two important control
-structures: iteration and selection. Both of these are supported by
-Python in various forms. The programmer can choose the statement that is
-most useful for the given circumstance.
+Как мы уже отмечали ранее, алгоритмам требуются две важные управляющие
+структуры: для итераций и для выбора. Обе они поддерживаются в Python
+в различных формах. Программисты могут выбирать тот способ, который
+будет более уместным в данных обстоятельствах.
 
-For iteration, Python provides a standard ``while`` statement and a very
-powerful ``for`` statement. The while statement repeats a body of code
-as long as a condition is true. For example,
+Для итераций Python предлагает стандартный оператор ``while`` и очень
+мощный оператор ``for``. Первый из них повторяет тело кода столько раз,
+сколько остаётся истинным его условие. Например:
+
 
 ::
 
@@ -33,32 +34,34 @@ as long as a condition is true. For example,
     Hello, world
     Hello, world
 
-prints out the phrase “Hello, world” five times. The condition on the
-``while`` statement is evaluated at the start of each repetition. If the
-condition is ``True``, the body of the statement will execute. It is
-easy to see the structure of a Python ``while`` statement due to the
-mandatory indentation pattern that the language enforces.
+напечатает фразу “Hello, world” пять раз. Условие оператора ``while``
+вычисляется каждый раз в начале итерации. Если оно истинно, то будет
+выполнено тело оператора. Структуру оператора Python ``while`` легко
+увидеть через обязательные шаблоны отступов, которые навязывает этот язык.
 
-The ``while`` statement is a very general purpose iterative structure
-that we will use in a number of different algorithms. In many cases, a
-compound condition will control the iteration. A fragment such as
+Оператор ``while`` представляет собой итерационную структуру очень
+общего назначения, которая может использоваться во многих различных
+алгоритмах. Очень часто итерации контролирует составное условие. Код
+
 
 ::
 
     while counter <= 10 and not done:
     ...
 
-would cause the body of the statement to be executed only in the case
-where both parts of the condition are satisfied. The value of the
-variable ``counter`` would need to be less than or equal to 10 and the
-value of the variable ``done`` would need to be ``False`` (``not False``
-is ``True``) so that ``True and True`` results in ``True``.
+приведёт к тому, что тело оператора будет вычисляться только в случае,
+когда будут выполнены обе части условия. Значение переменной ``counter``
+должно быть меньше или равно 10, а значение переменной ``done`` быть равным
+``False`` (``not False`` - это ``True``), чтобы результат ``True and True``
+тоже был истиной.
 
-Even though this type of construct is very useful in a wide variety of
-situations, another iterative structure, the ``for`` statement, can be
-used in conjunction with many of the Python collections. The ``for``
-statement can be used to iterate over the members of a collection, so
-long as the collection is a sequence. So, for example,
+
+Несмотря на то, что этот тип конструкции широко используется во многих
+ситуациях, другая итеративная структура - оператор ``for`` - может быть
+использована в связке со многими коллекциями Python. ``for`` можно
+пользоваться для итерации по членам коллекции, если она является
+последовательной. Например,
+
 
 ::
 
@@ -71,12 +74,13 @@ long as the collection is a sequence. So, for example,
     2
     5
 
-assigns the variable ``item`` to be each successive value in the list
-[1,3,6,2,5]. The body of the iteration is then executed. This works for
-any collection that is a sequence (lists, tuples, and strings).
+присваивает переменной ``item`` каждое последующее значение из списка
+[1,3,6,2,5], после чего выполняется тело цикла. Этот способ работает
+для любой последовательной коллекции (списков, кортежей и строк).
 
-A common use of the ``for`` statement is to implement definite iteration
-over a range of values. The statement
+Общее применение оператора ``for`` заключается в том, чтобы реализовывать
+определённую итерацию на диапазоне значений. Оператор
+
 
 ::
 
@@ -90,19 +94,19 @@ over a range of values. The statement
     16
     >>>
 
-will perform the ``print`` function five times. The ``range`` function
-will return a range object representing the sequence 0,1,2,3,4 and each
-value will be assigned to the variable ``item``. This value is then
-squared and printed.
+выполнит функцию ``print`` пять раз. Функция ``range`` вернёт диапазон,
+представляющий собой последовательность 0, 1, 2, 3, 4, и каждое из этих
+значений будет присвоено переменной ``item``. Затем они будут возведены
+в квадрат и напечатаны.
 
-The other very useful version of this iteration structure is used to
-process each character of a string. The following code fragment iterates
-over a list of strings and for each string processes each character by
-appending it to a list. The result is a list of all the letters in all
-of the words.
+Другой очень полезной версией использования этой итерационной структуры
+является обработка каждого символа строки. Следующий фрагмент кода проходит
+по списку строк, обрабатывая каждый символ в них присоединением его к списку.
+Результатом будет список символов из всех слов.
+
 
 .. activecode:: intro_8
-    :caption: Processing Each Character in a List of Strings
+    :caption: Обработка каждого символа в список строк
 
     wordlist = ['cat','dog','rabbit']
     letterlist = [ ]
@@ -111,12 +115,11 @@ of the words.
             letterlist.append(aletter)
     print(letterlist)
 
+Операторы выбора позволяют программистам задавать вопросы и выполнять
+различные действия, основываясь на результате. Большинство языков
+программирования предоставляют две версии полезных конструкций: ``ifelse``
+и ``if``. Простой пример бинарного использования оператора ``ifelse``:
 
-Selection statements allow programmers to ask questions and then, based
-on the result, perform different actions. Most programming languages
-provide two versions of this useful construct: the ``ifelse`` and the
-``if``. A simple example of a binary selection uses the ``ifelse``
-statement.
 
 ::
 
@@ -125,15 +128,16 @@ statement.
     else:
        print(math.sqrt(n))
 
-In this example, the object referred to by ``n`` is checked to see if it
-is less than zero. If it is, a message is printed stating that it is
-negative. If it is not, the statement performs the ``else`` clause and
-computes the square root.
+В этом примере объект, ссылающийся на ``n``, проверяется на условие
+"меньше нуля". Если это так, то печатается сообщение, что ``n`` -
+отрицательное число. В противном случае выполняется ветка else,
+в которой вычисляется квадратный корень.
 
-Selection constructs, as with any control construct, can be nested so
-that the result of one question helps decide whether to ask the next.
-For example, assume that ``score`` is a variable holding a reference to
-a score for a computer science test.
+Конструкции выбора, как и любые управляющие конструкции, могут быть
+вложенными, чтобы результат одного ответа помогал определить, как
+ответить на следующий. Например, предположим, что ``score`` - это
+переменная, содержащая ссылку на результат теста по информатике.
+
 
 ::
 
@@ -151,20 +155,21 @@ a score for a computer science test.
              else:
                 print('F')
 
-This fragment will classify a value called ``score`` by printing the
-letter grade earned. If the score is greater than or equal to 90, the
-statement will print ``A``. If it is not (``else``), the next question
-is asked. If the score is greater than or equal to 80 then it must be
-between 80 and 89 since the answer to the first question was false. In
-this case print ``B`` is printed. You can see that the Python
-indentation pattern helps to make sense of the association between
-``if`` and ``else`` without requiring any additional syntactic elements.
+Этот фрагмент будет классифицировать значение под названием ``score``
+с помощью вывода на печать буквы заработанной оценки. Если счёт выше
+или равен 90, то оператор напечатает ``А``. Если это не так (``else``),
+то проверяется следующее условие. Если счёт выше или равен 80, то он
+должен лежать между 80 и 89, поскольку ответ на предыдущий вопрос был
+ложью. В этом случае печатается ``В``. Вы можете видеть, как шаблоны
+отступов в Python помогают ассоциировать ``if`` и ``else`` без
+использования дополнительных синтаксических элементов.
 
-An alternative syntax for this type of nested selection uses the
-``elif`` keyword. The ``else`` and the next ``if`` are combined so as to
-eliminate the need for additional nesting levels. Note that the final
-``else`` is still necessary to provide the default case if all other
-conditions fail.
+Альтернативным синтаксисом для вложенного таким образом выбора является
+использование ключевого слова ``elif``. ``else`` и последующий ``if``
+комбинируются, исключая таким образом дополнительные уровни. Заметьте,
+что конечное ``else`` по-прежнему необходимо, чтобы предоставить случай
+по умолчанию, если все остальные условия не выполняться.
+
 
 ::
 
@@ -179,13 +184,13 @@ conditions fail.
     else:
        print('F')
 
-Python also has a single way selection construct, the ``if`` statement.
-With this statement, if the condition is true, an action is performed.
-In the case where the condition is false, processing simply continues on
-to the next statement after the ``if``. For example, the following
-fragment will first check to see if the value of a variable ``n`` is
-negative. If it is, then it is modified by the absolute value function.
-Regardless, the next action is to compute the square root.
+Python также имеет вариант единичной конструкции выбора - оператор ``if``.
+Для него, если условие истинно, то происходит выполнение действия. В
+противном случае процесс обработки просто переходит на следующий после
+``if`` опеатор. Например, в коде ниже сначала проверится, является ли
+отрицательным значение ``n``. Если это так, то его заменяют абсолютным
+значением. В любом случае, следующее действие - это извлечение квадратного корня.
+
 
 ::
 
@@ -194,11 +199,11 @@ Regardless, the next action is to compute the square root.
     print(math.sqrt(n))
 
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
-    Test your understanding of what we have covered so far by trying the following
-    exercise.  Modify the code from Activecode 8 so that the final list only contains
-    a single copy of each letter.
+    Проверьте своё понимание изложенного материала, попробовав решить следующее упражнение.
+    Измените код из Activecode 8 таким образом, чтобы итоговый список содержал только
+    единичные копии каждой буквы.
 
     .. activecode:: self_check_1
 
@@ -214,12 +219,13 @@ Regardless, the next action is to compute the square root.
    http://media.interactivepython.org/pythondsVideos/list_unique.mov
    http://media.interactivepython.org/pythondsVideos/list_unique.webm
 
-Returning to lists, there is an alternative method for creating a list
-that uses iteration and selection constructs. The is known as a **list
-comprehension**. A list comprehension allows you to easily create a list
-based on some processing or selection criteria. For example, if we would
-like to create a list of the first 10 perfect squares, we could use a
-``for`` statement:
+Возвращаясь к спискам, приведём альтернативный метод создания списка с
+использованием итерационных конструкций и конструкций выбора. Он известен,
+как **генератор списков**, и позволяет легко создавать списки, основываясь
+на неких критериях обработки и выбора. Например, если мы захотим получить
+список из первых десяти идеальных квадратов, то можем использовать оператор
+``for``:
+
 
 ::
 
@@ -231,7 +237,7 @@ like to create a list of the first 10 perfect squares, we could use a
     [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
     >>>
 
-Using a list comprehension, we can do this in one step as
+А с использованием генератора списков это делается одной строкой:
 
 ::
 
@@ -240,11 +246,12 @@ Using a list comprehension, we can do this in one step as
     [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
     >>>
 
-The variable ``x`` takes on the values 1 through 10 as specified by the
-``for`` construct. The value of ``x*x`` is then computed and added to
-the list that is being constructed. The general syntax for a list
-comprehension also allows a selection criteria to be added so that only
-certain items get added. For example,
+Переменная ``x`` принимает значения от 1 до 10, как это определено для
+конструкции ``for``. Затем вычисляется величина ``x*x`` и присоединяется
+к создаваемому списку. Общий синтаксис генераторов списков также разрешает
+использовать критерий выбора, чтобы добавлялись только подходящие элементы.
+Например,
+
 
 ::
 
@@ -253,10 +260,11 @@ certain items get added. For example,
     [1, 9, 25, 49, 81]
     >>>
 
-This list comprehension constructed a list that only contained the
-squares of the odd numbers in the range from 1 to 10. Any sequence that
-supports iteration can be used within a list comprehension to construct
-a new list.
+Этот генератор списков создаёт список, содержащий квадраты только нечётных
+чисел в диапазоне от 1 до 10. Совместно с генераторами списков можно
+использовать любые поддерживающие итерации последовательности.
+Результатом будет новый список.
+
 
 ::
 
@@ -264,11 +272,11 @@ a new list.
     ['C', 'M', 'P', 'R', 'H', 'N', 'S', 'N']
     >>>
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
-    Test your understanding of list comprehensions by redoing Activecode 8
-    using list comprehensions.  For an extra challence, see if you can figure out
-    how to remove the duplicates.
+    Проверьте своё понимание генераторов списков, переделав Activecode 8
+    с их использованием. Дополнительное задание: придумайте,
+    как можно удалить дубликаты.
 
     .. activecode:: self_check_2
 

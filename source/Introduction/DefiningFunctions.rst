@@ -7,16 +7,16 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Defining Functions
+Определение функций
 ~~~~~~~~~~~~~~~~~~
 
-The earlier example of procedural abstraction called upon a Python
-function called ``sqrt`` from the math module to compute the square
-root. In general, we can hide the details of any computation by defining
-a function. A function definition requires a name, a group of
-parameters, and a body. It may also explicitly return a value. For
-example, the simple function defined below returns the square of the
-value you pass into it.
+Предыдущим примером вызова процедурной абстракции Python была функция
+``sqrt`` для вычисления квадратного корня из модуля ``math``. Вообще говоря,
+мы можем скрывать детали любого вычисления с помощью определения функции.
+Оно требует её имя, группу параметров и тело. Также функция может явно
+возвращать значение. Например, простая функция, определённая ниже, возвращает
+квадрат значения, которое вы в неё помещаете.
+
 
 ::
 
@@ -29,38 +29,35 @@ value you pass into it.
     81
     >>>
 
-The syntax for this function definition includes the name, ``square``,
-and a parenthesized list of formal parameters. For this function, ``n``
-is the only formal parameter, which suggests that ``square`` needs only
-one piece of data to do its work. The details, hidden “inside the box,”
-simply compute the result of ``n**2`` and return it. We can invoke or
-call the ``square`` function by asking the Python environment to
-evaluate it, passing an actual parameter value, in this case, ``3``.
-Note that the call to ``square`` returns an integer that can in turn be
-passed to another invocation.
-
-We could implement our own square root function by using a well-known
-technique called “Newton’s Method.” Newton’s Method for approximating
-square roots performs an iterative computation that converges on the
-correct value. The equation
-:math:`newguess = \frac {1}{2} * (oldguess + \frac {n}{oldguess})`
-takes a value :math:`n` and repeatedly guesses the square root by
-making each :math:`newguess` the :math:`oldguess` in the subsequent
-iteration. The initial guess used here is :math:`\frac {n}{2}`.
-:ref:`Listing 1 <lst_root>` shows a function definition that accepts a value
-:math:`n` and returns the square root of :math:`n` after making 20
-guesses. Again, the details of Newton’s Method are hidden inside the
-function definition and the user does not have to know anything about
-the implementation to use the function for its intended purpose.
-:ref:`Listing 1 <lst_root>` also shows the use of the # character as a comment
-marker. Any characters that follow the # on a line are ignored.
+Синтаксис этого определения функции включает имя (``square``) и заключённый
+в скобки список формальных параметров. Для этой функции ``n`` - всего лишь
+формальный параметр, предполагающий, что ``square`` необходим только один
+кусочек данных для её работы. Детали, скрытые "внутри ящика", просто вычисляют
+результат ``n**2`` и возвращают его. Мы можем вызвать функцию ``square``,
+попросив среду разработки Python вычислить её и поместив внутрь актуальное
+значение параметра (``3`` в данном случае). Заметьте, что вызов ``square``
+возвращает целое, которое потом может быть передано другому вызову.
 
 
+Мы можем реализовать нашу собственную функцию извлечения квадратного корня,
+используя хорошо известную технологию под названием "метод Ньютона". Этот
+метод получения приблизительного значения квадратного корня представляет
+собой итеративное вычисление, сходящееся к правильному значению. Уравнение
+:math:`newguess = \frac {1}{2} * (oldguess + \frac {n}{oldguess})` принимает
+значение :math:`n` и в цикле угадывает квадратный корень, создавая каждую
+:math:`newguess` из :math:`oldguess`, полученной на предыдущей итерации.
+Первоначальная догадка равна :math:`\frac {n}{2}`. :ref:`Листинг 1 <lst_root>`
+демонстрирует определение функции, принимающей значение :math:`n` и возвращающей
+его квадратный корень после совершения 20 предположений. Ещё раз, детали метода
+Ньютона скрыты внутри определения функции, и пользователь ничего не знает о
+реализации, когда использует функцию по её прямому назначению.
+:ref:`Листинг 1 <lst_root>` также показывает использование символа ``#`` как
+маркера комментария. Любые символы, идущие в строке после ``#``, игнорируются.
 
 
 .. _lst_root:
 
-**Listing 1**
+**Листинг 1**
 
 .. sourcecode:: python
 
@@ -80,19 +77,35 @@ marker. Any characters that follow the # on a line are ignored.
     67.549981495186216
     >>>
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
-   Here's a self check that really covers everything so far.  You may have
-   heard of the infinite monkey theorem?  The theorem states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.  Well, suppose we replace a monkey with a Python function.  How long do you think it would take for a Python function to generate just one sentence of Shakespeare?  The sentence we'll shoot for is:  "methinks it is like a weasel"
+   Это задание охватывает весь изложенный выше материал. Вы когда-нибудь слышали
+   о теореме о бесконечных обезьянах? В ней утверждается, что если обезьяна будет
+   беспорядочно нажимать на клавиши клавиатуры бесконечное количество времени, то
+   рано или поздно напечатает заданный текст (например, полное собрание сочинений
+   Вильяма Шекспира). Что ж, предположим, что мы заменяем обезьяну функцией на Python.
+   Как вы думаете, сколько она потратит времени на генерирование хотя бы одного
+   предложения из Шекспира? Выберем для проверки фразу “methinks it is like a weasel”.
 
-   You're not going to want to run this one in the browser, so fire up your favorite Python IDE.  The way we'll simulate this is to write a function that generates a string that is 27 characters long by choosing random letters from the 26 letters in the alphabet plus the space.  We'll write another function that will score each generated string by comparing the randomly generated string to the goal.
+   Вам наверняка не захочется запускать эту программу в браузере, так что запускайте
+   вашу любимую Python IDE. Симуляция будет выполняться с помощью функции, генерирующей
+   строку из двадцати семи символов путём случайного выбора из двадцати шести букв
+   алфавита + пробел. Мы напишем ещё одну функцию, которая будет оценивать каждую
+   сгенерированную строку, сравнивая её с целью.
 
-   A third function will repeatedly call generate and score, then if 100% of the letters are correct we are done.  If the letters are not correct then we will generate a whole new string.To make it easier to follow your program's progress this third function should print out the best string generated so far and its score every 1000 tries.
+   Третья функция будет циклично вызывать генератор и оценщик до тех пор, пока не
+   совпадёт 100% букв. В случае несовпадения будет генерироваться новая строка целиком.
+   Чтобы было проще следить за прогрессом программы, эта третья функция должна печатать
+   лучшую из уже сгенерированных строк и её оценку каждые тысячу попыток.
 
 
-.. admonition:: Self Check Challenge
+.. admonition:: Усложнённое задание для самопроверки
 
-    See if you can improve upon the program in the self check by keeping letters that are correct and only modifying one character in the best string so far.  This is a type of algorithm in the class of 'hill climbing' algorithms, that is we only keep the result if it is better than the previous one.
+    Посмотрите, сможете ли вы улучшить программу из самопроверки, сохраняя правильно
+    стоящие буквы и изменяя всего лишь одну из оставшихся, чтобы приблизиться к результату.
+    Алгоритм такого типа относится к классу "поиска с восхождением к вершине", в которых
+    результат сохраняется только в том случае, если он лучше предыдущего.
+
 
 .. video:: monkeyvid
    :controls:
