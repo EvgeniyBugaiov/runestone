@@ -10,12 +10,31 @@
 Приступая к работе с данными
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Выше мы уже отмечали, что Python поддерживает парадигму объектно-ориентированного программирования. Это означает, что в фокус процесса решения задачи Python ставит данные. В Python, как и в любом другом объектно-ориентированном языке программирования, мы определяем **класс**, являющийся описанием того, как, собственно, выглядят данные (состояние) и что они могут делать (поведение). Классы аналогичны абстрактным типам данных, поскольку пользователь класса видит только состояние и поведение единицы данных. Такие единицы в объектно-ориентированной парадигме называются **объектами**. Объект является экземпляром класса.
+Выше мы уже отмечали, что Python поддерживает парадигму
+объектно-ориентированного программирования. Это означает, что в фокус
+процесса решения задачи Python ставит данные. В Python, как и в любом
+другом объектно-ориентированном языке программирования, мы определяем
+**класс**, являющийся описанием того, как, собственно, выглядят данные
+(состояние) и что они могут делать (поведение). Классы аналогичны
+абстрактным типам данных, поскольку пользователь класса видит только
+состояние и поведение единицы данных. Такие единицы в
+объектно-ориентированной парадигме называются **объектами**. Объект
+является экземпляром класса.
 
 Встроенные элементарные типы данных
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Начнём наш обзор с рассмотрения элементарных типов данных. У Python есть два основных встроенных числовых класса, реализующих типы для целых чисел и чисел с плавающей запятой. Они называются ``int`` и ``float``. Стандартные арифметические операции +, -, *, / и ** (возведение в степень) могут использоваться со скобками, задающими порядок операций, отличный от обусловленного обычным приоритетом операторов. Другими полезными операциями являются оператор остатка целочисленного деления % и собственно целочисленного деления //. Обратите внимание, что при делении двух целых чисел результат - число с плавающей запятой. Оператор целочисленного деления возвращает целую часть частного путём отсечения от неё дробной части.
+Начнём наш обзор с рассмотрения элементарных типов данных. У Python
+есть два основных встроенных числовых класса, реализующих типы для
+целых чисел и чисел с плавающей запятой. Они называются ``int`` и
+``float``. Стандартные арифметические операции +, -, *, / и **
+(возведение в степень) могут использоваться со скобками, задающими
+порядок операций, отличный от обусловленного обычным приоритетом
+операторов. Другими полезными операциями являются оператор остатка
+целочисленного деления % и собственно целочисленного деления //.
+Обратите внимание, что при делении двух целых чисел результат - число
+с плавающей запятой. Оператор целочисленного деления возвращает целую
+часть частного путём отсечения от неё дробной части.
 
 
 .. activecode:: intro_1
@@ -33,7 +52,10 @@
     print 3%6
     print 2**100
 
-Логический тип данных, реализованный в Python как класс ``bool``, будет весьма полезен для представления значений истинности. Возможными значениями для логического объекта являются ``True`` и ``False`` со стандартными булевыми операторами ``and``, ``or`` и ``not``.
+Логический тип данных, реализованный в Python как класс ``bool``,
+будет весьма полезен для представления значений истинности. Возможными
+значениями для логического объекта являются ``True`` и ``False`` со
+стандартными булевыми операторами ``and``, ``or`` и ``not``.
 
 
 ::
@@ -49,7 +71,12 @@
     >>> True and True
     True
 
-Объекты булева типа данных также используются в качестве результатов операций сравнения, таких как "равно" (==) и "больше, чем" (:math:`>`). Кроме того, операторы отношений и логических операций могут быть скомбинированы вместе в форме сложных логических вопросов. В :ref:`Таблице 1 <tab_relational>` показаны операторы отношений и логические операторы вместе с примерами их использования.
+Объекты булева типа данных также используются в качестве результатов
+операций сравнения, таких как "равно" (==) и "больше, чем" (:math:`>`).
+Кроме того, операторы отношений и логических операций могут быть
+скомбинированы вместе в форме сложных логических вопросов.
+В :ref:`Таблице 1 <tab_relational>` показаны операторы отношений и
+логические операторы вместе с примерами их использования.
 
 
 .. _tab_relational:
@@ -72,15 +99,22 @@
 
 
 .. activecode:: intro_2
-    :caption: Basic Relational and Logical Operators
+    :caption: Основные логические операторы и операторы отношений
 
     print(5==10)
     print(10 > 5)
     print((5 >= 1) and (5 <= 10))
 
-В качестве имён в языках программирования используются идентификаторы. В Python они начинаются с буквы или подчёркивания (_), чувствительны к регистру и могут быть произвольной длины. Не забывайте о том, что давать имена, отражающие смысл переменной, - всегда здравая идея, делающая ваш код более простым для чтения и понимания.
+В качестве имён в языках программирования используются идентификаторы.
+В Python они начинаются с буквы или подчёркивания (_), чувствительны к
+регистру и могут быть произвольной длины. Не забывайте о том, что
+давать имена, отражающие смысл переменной, - всегда здравая идея,
+делающая ваш код более простым для чтения и понимания.
 
-В Python переменная создаётся при первом использовании имени с левой стороны от оператора присваивания. Присваивание предоставляет возможность ассоциировать имя со значением. Переменная будет содержать ссылку на кусочек данных, а не сами данные. Рассмотрим следующий код:
+В Python переменная создаётся при первом использовании имени с левой
+стороны от оператора присваивания. Присваивание предоставляет возможность
+ассоциировать имя со значением. Переменная будет содержать ссылку на
+кусочек данных, а не сами данные. Рассмотрим следующий код:
 
 
 ::
@@ -95,7 +129,17 @@
     >>> theSum
     True
 
-Присваивание ``theSum = 0`` создаёт переменную с именем ``theSum``, содержащую ссылку на объект данных ``0`` (см. :ref:`Рисунок 3 <fig_assignment1>`). В целом, когда правая часть оператора присваивания вычисляется, ссылка на результат "назначается" имени в левой части. В данный момент в нашем примере тип переменной - целое, и это тип данных, на которые сейчас ссылается ``theSum``. Если он изменится (см. :ref:`Рисунок 4 <fig_assignment2>`), как показано выше, на булево значение ``True``, то изменится и тип переменной (сейчас ``theSum`` имеет тип ``bool``). Оператор присваивания меняет ссылки, хранящиеся в переменной. Это динамическая характеристика Python. Одна и та же переменная может ссылаться на различные типы данных.
+Присваивание ``theSum = 0`` создаёт переменную с именем ``theSum``,
+содержащую ссылку на объект данных ``0``
+(см. :ref:`Рисунок 3 <fig_assignment1>`). В целом, когда правая часть
+оператора присваивания вычисляется, ссылка на результат "назначается"
+имени в левой части. В данный момент в нашем примере тип переменной -
+целое, и это тип данных, на которые сейчас ссылается ``theSum``. Если
+он изменится (см. :ref:`Рисунок 4 <fig_assignment2>`), как показано
+выше, на булево значение ``True``, то изменится и тип переменной
+(сейчас ``theSum`` имеет тип ``bool``). Оператор присваивания меняет
+ссылки, хранящиеся в переменной. Это динамическая характеристика Python.
+Одна и та же переменная может ссылаться на различные типы данных.
 
 
 .. _fig_assignment1:
@@ -112,21 +156,23 @@
 
    Рисунок 4: Присваивание изменяет ссылку
 
-Built-in Collection Data Types
+Встроенные составные типы данных
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In addition to the numeric and boolean classes, Python has a number of
-very powerful built-in collection classes. Lists, strings, and tuples
-are ordered collections that are very similar in general structure but
-have specific differences that must be understood for them to be used
-properly. Sets and dictionaries are unordered collections.
+Кроме числовых и булева типов данных у Python есть несколько мощных
+встроенных составных классов. Списки, строки и кортежи являются
+упорядоченными коллекциями. Они весьма схожи по общей структуре, но
+имеют специфические различия, понимать которые необходимо для уместного
+их использования. К неупорядоченным коллекциям относятся множества и
+словари.
 
-A **list** is an ordered collection of zero or more references to Python
-data objects. Lists are written as comma-delimited values enclosed in
-square brackets. The empty list is simply ``[ ]``. Lists are
-heterogeneous, meaning that the data objects need not all be from the
-same class and the collection can be assigned to a variable as below.
-The following fragment shows a variety of Python data objects in a list.
+**Список** - это упорядоченная коллекция из нуля или более ссылок на
+объекты данных Python. Списки записываются как разделённые запятыми
+значения, заключённые в квадратные скобки. Пустой список выглядит
+просто ``[]``. Списки гетерогенны. Это означает, что их объекты не
+обязательно должны иметь один и тот же тип, и коллекция может быть
+присвоена переменной, как показано ниже. Следующий фрагмент показывает
+различные объекты данных Python, объединённые в список.
 
 ::
 
@@ -136,37 +182,39 @@ The following fragment shows a variety of Python data objects in a list.
     >>> myList
     [1, 3, True, 6.5]
 
-Note that when Python evaluates a list, the list itself is returned.
-However, in order to remember the list for later processing, its
-reference needs to be assigned to a variable.
+Обратите внимание, что результатом вычисления списка в Python является
+он сам. Тем не менее, чтобы запомнить список для последующей обработки,
+ссылка на него должна быть присвоена переменной.
 
-Since lists are considered to be sequentially ordered, they support a
-number of operations that can be applied to any Python sequence.
-:ref:`Table 2 <tab_sequence>` reviews these operations and the following session
-gives examples of their use.
+Поскольку списки считаются последовательно упорядоченными, то они
+поддерживают ряд операций, которые могут быть применены к любой
+Python-последовательности. Эти операции собраны в
+:ref:`Таблице 2 <tab_sequence>` вместе с примерами их использования.
+
 
 .. _tab_sequence:
 
-.. table:: **Table 2: Operations on Any Sequence in Python**
+.. table:: **Таблица 2: Операции для любой последовательности в Python**
 
-    =========================== ============== ========================================
-             **Operation Name**   **Operator**                          **Explanation**
-    =========================== ============== ========================================
-                       indexing            [ ]          Access an element of a sequence
-                  concatenation             \+          Combine sequences together
-                     repetition             \*   Concatenate a repeated number of times
-                     membership             in     Ask whether an item is in a sequence
-                         length            len  Ask the number of items in the sequence
-                        slicing          [ : ]             Extract a part of a sequence
-    =========================== ============== ========================================
+    =========================== ============== =================================================================
+             **Имя оператора**   **Оператор**                             **Пояснение**
+    =========================== ============== =================================================================
+                 индексирование            [ ]                              Доступ к элементу последовательности
+                  конкантенация             \+                              Объединение двух последовательностей
+                     повторение             \*                   Конкатенация повторений заданное количество раз
+        принадлежность элемента             in        Запрос о принадлежности элемента данной последовательности
+                          длина            len                  Запрос количества элементов в последовательности
+                           срез          [ : ]                                Выделение части последовательности
+    =========================== ============== =================================================================
 
 
-Note that the indices for lists (sequences) start counting with 0. The
-slice operation, myList[1:3], returns a list of items starting with the
-item indexed by 1 up to but not including the item indexed by 3.
+Обратите внимание, что индексы элементов списка начинаются с 0. Операция
+среза myList[1:3] возвращает список элементов, начинающийся с элемента
+под индексом 1, но при этом не включает в себя элемент под индексом 3.
 
-Sometimes, you will want to initialize a list. This can quickly be
-accomplished by using repetition. For example,
+Иногда у вас может возникнуть желание проинициализировать список. Этого
+легко достичь, используя повторения. Например,
+
 
 ::
 
@@ -174,12 +222,13 @@ accomplished by using repetition. For example,
     >>> myList
     [0, 0, 0, 0, 0, 0]
 
-One very important aside relating to the repetition operator is that the
-result is a repetition of references to the data objects in the
-sequence. This can best be seen by considering the following session:
+Одно важное отступление, касающееся оператора повторения: его
+результатом будет последовательность повторений ссылок на объект данных.
+Это хорошо видно в следующем примере:
+
 
 .. activecode:: intro_3
-    :caption: Repetition of References
+    :caption: Повторение ссылок
 
     myList = [1,2,3,4]
     A = [myList]*3
@@ -188,36 +237,38 @@ sequence. This can best be seen by considering the following session:
     print(A)
 
 
-The variable ``A`` holds a collection of three references to the
-original list called ``myList``. Note that a change to one element of
-``myList`` shows up in all three occurrences in ``A``.
+Переменная ``А`` содержит коллекцию из трёх ссылок на оригинальный
+список ``myList``. Обратите внимание, что изменение одного элемента в
+``myList`` отражается на всех трёх вхождениях в ``А``.
 
-Lists support a number of methods that will be used to build data
-structures. :ref:`Table 3 <tab_listmethods>` provides a summary. Examples of their
-use follow.
+Списки поддерживают ряд методов, которые будут использоваться для
+построения структур данных. В :ref:`Таблице 3 <tab_listmethods>`
+представлено обобщение методов для работы со списками. Ниже идут
+примеры их применения.
+
 
 .. _tab_listmethods:
 
-.. table:: **Table 3: Methods Provided by Lists in Python**
+.. table:: **Таблица 3: Методы, предусмотренные для списков в Python**
 
     ======================== ========================== =======================================================
-             **Method Name**                    **Use**                                         **Explanation**
+        **Название метода**           **Использование**                                           **Пояснение**
     ======================== ========================== =======================================================
-                  ``append``     ``alist.append(item)``                    Adds a new item to the end of a list
-                  ``insert``   ``alist.insert(i,item)``           Inserts an item at the ith position in a list
-                     ``pop``            ``alist.pop()``             Removes and returns the last item in a list
-                     ``pop``           ``alist.pop(i)``              Removes and returns the ith item in a list
-                    ``sort``           ``alist.sort()``                            Modifies a list to be sorted
-                 ``reverse``        ``alist.reverse()``                  Modifies a list to be in reverse order
-                     ``del``           ``del alist[i]``                    Deletes the item in the ith position
-                   ``index``      ``alist.index(item)``   Returns the index of the first occurrence of ``item``
-                   ``count``      ``alist.count(item)``           Returns the number of occurrences of ``item``
-                  ``remove``     ``alist.remove(item)``                Removes the first occurrence of ``item``
+                  ``append``     ``alist.append(item)``                   Добавить новый элемент в конец списка
+                  ``insert``   ``alist.insert(i,item)``                  Вставить элемент в i-ую позицию списка
+                     ``pop``            ``alist.pop()``           Удалить из списка и вернуть последний элемент
+                     ``pop``           ``alist.pop(i)``                 Удалить из списка и вернуть i-й элемент
+                    ``sort``           ``alist.sort()``                Отсортировать список (изменяет оригинал)
+                 ``reverse``        ``alist.reverse()``  Изменить список, чтобы элементы шли в обратном порядке
+                     ``del``           ``del alist[i]``                          Удалить элемент на i-й позиции
+                   ``index``      ``alist.index(item)``               Вернуть индекс первого вхождения ``item``
+                   ``count``      ``alist.count(item)``               Вернуть число вхождений ``item`` в список
+                  ``remove``     ``alist.remove(item)``                       Удалить первое вхождения ``item``
     ======================== ========================== =======================================================
 
 
 .. activecode:: intro_5
-    :caption: Examples of List Methods
+    :caption: Примеры методов для списков
 
     myList = [1024, 3, True, 6.5]
     myList.append(False)
@@ -242,15 +293,17 @@ use follow.
     print(myList)
 
 
-You can see that some of the methods, such as ``pop``, return a value
-and also modify the list. Others, such as ``reverse``, simply modify the
-list with no return value. ``pop`` will default to the end of the list
-but can also remove and return a specific item. The index range starting
-from 0 is again used for these methods. You should also notice the
-familiar “dot” notation for asking an object to invoke a method.
-``myList.append(False)`` can be read as “ask the object ``myList`` to
-perform its ``append`` method and send it the value ``False``.” Even
-simple data objects such as integers can invoke methods in this way.
+Как вы можете видеть, некоторые методы (например, ``pop``) возвращают
+значение и при этом модифицируют список. Другие (как ``reverse``) просто
+изменяют список. По умолчанию ``pop`` применяется к концу списка, но
+может также удалять и возвращать конкретное значение. Для всех этих
+методов индексация по прежнему начинается с нуля. Вы также могли
+отметить знакомую "dot"-нотацию, запрашивающую у объекта вызов метода.
+``myList.append(False)`` можно прочитать как "запросить у объекта
+``myList`` выполнение его метода ``append`` и отправить через него
+значение ``False``". Даже такие простые объекты данных, как целые
+числа, могут вызывать свои методы подобным образом.
+
 
 ::
 
@@ -258,17 +311,19 @@ simple data objects such as integers can invoke methods in this way.
     75
     >>>
 
-In this fragment we are asking the integer object ``54`` to execute its
-``add`` method (called ``__add__`` in Python) and passing it ``21`` as
-the value to add. The result is the sum, ``75``. Of course, we usually
-write this as ``54+21``. We will say much more about these methods later
-in this section.
+В этом фрагменте мы просим объект целочисленного типа ``54`` выполнить
+его метод ``add`` (в Python называется ``__add__``), передав в него
+``21``, как число, которое нужно прибавить. Результатом будет сумма
+``75``. Конечно, обычно мы это пишем как ``54+21``. Подробнее об этих
+методах мы поговорим чуть позже.
 
-One common Python function that is often discussed in conjunction with
-lists is the ``range`` function. ``range`` produces a range object that
-represents a sequence of values. By using the ``list`` function, it is
-possible to see the value of the range object as a list. This is
-illustrated below.
+
+Ещё одной распространённой функцией, часто обсуждаемой в связке со
+списками, является функция ``range``. Она производит объект "диапазон",
+представляющий из себя последовательность значений. Используя функцию
+``list``, можно представить значение такого объекта в виде списка. Это
+проиллюстрировано ниже:
+
 
 ::
 
@@ -286,18 +341,21 @@ illustrated below.
     [10, 9, 8, 7, 6, 5, 4, 3, 2]
     >>>
 
-The range object represents a sequence of integers. By default, it will
-start with 0. If you provide more parameters, it will start and end at
-particular points and can even skip items. In our first example,
-``range(10)``, the sequence starts with 0 and goes up to but does not
-include 10. In our second example, ``range(5,10)`` starts at 5 and goes
-up to but not including 10. ``range(5,10,2)`` performs similarly but
-skips by twos (again, 10 is not included).
+Объект "диапазон" представляет из себя последовательность целых чисел.
+По умолчанию он начинается с нуля. Если вы предоставите больше параметров,
+то он будет начинаться и заканчиваться в конкретных точках и сможет даже
+пропускать некоторые элементы. В нашем первом примере - ``range(10)``
+- последовательность начинается с 0 и продолжается до 9 (не включая 10).
+Во втором примере - ``range(5,10)`` - начинается с 5 и заканчивается 9
+(опять же, не включая 10). ``range(5,10,2)`` работает аналогично, но
+пропускает каждый второй элемент (10 по прежнему не включается).
 
-**Strings** are sequential collections of zero or more letters, numbers
-and other symbols. We call these letters, numbers and other symbols
-*characters*. Literal string values are differentiated from identifiers
-by using quotation marks (either single or double).
+
+**Строки** представляют собой коллекции с последовательным доступом из
+нуля или более букв, чисел и прочих знаков. Мы называем все эти элементы
+*символами*. Строковый литерал отличается от идентификатора использованием
+кавычек (одинарных или двойных).
+
 
 ::
 
@@ -312,9 +370,11 @@ by using quotation marks (either single or double).
     5
     >>>
 
-Since strings are sequences, all of the sequence operations described
-above work as you would expect. In addition, strings have a number of
-methods, some of which are shown in :ref:`Table 4<tab_stringmethods>`. For example,
+Поскольку строки - это последовательности, то все описанные выше
+операции для последовательностей будут с ними работать так, как
+ожидается. Дополнительно у строк есть ещё несколько методов, некоторые
+из которых представлены в :ref:`Таблице 4<tab_stringmethods>`. Например,
+
 
 ::
 
@@ -329,34 +389,36 @@ methods, some of which are shown in :ref:`Table 4<tab_stringmethods>`. For exam
     >>> myName.split('v')
     ['Da', 'id']
 
-Of these, ``split`` will be very useful for processing data. ``split``
-will take a string and return a list of strings using the split
-character as a division point. In the example, ``v`` is the division
-point. If no division is specified, the split method looks for
-whitespace characters such as tab, newline and space.
+Из них очень полезным для обработки данных является метод ``split``.
+Он принимает строку и возвращает список строк, используя расщепляющий
+символ как точку разделения. В нашем примере таковым является ``v``.
+Если разделитель не указан, то ``split`` ищет пробельные символы
+(табуляции, переходы на новую строку и пробелы).
+
 
 .. _tab_stringmethods:
 
-.. table:: **Table 4: Methods Provided by Strings in Python**
+.. table:: **Таблица 4: Методы, предусмотренные для строк в Python**
 
-    ======================== ========================= =============================================================
-             **Method Name**                   **Use**                                               **Explanation**
-    ======================== ========================= =============================================================
-                  ``center``     ``astring.center(w)``            Returns a string centered in a field of size ``w``
-                   ``count``   ``astring.count(item)``   Returns the number of occurrences of ``item`` in the string
-                   ``ljust``      ``astring.ljust(w)``      Returns a string left-justified in a field of size ``w``
-                   ``lower``       ``astring.lower()``                             Returns a string in all lowercase
-                   ``rjust``      ``astring.rjust(w)``     Returns a string right-justified in a field of size ``w``
-                    ``find``    ``astring.find(item)``         Returns the index of the first occurrence of ``item``
-                   ``split``  ``astring.split(schar)``                  Splits a string into substrings at ``schar``
-    ======================== ========================= =============================================================
+    ======================== ========================= ==========================================================================
+        **Название метода**       **Использование**                                                                 **Пояснение**
+    ======================== ========================= ==========================================================================
+                  ``center``     ``astring.center(w)``                     Возвращает строку, центрированную в поле размера ``w``
+                   ``count``   ``astring.count(item)``                               Возвращает число вхождений ``item`` в строку
+                   ``ljust``      ``astring.ljust(w)``       Возвращает строку с выравниванием по левому краю поля размером ``w``
+                   ``lower``       ``astring.lower()``                            Возвращает строку из символов в нижнем регистре
+                   ``rjust``      ``astring.rjust(w)``      Возвращает строку с выравниванием по правому краю поля размером ``w``
+                    ``find``    ``astring.find(item)``                               Возвращает индекс первого вхождения ``item``
+                   ``split``  ``astring.split(schar)``                         Разбивает строку на подстроки по символу ``schar``
+    ======================== ========================= ==========================================================================
 
 
-A major difference between lists and strings is that lists can be
-modified while strings cannot. This is referred to as **mutability**.
-Lists are mutable; strings are immutable. For example, you can change an
-item in a list by using indexing and assignment. With a string that
-change is not allowed.
+Основное различие между списками и строками заключается в том, что
+списки можно изменять, а строки - нет. Это свойство называется
+**мутабельностью**. Списки мутабельны, строки иммутабельны. Например,
+вы легко можете изменить элемент списка, используя индексацию и
+присваивание. Для строк такие операции не допускаются.
+
 
 ::
 
@@ -376,11 +438,13 @@ change is not allowed.
     TypeError: object doesn't support item assignment
     >>>
 
-Tuples are very similar to lists in that they are heterogeneous
-sequences of data. The difference is that a tuple is immutable, like a
-string. A tuple cannot be changed. Tuples are written as comma-delimited
-values enclosed in parentheses. As sequences, they can use any operation
-described above. For example,
+Кортежи очень похожи на списки тем, что также являются гетерогенными
+последовательностями данных. Различие заключается в иммутабельности
+кортежей подобно строкам. Они не могут быть изменены. Кортежи
+записываются как разделённые запятыми значения, заключённые в круглые
+скобки. Будучи последовательностями, они могут использовать любые
+операции, описанные выше. Например:
+
 
 ::
 
@@ -397,9 +461,9 @@ described above. For example,
     (2, True)
     >>>
 
-However, if you try to change an item in a tuple, you will get an error.
-Note that the error message provides location and reason for the
-problem.
+Однако, если вы попытаетесь изменить элемент кортежа, то получите
+сообщение об ошибке. Обратите внимание, что такое сообщение содержит
+место и причину возникновения проблемы.
 
 ::
 
@@ -411,11 +475,12 @@ problem.
     TypeError: object doesn't support item assignment
     >>>
 
-A set is an unordered collection of zero or more immutable Python data
-objects. Sets do not allow duplicates and are written as comma-delimited
-values enclosed in curly braces. The empty set is represented by
-``set()``. Sets are heterogeneous, and the collection can be assigned to
-a variable as below.
+Множеством называется неупорядоченная коллекция из нуля или более
+неизменяемых объектов данных Python. Множества не допускают дубликатов
+и записываются как разделённые запятыми значения, заключённые в фигурные
+скобки. Пустое множество обозначается как ``set()``. Множества
+гетерогенны и могут присваиваться переменным, как показано ниже.
+
 
 ::
 
@@ -426,24 +491,26 @@ a variable as below.
     {False, 4.5, 3, 6, 'cat'}
     >>>
 
-Even though sets are not considered to be sequential, they do support a
-few of the familiar operations presented earlier. :ref:`Table 5 <tab_setops>` reviews
-these operations and the following session gives examples of their use.
+Не смотря на то, что множества не считаются последовательностями, они
+поддерживают некоторые знакомые операции из рассмотренных выше. Обзор
+таких операций представлен в :ref:`Таблице 5 <tab_setops>`, а дальнейший
+код демонстрирует примеры их использования.
+
 
 .. _tab_setops:
 
-.. table:: **Table 5: Operations on a Set in Python**
+.. table:: **Таблица 5: Операции, предусмотренные для множеств в Python**
 
-    =========================== ===================== ===================================================================
-             **Operation Name**          **Operator**                                                     **Explanation**
-    =========================== ===================== ===================================================================
-                     membership                    in                                                      Set membership
-                         length                   len                                  Returns the cardinality of the set
-                          ``|``   ``aset | otherset``                  Returns a new set with all elements from both sets
-                          ``&``   ``aset & otherset``      Returns a new set with only those elements common to both sets
-                          ``-``   ``aset - otherset``   Returns a new set with all items from the first set not in second
-                         ``<=``  ``aset <= otherset``       Asks whether all elements of  the first set are in the second
-    =========================== ===================== ===================================================================
+    =========================== ===================== =====================================================================================
+        **Название оператора**       **Оператор**                                                           **Пояснение**
+    =========================== ===================== =====================================================================================
+                     membership                    in                                                              Принадлежность множеству
+                         length                   len                                             Возвращает количество элементов множества
+                          ``|``   ``aset | otherset``                    Возвращает новое множество, содержащее все элементы обоих множеств
+                          ``&``   ``aset & otherset``                     Возвращает новое множество из элементов, общих для обоих множеств
+                          ``-``   ``aset - otherset``      Возвращает новое множество из элементов первого множества, не входящих во второе
+                         ``<=``  ``aset <= otherset``                        Спрашивает, все ли элементы первого множества входят во второе
+    =========================== ===================== =====================================================================================
 
 
 ::
@@ -458,28 +525,29 @@ these operations and the following session gives examples of their use.
     False
     >>>
 
-Sets support a number of methods that should be familiar to those who
-have worked with them in a mathematics setting. :ref:`Table 6 <tab_setmethods>`
-provides a summary. Examples of their use follow. Note that ``union``,
-``intersection``, ``issubset``, and ``difference`` all have operators
-that can be used as well.
+Множества поддерживают некоторые операции, которые будут знакомы тем,
+кто работал с ними в математических областях. Обобщение по ним дано в
+:ref:`Таблице 6 <tab_setmethods>`, ниже идут примеры. Обратите внимание,
+что ``union``, ``intersection``, ``issubset`` и ``difference`` имеют
+специальные операторы, которые можно использовать вместо них.
+
 
 .. _tab_setmethods:
 
-.. table:: **Table 6: Methods Provided by Sets in Python**
+.. table:: **Таблица 6: Методы, предусмотренные для множеств в Python**
 
-    ======================== ================================= ================================================================
-             **Method Name**                           **Use**                                                  **Explanation**
-    ======================== ================================= ================================================================
-                   ``union``          ``aset.union(otherset)``               Returns a new set with all elements from both sets
-            ``intersection``   ``aset.intersection(otherset)``   Returns a new set with only those elements common to both sets
-              ``difference``     ``aset.difference(otherset)``    Returns a new set with all items from first set not in second
-                ``issubset``       ``aset.issubset(otherset)``            Asks whether all elements of one set are in the other
-                     ``add``                ``aset.add(item)``                                             Adds item to the set
-                  ``remove``             ``aset.remove(item)``                                        Removes item from the set
-                     ``pop``                    ``aset.pop()``                        Removes an arbitrary element from the set
-                   ``clear``                  ``aset.clear()``                                Removes all elements from the set
-    ======================== ================================= ================================================================
+    ======================== ================================= =================================================================================================
+                **Название**                 **Использование**                                          **Пояснение**
+    ======================== ================================= =================================================================================================
+                   ``union``          ``aset.union(otherset)``                   Возвращает новое множество, состоящее из всех элементов обоих исходных множеств
+            ``intersection``   ``aset.intersection(otherset)``      Возвращает новое множество, состоящее только из элементов, общих для обоих исходных множеств
+              ``difference``     ``aset.difference(otherset)``   Возвращает новое множество, содержащее все элементы первого множества, не принадлежащие второму
+                ``issubset``       ``aset.issubset(otherset)``                                    Спрашивает, все ли элементы первого множества входят во второе
+                     ``add``                ``aset.add(item)``                                                               Добавляет новый элемент в множество
+                  ``remove``             ``aset.remove(item)``                                                                      Удаляет элемент из множества
+                     ``pop``                    ``aset.pop()``                                                         Удаляет произвольный элемент из множества
+                   ``clear``                  ``aset.clear()``                                                                 Удаляет все элементы из множества
+    ======================== ================================= =================================================================================================
 
 
 ::
@@ -518,11 +586,12 @@ that can be used as well.
     set()
     >>>
 
-Our final Python collection is an unordered structure called a
-**dictionary**. Dictionaries are collections of associated pairs of
-items where each pair consists of a key and a value. This key-value pair
-is typically written as key:value. Dictionaries are written as
-comma-delimited key:value pairs enclosed in curly braces. For example,
+Заключительной из рассматриваемых нами коллекций Python будет неупорядоченная
+структура, называемая **словарём**. Словари - это коллекции ассоциированных
+пар элементов, каждая из которых состоит из ключа и значения. Эти пары обычно
+записываются как ключ:значение. Словари выглядят как разделённые запятыми пары
+ключ:значение, заключённые в фигурные скобки. Например,
+
 
 ::
 
@@ -531,13 +600,14 @@ comma-delimited key:value pairs enclosed in curly braces. For example,
     {'Wisconsin': 'Madison', 'Iowa': 'DesMoines'}
     >>>
 
-We can manipulate a dictionary by accessing a value via its key or by
-adding another key-value pair. The syntax for access looks much like a
-sequence access except that instead of using the index of the item we
-use the key value. To add a new value is similar.
+Мы можем манипулировать словарём путём доступа к значению по его ключу или добавляя
+ещё одну пару ключ-значение. Синтаксис доступа выглядит очень похоже на аналогичный
+для последовательностей, за исключением того момента, что вместо индекса элемента,
+мы используем его ключ. Добавление новых элементов тоже похоже.
+
 
 .. activecode:: intro_7
-    :caption: Using a Dictionary
+    :caption: Использование Словарей
 
     capitals = {'Iowa':'DesMoines','Wisconsin':'Madison'}
     print(capitals['Iowa'])
@@ -548,34 +618,35 @@ use the key value. To add a new value is similar.
     for k in capitals:
        print(capitals[k]," is the capital of ", k)
 
-It is important to note that the dictionary is maintained in no
-particular order with respect to the keys. The first pair added
-(``'Utah':`` ``'SaltLakeCity'``) was placed first in the dictionary and
-the second pair added (``'California':`` ``'Sacramento'``) was placed
-last. The placement of a key is dependent on the idea of “hashing,”
-which will be explained in more detail in Chapter 4. We also show the
-length function performing the same role as with previous collections.
 
-Dictionaries have both methods and operators. :ref:`Table 7 <tab_dictopers>` and
-:ref:`Table 8 <tab_dictmethods>` describe them, and the session shows them in action. The
-``keys``, ``values``, and ``items`` methods all return objects that
-contain the values of interest. You can use the ``list`` function to
-convert them to lists. You will also see that there are two variations
-on the ``get`` method. If the key is not present in the dictionary,
-``get`` will return ``None``. However, a second, optional parameter can
-specify a return value instead.
+Тут очень важно обратить внимание, что словари не поддерживают какого-то
+определённого порядка для своих ключей. Первая добавленная пара
+(``'Utah'``: ``'SaltLakeCity'``) будет помещена на первое место
+в словаре, вторая (``'California'``: ``'Sacramento'``) - на последнее.
+Размещение ключей зависит от идеи "хеширования", которая более детально
+будет объясняться в главе 4. Бонусом мы продемонстрировали, что функция
+для определения длины работает также, как и для предыдущих коллекций.
+
+Словари имеют и методы, и операторы. Они расписаны в :ref:`Таблице 7 <tab_dictopers>`
+и :ref:`Таблице 8 <tab_dictmethods>`, а код ниже показывает их в действии. Методы
+``keys``, ``values`` и ``items`` возвращают объекты, содержащие интересующие нас
+значения. Вы можете использовать функцию ``list``, чтобы конвертировать их в списки.
+Также показаны два варианта метода ``get``. Если ключ не представлен в словаре, то
+``get`` вернёт ``None``. Однако, второй (опциональный) параметр может определять
+другое возвращаемое в этом случае значение.
+
 
 .. _tab_dictopers:
 
 .. table:: **Table 7: Operators Provided by Dictionaries in Python**
 
-    ===================== ================== =====================================================================
-             **Operator**            **Use**                                                       **Explanation**
-    ===================== ================== =====================================================================
-                   ``[]``      ``myDict[k]``       Returns the value associated with ``k``, otherwise its an error
-                   ``in``   ``key in adict``   Returns ``True`` if key is in the   dictionary, ``False`` otherwise
-                  ``del`` del ``adict[key]``                                Removes the entry from the  dictionary
-    ===================== ================== =====================================================================
+    ===================== ================== =======================================================================================
+             **Оператор**  **Использование**                                    **Пояснение**
+    ===================== ================== =======================================================================================
+                   ``[]``      ``myDict[k]``   Возвращает значение, ассоциированное с ``k``, или ошибку, если такового не существует
+                   ``in``   ``key in adict``         Возвращает ``True``, если значение есть в словаре, ``False`` в противном случае
+                  ``del`` del ``adict[key]``                                                               Удаляет запись из словаря
+    ===================== ================== =======================================================================================
 
 
 
@@ -603,22 +674,22 @@ specify a return value instead.
 
 .. _tab_dictmethods:
 
-.. table:: **Table 8: Methods Provided by Dictionaries in Python**
+.. table:: **Таблица 8: Методы, предусмотренные для словарей в Python**
 
-    ======================== ==================== ===============================================================
-             **Method Name**              **Use**                                                 **Explanation**
-    ======================== ==================== ===============================================================
-                    ``keys``     ``adict.keys()``       Returns the keys of the dictionary in a dict_keys object
-                  ``values``   ``adict.values()``   Returns the values of the dictionary in a dict_values object
-                   ``items``    ``adict.items()``             Returns the key-value pairs in a dict_items object
-                     ``get``     ``adict.get(k)``     Returns the value associated with ``k``, ``None`` otherwise
-                     ``get`` ``adict.get(k,alt)``      Returns the value associated with ``k``, ``alt`` otherwise
-    ======================== ==================== ===============================================================
+    ======================== ==================== ========================================================================================
+             **Метод**         **Использование**                                      **Пояснение**
+    ======================== ==================== ========================================================================================
+                    ``keys``     ``adict.keys()``                                            Возвращает ключи словаря как объект dict_keys
+                  ``values``   ``adict.values()``                                       Возвращает значения словаря как объект dict_values
+                   ``items``    ``adict.items()``                                      Возвращает пары ключ-значение как объект dict_items
+                     ``get``     ``adict.get(k)``      Возвращает значение, ассоциированное с ``k``, или ``None``, если таковое не найдено
+                     ``get`` ``adict.get(k,alt)``         Возвращает значение, ассоциированное с ``k``, или ``alt``, если такое не найдено
+    ======================== ==================== ========================================================================================
 
 
 .. note::
 
-    This workspace is provided for your convenience.  You can use this activecode window to try out anything you like.
+    Данное рабочее пространство предоставлено для вашего удобства. Можете использовать это окно activecode для проб всего, что вам захочется.
 
     .. activecode:: scratch_01_01
 
