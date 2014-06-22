@@ -7,54 +7,55 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Object-Oriented Programming in Python: Defining Classes
+Объектно-ориентированное программирование в Python: определение классов
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We stated earlier that Python is an object-oriented programming
-language. So far, we have used a number of built-in classes to show
-examples of data and control structures. One of the most powerful
-features in an object-oriented programming language is the ability to
-allow a programmer (problem solver) to create new classes that model
-data that is needed to solve the problem.
+Мы уже говорили ранее, что Python является объектно-ориентированным
+языком. До сих пор мы использовали только несколько встроенных классов
+для демонстрации данных и управляющих структур. Одной из наиболее мощных
+черт объектно-ориентированного языка программирования является его
+способность предоставить программисту (решателю задачи) возможность
+создавать новые классы, моделирующие данные, необходимые для решения
+проблемы.
 
-Remember that we use abstract data types to provide the logical
-description of what a data object looks like (its state) and what it can
-do (its methods). By building a class that implements an abstract data
-type, a programmer can take advantage of the abstraction process and at
-the same time provide the details necessary to actually use the
-abstraction in a program. Whenever we want to implement an abstract data
-type, we will do so with a new class.
+Не забывайте: мы используем абстрактные типы данных, чтобы предоставить
+логическое описание того, как выглядят объекты данных (их состояние) и
+что они могут делать (их методы). Создавая класс, реализующий абстрактный
+тип данных, программист пользуется преимуществами абстракции процесса и в
+то же время предоставляет детали, необходимые при конкретном использовании
+абстракции в программе. Всякий раз, когда мы хотим реализовать абстрактный
+тип данных, мы делаем это через новый класс.
 
-A ``Fraction`` Class
+
+Класс ``Fraction``
 ^^^^^^^^^^^^^^^^^^^^
 
-A very common example to show the details of implementing a user-defined
-class is to construct a class to implement the abstract data type
-``Fraction``. We have already seen that Python provides a number of
-numeric classes for our use. There are times, however, that it would be
-most appropriate to be able to create data objects that “look like”
-fractions.
+Очень распространённым примером для демонстрации деталей реализации
+пользовательского класса является разработка класса, реализующего
+абстрактный тип данных ``Fraction``. Мы уже видели, что Python
+предоставляет в наше пользование несколько числовых классов. Однако,
+бывают моменты, когда более подходящим является создание объекта
+данных лишь "выглядящего как" дробь.
 
+Дробь (например, :math:`\frac {3}{5}`) состоит из двух частей. Верхнее
+значение, называемое числитель, может быть любым целым числом. Нижнее
+значение (знаменатель) - любым целым, большим нуля (отрицательные дроби
+имеют отрицательный числитель). Также для любой дроби можно создать
+приближение с плавающей запятой. В этом случае мы хотели бы представлять
+дробь как точное значение.
 
+Операции для типа ``Fraction`` будут позволять объектам данных
+``Fraction`` вести себя подобно любым другим числовым значениям. Мы
+должны быть готовы складывать, вычитать, умножать и делить дроби. Мы
+также хотим иметь возможность показывать дроби в их стандартной
+"слэш"-форме (например, :math:`\frac {3}{5}`). Так же все методы дробей
+должны возвращать результат в своей сокращённой форме таким образом,
+чтобы вне зависимости от вида вычислений мы в конце всегда имели бы
+наиболее общепринятую форму.
 
-A fraction such as :math:`\frac {3}{5}` consists of two parts. The top
-value, known as the numerator, can be any integer. The bottom value,
-called the denominator, can be any integer greater than 0 (negative
-fractions have a negative numerator). Although it is possible to create
-a floating point approximation for any fraction, in this case we would
-like to represent the fraction as an exact value.
-
-The operations for the ``Fraction`` type will allow a ``Fraction`` data
-object to behave like any other numeric value. We need to be able to
-add, subtract, multiply, and divide fractions. We also want to be able
-to show fractions using the standard “slash” form, for example 3/5. In
-addition, all fraction methods should return results in their lowest
-terms so that no matter what computation is performed, we always end up
-with the most common form.
-
-In Python, we define a new class by providing a name and a set of method
-definitions that are syntactically similar to function definitions. For
-this example,
+В Python мы определяем новый класс предоставлением его имени и набора
+определений методов, которые синтаксически подобны определениям функций.
+В этом примере
 
 ::
 
@@ -63,13 +64,13 @@ this example,
        #the methods go here
 
 
-provides the framework for us to define the methods. The first method
-that all classes should provide is the constructor. The constructor
-defines the way in which data objects are created. To create a
-``Fraction`` object, we will need to provide two pieces of data, the
-numerator and the denominator. In Python, the constructor method is
-always called __init__ (two underscores before and after ``init``)
-and is shown in :ref:`Listing 2 <lst_pyconstructor>`.
+нам дан каркас для определения методов. Первым методом, который должны
+предоставлять все классы, является конструктор. Он определяет способ
+создания объекта данных. Чтобы создать объект ``Fraction``, нам нужно
+предоставить два кусочка данных - числитель и знаменатель. В Python
+метод конструктора всегда называется ``__init__`` (по два подчёркивания
+до и после ``init``). Он демонстрируется в :ref:`Листинге 2 <lst_pyconstructor>`:
+
 
 .. _lst_pyconstructor:
 
@@ -84,41 +85,44 @@ and is shown in :ref:`Listing 2 <lst_pyconstructor>`.
             self.num = top
             self.den = bottom
 
-Notice that the formal parameter list contains three items (``self``,
-``top``, ``bottom``). ``self`` is a special parameter that will always
-be used as a reference back to the object itself. It must always be the
-first formal parameter; however, it will never be given an actual
-parameter value upon invocation. As described earlier, fractions require
-two pieces of state data, the numerator and the denominator. The
-notation ``self.num`` in the constructor defines the ``fraction`` object
-to have an internal data object called ``num`` as part of its state.
-Likewise, ``self.den`` creates the denominator. The values of the two
-formal parameters are initially assigned to the state, allowing the new
-``fraction`` object to know its starting value.
+Обратите внимание, что список формальных параметров содержит три элемента
+(``self``, ``top``, ``bottom``). ``self`` - это специальный параметр,
+который всегда используется как обратная ссылка на сам объект. Он всегда
+должен быть первым формальным параметром, однако, при вызове конструктора
+в него никогда не передаётся актуальное значение. Как уже было описано ранее,
+дробям необходимы две части данных состояния - числитель и знаменатель.
+Нотация ``self.num`` конструктора определяет, что объект ``fraction`` имеет
+внутренний объект данных, именуемый ``num``, как часть своего состояния.
+Аналогично, ``self.den`` создаёт знаменатель. Значения этих двух формальных
+параметров изначально устанавливаются в состояние, позволяющее новому объекту
+``fraction`` знать своё начальное значение.
 
-To create an instance of the ``Fraction`` class, we must invoke the
-constructor. This happens by using the name of the class and passing
-actual values for the necessary state (note that we never directly
-``invoke __init__``). For example,
+Чтобы создать сущность класса ``Fraction``, мы должны вызвать конструктор.
+Это произойдёт при использовании имени класса с подстановкой актуальных
+значений в необходимое состояние (заметьте, что мы никогда не вызываем
+непосредственно ``__init__``). Например,
+
 
 ::
 
     myfraction = Fraction(3,5)
 
-creates an object called ``myfraction`` representing the fraction
-:math:`\frac {3}{5}` (three-fifths). :ref:`Figure 5 <fig_fraction1>` shows this
-object as it is now implemented.
+создаст объект с именем ``myfraction``, представляющий дробь :math:`\frac {3}{5}`
+(три пятых). :ref:`Рисунок 5 <fig_fraction1>` показывает этот объект, как уже
+существующий.
+
 
 .. _fig_fraction1:
 
 .. figure:: Figures/fraction1.png
    :align: center
 
-   Figure 5: An Instance of the ``Fraction`` Class
+   Рисунок 5: Экземпляр класса ``Fraction``
 
-The next thing we need to do is implement the behavior that the abstract
-data type requires. To begin, consider what happens when we try to print
-a ``Fraction`` object.
+Следующее, чем мы займёмся, это реализация поведения, требуемого абстрактным
+классом. Для начала рассмотрим, что происходит, когда мы пытаемся напечатать
+объект ``Fraction``.
+
 
 ::
 
@@ -126,26 +130,26 @@ a ``Fraction`` object.
     >>> print(myf)
     <__main__.Fraction instance at 0x409b1acc>
 
-The ``fraction`` object, ``myf``, does not know how to respond to this
-request to print. The ``print`` function requires that the object
-convert itself into a string so that the string can be written to the
-output. The only choice ``myf`` has is to show the actual reference that
-is stored in the variable (the address itself). This is not what we
-want.
+Объект ``fraction``, ``myf`` не знает, как ему отвечать на запрос о печати.
+Функция ``print`` требует, чтобы объект конвертировал себя самоё в строку,
+которая будет записана на выходе. Единственный выбор, который имеет
+``myf``, - это показать актуальную ссылку, хранящуюся в переменной
+(непосредственный адрес). Это не то, чего мы хотим.
 
-There are two ways we can solve this problem. One is to define a method
-called ``show`` that will allow the ``Fraction`` object to print itself
-as a string. We can implement this method as shown in
-:ref:`Listing 3 <lst_showmethod>`. If we create a ``Fraction`` object as before, we
-can ask it to show itself, in other words, print itself in the proper
-format. Unfortunately, this does not work in general. In order to make
-printing work properly, we need to tell the ``Fraction`` class how to
-convert itself into a string. This is what the ``print`` function needs
-in order to do its job.
+Существует два пути решения этой проблемы. Первый - определить метод под
+названием ``show``, который позволит объекту ``Fraction`` печать самоё себя
+как строку. Мы можем реализовать этот метод, как показано в
+:ref:`Листинге 3 <lst_showmethod>`. Если мы будем создавать объект
+``Fraction`` как и раньше, то мы сможем попросить его показать себя - другими
+словами, напечатать себя в подходящем формате. К сожалению, в общем случае это
+не будет работать. Для того, чтобы организовать печать должным образом, нам
+необходимо сообщить классу ``Fraction``, как ему конвертировать себя в строку.
+Это то, что необходимо функции ``print`` для нормальной работы.
+
 
 .. _lst_showmethod:
 
-**Listing 3**
+**Листинг 3**
 
 .. sourcecode:: python
 
@@ -164,28 +168,27 @@ in order to do its job.
     >>>
 
 
+В Python у всех классов имеется набор стандартных методов, которые
+предоставляются по умолчанию, но могут не работать должным образом. Один из
+них, ``__str__``, - это метод преобразования объекта в строку. Реализация по
+умолчанию для этого метода, как мы уже могли видеть, возвращает строку адреса
+экземпляра класса. Что нам необходимо сделать, так это предоставить "лучшую"
+реализацию для него. Мы будем говорить, что эта реализация **перегружает**
+предыдущую (или переопределяет поведение метода).
 
-In Python, all classes have a set of standard methods that are provided
-but may not work properly. One of these, ``__str__``, is the method to
-convert an object into a string. The default implementation for this
-method is to return the instance address string as we have already seen.
-What we need to do is provide a “better” implementation for this method.
-We will say that this implementation **overrides** the previous one, or
-that it redefines the method’s behavior.
+Чтобы сделать это, мы просто определим метод с именем ``__str__`` и зададим для
+него новую реализацию, как показано в :ref:`Листинге 4 <lst_str>`. Это определение
+не нуждается ни в какой дополнительной информации, кроме специального параметра
+``self``. В свою очередь, метод будет создавать строковое представление конвертированием
+каждого кусочка внутренних данных состояния в строку и конкатенацией этих строк с
+помощью символа ``/`` между ними. Результирующая строка будет возвращаться всякий
+раз, как объект ``Fraction`` попросит преобразовать себя в строку. Обратите внимание
+на различные способы использования этой функции.
 
-To do this, we simply define a method with the name ``__str__`` and
-give it a new implementation as shown in :ref:`Listing 4 <lst_str>`. This definition
-does not need any other information except the special parameter
-``self``. In turn, the method will build a string representation by
-converting each piece of internal state data to a string and then
-placing a ``/`` character in between the strings using string
-concatenation. The resulting string will be returned any time a
-``Fraction`` object is asked to convert itself to a string. Notice the
-various ways that this function is used.
 
 .. _lst_str:
 
-**Listing 4**
+**Листинг 4**
 
 .. sourcecode:: python
 
@@ -207,11 +210,12 @@ various ways that this function is used.
     '3/5'
     >>>
 
-We can override many other methods for our new ``Fraction`` class. Some
-of the most important of these are the basic arithmetic operations. We
-would like to be able to create two ``Fraction`` objects and then add
-them together using the standard “+” notation. At this point, if we try
-to add two fractions, we get the following:
+Мы можем перегрузить множество других методов для нашего нового класса
+``Fraction``. Одними из наиболее важных из них являются основные
+арифметические операции. Мы хотели бы иметь возможность создать два объекта
+``Fraction``, а затем сложить их вместе, используя стандартную запись "+".
+На данный момент, складывая две дроби, мы получаем следующее:
+
 
 ::
 
@@ -226,36 +230,35 @@ to add two fractions, we get the following:
               'instance' and 'instance'
     >>>
 
-If you look closely at the error, you see that the problem is that the
-“+” operator does not understand the ``Fraction`` operands.
+Если вы внимательнее посмотрите на сообщение об ошибке, то заметите,
+что загвоздка в том, что оператор "+" не понимает операндов ``Fraction``.
 
-We can fix this by providing the ``Fraction`` class with a method that
-overrides the addition method. In Python, this method is called
-``__add__`` and it requires two parameters. The first, ``self``, is
-always needed, and the second represents the other operand in the
-expression. For example,
+Мы можем исправить это, предоставив классу ``Fraction`` метод, перегружающий
+сложение. В Python такой метод называется ``__add__`` и принимает два параметра.
+Первый ``self`` необходим всегда, второй представляет из себя второй операнд
+выражения. Например,
+
 
 ::
 
     f1.__add__(f2)
 
-would ask the ``Fraction`` object ``f1`` to add the ``Fraction`` object
-``f2`` to itself. This can be written in the standard notation,
-``f1+f2``.
+будет запрашивать у ``Fraсtion`` объект ``f1`` прибавить к ``Fraction`` объект
+``f2``. Это может быть записано и в стандартной нотации ``f1 + f2``.
 
-Two fractions must have the same denominator to be added. The easiest
-way to make sure they have the same denominator is to simply use the
-product of the two denominators as a common denominator so that
+Для того, чтобы сложить две дроби, их нужно привести к общему знаменателю.
+Простейший способ увериться, что у них одинаковый знаменатель, - это использовать
+в его качестве произведение знаменателей дробей. Т.е.
 :math:`\frac {a}{b} + \frac {c}{d} = \frac {ad}{bd} + \frac {cb}{bd} = \frac{ad+cb}{bd}`
-The implementation is shown in :ref:`Listing 5 <lst_addmethod>`. The addition
-function returns a new ``Fraction`` object with the numerator and
-denominator of the sum. We can use this method by writing a standard
-arithmetic expression involving fractions, assigning the result of the
-addition, and then printing our result.
+Реализация показана в :ref:`Листинге 5 <lst_addmethod>`. Функция сложения
+возвращает новый объект ``Fraction`` с числителем и знаменателем суммарной дроби.
+Мы можем использовать этот метод при написании стандартных арифметических выражений
+с дробями, присваивая результату суммарную дробь и выводя её на экран.
+
 
 .. _lst_addmethod:
 
-**Listing 5**
+**Листинг 5**
 
 .. sourcecode:: python
 
@@ -277,33 +280,31 @@ addition, and then printing our result.
     6/8
     >>>
 
-The addition method works as we desire, but one thing could be better.
-Note that :math:`6/8` is the correct result
-(:math:`\frac {1}{4} + \frac {1}{2}`) but that it is not in the
-“lowest terms” representation. The best representation would be
-:math:`3/4`. In order to be sure that our results are always in the
-lowest terms, we need a helper function that knows how to reduce
-fractions. This function will need to look for the greatest common
-divisor, or GCD. We can then divide the numerator and the denominator by
-the GCD and the result will be reduced to lowest terms.
+Метод сложения работает, как мы того и хотели, но одну вещь можно было
+бы улучшить. Заметьте, что ``6/8`` - это правильный результат вычисления
+``(1/4 + 1/2)``, но это не сокращённая форма. Лучшим представлением будет
+``3/4``. Для того, чтобы быть уверенными, что наш результат всегда имеет
+сокращённый вид, нам понадобится вспомогательная функция, умеющая сокращать
+дроби. В ней нужно будет находить наибольший общий делитель, или НОД. Затем
+мы сможем разделить числитель и знаменатель на НОД, а результат и будет
+сокращением до наименьших членов.
 
-The best-known algorithm for finding a greatest common divisor is
-Euclid’s Algorithm, which will be discussed in detail in Chapter 8.
-Euclid’s Algorithm states that the greatest common divisor of two
-integers :math:`m` and :math:`n` is :math:`n` if :math:`n`
-divides :math:`m` evenly. However, if :math:`n` does not divide
-:math:`m` evenly, then the answer is the greatest common divisor of
-:math:`n` and the remainder of :math:`m` divided by :math:`n`. We
-will simply provide an iterative implementation here (see
-:ref:`ActiveCode 11 <lst_gcd>`). Note that this implementation of the GCD algorithm only
-works when the denominator is positive. This is acceptable for our
-fraction class because we have said that a negative fraction will be
-represented by a negative numerator.
+Наиболее известный алгоритм нахождения наибольшего общего делителя - это
+алгоритм Евклида, который будет детально обсуждаться в главе 8. Он
+устанавливает, что наибольшим общим делителем двух чисел ``m`` и ``n``
+будет ``n``, если ``m`` делится на ``n`` нацело. Однако, если этого не
+происходит, то ответом будет НОД ``n`` и остатка деления ``m`` на ``n``.
+Мы просто предоставим здесь итеративную реализацию этого алгоритма
+(см :ref:`ActiveCode 11 <lst_gcd>`). Обратите внимание, что она работает
+только при положительном знаменателе. Это допустимо для нашего класса дробей,
+поскольку мы говорили, что отрицательные дроби будут представляться
+отрицательным числителем.
+
 
 .. _lst_gcd:
 
 .. activecode::  gcd_cl
-    :caption: The Greatest Common Divisor Function
+    :caption: Функция поиска наибольшего общего делителя
 
     def gcd(m,n):
         while m%n != 0:
@@ -316,18 +317,16 @@ represented by a negative numerator.
 
     print gcd(20,10)
 
-Now we can use this function to help reduce any fraction. To put a
-fraction in lowest terms, we will divide the numerator and the
-denominator by their greatest common divisor. So, for the fraction
-:math:`6/8`, the greatest common divisor is 2. Dividing the top and
-the bottom by 2 creates a new fraction, :math:`3/4` (see
-:ref:`Listing 6 <lst_newaddmethod>`).
-
+Теперь мы можем использовать эту функцию для сокращения любой дроби.
+Чтобы представить дробь в сокращённом виде, мы будем делить числитель
+и знаменатель на их наибольший общий делитель. Итак, для дроби :math:`6/8`
+НОД будет равен 2. Разделив верх и низ на 2, мы получим новую дробь :math:`3/4`
+(см :ref:`Листинг 6 <lst_newaddmethod>`).
 
 
 .. _lst_newaddmethod:
 
-**Listing 6**
+**Листинг 6**
 
 .. sourcecode:: python
 
@@ -352,41 +351,38 @@ the bottom by 2 creates a new fraction, :math:`3/4` (see
 .. figure:: Figures/fraction2.png
    :align: center
 
-   Figure 6: An Instance of the ``Fraction`` Class with Two Methods
+   Рисунок 6: Экземпляр класса ``Fraction`` с двумя методами
 
-
-Our ``Fraction`` object now has two very useful methods and looks
-like :ref:`Figure 6 <fig_fraction2>`. An additional group of methods that we need to
-include in our example ``Fraction`` class will allow two fractions to
-compare themselves to one another. Assume we have two ``Fraction``
-objects, ``f1`` and ``f2``. ``f1==f2`` will only be ``True`` if they are
-references to the same object. Two different objects with the same
-numerators and denominators would not be equal under this
-implementation. This is called **shallow equality** (see
-:ref:`Figure 7 <fig_fraction3>`).
+Сейчас наш объект Fraction имеет два очень полезных метода и выглядит,
+как показано на :ref:`Рисунке 6 <fig_fraction2>`. Группа дополнительных
+методов, которые нам понадобится включить в класс ``Fraction``, содержит
+способ сравнивать две дроби. Предположим, что у нас есть два объекта
+``Fraction f1`` и ``f2``. ``f1 == f2`` будет истиной, если они ссылаются
+на один и тот же объект. Два разных объекта с одинаковыми числителями и
+знаменателями в этой реализации равны не будут. Это называется
+**поверхностным равенством** (см. :ref:`Рисунок 7 <fig_fraction3>`)
 
 .. _fig_fraction3:
 
 .. figure:: Figures/fraction3.png
    :align: center
 
-   Figure 7: Shallow Equality Versus Deep Equality
+   Рисунок 7: Поверхностное равенство vs глубокое равенство
 
-We can create **deep equality** (see :ref:`Figure 7 <fig_fraction3>`)–equality by the
-same value, not the same reference–by overriding the ``__eq__``
-method. The ``__eq__`` method is another standard method available in
-any class. The ``__eq__`` method compares two objects and returns
-``True`` if their values are the same, ``False`` otherwise.
+Мы можем создать **глубокое равенство** (см. :ref:`Рисунок 7 <fig_fraction3>`) -
+по одинаковому значению, а не по одинаковой ссылке - перегрузив метод ``__eq__``.
+Это ещё один стандартный метод, доступный в любом классе. Он сравнивает два объекта
+и возвращает ``True``, если их значения равны, или ``False`` в противном случае.
 
-In the ``Fraction`` class, we can implement the ``__eq__`` method by
-again putting the two fractions in common terms and then comparing the
-numerators (see :ref:`Listing 7 <lst_cmpmethod>`). It is important to note that there
-are other relational operators that can be overridden. For example, the
-``__le__`` method provides the less than or equal functionality.
+В классе ``Fraction`` мы можем реализовать метод ``__eq__``, вновь представив обе
+дроби в виде с одинаковым знаменателем и затем сравнив их числители
+(см. :ref:`Листинг 7 <lst_cmpmethod>`). Здесь также важно отметить другие операторы
+отношений, которые могут быть перегружены. Например, метод ``__le__`` предоставляет
+функционал "меньше или равно".
 
 .. _lst_cmpmethod:
 
-**Listing 7**
+**Листинг 7**
 
 .. sourcecode:: python
 
@@ -396,9 +392,10 @@ are other relational operators that can be overridden. For example, the
 
             return firstnum == secondnum
 
-The complete ``Fraction`` class, up to this point, is shown in
-:ref:`ActiveCode 12 <lst_fractioncode>`. We leave the remaining arithmetic and relational
-methods as exercises.
+Полностью класс ``Fraction``, реализованный на данный момент, показан в
+:ref:`ActiveCode 12 <lst_fractioncode>`. Мы оставляем читателям реализацию
+оставшейся арифметики и методов отношений в качестве упражнений.
+
 
 .. _lst_fractioncode:
 
@@ -443,9 +440,10 @@ methods as exercises.
    print(x+y)
    print(x == y)
 
-.. admonition:: Self  Check
+.. admonition:: Самопроверка
 
-   To make sure you understand how operators are implemented in Python classes, and how to properly write methods, write some methods to implement ``*, /,`` and ``-`` .  Also implement comparison operators > and <
+   Чтобы убедиться, что вы понимаете, как в классах Python реализовываются операторы и как корректно писать методы, напишите реализацию операций ``*``, ``/`` и ``-``. Также реализуйте операторы сравнения > и <
+
 
    .. actex:: self_check_4
 
@@ -456,125 +454,126 @@ methods as exercises.
    http://media.interactivepython.org/pythondsVideos/fraction.mov
    http://media.interactivepython.org/pythondsVideos/fraction.webm
 
-Inheritance: Logic Gates and Circuits
+Наследование: логические вентили и схемы
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Our final section will introduce another important aspect of
-object-oriented programming. **Inheritance** is the ability for one
-class to be related to another class in much the same way that people
-can be related to one another. Children inherit characteristics from
-their parents. Similarly, Python child classes can inherit
-characteristic data and behavior from a parent class. These classes are
-often referred to as **subclasses** and **superclasses**.
+Наш финальный раздел будет посвящён другому важному аспекту
+объектно-ориентированного программирования. **Наследование**
+- это способность одного класса быть связанным с другим классом
+подобно тому, как бывают связаны между собой люди. Дети наследуют
+черты своих родителей. Аналогично, в Python класс-потомок наследует
+характеристики данных и поведения от класса-предка. Такие классы
+часто называют **субклассами** и **суперклассами**, соответственно.
 
-:ref:`Figure 8 <fig_inherit1>` shows the built-in Python collections and their
-relationships to one another. We call a relationship structure such as
-this an **inheritance hierarchy**. For example, the list is a child of
-the sequential collection. In this case, we call the list the child and
-the sequence the parent (or subclass list and superclass sequence). This
-is often referred to as an ``IS-A Relationship`` (the list **IS-A**
-sequential collection). This implies that lists inherit important
-characteristics from sequences, namely the ordering of the underlying
-data and operations such as concatenation, repetition, and indexing.
+
+:ref:`Рисунок 8 <fig_inherit1>` показывает встроенные коллекции Python
+и взаимоотношения между ними. Такого рода структуру отношений называют
+**иерархией наследования**. Например, список является потомком коллекций
+с последовательным доступом. В данном случае мы назовём список "наследником",
+а коллекцию - "родителем" (или список - субклассом, коллекцию - суперклассом).
+Такая зависимость часто называется ``отношением IS-A`` (список является (is a)
+коллекцией с последовательным доступом). Это подразумевает, что списки наследуют
+важнейшие характеристики коллекций, в частности - упорядочение исходных данных,
+и такие операции, как конкатенация, повторение и индексация.
+
 
 .. _fig_inherit1:
 
 .. figure::  Figures/inheritance1.png
    :align: center
 
-   Figure 8: An Inheritance Hierarchy for Python Collections
+   Рисунок 8: Иерархия наследования для коллекций Python
 
 
-Lists, tuples, and strings are all types of sequential collections. They
-all inherit common data organization and operations. However, each of
-them is distinct based on whether the data is homogeneous and whether
-the collection is immutable. The children all gain from their parents
-but distinguish themselves by adding additional characteristics.
+И списки, и кортежи, и строки представляют из себя коллекции с последовательным
+доступом, наследуя общую организацию данных и операции. Однако, они различны по
+гомогенности данных и мутабельности наборов. Все потомки наследуют своим родителям,
+но различаются между собой включением дополнительных характеристик.
 
-By organizing classes in this hierarchical fashion, object-oriented
-programming languages allow previously written code to be extended to
-meet the needs of a new situation. In addition, by organizing data in
-this hierarchical manner, we can better understand the relationships
-that exist. We can be more efficient in building our abstract
-representations.
+Организовывая классы в иерархическом порядке, объектно-ориентированные языки
+программирования позволяют расширять ранее написанный код под вновь возникающие
+потребности. В дополнение, организовывая данные в иерархической манере, мы лучше
+понимаем существующие между ними взаимоотношения. Мы можем создавать более эффективное
+абстрактное представление.
 
-To explore this idea further, we will construct a **simulation**, an
-application to simulate digital circuits. The basic building block for
-this simulation will be the logic gate. These electronic switches
-represent boolean algebra relationships between their input and their
-output. In general, gates have a single output line. The value of the
-output is dependent on the values given on the input lines.
+Чтобы глубже исследовать эту идею, мы сделаем **симуляцию** - приложение, симулирующее
+цифровые цепи. Её основными строительными блоками будут логические элементы. Эти электронные
+переключатели представляют собой соотношения булевой алгебры между их входом и выходом. В
+общем случае вентили имеют единственную линию выхода. Значение на ней зависит от значений,
+подаваемых на входные линии.
 
-AND gates have two input lines, each of which can be either 0 or 1
-(representing ``False`` or ``True``, repectively). If both of the input
-lines have the value 1, the resulting output is 1. However, if either or
-both of the input lines is 0, the result is 0. OR gates also have two
-input lines and produce a 1 if one or both of the input values is a 1.
-In the case where both input lines are 0, the result is 0.
+Вентиль "И" (AND) имеет два входа, на каждый из которых может подаваться нуль или единица
+(кодирование ``False`` или ``True``, соответственно). Если на оба входа подана единица, то
+значение на выходе тоже 1. Однако, если хотя бы один из входов установлен в нуль, то
+результатом будет 0. Вентиль "ИЛИ" также имеет два входа и выдаёт единицу, если хотя бы на
+одном из них 1. В случае, когда обе входные линии в нуле, результат тоже 0.
 
-NOT gates differ from the other two gates in that they only have a
-single input line. The output value is simply the opposite of the input
-value. If 0 appears on the input, 1 is produced on the output.
-Similarly, 1 produces 0. :ref:`Figure 9 <fig_truthtable>` shows how each of these
-gates is typically represented. Each gate also has a **truth table** of
-values showing the input-to-output mapping that is performed by the
-gate.
+Вентиль "НЕ" (NOT) отличается от предыдущих тем, что имеет всего один вход. Значение на
+выходе будет просто обратным входному значению. Т.е., если на входе 0, то на выходе 1, и
+наоборот. :ref:`Рисунок 9 <fig_truthtable>` показывает, как обычно представляют каждый из
+этих вентилей. Так же каждый из них имеет свою **таблицу истинности** значений, отражающую
+отображение вентилем входа на выход.
+
 
 .. _fig_truthtable:
 
 .. figure:: Figures/truthtable.png
    :align: center
 
-   Figure 9: Three Types of Logic Gates
+   Рисунок 9: Три типа логических элементов
 
-By combining these gates in various patterns and then applying a set of
-input values, we can build circuits that have logical functions.
-:ref:`Figure 10 <fig_circuit1>` shows a circuit consisting of two AND gates, one OR
-gate, and a single NOT gate. The output lines from the two AND gates
-feed directly into the OR gate, and the resulting output from the OR
-gate is given to the NOT gate. If we apply a set of input values to the
-four input lines (two for each AND gate), the values are processed and a
-result appears at the output of the NOT gate. :ref:`Figure 10 <fig_circuit1>` also
-shows an example with values.
+Комбинируя эти вентили в различные структуры и применяя к получившемуся наборы
+входных комбинаций, мы можем строить цепи, обладающие различными логическими
+функциями. :ref:`Рисунок 10 <fig_circuit1>` демонстрирует цепь, состоящую из
+двух вентилей "И", одного вентиля "ИЛИ" и одного вентиля "НЕ". Выходы элементов
+"И" подключены непосредственно к входам элемента "ИЛИ", а его результирующий
+вывод - ко входу вентиля "НЕ". Если мы будем подавать набор входных значений
+на четыре входные линии (по две на каждый элемент "И"), то они будут обработаны,
+и результат появится на выходе вентиля "НЕ". :ref:`Рисунок 10 <fig_circuit1>`
+так же демонстрирует пример со значениями.
+
 
 .. _fig_circuit1:
 
 .. figure:: Figures/circuit1.png
    :align: center
 
-   Figure 10: Circuit
+   Рисунок 10: Цепь
 
-In order to implement a circuit, we will first build a representation
-for logic gates. Logic gates are easily organized into a class
-inheritance hierarchy as shown in :ref:`Figure 11 <fig_gates>`. At the top of the
-hierarchy, the ``LogicGate`` class represents the most general
-characteristics of logic gates: namely, a label for the gate and an
-output line. The next level of subclasses breaks the logic gates into
-two families, those that have one input line and those that have two.
-Below that, the specific logic functions of each appear.
+Задавшись целью воплотить эту цепь, мы прежде всего должны создать
+представление для логических вентилей. Их легко организовать, как класс
+с наследственной иерархией, показанной на :ref:`Рисунке 11 <fig_gates>`.
+Верхний класс ``LogicGate`` представляет наиболее общие характеристики
+логических элементов: в частности, метку вентиля и линию выхода. Следующий
+уровень субклассов разбивает логические элементы на два семейства: имеющие
+один вход и имеющие два входа. Ниже уже появляются конкретные логические
+функции для каждого вентиля.
+
 
 .. _fig_gates:
 
 .. figure:: Figures/gates.png
    :align: center
 
-   Figure 11: An Inheritance Hierarchy for Logic Gates
+   Рисунок 11: Иерархия наследования для логических элементов
 
-We can now start to implement the classes by starting with the most
-general, ``LogicGate``. As noted earlier, each gate has a label for
-identification and a single output line. In addition, we need methods to
-allow a user of a gate to ask the gate for its label.
+Теперь мы можем заняться реализацией классов, начиная с наиболее общего
+- ``LogicGate``. Как уже отмечалось ранее, каждый вентиль имеет метку для
+идентификации и единственную линию выхода. В дополнение, нам потребуются
+методы, позволяющие пользователю запрашивать у вентиля его метку.
 
-The other behavior that every logic gate needs is the ability to know
-its output value. This will require that the gate perform the
-appropriate logic based on the current input. In order to produce
-output, the gate needs to know specifically what that logic is. This
-means calling a method to perform the logic computation. The complete
-class is shown in :ref:`Listing 8 <lst_logicgateclass>`.
+Следующим аспектом поведения, в котором нуждается любой вентиль, является
+необходимость знать его выходное значение. Это требуется для выполнения
+вентилями соответствующих алгоритмов, основанных на текущих значениях на
+входах. Для генерации выходного значения логическим элементам необходимо
+конкретное знание логики их работы. Это подразумевает вызов метода,
+совершающего логические вычисления. Полностью класс показан
+в :ref:`Листинге 8 <lst_logicgateclass>`
+
 
 .. _lst_logicgateclass:
 
-**Listing 8**
+**Листинг 8**
 
 .. sourcecode:: python
 
@@ -591,31 +590,31 @@ class is shown in :ref:`Listing 8 <lst_logicgateclass>`.
             self.output = self.performGateLogic()
             return self.output
 
-At this point, we will not implement the ``performGateLogic`` function.
-The reason for this is that we do not know how each gate will perform
-its own logic operation. Those details will be included by each
-individual gate that is added to the hierarchy. This is a very powerful
-idea in object-oriented programming. We are writing a method that will
-use code that does not exist yet. The parameter ``self`` is a reference
-to the actual gate object invoking the method. Any new logic gate that
-gets added to the hierarchy will simply need to implement the
-``performGateLogic`` function and it will be used at the appropriate
-time. Once done, the gate can provide its output value. This ability to
-extend a hierarchy that currently exists and provide the specific
-functions that the hierarchy needs to use the new class is extremely
-important for reusing existing code.
+На данный момент мы не будем реализовывать функцию ``performGateLogic``.
+Причина в том, что мы не знаем, как будут работать логические операции у
+каждого вентиля. Эти детали мы включим для каждого добавленного в иерархию
+элемента индивидуально. Это очень мощная идея объектно-ориентированного
+программирования: мы пишем метод, который будет использовать ещё не
+существующий код. Параметр ``self`` является ссылкой на актуальный
+вентиль, вызывающий метод. Любые вновь добавленные в иерархию логические
+элементы просто будут нуждаться в собственной реализации функции
+``performGateLogic``, которая будет использована в нужный момент. После
+этого вентили будут предоставлять своё выходное значение. Эта возможность
+расширять существующую иерархию и обеспечивать необходимые для её нового
+класса функции чрезвычайно важна для повторного использования существующего кода.
 
-We categorized the logic gates based on the number of input lines. The
-AND gate has two input lines. The OR gate also has two input lines. NOT
-gates have one input line. The ``BinaryGate`` class will be a subclass
-of ``LogicGate`` and will add two input lines. The ``UnaryGate`` class
-will also subclass ``LogicGate`` but will have only a single input line.
-In computer circuit design, these lines are sometimes called “pins” so
-we will use that terminology in our implementation.
+Мы разделили логические элементы, основываясь на количестве их входных линий.
+У вентиля "И" их две, вентиля "ИЛИ" тоже две, а у вентиля "НЕ" - одна. Класс
+``BinaryGate`` будет субклассом ``LogicGate`` и включит в себя элементы с двумя
+входными линиями. Класс ``UnaryGate`` также будет субклассом ``LogicGate``, но
+входная линия у его элементов будет одна. В конструировании компьютерных цепей
+такие линии иногда называют "пинами", так что мы будем использовать эту
+терминологию и в нашей реализации.
+
 
 .. _lst_binarygateclass:
 
-**Listing 9**
+**Листинг 9**
 
 .. sourcecode:: python
 
@@ -635,7 +634,7 @@ we will use that terminology in our implementation.
 
 .. _lst_unarygateclass:
 
-**Listing 10**
+**Листинг 10**
 
 .. sourcecode:: python
 
@@ -650,43 +649,36 @@ we will use that terminology in our implementation.
             return int(input("Enter Pin input for gate "+ self.getLabel()+"-->"))
             
             
+:ref:`Листинг 9 <lst_logicgateclass>` и :ref:`Листинг 10 <lst_logicgateclass>`
+реализуют эти два класса. Конструкторы их обоих начинаются с явного вызова
+конструктора родительского класса с использованием функции ``super``. Когда
+мы создаём экземпляр класса ``BinaryGate``, мы прежде всего хотим
+инициализировать любые элементы данных, которые наследуются от ``LogicGate``.
+В данном случае это метка вентиля. Затем конструктор добавляет два входа
+(``pinA`` и ``pinB``). Это очень распространённая схема, которую вам следует
+использовать при проектировании иерархии классов. Конструктору дочернего класса
+сначала нужно вызвать конструктор родительского класса, и только потом
+переключаться на собственные, отличные от предка, данные.
 
-:ref:`Listing 9 <lst_logicgateclass>` and :ref:`Listing 10 <lst_logicgateclass>` implement these two
-classes. The constructors in both of these classes start with an
-explicit call to the constructor of the parent class using the parent's ``__init__``
-method. When creating an instance of the ``BinaryGate`` class, we
-first want to initialize any data items that are inherited from
-``LogicGate``. In this case, that means the label for the gate. The
-constructor then goes on to add the two input lines (``pinA`` and
-``pinB``). This is a very common pattern that you should always use when
-building class hierarchies. Child class constructors need to call parent
-class constructors and then move on to their own distinguishing data.
+Единственным, что добавится к поведению класса ``BinaryGate`` будет возможность
+получать значения от двух входных линий. Поскольку эти значения берутся откуда-то
+извне, то с помощью оператора ввода мы можем просто попросить пользователя
+предоставить их. То же самое происходит в реализации класса ``UnaryGate``, за
+исключением того момента, что он имеет всего один вход.
 
-Python
-also has a function called ``super`` which can be used in place of explicitly
-naming the parent class.  This is a more general mechanism, and is widely
-used, especially when a class has more than one parent.  But, this is not something
-we are going to discuss in this introduction.  For example in our example above
-``LogicGate.__init__(self,n)`` could be replaced with ``super(UnaryGate,self).__init__(n)``.
+Теперь, когда у нас есть общие классы для вентилей, зависящие от количества их
+входов, мы можем создавать специфические вентили с уникальным поведением.
+Например, класс ``AndGate``, который будет подклассом ``BinaryGate``, поскольку
+элемент "И" имеет два входа. Как и раньше, первая строка конструктора вызывает
+конструктор базового класса (``BinaryGate``), который, в свою очередь, вызывает
+конструктор своего родителя (``LogicGate``). Обратите внимание, что класс
+``AndGate`` не предоставляет каких-либо новых дополнительных данных, поскольку
+наследует две входные линии, одну выходную и метку.
 
-The only behavior that the ``BinaryGate`` class adds is the ability to
-get the values from the two input lines. Since these values come from
-some external place, we will simply ask the user via an input statement
-to provide them. The same implementation occurs for the ``UnaryGate``
-class except that there is only one input line.
-
-Now that we have a general class for gates depending on the number of
-input lines, we can build specific gates that have unique behavior. For
-example, the ``AndGate`` class will be a subclass of ``BinaryGate``
-since AND gates have two input lines. As before, the first line of the
-constructor calls upon the parent class constructor (``BinaryGate``),
-which in turn calls its parent class constructor (``LogicGate``). Note
-that the ``AndGate`` class does not provide any new data since it
-inherits two input lines, one output line, and a label.
 
 .. _lst_andgateclass:
 
-**Listing 11**
+**Листинг 11**
 
 .. sourcecode:: python
 
@@ -704,19 +696,20 @@ inherits two input lines, one output line, and a label.
             else:
                 return 0
 
-The only thing ``AndGate`` needs to add is the specific behavior that
-performs the boolean operation that was described earlier. This is the
-place where we can provide the ``performGateLogic`` method. For an AND
-gate, this method first must get the two input values and then only
-return 1 if both input values are 1. The complete class is shown in
-:ref:`Listing 11 <lst_andgateclass>`.
+Единственная вещь, которую необходимо добавить в ``AndGate``, - это
+специфическое поведение при выполнении булевых операций, которое мы описывали
+выше. Это то место, где мы можем предоставить метод ``performGateLogic``.
+Для вентиля "И" он сначала должен получить два входных значения и вернуть 1,
+если оба они равны единице. Полностью данный класс показан в
+:ref:`Листинге 11 <lst_andgateclass>`.
 
-We can show the ``AndGate`` class in action by creating an instance and
-asking it to compute its output. The following session shows an
-``AndGate`` object, ``g1``, that has an internal label ``"G1"``. When we
-invoke the ``getOutput`` method, the object must first call its
-``performGateLogic`` method which in turn queries the two input lines.
-Once the values are provided, the correct output is shown.
+Мы можем продемонстрировать работу класса ``AndGate```, создав его сущность
+и попросив её вычислить её выходное значение. Следующий код показывает ``AndGate``
+объект ``g1``, который имеет внутреннюю метку ``"G1"``. Когда мы вызываем
+метод ``getOutput``, объект сначала должен вызвать свой метод ``performGateLogic``,
+который, в свою очередь, запрашивает значения из двух входных линий. После того,
+как требуемые данные получены, показывается правильное выходное значение.
+
 
 ::
 
@@ -726,16 +719,15 @@ Once the values are provided, the correct output is shown.
    Enter Pin B input for gate G1-->0
    0
 
+Такая же работа должна быть проведена для элементов "ИЛИ" и "НЕ". Класс
+``OrGate`` также будет субклассом ``BinaryGate``, а класс ``NotGate``
+расширит ``UnaryGate``. Оба они будут нуждаться в собственной реализации
+функции ``performGateLogic`` со специфическим поведением.</p>
 
-The same development can be done for OR gates and NOT gates. The
-``OrGate`` class will also be a subclass of ``BinaryGate`` and the
-``NotGate`` class will extend the ``UnaryGate`` class. Both of these
-classes will need to provide their own ``performGateLogic`` functions,
-as this is their specific behavior.
+Мы можем использовать единичный логический элемент, сконструировав в начале
+экземпляр одного из классов вентилей и затем запросив его выходное значение
+(что, в свою очередь, потребует предоставления входных данных). Например,
 
-We can use a single gate by first constructing an instance of one of the
-gate classes and then asking the gate for its output (which will in turn
-need inputs to be provided). For example:
 
 ::
 
@@ -753,45 +745,45 @@ need inputs to be provided). For example:
     Enter Pin input for gate G3-->0
     1
 
-Now that we have the basic gates working, we can turn our attention to
-building circuits. In order to create a circuit, we need to connect
-gates together, the output of one flowing into the input of another. To
-do this, we will implement a new class called ``Connector``.
+Теперь, когда у нас есть работающие базовые вентили, мы можем вернуться к
+построению цепей. Чтобы создать цепь, нам необходимо соединить вентили вместе:
+выход одного ко входу другого. Для мы реализуем новый класс под названием
+``Connector``.
 
-The ``Connector`` class will not reside in the gate hierarchy. It will,
-however, use the gate hierarchy in that each connector will have two
-gates, one on either end (see :ref:`Figure 12 <fig_connector>`). This relationship is
-very important in object-oriented programming. It is called the **HAS-A
-Relationship**. Recall earlier that we used the phrase “IS-A
-Relationship” to say that a child class is related to a parent class,
-for example ``UnaryGate`` IS-A ``LogicGate``.
+Класс ``Connector`` не будет принадлежать иерархии логических элементов.
+Однако, он будет использовать её, поскольку каждый соединитель имеет два
+вентиля - по одному на каждый конец (см. :ref:`Рисунок 12 <fig_connector>`).
+Отношения такого рода очень важны в объектно-ориентированном программировании.
+Они называются **отношениями "HAS-A"**. Напомним, что ранее мы использовали
+словосочетание "IS-A отношение", чтобы показать, как дочерний класс относится
+к родительскому. Например, ``UnaryGate`` является (IS-A) ``LogicGate``.
+
 
 .. _fig_connector:
 
 .. figure:: Figures/connector.png
    :align: center
 
-   Figure 12: A Connector Connects the Output of One Gate to the Input of Another
+   Рисунок 12: Connector соединяет выход одного вентиля со входом другого.
 
-Now, with the ``Connector`` class, we say that a ``Connector`` HAS-A
-``LogicGate`` meaning that connectors will have instances of the
-``LogicGate`` class within them but are not part of the hierarchy. When
-designing classes, it is very important to distinguish between those
-that have the IS-A relationship (which requires inheritance) and those
-that have HAS-A relationships (with no inheritance).
+Теперь, для класса ``Connector``, мы скажем, что он имеет ``LogicGate<``,
+подразумевая, что соединители имеют внутри экземпляры ``LogicGate``, но не
+являются частью иерархии. При конструировании классов очень важно различать
+те из них, которые имеют отношения "IS-A" (что требует наследования), и те,
+которые обладают отношениями "HAS-A" (без наследования).
 
-:ref:`Listing 12 <lst_Connectorclass>` shows the ``Connector`` class. The two gate
-instances within each connector object will be referred to as the
-``fromgate`` and the ``togate``, recognizing that data values will
-“flow” from the output of one gate into an input line of the next. The
-call to ``setNextPin`` is very important for making connections (see
-:ref:`Listing 13 <lst_setpin>`). We need to add this method to our gate classes so
-that each ``togate`` can choose the proper input line for the
-connection.
+:ref:`Листинг 12 <lst_Connectorclass>` демонстрирует класс ``Connector``.
+Два экземпляра вентилей внутри каждого объекта соединителя будут обозначаться
+как ``fromgate`` и ``topgate``, различая таким образом, что данные будут "течь"
+от выхода одного вентиля ко входу другого. Вызов ``setNextPin`` очень важен при
+создании соединителей (см. :ref:`Листинг 13 <lst_setpin>`). Нам необходимо добавить
+этот метод к нашим классам для вентилей таким образом, чтобы каждый ``togate`` мог
+выбрать подходящую входную линию для соединения.
+
 
 .. _lst_Connectorclass:
 
-**Listing 12** 
+**Листинг 12** 
 
 .. sourcecode:: python
 
@@ -809,11 +801,12 @@ connection.
         def getTo(self):
             return self.togate
 
-In the ``BinaryGate`` class, for gates with two possible input lines,
-the connector must be connected to only one line. If both of them are
-available, we will choose ``pinA`` by default. If ``pinA`` is already
-connected, then we will choose ``pinB``. It is not possible to connect
-to a gate with no available input lines.
+В классе ``BinaryGate`` для вентилей с двумя возможными входными линиями
+коннектор должен присоединяться только к одной из них. Если доступны обе,
+то по умолчанию мы будем выбирать ``pinA``. Если он уже подсоединён к
+чему-либо, то выберем ``pinB``. Подсоединиться к вентилю, не имеющему
+доступных входов, невозможно.
+
 
 .. _lst_setpin:
 
@@ -830,21 +823,22 @@ to a gate with no available input lines.
                 else:
                    raise RuntimeError("Error: NO EMPTY PINS")
 
-Now it is possible to get input from two places: externally, as before,
-and from the output of a gate that is connected to that input line. This
-requires a change to the ``getPinA`` and ``getPinB`` methods (see
-:ref:`Listing 14 <lst_newgetpin>`). If the input line is not connected to anything
-(``None``), then ask the user externally as before. However, if there is
-a connection, the connection is accessed and ``fromgate``’s output value
-is retrieved. This in turn causes that gate to process its logic. This
-continues until all input is available and the final output value
-becomes the required input for the gate in question. In a sense, the
-circuit works backwards to find the input necessary to finally produce
-output.
+Теперь можно получать входные данные двумя способами: извне, как раньше,
+и с выхода вентиля, присоединённого ко входу данного. Это требование меняет
+методы ``getPinA`` и ``getPinB`` (см. :ref:`Листинг 14 <lst_newgetpin>`).
+Если входная линия ни к чему не подсоединена (``None``), то, как и раньше,
+будет задаваться вопрос пользователю. Однако, если она связана, то
+подключение осуществится, затребовав значение выхода ``fromgate``. В свою
+очередь, это запускает логическую обработку вентилем поступивших данных.
+Процесс продолжается, пока есть доступные входы, и окончательное выходное
+значение становится требуемым входом для вентиля в вопросе. В каком-то смысле,
+схема работает в обратную сторону, чтобы найти входные данные, необходимые для
+производства конечного результата.
+
 
 .. _lst_newgetpin:
 
-**Listing 14**
+**Листинг 14**
 
 .. sourcecode:: python
 
@@ -854,8 +848,7 @@ output.
             else:
                 return self.pinA.getFrom().getOutput()
 
-The following fragment constructs the circuit shown earlier in the
-section:
+Следующий фрагмент конструирует схему, ранее показанную в этом разделе:
 
 ::
 
@@ -867,10 +860,9 @@ section:
     >>> c2 = Connector(g2,g3)
     >>> c3 = Connector(g3,g4)
 
-The outputs from the two AND gates (``g1`` and ``g2``) are connected to
-the OR gate (``g3``) and that output is connected to the NOT gate
-(``g4``). The output from the NOT gate is the output of the entire
-circuit. For example:
+Выходы двух вентилей "И" (``g1`` и ``g2``) соединены с вентилем "ИЛИ"
+(``g3``), а его выход - с вентилем "НЕ" (``g4``). Выход вентиля "НЕ" -
+это выход схемы целиком. Пример работы:
 
 ::
 
@@ -881,10 +873,10 @@ circuit. For example:
     Pin B input for gate G2-->1
     0
 
-Try it yourself using ActiveCode 14.
+Попробуйте сами, используя ActiveCode 14.
 
 .. activecode:: complete_cuircuit
-    :caption: The Complete Circuit Program.
+    :caption: Законченная программа для построения цепей.
 
     class LogicGate:
 
@@ -1019,11 +1011,12 @@ Try it yourself using ActiveCode 14.
 
 
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
-   Create a two new gate classes,  one called NorGate the other called NandGate.  NandGates work like AndGates that have a Not attached to the output.  NorGates work lake OrGates that have a Not attached to the output.
+   Создайте два новых класса вентилей: ``NorGate`` и ``NandGate``. Первый работает подобно ``OrGate``, к выходу которого подключено НЕ. Второй - как ``AndGate`` с НЕ на выходе.
 
-   Create a series of gates that prove the following equality NOT (( A and B) or (C and D)) is that same as NOT( A and B ) and NOT (C and D).  Make sure to use some of your new gates in the simulation.
+   Создайте ряд из вентилей, который доказывал бы, что NOT (( A and B) or (C and D)) это то же самое, что и NOT( A and B ) and NOT (C and D). Убедитесь, что используете в этой симуляции некоторые из вновь созданных вами вентилей.
+
 
    .. actex:: self_check_5
 

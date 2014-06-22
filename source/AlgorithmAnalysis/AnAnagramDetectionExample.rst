@@ -7,36 +7,37 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-An Anagram Detection Example
+Пример с определением анаграммы
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A good example problem for showing algorithms with different orders of
-magnitude is the classic anagram detection problem for strings. One
-string is an anagram of another if the second is simply a rearrangement
-of the first. For example, ``'heart'`` and ``'earth'`` are anagrams. The
-strings ``'python'`` and ``'typhon'`` are anagrams as well. For the sake
-of simplicity, we will assume that the two strings in question are of
-equal length and that they are made up of symbols from the set of 26
-lowercase alphabetic characters. Our goal is to write a boolean function
-that will take two strings and return whether they are anagrams.
+Хорошим примером для демонстрации алгоритмов с разным порядком величины
+является классическая задача для строк - определения анаграммы. Одна
+строка является анаграммой другой, если вторая получается простой
+перестановкой букв первой. Например, ``'heart'`` и ``'earth'`` - это
+анаграммы. Как и строки ``'python'`` и ``'typhon'``. Для простоты будем
+полагать, что обе заданные строки одной длины и составлены из набора
+символов в 26 букв в нижнем регистре. Нашел целью будет написать булеву
+функцию, принимающую две строки и возвращающую ответ - являются ли они
+анаграммами?
 
-Solution 1: Checking Off
+
+Решение 1: Метки
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Our first solution to the anagram problem will check to see that each
-character in the first string actually occurs in the second. If it is
-possible to “checkoff” each character, then the two strings must be
-anagrams. Checking off a character will be accomplished by replacing it
-with the special Python value ``None``. However, since strings in Python
-are immutable, the first step in the process will be to convert the
-second string to a list. Each character from the first string can be
-checked against the characters in the list and if found, checked off by
-replacement. :ref:`ActiveCode 4 <lst_anagramSolution>` shows this function.
+Наше первое решение задачи про анаграмму будет проверять, входит ли
+каждый из символов первой строки во вторую. Если все символы будут
+"отмечены", то строки являются анаграммами. "Пометка" символа будет
+выполняться с помощью замены его на специальное значение Python ``None``.
+Однако, поскольку строки в Python иммутабельны, первым шагом обработки будет
+конвертирование второй строки в список. Каждый символ из первой строки может
+быть сверен с элементами списка и, если будет найден, отмечен оговоренной заменой.
+:ref:`ActiveCode 4 <lst_anagramSolution>` демонстрирует эту функцию.
+
 
 .. _lst_anagramSolution:
 
 .. activecode:: active5
-    :caption: Checking Off
+    :caption: Метки
 
     def anagramSolution1(s1,s2):
         alist = list(s2)
@@ -64,21 +65,22 @@ replacement. :ref:`ActiveCode 4 <lst_anagramSolution>` shows this function.
 
     print(anagramSolution1('abcd','dcba'))
 
-To analyze this algorithm, we need to note that each of the *n*
-characters in ``s1`` will cause an iteration through up to *n*
-characters in the list from ``s2``. Each of the *n* positions in the
-list will be visited once to match a character from ``s1``. The number
-of visits then becomes the sum of the integers from 1 to *n*. We stated
-earlier that this can be written as
+При анализе алгоритма нам стоит отметить, что каждый из *n* символов в
+``s1`` вызовет цикл по *n* символам списка, полученного из ``s2``.
+Каждая из *n* позиций списка будет посещена единожды, чтобы проверить её
+на соответствие ``s1``. Количество таких посещений будет выражено через
+сумму целых чисел от 1 до *n*. Ранее мы уже говорили, что это может быть
+записано как
 
 .. math::
 
    \sum_{i=1}^{n} i &= \frac {n(n+1)}{2} \\
                     &= \frac {1}{2}n^{2} + \frac {1}{2}n
 
-As :math:`n` gets large, the :math:`n^{2}` term will dominate the
-:math:`n` term and the :math:`\frac {1}{2}` can be ignored.
-Therefore, this solution is :math:`O(n^{2})`.
+С увеличением :math:`n` слагаемое :math:`n^{2}` начнёт доминировать,
+так что :math:`n` и :math:`\frac {1}{2}` можно проигнорировать.
+Таким образом, решение является :math:`O(n^{2})`
+
 
 Solution 2: Sort and Compare
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,6 +92,8 @@ each string alphabetically, from a to z, we will end up with the same
 string if the original two strings are anagrams. :ref:`ActiveCode 5 <lst_ana2>` shows
 this solution. Again, in Python we can use the built-in ``sort`` method
 on lists by simply converting each string to a list at the start.
+
+
 
 .. _lst_ana2:
 

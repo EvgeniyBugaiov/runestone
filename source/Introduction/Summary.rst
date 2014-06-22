@@ -7,31 +7,28 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Summary
--------
+Заключение
+----------
 
--  Computer science is the study of problem solving.
+-  Информатика - это наука о решении задач.
 
--  Computer science uses abstraction as a tool for representing both
-   processes and data.
+-  Информатика использует абстракции, как инструмент для представления
+   и процессов, и данных.
 
--  Abstract data types allow programmers to manage the complexity of a
-   problem domain by hiding the details of the data.
+-  Абстрактные типы данных позволяют программистам управлять сложностью
+   предметной области задачи путём сокрытия деталей реализации данных.
 
--  Python is a powerful, yet easy-to-use, object-oriented language.
+-  Python - мощный объектно-ориентированный язык с низким порогом вхождения.
 
--  Lists, tuples, and strings are built in Python sequential
-   collections.
+-  Списки, кортежи и строки созданы в Python как упорядоченные коллекции.
 
--  Dictionaries and sets are nonsequential collections of data.
+-  Словари и множества - неупорядоченные коллекции данных.
 
--  Classes allow programmers to implement abstract data types.
+-  Классы позволяют программистам реализовывать абстрактные типы данных.
 
--  Programmers can override standard methods as well as create new
-   methods.
+-  Программисты могут перегружать стандартные методы или создавать свои собственные.
 
--  Classes can be organized into hierarchies.
+-  Классы можно организовывать в иерархии.
 
--  A class constructor should always invoke the constructor of its
-   parent before continuing on with its own data and behavior.
-
+-  Конструктор класса всегда должен вызывать конструктор своего предка до того,
+   как продолжать работать со своими собственными данными и поведением.

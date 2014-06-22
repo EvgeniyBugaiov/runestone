@@ -7,25 +7,25 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Key Terms
----------
+Ключевые термины
+----------------
 
 .. table::
 
-    =========================== =================== ========================
-             abstract data type         abstraction                algorithm
-                          class          computable         data abstraction
-                 data structure           data type            deep equality
-                     dictionary       encapsulation                exception
-                format operator   formatted strings       HAS-A relationship
-     implementation-independent  information hiding              inheritance
-          inheritance hierarchy           interface        IS-A relationship
-                           list  list comprehension                   method
-                     mutability              object   procedural abstraction
-                    programming              prompt                 ``self``
-               shallow equality          simulation                   string
-                       subclass          superclass              truth table
-    =========================== =================== ========================
+    ================================== ======================== ============================
+                абстрактный тип данных               абстракция                     алгоритм
+                                 класс               вычислимый            абстракция данных
+                      структура данных               тип данных     глубокая эквивалентность
+                               словарь             инкапсуляция                   исключения
+               оператор форматирования   форматированная строка              HAS-A отношение
+                независимая реализация       скрытие информации                 наследование
+                 иерархия наследования                интерфейс               IS-A отношение
+                                список       генераторы списков                        метод
+                         мутабельность                   объект       процедурная абстракция
+                      программирование        приглашение ввода                     ``self``
+         поверхностная эквивалентность                симуляция                       строка
+                            суперкласс                  таблица                   истинности
+    ================================== ======================== ============================
 
 
 

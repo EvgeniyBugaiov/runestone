@@ -7,36 +7,34 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-What Is Algorithm Analysis?
+Что такое "анализ алгоритмов"?
 ---------------------------
 
-It is very common for beginning computer science students to
-compare their programs with one another. You may also have noticed that
-it is common for computer programs to look very similar, especially the
-simple ones. An interesting question often arises. When two programs
-solve the same problem but look different, is one program better than
-the other?
+Студенты-первокурсники ИТ-специальностей очень часто сравнивают свои программы
+с другими. Вы могли замечать, что быть похожими друг на друга - общее свойство
+многих компьютерных программ, особенно простых. В связи с этим возникает
+интересный вопрос: если две программы решают одну и ту же задачу, но выглядят
+по разному, как понять, что одна из них лучше?
 
-In order to answer this question, we need to remember that there is an
-important difference between a program and the underlying algorithm that
-the program is representing. As we stated in Chapter 1, an algorithm is
-a generic, step-by-step list of instructions for solving a problem. It
-is a method for solving any instance of the problem such that given a
-particular input, the algorithm produces the desired result. A program,
-on the other hand, is an algorithm that has been encoded into some
-programming language. There may be many programs for the same algorithm,
-depending on the programmer and the programming language being used.
+Чтобы на него ответить, нам нужно вспомнить о важном различии между собственно
+программой и алгоритмом, который она воплощает. Как мы говорили в Главе 1,
+алгоритм - это универсальная пошаговая инструкция по решению задачи. Это метод
+для решения любого частного случая проблемы, такой, что при заданных входных
+значениях алгоритм выдаёт требуемый результат. С другой стороны, программа -
+это то, как алгоритм переложен на некий язык программирования. Может быть
+множество программ, реализующих один и тот же алгоритм в зависимости от
+программиста и языка, который он использует.
 
-To explore this difference further, consider the function shown in
-:ref:`ActiveCode 1 <lst_sum1>`. This function solves a familiar problem, computing the
-sum of the first *n* integers. The algorithm uses the idea of an
-accumulator variable that is initialized to 0. The solution then
-iterates through the *n* integers, adding each to the accumulator.
+Для дальнейшего исследования этого различия рассмотрим функцию в
+:ref:`ActiveCode 1 <lst_sum1>`. Она решает всем знакомую задачу
+вычисления суммы первых n целых чисел. Алгоритм использует идею
+переменной-аккумулятора, которая инициализируется нулём. В процессе
+решения перебираются n чисел, каждое из которых прибавляется к аккумулятору.
 
 .. _lst_sum1:
 
 .. activecode:: active1
-    :caption: Summation of the First n Integers
+    :caption: Суммирование первых n целых чисел
 
     def sumOfN(n):
        theSum = 0
@@ -47,17 +45,19 @@ iterates through the *n* integers, adding each to the accumulator.
 
     print(sumOfN(10))
 
-Now look at the function in :ref:`ActiveCode 2 <lst_sum2>`. At first glance it may look
-strange, but upon further inspection you can see that this function is
-essentially doing the same thing as the previous one. The reason this is
-not obvious is poor coding. We did not use good identifier names to
-assist with readability, and we used an extra assignment statement
-during the accumulation step that was not really necessary.
+А сейчас посмотрите на функцию в :ref:`ActiveCode 2 <lst_sum2>`. На первый
+взгляд она может показаться странной, но при более близком рассмотрении вы
+увидите, что она делает в точности то же самое, что и предыдущая. Причина,
+по которой это не очевидно, в плохом качестве кода. Мы не используем понятные
+имена для идентификаторов, чтобы повысить читабельность, и мы делаем избыточное
+присваивание на шаге аккумуляции, что совершенно не является необходимым.
+
+
 
 .. _lst_sum2:
 
 .. activecode:: active2
-    :caption: Another Summation of the First n Integers
+    :caption: Другое суммирование первых n целых чисел
 
     def foo(tom):
         fred = 0
@@ -69,50 +69,44 @@ during the accumulation step that was not really necessary.
 
     print(foo(10))
 
-The question we raised earlier asked whether one function is better than
-another. The answer depends on your criteria. The function ``sumOfN`` is
-certainly better than the function ``foo`` if you are concerned with
-readability. In fact, you have probably seen many examples of this in
-your introductory programming course since one of the goals there is to
-help you write programs that are easy to read and easy to understand. In
-this course, however, we are also interested in characterizing the
-algorithm itself. (We certainly hope that you will continue to strive to
-write readable, understandable code.)
+В ранее озвученном вопросе мы спрашивали: как понять, что одна функция лучше
+другой? Ответ будет зависеть от выбранных критериев. Функция sumOf естественно
+лучше, чем foo, если вы беспокоитесь о читабельности. Фактически, вы, возможно,
+видели множество подобных примеров в ваших вводных курсах по программированию,
+поскольку одной из их целей является желание помочь вам научиться писать программы,
+которые легко читать и понимать. Однако, в этом курсе мы заинтересованы в том,
+чтобы охарактеризовывать алгоритм сам по себе. (Мы также надеемся, что вы продолжите
+бороться за читаемый и хорошо понимаемый код.)
 
-Algorithm analysis is concerned with comparing algorithms based upon the
-amount of computing resources that each algorithm uses. We want to be
-able to consider two algorithms and say that one is better than the
-other because it is more efficient in its use of those resources or
-perhaps because it simply uses fewer. From this perspective, the two
-functions above seem very similar. They both use essentially the same
-algorithm to solve the summation problem.
+Анализ алгоритмов основывается на сравнении алгоритмов по затрачиваемому каждым
+из них объёму вычислительных ресурсов. Мы хотим быть готовыми взять два алгоритма
+и сказать, что один из них лучше другого, потому что он более эффективно использует
+имеющиеся ресурсы или, возможно, ему их просто меньше нужно. С этой точки зрения две
+функции выше выглядят очень похожими. Они обе используют один и тот же алгоритм для
+решения проблемы суммирования.
 
-At this point, it is important to think more about what we really mean
-by computing resources. There are two different ways to look at this.
-One way is to consider the amount of space or memory an algorithm
-requires to solve the problem. The amount of space required by a problem
-solution is typically dictated by the problem instance itself. Every so
-often, however, there are algorithms that have very specific space
-requirements, and in those cases we will be very careful to explain the
-variations.
+На данный момент становится важным поразмыслить над тем, что же мы подразумеваем
+под "вычислительными ресурсами". Существует два различных подхода к этому вопросу.
+Первый рассматривает объём пространства или памяти, требуемый алгоритму для решения
+задачи. Эта величина обычно зависит от конкретного варианта проблемы. Однако, часто
+встречаются алгоритмы, имеющие специфические требования к объёму, и в таких случаях
+нам надо очень аккуратно подходить к объяснению вариантов.
 
-As an alternative to space requirements, we can analyze and compare
-algorithms based on the amount of time they require to execute. This
-measure is sometimes referred to as the “execution time” or “running
-time” of the algorithm. One way we can measure the execution time for
-the function ``sumOfN`` is to do a benchmark analysis. This means that
-we will track the actual time required for the program to compute its
-result. In Python, we can benchmark a function by noting the starting
-time and ending time with respect to the system we are using. In the
-``time`` module there is a function called ``time`` that will return the
-current system clock time in seconds since some arbitrary starting
-point. By calling this function twice, at the beginning and at the end,
-and then computing the difference, we can get an exact number of seconds
-(fractions in most cases) for execution.
+Альтернативой требований к пространству является анализ и сравнение алгоритмов
+по времени, которое им требуется для вычислений. Эту величину иногда называют
+"временем выполнения" алгоритма. Одним из способов измерить время выполнения
+функции ``sumOfN`` является проведение сравнительного анализа. Он подразумевает,
+что мы засечём реальное время, требуемое программе на вычисление результата.
+В Python мы можем проделать эту операцию, отметив время начала и время окончания
+работы программы относительно используемой нами системы. В модуле ``time`` есть
+функция ``time``, которая возвращает текущее системное время в секундах, прошедшее
+с некоторого произвольного начального момента. Вызвав эту функцию дважды - в начале
+и в конце, - и затем посчитав разницу, мы получим точное количество секунд (дробное
+в большинстве случаев), затраченных на выполнение.
 
 .. _lst_sum11:
 
-**Listing 1**
+**Листинг 1**
 
 .. sourcecode:: python
 
@@ -129,12 +123,11 @@ and then computing the difference, we can get an exact number of seconds
 
        return theSum,end-start
 
-:ref:`Listing 1 <lst_sum11>` shows the original ``sumOfN`` function with the timing
-calls embedded before and after the summation. The function returns a
-tuple consisting of the result and the amount of time (in seconds)
-required for the calculation. If we perform 5 invocations of the
-function, each computing the sum of the first 10,000 integers, we get
-the following:
+:ref:`Листинг 1 <lst_sum11>` демонстрирует оригинальную функцию ``sumOfN`` с вызовами
+времени, встроенными до и после суммирования. Она возвращает кортеж, состоящий из
+результата и количества затраченного на вычисления времени (в секундах). Если мы
+выполним пять вызовов функции, в каждом из которых будет вычисляться сумма первых
+10000 целых чисел, то мы получим следующее:
 
 
 
@@ -148,9 +141,10 @@ the following:
     Sum is 50005000 required  0.0019162 seconds
     Sum is 50005000 required  0.0019360 seconds
 
-We discover that the time is fairly consistent and it takes on average
-about 0.0019 seconds to execute that code. What if we run the function
-adding the first 100,000 integers?
+Мы выяснили, что результат хорошо повторяем и что на выполнение кода затрачивается
+примерно 0,0019 секунд. Что, если теперь мы сложим первые 100000 целых?
+
+
 
 ::
 
@@ -163,9 +157,10 @@ adding the first 100,000 integers?
     Sum is 5000050000 required  0.0188949 seconds
     >>>
 
-Again, the time required for each run, although longer, is very
-consistent, averaging about 10 times more seconds. For ``n`` equal to
-1,000,000 we get:
+Снова времена, необходимые для каждого запуска, лежат близко друг к другу,
+но становятся длиннее - примерно в десять раз. Для n, равной 1000000 мы получим:
+
+
 
 ::
 
@@ -178,13 +173,12 @@ consistent, averaging about 10 times more seconds. For ``n`` equal to
     Sum is 500000500000 required  0.1646299 seconds
     >>>
 
-In this case, the average again turns out to be about 10 times the
-previous.
+Среднее значение вновь выросло примерно в десять раз, по сравнению с предыдущим.
 
-Now consider :ref:`ActiveCode 3 <lst_sum3>`, which shows a different means of solving
-the summation problem. This function, ``sumOfN3``, takes advantage of a
-closed equation :math:`\sum_{i=1}^{n} i = \frac {(n)(n+1)}{2}` to
-compute the sum of the first ``n`` integers without iterating.
+А теперь рассмотрим :ref:`ActiveCode 3 <lst_sum3>`, демонстрирующий другой способ
+решения задачи суммирования. Эта функция, ``sumOfN3`` использует преимущество
+замкнутой формулы :math:`\sum_{i=1}^{n} i = \frac {(n)(n+1)}{2}` для вычисления
+суммы первых n целых без выполнения итераций.
 
 .. _lst_sum3:
 
@@ -196,9 +190,11 @@ compute the sum of the first ``n`` integers without iterating.
 
     print(sumOfN3(10))
 
-If we do the same benchmark measurement for ``sumOfN3``, using five
-different values for ``n`` (10,000, 100,000, 1,000,000, 10,000,000, and
-100,000,000), we get the following results:
+
+Если мы проведём аналогичные контрольные замеры для ``sumOfN3``, используя
+пять различных значений для ``n`` (10 000, 100 000, 1 000 000, 10 000 000
+и 100 000 000), то получим следующие результаты:
+
 
 ::
 
@@ -208,26 +204,26 @@ different values for ``n`` (10,000, 100,000, 1,000,000, 10,000,000, and
     Sum is 50000005000000 required 0.00000095 seconds
     Sum is 5000000050000000 required 0.00000119 seconds
 
-There are two important things to notice about this output. First, the
-times recorded above are shorter than any of the previous examples.
-Second, they are very consistent no matter what the value of ``n``. It
-appears that ``sumOfN3`` is hardly impacted by the number of integers
-being added.
+Есть два важных момента, связанных с этими выходными данными, на которые
+стоит обратить внимание. Первый - затраченное время намного меньше, чем в
+любом из предыдущих примеров. И второй - все временные величины очень близки
+друг к другу, вне зависимости от значения n. Похоже, что sumOfN3 абсолютно
+всё равно, сколько чисел ей требуется сложить.
 
-But what does this benchmark really tell us? Intuitively, we can see
-that the iterative solutions seem to be doing more work since some
-program steps are being repeated. This is likely the reason it is taking
-longer. Also, the time required for the iterative solution seems to
-increase as we increase the value of ``n``. However, there is a problem.
-If we ran the same function on a different computer or used a different
-programming language, we would likely get different results. It could
-take even longer to perform ``sumOfN3`` if the computer were older.
+Но что этот тест говорит нам в действительности? Интуитивно мы догадываемся,
+что итеративное решение будет выполнять больше работы из-за повторения некоего
+набора программных шагов. Это, скорее всего, причина, по которой оно занимает
+больше времени. Так же похоже, что время, требуемое итеративному решению,
+возрастает при увеличении значения ``n``. Тут, однако, возникает проблема. Если
+мы запустим одну и ту же функцию на разных компьютерах или используем различные
+языки программирования, то вполне вероятно, что получим разные результаты.
+Вычисление ``sumOfN3`` займёт тем больше времени, чем старше компьютер.
 
-We need a better way to characterize these algorithms with respect to
-execution time. The benchmark technique computes the actual time to
-execute. It does not really provide us with a useful measurement,
-because it is dependent on a particular machine, program, time of day,
-compiler, and programming language. Instead, we would like to have a
-characterization that is independent of the program or computer being
-used. This measure would then be useful for judging the algorithm alone
-and could be used to compare algorithms across implementations.
+Нам нужен более хороший способ характеризовать алгоритмы относительно времени
+выполнения. Тестовая методика вычисляет действительное время выполнения. Она не
+предоставляет нам действительного полезного результата измерений, поскольку он
+зависит от конкретной машины, программы, времени дня, компилятора и языка
+программирования. Вместо этого мы хотели бы иметь характеристику, не зависящую
+от программы или компьютера. Такое измерение было бы полезным для оценки алгоритма
+самого по себе и его можно было бы использовать для сравнения алгоритмов в различных
+реализациях.

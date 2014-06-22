@@ -7,17 +7,17 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Discussion Questions
---------------------
+Вопросы для обсуждения
+----------------------
 
-#. Construct a class hierarchy for people on a college campus. Include
-   faculty, staff, and students. What do they have in common? What
-   distinguishes them from one another?
+#. Создайте иерархию классов для людей в кампусе колледжа. Включите в
+   неё руководство факультетом, преподавателей и студентов. Что между
+   ними общего? Чем они отличаются друг от друга?
 
-#. Construct a class hierarchy for bank accounts.
+#. Создайте иерархию классов для банковских аккаунтов.
 
-#. Construct a class hierarchy for different types of computers.
+#. Создайте иерархию классов для различных типов компьютеров.
 
-#. Using the classes provided in the chapter, interactively construct a
-   circuit and test it.
+#. Используя представленные в главе классы, интерактивно создайте цепь и
+   протестируйте её.
 

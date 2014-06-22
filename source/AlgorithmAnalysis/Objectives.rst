@@ -7,18 +7,17 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Objectives
+Цели
 ----------
 
--  To understand why algorithm analysis is important.
+-  Понять, почему так важен анализ алгоритмов.
 
--  To be able to use “Big-O” to describe execution time.
+-  Быть готовыми использовать нотацию "большого О" для описания времени выполнения.
 
--  To understand the “Big-O” execution time of common operations on
-   Python lists and dictionaries.
+-  Понять "большое О" времени выполнения наиболее распространённых
+   операций над списками и словарями в Python.
 
--  To understand how the implementation of Python data impacts algorithm
-   analysis.
+-  Понять, как реализация данных в Python влияет на анализ алгоритмов.
 
--  To understand how to benchmark simple Python programs.
+-  Понять, как находить критерии для простых программ на Python.
 

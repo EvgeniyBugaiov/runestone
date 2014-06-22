@@ -7,67 +7,66 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Programming Exercises
+Упражнения
 ---------------------
 
-#. Implement the simple methods ``getNum`` and ``getDen`` that will
-   return the numerator and denominator of a fraction.
+#. Реализуйте простые методы ``getNum`` и ``getDen``, возвращающие
+   числитель и знаменатель дроби.
 
-#. In many ways it would be better if all fractions were maintained in
-   lowest terms right from the start. Modify the constructor for the
-   ``Fraction`` class so that ``GCD`` is used to reduce fractions
-   immediately. Notice that this means the ``__add__`` function no
-   longer needs to reduce. Make the necessary modifications.
+#. Во многих отношениях было бы лучше, если бы все дроби приводились
+   в сокращённом виде с самого начала. Измените конструктор класса
+   ``Fraction`` таким образом, чтобы GCD использовался для сокращения
+   дробей немедленно. Заметьте - это означает, что функция ``__add__``
+   больше не нуждается в сокращениях. Произведите необходимые модификации.
 
-#. Implement the remaining simple arithmetic operators (``__sub__``,
-   ``__mul__``, and ``__truediv__``).
+#. Реализуйте оставшиеся простые арифметические операторы (``__sub__``,
+   ``__mul__`` и ``__truediv__``).
 
-#. Implement the remaining relational operators (``__gt__``,
-   ``__ge__``, ``__lt__``, ``__le__``, and ``__ne__``)
+#. Реализуйте оставшиеся операторы отношений (``__gt__``, ``__ge__``,
+   ``__lt__``, ``__le__``, and ``__ne__``)
 
-#. Modify the constructor for the fraction class so that it checks to
-   make sure that the numerator and denominator are both integers. If
-   either is not an integer the constructor should raise an exception.
+#. Модифицируйте конструктор класса дробей таким образом, чтобы он поверял,
+   являются ли числитель и знаменатель целыми числами. Если хотя бы одно
+   из условий не выполняется, то вызовите исключение.
 
-#. In the definition of fractions we assumed that negative fractions
-   have a negative numerator and a positive denominator. Using a
-   negative denominator would cause some of the relational operators to
-   give incorrect results. In general, this is an unnecessary
-   constraint. Modify the constructor to allow the user to pass a
-   negative denominator so that all of the operators continue to work
-   properly.
+#. В определении дробей мы предположили, что отрицательные дроби имеют
+   отрицательный числитель и положительный знаменатель. Использование
+   отрицательного знаменателя может повлечь за собой неправильные результаты
+   некоторых операторов отношений. Вообще, это ограничение является не таким
+   уж необходимым. Модифицируйте конструктор таким образом, чтобы позволить
+   пользователю вводить отрицательный знаменатель, а все операторы продолжили
+   работать правильным образом.
 
-#. Research the ``__radd__`` method. How does it differ from
-   ``__add__``? When is it used? Implement ``__radd__``.
+#. Исследуйте метод ``__radd__``. В чём его отличие от ``__add__``?
+   Когда он используется? Реализуйте ``__radd__``.
 
-#. Repeat the last question but this time consider the ``__iadd__``
-   method.
+#. Задание аналогично предыдущему, но на этот раз рассмотрите
+   ``__iadd__`` метод.
 
-#. Research the ``__repr__`` method. How does it differ from
-   ``__str__``? When is it used? Implement ``__repr__``.
+#. Исследуйте ``__repr__`` метод. Чем он отличается от ``__str__``?
+   Когда используется? Реализуйте <code>__repr__``.
 
-#. Research other types of gates that exist (such as NAND, NOR, and
-   XOR). Add them to the circuit hierarchy. How much additional coding
-   did you need to do?
+#. Исследуйте другие типы существующих вентилей (таких как NAND(НЕ-И),
+   NOR(НЕ-ИЛИ) и исключающее XOR(ИЛИ)). Добавьте их в иерархию цепей.
+   Сколько дополнительного кода вам понадобилось?
 
-#. The most simple arithmetic circuit is known as the half-adder.
-   Research the simple half-adder circuit. Implement this circuit.
+#. Наиболее простая арифметическая цепь называется полусумматор.
+   Исследуйте и реализуйте её.
 
-#. Now extend that circuit and implement an 8 bit full-adder.
+#. Теперь расширьте эту цепь и реализуйте 8-битный полный сумматор.
 
-#. The circuit simulation shown in this chapter works in a backward
-   direction. In other words, given a circuit, the output is produced by
-   working back through the input values, which in turn cause other
-   outputs to be queried. This continues until external input lines are
-   found, at which point the user is asked for values. Modify the
-   implementation so that the action is in the forward direction; upon
-   receiving inputs the circuit produces an output.
+#. Симуляция цепи, показанная в данной части, работает в обратном
+   направлении. Другими словами, выходное значение производится путём
+   обратной работы через входные значения, которые в свою очередь запрашивают
+   другие выходы. Это продолжается до тех пор, пока не будут найдены внешние
+   входные линии. В этот момент у пользователя будут запрошены значения для
+   них. Измените реализацию таким образом, чтобы эти действия происходили в
+   прямом направлении: схема производила выход после получения значений на входах.
 
-#. Design a class to represent a playing card. Now design a class to
-   represent a deck of cards. Using these two classes, implement a
-   favorite card game.
+#. Создайте класс, представляющий игровые карты. Потом создайте класс,
+   представляющий колоду карт. Используя эти два класса, реализуйте вашу
+   любимую карточную игру.
 
-#. Find a Sudoku puzzle in the local newspaper. Write a program to solve
-   the puzzle.
+#. Найдите головоломку Судоку в местной газете. Напишите программу для её решения.
 
 
