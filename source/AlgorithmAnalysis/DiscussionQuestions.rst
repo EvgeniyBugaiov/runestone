@@ -7,10 +7,10 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Discussion Questions
+Вопросы для обсуждения
 --------------------
 
-#. Give the Big-O performance of the following code fragment:
+#. Какова производительность следующего фрагмента кода в терминах нотации "большое О"?
 
    ::
 
@@ -18,14 +18,14 @@ Discussion Questions
           for j in range(n):
              k = 2 + 2
 
-#. Give the Big-O performance of the following code fragment:
+#. Какова производительность следующего фрагмента кода в терминах нотации "большое О"?
 
    ::
 
        for i in range(n):
             k = 2 + 2
 
-#. Give the Big-O performance of the following code fragment:
+#. Какова производительность следующего фрагмента кода в терминах нотации "большое О"?
 
    ::
 
@@ -34,7 +34,7 @@ Discussion Questions
           k = 2 + 2
           i = i // 2
 
-#. Give the Big-O performance of the following code fragment:
+#. Какова производительность следующего фрагмента кода в терминах нотации "большое О"?
 
    ::
 
@@ -43,7 +43,7 @@ Discussion Questions
              for k in range(n):
                 k = 2 + 2
 
-#. Give the Big-O performance of the following code fragment:
+#. Какова производительность следующего фрагмента кода в терминах нотации "большое О"?
 
    ::
 
@@ -52,7 +52,7 @@ Discussion Questions
           k = 2 + 2
           i = i // 2
 
-#. Give the Big-O performance of the following code fragment:
+#. Какова производительность следующего фрагмента кода в терминах нотации "большое О"?
 
    ::
 

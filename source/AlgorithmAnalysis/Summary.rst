@@ -7,11 +7,10 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Summary
+Заключение
 -------
 
--  Algorithm analysis is an implementation-independent way of measuring
-   an algorithm.
+-  Анализ алгоритмов - это независящий от реализации способ оцеки алгоритма.
 
--  Big-O notation allows algorithms to be classified by their dominant
-   process with respect to the size of the problem.
+-  Нотация "большое О" позволяет классифицировать алгоритмы по их доминирующим
+   вычислениям относительно размера задачи.

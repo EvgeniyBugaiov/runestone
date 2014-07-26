@@ -7,26 +7,22 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Programming Exercises
+Упражнения
 ---------------------
 
 
 
-#. Devise an experiment to verify that the list index operator is
+#. Проведите эксперимент, подтверждающий, что оператор индекса для списков имеет
    :math:`O(1)`
 
-#. Devise an experiment to verify that get item and set item are
+#. Проведите эксперимент, подтверждающий, что получение и запись элемента в словарь имеют
    :math:`O(1)` for dictionaries.
 
-#. Devise an experiment that compares the performance of the ``del``
-   operator on lists and dictionaries.
+#. Проведите эксперимент, сравнивающий производительность оператора ``del`` для словарей и списков
 
-#. Given a list of numbers in random order write a linear time algorithm
-   to find the kth smallest number in the list. Explain why your
-   algorithm is linear.
+#. Для заданного списка чисел, расположенных в случайном порядке, напишите
+   работающий за линейное время алгоритм поиска k-го наименьшего элемента.
+   Объясните, почему ваш алгоритм - линейный.
 
-#. Can you improve the algorithm from the previous problem to be
+#. Можете вы улучшить алгоритм из предыдущего задания, чтобы он был
    :math:`O(n\log(n))`?
-
-
-

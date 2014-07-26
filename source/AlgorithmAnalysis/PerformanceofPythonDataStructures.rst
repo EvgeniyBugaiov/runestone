@@ -7,18 +7,18 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Performance of Python Data Structures
+Производительность структур данных в Python
 -------------------------------------
 
-Now that you have a general idea of Big-O notation
-and the differences between the different functions, our goal in this
-section is to tell you about the Big-O performance for the operations on
-Python lists and dictionaries. We will then show you some timing
-experiments that illustrate the costs and benefits of using certain
-operations on each data structure. It is important for you to understand
-the efficiency of these Python data structures because they are the
-building blocks we will use as we implement other data structures in the
-remainder of the book. In this section we are not going to explain why
-the performance is what it is. In later chapters you will see some
-possible implementations of both lists and dictionaries and how the
-performance depends on the implementation.
+Теперь, когда у вас есть общее представление о том, что же такое нотация
+"большое О" и в чём заключаются различия между разными функциями, наша цель
+в этом разделе - рассказать вам о производительности операций над списками
+и словарями в Python. Мы проведём несколько временнЫх экспериментов, чтобы
+продемонстрировать затраты и выгоды при использовании конкретных операций
+каждой из озвученных структур данных. Понимать эффективность этих структур
+- очень важно для вас, потому что они являются строительными блоками,
+которые мы будем использовать при реализации других структур данных на
+протяжении оставшихся глав этой книги. В этом разделе мы не планируем
+объяснять, почему производительность такая, какая она есть. Позднее вы
+сами увидите возможные реализации списков и словарей, и как производительность
+зависит от реализации.

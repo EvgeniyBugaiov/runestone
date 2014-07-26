@@ -7,68 +7,67 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Dictionaries
+Словари
 ~~~~~~~~~~~~
 
 
 
-The second major Python data structure is the dictionary. As you
-probably recall, dictionaries differ from lists in that you can access
-items in a dictionary by a key rather than a position. Later in this
-book you will see that there are many ways to implement a dictionary.
-The thing that is most important to notice right now is that the get
-item and set item operations on a dictionary are :math:`O(1)`. Another
-important dictionary operation is the contains operation. Checking to
-see whether a key is in the dictionary or not is also :math:`O(1)`.
-The efficiency of all dictionary operations is summarized in
-:ref:`Table 3 <tbl_dictbigo>`. One important side note on dictionary performance
-is that the efficiencies we provide in the table are for average
-performance. In some rare cases the contains, get item, and set item
-operations can degenerate into :math:`O(n)` performance but we will
-get into that in a later chapter when we talk about the different ways
-that a dictionary could be implemented.
+Второй основной структурой данных в Python является словарь. Как вы,
+наверное, помните, словари отличаются от списков тем, что в них вы получаете
+доступ к элементу по ключу, а не по позиции. Позднее в этой книге вы увидите
+множество способов реализации словаря. Сейчас же наиболее важно отметить, что
+операции получения и записи элемента в словарь имеют :math:`O(1)`. Другой важной
+операцией со словарями является определение принадлежности ему элемента. Проверка,
+есть ли с словаре данный ключ или нет, тоже :math:`O(1)`. Эффективности всех
+операций над словарями собраны в :ref:`Таблице 3 <tbl_dictbigo>`. Важное замечание
+в сторону относительно производительности словарей: эффективности, которые мы
+предоставляем в таблице, - это усреднённая производительность. В редких случаях
+принадлежность, получение или запись элемента могут деградировать до :math:`O(n)`.
+Мы встретимся с этим в одной из последующих глав, когда будем говорить о различных
+способах, которыми можно реализовать словарь.
+
 
 .. _tbl_dictbigo:
 
-.. table:: **Table 3: Big-O Efficiency of Python Dictionary Operations**
+.. table:: **Таблица 3: Эффективность операций над словарями в Python в терминах нотации "большое О"**
 
     ================== ==================
-             operation   Big-O Efficiency
+              операция      эффективность
     ================== ==================
-                  copy               O(n)
-              get item               O(1)
-              set item               O(1)
-           delete item               O(1)
-         contains (in)               O(1)
-             iteration               O(n)
+           копирование               O(n)
+      получить элемент               O(1)
+      записать элемент               O(1)
+       удалить элемент               O(1)
+        вхождение (in)               O(1)
+              итерация               O(n)
     ================== ==================
 
 
 
-For our last performance experiment we will compare the performance of
-the contains operation between lists and dictionaries. In the process we
-will confirm that the contains operator for lists is :math:`O(n)` and
-the contains operator for dictionaries is :math:`O(1)`. The experiment
-we will use to compare the two is simple. We’ll make a list with a range
-of numbers in it. Then we will pick numbers at random and check to see
-if the numbers are in the list. If our performance tables are correct
-the bigger the list the longer it should take to determine if any one
-number is contained in the list.
+В нашем последнем эксперименте с производительностью мы сравним эффективность
+операций принадлежности у списков и словарей. В процессе мы подтвердим, что
+оператор принадлежности для списков имеет :math:`O(n)`, а для словарей -
+:math:`O(1)`. Производить сравнение мы будем просто. Мы создадим список с
+диапазоном чисел, затем будем брать число случайным образом и смотреть, есть
+ли оно в списке. Если наша таблица производительности верна, то чем больше
+список, тем дольше будет происходить определение, содержится ли в нём данное
+число.
 
-We will repeat the same experiment for a dictionary that contains
-numbers as the keys. In this experiment we should see that determining
-whether or not a number is in the dictionary is not only much faster,
-but the time it takes to check should remain constant even as the
-dictionary grows larger.
 
-:ref:`Listing 6 <lst_listvdict>` implements this comparison. Notice that we are
-performing exactly the same operation, ``number in container``. The
-difference is that on line 7 ``x`` is a list, and on line 9 ``x`` is a
-dictionary.
+Мы повторим тот же эксперимент со словарём, содержащим числа в качестве ключей.
+В этом эксперименте мы хотим увидеть, что определение есть или нет число в словаре
+не только намного быстрее, но и время, занимаемое для проверки, остаётся постоянным,
+даже если объём словаря возрастает.
+
+
+:ref:`Листинг 6 <lst_listvdict>` реализовывает это сравнение. Заметьте, что мы
+выполняем в точности одинаковые операции ``number in container``. Различие только в
+том, что в седьмой строке <code>x</code> - это список, а в девятой - словарь.
+
 
 .. _lst_listvdict:
 
-**Listing 6**
+**Листинг 6**
 
 
 .. sourcecode:: python
@@ -89,34 +88,35 @@ dictionary.
         
 
 
-:ref:`Figure 4 <fig_listvdict>` summarizes the results of running
-:ref:`Listing 6 <lst_listvdict>`. You can see that the dictionary is consistently
-faster. For the smallest list size of 10,000 elements a dictionary is
-89.4 times faster than a list. For the largest list size of 990,000
-elements the dictionary is 11,603 times faster! You can also see that
-the time it takes for the contains operator on the list grows linearly
-with the size of the list. This verifies the assertion that the contains
-operator on a list is :math:`O(n)`. It can also be seen that the time
-for the contains operator on a dictionary is constant even as the
-dictionary size grows. In fact for a dictionary size of 10,000 the
-contains operation took 0.004 milliseconds and for the dictionary size
-of 990,000 it also took 0.004 milliseconds.
+:ref:`Рисунок 4 <fig_listvdict>` подытоживает результаты запуска
+:ref:`Листинге 6 <lst_listvdict>`. Вы видите, что словарь стабильно быстрее.
+Для списков малых размеров на 10 000 элементов словарь быстрее в 89,4 раза.
+Для больших списков на 990 000 элементов разница становится в 11 603 раза!
+Вы также можете видеть, что время, требуемое операции проверки принадлежности
+для списка, линейно возрастает с ростом размера списка. Это подтверждает
+утверждение, что оператор принадлежности для списков имеет :math:`O(n)`. Так
+же хорошо видно, что аналогичная операция для словаря остаётся постоянной даже
+при возрастании объёма словаря. Фактически, для словаря размером в 10 000
+операция проверки принадлежности занимает 0,004 миллисекунды, как и для словаря
+на 990 000 элементов.
+
 
 .. _fig_listvdict:
 
 .. figure:: Figures/listvdict.png
 
-    Figure 4: Comparing the ``in`` Operator for Python Lists and Dictionaries
+    Рисунок 4: Сравнение операторов ``in`` для списков и словарей в Python
 
-Since Python is an evolving language, there are always changes going on
-behind the scenes. The latest information on the performance of Python
-data structures can be found on the Python website. As of this writing
-the Python wiki has a nice time complexity page that can be found at the
-`Time Complexity Wiki <http://wiki.python.org/moin/TimeComplexity>`_.
+<p>Поскольку Python - развивающийся язык, то за сценой постоянно происходят
+изменения. Последнюю информацию о производительности структур данных в Python можно
+найти на сайте Python. На момент написания этих строк Python wiki имеет хорошую
+страничку, посвящённую временной сложности. Вы можете ознакомиться с ней
+`Time Complexity Wiki <http://wiki.python.org/moin/TimeComplexity>`_
 
 
 
-.. admonition:: Self Check
+
+.. admonition:: Самопроверка
 
     .. mchoicemf:: mcpyperform
        :answer_a: list.pop(0)
@@ -131,7 +131,7 @@ the Python wiki has a nice time complexity page that can be found at the
        :feedback_d: Indexing a list is a constant operation
        :feedback_e: There is one operation that requires all other list elements to be moved.
 
-       Which of the above list operations is not O(1)?
+       Какая из перечисленных операций для списков не является O(1)?
 
     .. mchoicemf:: mcpydictperf
       :answer_a: 'x' in mydict
@@ -146,7 +146,7 @@ the Python wiki has a nice time complexity page that can be found at the
       :feedback_d: Re-assignment to a dictionary key is constant but there is a better answer.
       :feedback_e: The only dictionary operations that are not O(1) are those that require iteration.                  
 
-      Which of the above dictionary operations is O(1)?
+      Какая из перечисленных операций для словарей не является O(1)?
 
 .. video::  pythonopsperf
    :controls:

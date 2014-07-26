@@ -7,45 +7,45 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Lists
+Списки
 ~~~~~
 
 
 
-The designers of Python had many choices to make when they implemented
-the list data structure. Each of these choices could have an impact on
-how fast list operations perform. To help them make the right choices
-they looked at the ways that people would most commonly use the list
-data structure and they optimized their implementation of a list so that
-the most common operations were very fast. Of course they also tried to
-make the less common operations fast, but when a tradeoff had to be made
-the performance of a less common operation was often sacrificed in favor
-of the more common operation.
+Разработчики Python имели обширный выбор, когда реализовывали списки
+как структуру данных. Каждое их решение оказывает влияние на скорость
+выполнения операций со списками. Чтобы помочь себе принимать верные
+решения, они смотрели на то, для чего пользователи используют списки
+чаще всего, и они оптимизировали реализацию списков таким образом,
+чтобы наиболее распространённые операции совершались очень быстро.
+Конечно, они так же старались сделать быстрыми и менее используемые
+операции, но при поиске компромиссов производительность менее
+распространённых операций приносилась в жертву в пользу более
+распространённых операций.
 
-Two common operations are indexing and assigning to an index position.
-Both of these operations take the same amount of time no matter how
-large the list becomes. When an operation like this is independent of
-the size of the list they are :math:`O(1)`.
+Двумя наиболее распространёнными операциями для списков являются индексация
+и присваивание на заданную позицию. Обе они занимают равное количество
+времени, вне зависимости от того, насколько велик список. Когда операции
+не зависят от размера списка (как названные выше), говорят, что они имеют :math:`O(1)`
 
-Another very common programming task is to grow a list. There are two
-ways to create a longer list.  You can use the append method or the
-concatenation operator. The append method is :math:`O(1)`. However,
-the concatenation operator is :math:`O(k)` where :math:`k` is the
-size of the list that is being concatenated. This is important for you
-to know because it can help you make your own programs more efficient by
-choosing the right tool for the job.
+Другим часто встречающимся программистским заданием является увеличение списка.
+Существует два способа продлить список. Вы можете использовать метод добавления
+или оператор конкатенации. Первый является :math:`O(1)`, но вот второй имеет
+:math:`O(k)`, где :math:`k` - размер списка, который будет присоединён. Эта
+информация полезна вам, потому что помогает сделать ваши программы более
+эффективными, выбирая правильный инструмент для работы.
 
-Let's look at four different ways we might generate a list of ``n``
-numbers starting with 0. First we’ll try a ``for`` loop and create the
-list by concatenation, then we’ll use append rather than concatenation.
-Next, we’ll try creating the list using list comprehension and finally,
-and perhaps the most obvious way, using the range function wrapped by a
-call to the list constructor. :ref:`Listing 3 <lst_mklist>` shows the code for
-making our list four different ways.
+
+Давайте рассмотрим четыре разных способа сгенерировать список из ``n`` чисел,
+начинающийся с нуля. Сначала мы попробуем цикл ``for`` и создадим список с помощью
+конкатенации. Затем используем для этого метод ``append``. Далее попытаемся создать
+список, используя генераторы списков. И, наконец, используем для этого, возможно,
+самый очевидный способ - функцию ``range``, обёрнутую в конструктор списка.
+:ref:`Listing 3 <lst_mklist>` показывает код для всех этих четырёх способов.
 
 .. _lst_mklist:
 
-**Listing 3**
+**Листинг 3**
 
 ::
 
@@ -65,25 +65,25 @@ making our list four different ways.
     def test4():
         l = list(range(1000))
 
-To capture the time it takes for each of our functions to execute we
-will use Python’s ``timeit`` module. The ``timeit`` module is designed
-to allow Python developers to make cross-platform timing measurements by
-running functions in a consistent environment and using timing
-mechanisms that are as similar as possible across operating systems.
+Чтобы получить время, требуемое для выполнения каждой функции, мы используем
+модуль Python ``timeit``. Он разработан для того, чтобы разработчики на
+Python могли делать кроссплатформенные синхронные измерения, запуская функции
+в согласованной среде и используя механизмы синхронизации, максимально схожие
+между собой для разных операционных систем.
 
-To use ``timeit`` you create a ``Timer`` object whose parameters are two
-Python statements. The first parameter is a Python statement that you
-want to time; the second parameter is a statement that will run once to
-set up the test. The ``timeit`` module will then time how long it takes
-to execute the statement some number of times. By default ``timeit``
-will try to run the statement one million times. When its done it
-returns the time as a floating point value representing the total number
-of seconds. However, since it executes the statement a million times you
-can read the result as the number of microseconds to execute the test
-one time. You can also pass ``timeit`` a named parameter called
-``number`` that allows you to specify how many times the test statement
-is executed. The following session shows how long it takes to run each
-of our test functions 1000 times.
+
+Чтобы использовать ``timeit``, вам нужно создать объект ``Timer``, чьими
+параметрами являются два положения на Python. Первый параметр - оператор
+Python, говорящий, что вам нужно время; второй - утверждение, что тест будет
+проводиться один раз. Модуль ``timeit`` будет несколько раз замерять время,
+необходимое для выполнения операции. По умолчанию он пытается запустить
+операцию один миллион раз. Когда это будет сделано, он вернёт время как
+число с плавающей запятой, представляющее собой общее количество секунд.
+Однако, поскольку он вычислял оператор миллион раз, то вы можете прочитать
+результат, как количество микросекунд, затраченных на выполнение одного теста.
+Так же можно передать в ``timeit`` именованный параметр ``number``, который
+позволит вам конкретизировать, сколько раз нужно запустить оператор. Следующий
+фрагмент показывает, как долго занимает запуск каждой тестовой функции тысячу раз.
 
 ::
 
@@ -101,109 +101,107 @@ of our test functions 1000 times.
     comprehension  0.147661924362 milliseconds
     list range  0.0655000209808 milliseconds
 
-In the experiment above the statement that we are timing is the function
-call to ``test1()``, ``test2()``, and so on. The setup statement may
-look very strange to you, so let’s consider it in more detail. You are
-probably very familiar with the ``from``, ``import`` statement, but this
-is usually used at the beginning of a Python program file. In this case
-the statement ``from __main__ import test1`` imports the function
-``test1`` from the ``__main__`` namespace into the namespace that
-``timeit`` sets up for the timing experiment. The ``timeit`` module does
-this because it wants to run the timing tests in an environment that is
-uncluttered by any stray variables you may have created, that may
-interfere with your function’s performance in some unforeseen way.
+В эксперименте выше, операторами, для которых мы замеряли время, являются
+функции ``test1()``, ``test2()`` и так далее. Оператор начальной установки
+может показать вам очень необычным, так что давайте разберём детали.
+Возможно, вы хорошо знакомы с операторами ``from<`` и ``import```, но они
+обычно используются в начале файлов программ на Python. В нашем случае,
+оператор ``from __main__ import test1`` импортирует функцию ``test1``
+из пространства имён ``__main__`` в пространство имён, в котором ``timeit``
+ставит свой временнОй эксперимент. Он делает это потому, что хочет запускать
+тесты в среде, где отсутствуют бродячие переменные, которые вы могли создать
+и которые могут повлиять на производительность вашей функции непредвиденным образом.
 
-From the experiment above it is clear that the append operation at 0.30
-milliseconds is much faster than concatenation at 6.54 milliseconds. In
-the above experiment we also show the times for two additional methods
-for creating a list; using the list constructor with a call to ``range``
-and a list comprehension. It is interesting to note that the list
-comprehension is twice as fast as a ``for`` loop with an ``append``
-operation.
+Из эксперимента выше совершенно ясно, что операция ``append`` за 0.30
+миллисекунд быстрее, чем конкатенация за 6.54 миллисекунды. Также мы
+видим время, требуемое для двух дополнительных методов создания списков:
+использования конструктора списка с вызовом ``range`` и генератора списков.
+Интересно, что последний в два раза быстрее, чем цикл ``for`` с операцией
+``append``.
 
-One final observation about this little experiment is that all of the
-times that you see above include some overhead for actually calling the
-test function, but we can assume that the function call overhead is
-identical in all four cases so we still get a meaningful comparison of
-the operations. So it would not be accurate to say that the
-concatenation operation takes 6.54 milliseconds but rather the
-concatenation test function takes 6.54 milliseconds. As an exercise you
-could test the time it takes to call an empty function and subtract that
-from the numbers above.
+Наше последнее наблюдение в этом маленьком эксперименте заключается в том,
+что все времена, которые вы видите выше, содержат некоторые издержки при
+фактическом вызове тестовой функции. Однако, мы можем предположить, что для
+всех четырёх случаев эта величина одинакова, так что мы по-прежнему имеем
+адекватное сравнение операций. Поэтому правильно говорить не "конкатенация
+занимает 6.54 миллисекунды", а "тестовая функция конкатенации выполняется
+6.54 миллисекунд". В качестве упражнения, вы можете провести временнОй тест
+для пустой функции и вычесть его результат из чисел выше.
 
-Now that we have seen how performance can be measured concretely you can
-look at :ref:`Table 2 <tbl_listbigo>` to see the Big-O efficiency of all the
-basic list operations. After thinking carefully about
-:ref:`Table 2 <tbl_listbigo>`, you may be wondering about the two different times
-for ``pop``. When ``pop`` is called on the end of the list it takes
-:math:`O(1)` but when pop is called on the first element in the list
-or anywhere in the middle it is :math:`O(n)`. The reason for this lies
-in how Python chooses to implement lists. When an item is taken from the
-front of the list, in Python’s implementation, all the other elements in
-the list are shifted one position closer to the beginning. This may seem
-silly to you now, but if you look at :ref:`Table 2 <tbl_listbigo>` you will see
-that this implementation also allows the index operation to be
-:math:`O(1)`. This is a tradeoff that the Python implementors thought
-was a good one.
+После того, как мы увидели, как конкретно может быть измерена производительность,
+вы можете посмотреть в :ref:`Таблицу 2 <tbl_listbigo>`, чтобы узнать эффективность
+в терминах "большого О" для основных операций над списками. После вдумчивого
+размышления над ней, вы можете заинтересоваться двумя разными временами для ``pop``.
+Когда этот метод вызывается для конца списка, это занимает :math:`O(1)`. Но когда
+``pop`` вызывают для первого или любого другого элемента из середины списка, он имеет
+:math:`O(n)`. Причина кроется в том, как в Python выбрана реализация списков. Когда
+элемент берётся из начала списка, то все прочие элементы смещаются на одну позицию
+вперёд. Сейчас это может показаться вам глупым, но если вы посмотрите на
+:ref:`Table 2 <tbl_listbigo>`, то увидите, что эта же реализация позволяет операции
+индексации иметь :math:`O(1)`. Это один из тех компромиссов, которые разработчики
+Python сочли разумными.
 
 
 .. _tbl_listbigo:
 
-.. table:: **Table 2: Big-O Efficiency of Python List Operators**
+.. table:: **Таблица 2: Эффективность операторов для списков в Python в терминах нотации "большое О"**
 
-    ================== ==================
-             Operation   Big-O Efficiency
-    ================== ==================
-              index []               O(1)
-      index assignment               O(1)
-                append               O(1)
-                 pop()               O(1)
-                pop(i)               O(n)
-        insert(i,item)               O(n)
-          del operator               O(n)
-             iteration               O(n)
-         contains (in)               O(n)
-       get slice [x:y]               O(k)
-             del slice               O(n)
-             set slice             O(n+k)
-               reverse               O(n)
-           concatenate               O(k)
-                  sort         O(n log n)
-              multiply              O(nk)
-    ================== ==================
-
-
+   ========================== =====================
+                     Операция      Эффективность
+   ========================== =====================
+                     index []                  O(1)
+      Присваивание по индексу                  O(1)
+                       append                  O(1)
+                        pop()                  O(1)
+                       pop(i)                  O(n)
+               insert(i,item)                  O(n)
+                 оператор del                  O(n)
+                 итерирование                  O(n)
+               вхождение (in)                  O(n)
+                   срез [x:y]                  O(k)
+                 удалить срез                  O(n)
+                  задать срез                O(n+k)
+                     обратить                  O(n)
+                конкантенация                  O(k)
+                   сортировка            O(n log n)
+                   размножить                 O(nk)
+   ========================== =====================
 
 
-As a way of demonstrating this difference in performance let’s do
-another experiment using the ``timeit`` module. Our goal is to be able
-to verify the performance of the ``pop`` operation on a list of a known
-size when the program pops from the end of the list, and again when the
-program pops from the beginning of the list. We will also want to
-measure this time for lists of different sizes. What we would expect to
-see is that the time required to pop from the end of the list will stay
-constant even as the list grows in size, while the time to pop from the
-beginning of the list will continue to increase as the list grows.
 
-:ref:`Listing 10 <lst_popmeas>` shows one attempt to measure the difference
-between the two uses of pop. As you can see from this first example,
-popping from the end takes 0.0003 milliseconds, whereas popping from the
-beginning takes 4.82 milliseconds. For a list of two million elements
-this is a factor of 16,000.
 
-There are a couple of things to notice about :ref:`Listing 4 <lst_popmeas>`. The
-first is the statement ``from __main__ import x``. Although we did not
-define a function we do want to be able to use the list object x in our
-test. This approach allows us to time just the single ``pop`` statement
-and get the most accurate measure of the time for that single operation.
-Because the timer repeats 1000 times it is also important to point out
-that the list is decreasing in size by 1 each time through the loop. But
-since the initial list is two million elements in size we only reduce
-the overall size by :math:`0.05\%`
+В качестве способа демонстрации этих различий в производительности, давайте
+проведём другой эксперимент с использованием модуля ``timeit``. Нашей целью
+будет возможность проверки производительности операции ``pop`` на списке
+известного размера, когда программа выталкивает элемент из конца списка, и
+ещё раз - когда программа вталкивает элемент из начала списка. Мы также
+произведём замеры времени на списках разной длины. Что мы ожидаем увидеть,
+так это то, что временнАя зависимость у выталкивания из конца списка остаётся
+одинаковой при увеличении списка, в то время как выталкивание из начала списка
+будет расти вместе со списковой длиной.
+
+
+:ref:`Листинг 10 <lst_popmeas>` демонстрирует одну попытку замерить разницу
+между двумя использованиями <code>pop</code>. Как видно из первого примера,
+выталкивание с конца занимает 0.0003 миллисекунды, в то время как на выталкивание
+из начала требуется 4.82 миллисекунды. Для списка в два миллиона элементов
+коэффициент будет 16 000
+
+
+Есть ещё несколько замечаний относительно :ref:`Листинг 4 <lst_popmeas>`.
+Первое - это оператор ``from __main__ import x``. Несмотря на то, что мы не
+определяли функцию, мы хотим иметь возможность использовать список-объект
+``x`` в нашем тесте. Этот подход позволяет нам замерять время только для
+единственной ``pop``-операции и получать для неё наиболее точное значение
+времени. Поскольку замеры повторяются тысячу раз, то также важно отметить,
+что список уменьшается в размерах на единицу за каждую итерацию.
+Но поскольку изначально в нём два миллиона элементов, то общий объём уменьшится
+примерно на :math:`0.05\%`
+
 
 .. _lst_popmeas:
 
-**Listing 4**
+**Листинг 4**
 
 ::
 
@@ -221,15 +219,16 @@ the overall size by :math:`0.05\%`
     popend.timeit(number=1000)
     0.0003161430358886719
 
-While our first test does show that ``pop(0)`` is indeed slower than
-``pop()``, it does not validate the claim that ``pop(0)`` is
-:math:`O(n)` while ``pop()`` is :math:`O(1)`. To validate that claim
-we need to look at the performance of both calls over a range of list
-sizes. :ref:`Listing 5 <lst_poplists>` implements this test.
+Пока наш первый тест показывает, что ``pop(0)`` действительно медленнее
+``pop()``. Но он не подтверждает заявление, что ``pop(0)`` является
+:math:`O(n)`, в то время как ``pop()`` - :math:`O(1)`. Чтобы доказать это,
+нам нужно рассмотреть производительность обоих вызовов на диапазоне размеров
+списков. :ref:`Листинг 5 <lst_poplists>` реализует этот тест.
+
 
 .. _lst_poplists:
 
-**Listing 5**
+**Листинг 5**
 
 ::
 
@@ -245,22 +244,23 @@ sizes. :ref:`Listing 5 <lst_poplists>` implements this test.
         pz = popzero.timeit(number=1000)
         print("%15.5f, %15.5f" %(pz,pt))
 
-:ref:`Figure 3 <fig_poptest>` shows the results of our experiment. You can see
-that as the list gets longer and longer the time it takes to ``pop(0)``
-also increases while the time for ``pop`` stays very flat. This is
-exactly what we would expect to see for a :math:`O(n)` and
-:math:`O(1)` algorithm.
+На :ref:`Рисунке 3 <fig_poptest>` показаны результаты нашего эксперимента.
+Вы можете видеть, как список делается всё длиннее и длиннее, и время,
+необходимое для ``pop(0)`` тоже увеличивается, тогда как график для ``pop``
+остаётся плоским. Это в точности то, что мы ожидали увидеть от алгоритмов с
+:math:`O(n)` и :math:`O(1)`
 
-Some sources of error in our little experiment include the fact that
-there are other processes running on the computer as we measure that may
-slow down our code, so even though we try to minimize other things
-happening on the computer there is bound to be some variation in time.
-That is why the loop runs the test one thousand times in the first place
-to statistically gather enough information to make the measurement
-reliable.
+Некоторым источником ошибок в нашем маленьком эксперименте стал тот факт,
+что на компьютере запущены и другие процессы, которые могут замедлять наш
+код. Несмотря на то, что мы старались минимизировать влияние прочих
+происходящих на компьютере вещей, с ними связаны некоторые флуктуации
+времён. Именно поэтому цикл выполняет тест тысячу - в первую очередь,
+чтобы статистически собрать достаточно информации для утверждения о
+надёжности измерений.
+
 
 .. _fig_poptest:
 
 .. figure:: Figures/poptime.png
 
-   Figure 3: Comparing the Performance of ``pop`` and ``pop(0)``
+   Рисунок 3: Сравнение производительности ``pop`` и ``pop(0)``

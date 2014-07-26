@@ -82,23 +82,22 @@
 Таким образом, решение является :math:`O(n^{2})`
 
 
-Solution 2: Sort and Compare
+Решение 2: Сортируй и сравнивай
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Another solution to the anagram problem will make use of the fact that
-even though ``s1`` and ``s2`` are different, they are anagrams only if
-they consist of exactly the same characters. So, if we begin by sorting
-each string alphabetically, from a to z, we will end up with the same
-string if the original two strings are anagrams. :ref:`ActiveCode 5 <lst_ana2>` shows
-this solution. Again, in Python we can use the built-in ``sort`` method
-on lists by simply converting each string to a list at the start.
-
-
+Следующие решение задачи про анаграммы будет использовать тот факт, что
+даже если ``s1`` и ``s2`` различны, они будут анаграммами только если
+состоят из одинаковых символов. Следовательно, если мы отсортируем каждую
+строку в алфавитном порядке от ``a`` до ``z``, то в итоге получим одинаковые
+строки (если, конечно, ``s1`` и ``s2`` - анаграммы). Это решение показано
+в :ref:`ActiveCode 5 <lst_ana2>`. Опять же, в Python мы можем использовать
+встроенный метод ``sort``, для списков, полученных в начале функции конвертацией
+каждой строки.
 
 .. _lst_ana2:
 
 .. activecode:: active6
-    :caption: Sort and Compare
+    :caption: Сортируй и сравнивай
 
     def anagramSolution2(s1,s2):
         alist1 = list(s1)
@@ -120,54 +119,54 @@ on lists by simply converting each string to a list at the start.
 
     print(anagramSolution2('abcde','edcba'))
 
-At first glance you may be tempted to think that this algorithm is
-:math:`O(n)`, since there is one simple iteration to compare the *n*
-characters after the sorting process. However, the two calls to the
-Python ``sort`` method are not without their own cost. As we will see in
-a later chapter, sorting is typically either :math:`O(n^{2})` or
-:math:`O(n\log n)`, so the sorting operations dominate the iteration.
-In the end, this algorithm will have the same order of magnitude as that
-of the sorting process.
+В первый момент вы можете подумать, что этот алгоритм имеет :math:`O(n)`,
+поскольку у него есть всего одна простая итерация для сравнения *n* символов
+после сортировки. Однако, два вызова Python-метода ``sort`` не проходят
+даром. Как мы увидим в следующих главах, сортировка обычно имеет
+:math:`O(n^{2})` или :math:`O(n\log n)`, так что эта операция доминирует над
+циклом. В итоге алгоритм будет иметь тот же порядок операций, что и
+сортировочные вычисления.
 
-Solution 3: Brute Force
+
+Решение 3: Полный перебор
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-A **brute force** technique for solving a problem typically tries to
-exhaust all possibilities. For the anagram detection problem, we can
-simply generate a list of all possible strings using the characters from
-``s1`` and then see if ``s2`` occurs. However, there is a difficulty
-with this approach. When generating all possible strings from ``s1``,
-there are *n* possible first characters, :math:`n-1` possible
-characters for the second position, :math:`n-2` for the third, and so
-on. The total number of candidate strings is
-:math:`n*(n-1)*(n-2)*...*3*2*1`, which is :math:`n!`. Although some
-of the strings may be duplicates, the program cannot know this ahead of
-time and so it will still generate :math:`n!` different strings.
+Техника **полного перебора** для решения задач обычно используется, когда
+все другие возможности уже исчерпаны. Для задачи определения анаграммы мы
+можем просто сгенерировать список всех возможных строк из символов ``s1``
+и посмотреть, входит ли в него ``s2``. Но в данном подходе есть одна
+закавырка: при генерации всех возможных строк из ``s1`` есть *n* возможных
+первых символов, :math:`n-1` возможных вторых символов и так далее. Отсюда
+общее количество строк-кандидатов будет :math:`n*(n-1)*(n-2)*...*3*2*1`,
+что есть :math:`n!`. Несмотря на то, что некоторые строки будут дублироваться,
+программа об этом заранее знать не будет, поэтому всё равно сгенерирует
+:math:`n!` различных строк.
 
-It turns out that :math:`n!` grows even faster than :math:`2^{n}` as
-*n* gets large. In fact, if ``s1`` were 20 characters long, there would
-be :math:`20!=2,432,902,008,176,640,000` possible candidate strings.
-If we processed one possibility every second, it would still take us
-77,146,816,596 years to go through the entire list. This is probably not
-going to be a good solution.
+Решение :math:`n!` с увеличением *n* возрастает быстрее, чем даже
+:math:`2^{n}`. Фактически, при длине ``s1`` в 20 символов мы получим
+:math:`20!=2,432,902,008,176,640,000` возможных строк-кандидатов. Если мы
+будем обрабатывать одну вероятность каждую секунду, то на весь список уйдёт
+77 146 816 596 лет. Похоже, это совсем не хорошее решение.
 
-Solution 4: Count and Compare
+
+Решение 4: Подсчитывай и сравнивай
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Our final solution to the anagram problem takes advantage of the fact
-that any two anagrams will have the same number of a’s, the same number
-of b’s, the same number of c’s, and so on. In order to decide whether
-two strings are anagrams, we will first count the number of times each
-character occurs. Since there are 26 possible characters, we can use a
-list of 26 counters, one for each possible character. Each time we see a
-particular character, we will increment the counter at that position. In
-the end, if the two lists of counters are identical, the strings must be
-anagrams. :ref:`ActiveCode 6 <lst_ana4>` shows this solution.
+Наше последнее решения задачи про анаграммы воспользуется преимуществом
+того факта, что любые две анаграммы имеют одинаковое количество букв *a*,
+*b* и так далее. Для того, чтобы решить, являются ли строки анаграммами,
+мы сначала подсчитаем, сколько раз в них встречается каждый символ.
+Поскольку возможных букв 26, то мы можем использовать список из 26
+счётчиков - по одному на каждый символ. Каждый раз, когда мы видим конкретную
+букву, мы увеличиваем соответствующий ей счётчик на единицу. В итоге, если
+оба списка счётчиков идентичны, то строки - анаграммы. Это решение показано
+в :ref:`ActiveCode 6 <lst_ana4>`
+
 
 .. _lst_ana4:
 
 .. activecode:: active7
-    :caption: Count and Compare
+    :caption: Подсчитывай и сравнивай
 
     def anagramSolution4(s1,s2):
         c1 = [0]*26
@@ -195,29 +194,28 @@ anagrams. :ref:`ActiveCode 6 <lst_ana4>` shows this solution.
 
 
 
-Again, the solution has a number of iterations. However, unlike the
-first solution, none of them are nested. The first two iterations used
-to count the characters are both based on *n*. The third iteration,
-comparing the two lists of counts, always takes 26 steps since there are
-26 possible characters in the strings. Adding it all up gives us
-:math:`T(n)=2n+26` steps. That is :math:`O(n)`. We have found a
-linear order of magnitude algorithm for solving this problem.
+Решение вновь имеет некоторое количество циклов. Однако, в отличии от
+первого варианта, ни один из них не является вложенным. Два первых цикла,
+используемые для подсчёта символов, базируются на *n*.
+Третий цикл - сравнение двух списков счётчиков - всегда состоит из 26
+итераций (поскольку строки состоят из 26 возможных элементов). Складывая
+всё вместе, получим :math:`T(n)=2n+26` шагов, что является :math:`O(n)`.
+Мы нашли алгоритм с линейным порядком величины для решения нашей задачи.
 
-Before leaving this example, we need to say something about space
-requirements. Although the last solution was able to run in linear time,
-it could only do so by using additional storage to keep the two lists of
-character counts. In other words, this algorithm sacrificed space in
-order to gain time.
+До того, как закончить с этим примером, стоит сказать несколько слов о
+пространственных требованиях. Хотя последнее решение и работает за линейное
+время, оно достигает этого путём использования дополнительных хранилищ для
+двух списков счётчиков. Другими словами, этот алгоритм приносит в жертву
+пространство, чтобы выиграть время.
 
-This is a common occurrence. On many occasions you will need to make
-decisions between time and space trade-offs. In this case, the amount of
-extra space is not significant. However, if the underlying alphabet had
-millions of characters, there would be more concern. As a computer
-scientist, when given a choice of algorithms, it will be up to you to
-determine the best use of computing resources given a particular
-problem.
+Это очень распространённый случай. Очень часто вам придётся делать выбор
+между временем и пространством. В данном случае объём места был не существенен.
+Однако, если основополагающий алфавит имеет миллионы символов, то это вызовет
+больше беспокойства. Как у учёных-информатиков, при выборе алгоритма только от
+вас будет зависеть определение наилучшего использования вычислительных ресурсов,
+выделенных под конкретную задачу.
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
    .. mchoicemf:: analysis_1
        :answer_a: O(n)
