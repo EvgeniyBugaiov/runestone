@@ -7,11 +7,11 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Discussion Questions
---------------------
+Вопросы для обсуждения
+----------------------
 
-#. Convert the following values to binary using “divide by 2.” Show the
-   stack of remainders.
+#. Преобразуйте следующие значения в двоичный вид, используя "деление на 2".
+   Выведите стек из остатков.
 
    -  17
 
@@ -28,14 +28,14 @@ Discussion Questions
 
    -  A\*B\*C\*D+E+F
 
-#. Convert the above infix expressions to postfix (use full
-   parentheses).
+#. Преобразуйте следующие инфиксные выражения в префиксные
+   (используя полную расстановку скобок).
 
-#. Convert the above infix expressions to postfix using the direct
-   conversion algorithm. Show the stack as the conversion takes place.
+#. Преобразуйте приведённые выше инфиксные выражения в постфиксные
+   (используя полную расстановку скобок).
 
-#. Evaluate the following postfix expressions. Show the stack as each
-   operand and operator is processed.
+#. Вычислите следующие постфиксные выражения. Выведите стек в процессе
+   обработки каждого операнда и оператора.
 
    -  2 3 \* 4 +
 
@@ -43,17 +43,15 @@ Discussion Questions
 
    -  1 2 3 4 5 \* + \* +
 
-#. The alternative implementation of the ``Queue`` ADT is to use a list
-   such that the rear of the queue is at the end of the list. What would
-   this mean for Big-O performance?
+#. Альтернативная реализация АТД ``Queue`` использует список таким образом,
+   чтобы хвост очереди находился в его конце. Какую производительность О она имеет?
 
-#. What is the result of carrying out both steps of the linked list
-   ``add`` method in reverse order? What kind of reference results? What
-   types of problems may result?
+#. Каков результат выполнения в обратном порядке обоих шагов метода ``add``
+   для связанного списка? Проблемы какого типа могут при этом возникнуть?
 
-#. Explain how the linked list ``remove`` method works when the item to
-   be removed is in the last node.
+#. Объясните, как работает метод ``remove`` для связанного списка при удалении
+   последнего узла.
 
-#. Explain how the ``remove`` method works when the item is in the
-   *only* node in the linked list.
+#. Объясните, как работает метод ``remove`` для связанного списка, когда значение
+   находится в *единственном* узле.
 

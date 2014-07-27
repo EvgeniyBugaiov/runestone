@@ -7,46 +7,42 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Summary
--------
+Заключение
+----------
 
--  Linear data structures maintain their data in an ordered fashion.
+-  Линейные структуры данных содержат своё содержимое в упорядоченном виде.
 
--  Stacks are simple data structures that maintain a LIFO, last-in
-   first-out, ordering.
+-  Стеки - это простые структуры данных, поддерживающие LIFO ("последним
+   вошёл - первым вышел") упорядочение.
 
--  The fundamental operations for a stack are ``push``, ``pop``, and
-   ``isEmpty``.
+-  Основные операции над стеками: ``push``, ``pop``, и ``isEmpty``.
 
--  Queues are simple data structures that maintain a FIFO, first-in
-   first-out, ordering.
+-  Очереди - это простые структуры данных, поддерживающие FIFO ("первым вошёл -
+   первым вышел") упорядочение.
 
--  The fundamental operations for a queue are ``enqueue``, ``dequeue``,
-   and ``isEmpty``.
+-  Основные операции над очередями: ``enqueue``, ``dequeue`` и ``isEmpty``.
 
--  Prefix, infix, and postfix are all ways to write expressions.
+-  Всего существует три формы записи выражений: префиксная, инфиксная и постфиксная.
 
--  Stacks are very useful for designing algorithms to evaluate and
-   translate expressions.
+-  Стеки очень полезны при создании алгоритмов вычисления и транслирования выражений.
 
--  Stacks can provide a reversal characteristic.
+-  Стеки обладают свойством обратимости.
 
--  Queues can assist in the construction of timing simulations.
+-  Очереди могут помочь при создании временн*ы*х симуляций.
 
--  Simulations use random number generators to create a real-life
-   situation and allow us to answer “what if” types of questions.
+-  Симуляции используют случайное число генераторов для создания ситуаций, подобных
+   реальным. Они помогают нам отвечать на вопрос "что, если?"
 
--  Deques are data structures that allow hybrid behavior like that of
-   stacks and queues.
+-  Деки - это структуры данных, совмещающие поведение стеков и очередей.
 
--  The fundamental operations for a deque are ``addFront``, ``addRear``,
-   ``removeFront``, ``removeRear``, and ``isEmpty``.
+-  Основные операции для деков: ``addFront``, ``addRear``, ``removeFront``,
+   ``removeRear`` и ``isEmpty``.
 
--  Lists are collections of items where each item holds a relative
-   position.
+-  Списки - это коллекции элементов, каждый из которых занимает определённую
+   позицию по отношению к остальным.
 
--  A linked list implementation maintains logical order without
-   requiring physical storage requirements.
+-  Реализация связанного списка поддерживает логический порядок элементов без
+   требований к физическому их хранению.
 
--  Modification to the head of the linked list is a special case.
+-  Изменение головы списка - специальный случай.
 
