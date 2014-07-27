@@ -15,38 +15,44 @@
 позиции по отношению к остальным. Некоторые из возможных операций над
 неупорядоченными списками представлены ниже.
 
--  ``List()`` создаёт новый пустой список. Не нуждается в параметрах
-   и возвращает пустой список.
+-  ``List()`` создаёт новый пустой список.
+   Не нуждается в параметрах и возвращает пустой список.
 
--  ``add(item)`` adds a new item to the list. It needs the item and
-   returns nothing. Assume the item is not already in the list.
+-  ``add(item)`` добавляет в список новый элемент.
+   Требует значение в качестве аргумента, ничего не возвращает.
+   Предполагает, что до этого элемент в списке отсутствовал.
 
--  ``remove(item)`` removes the item from the list. It needs the item
-   and modifies the list. Assume the item is present in the list.
+-  ``remove(item)`` удаляет элемент из списка.
+   Требует значение элемента и изменяет список.
+   Предполагает первоначальное наличие элемента в списке.
 
--  ``search(item)`` searches for the item in the list. It needs the item
-   and returns a boolean value.
+-  ``search(item)`` ищет элемент в списке.
+   Требует элемент и возвращает булево значение.
 
--  ``isEmpty()`` tests to see whether the list is empty. It needs no
-   parameters and returns a boolean value.
+-  ``isEmpty()`` проверка списка на пустоту.
+   Не нуждается в параметрах, возвращает булево значение.
 
--  ``size()`` returns the number of items in the list. It needs no
-   parameters and returns an integer.
+-  ``size()`` возвращает количество элементов в списке.
+   Не нуждается в параметрах, возвращает целое число.
 
--  ``append(item)`` adds a new item to the end of the list making it the
-   last item in the collection. It needs the item and returns nothing.
-   Assume the item is not already in the list.
+-  ``append(item)`` добавляет новый элемент в конец списка.
+   Требует значение в качестве аргумента, ничего не возвращает.
+   Предполагает, что до сих пор такой элемент в списке отсутствовал.
 
--  ``index(item)`` returns the position of item in the list. It needs
-   the item and returns the index. Assume the item is in the list.
+-  ``index(item)`` возвращает позицию элемента в списке.
+   Требует значение в качестве аргумента, возвращает его индекс.
+   Предполагает, что элемент присутствует в списке.
 
--  ``insert(pos,item)`` adds a new item to the list at position pos. It
-   needs the item and returns nothing. Assume the item is not already in
-   the list and there are enough existing items to have position pos.
+-  ``insert(pos,item)`` вставляет новый элемент в заданную позицию
+   ``pos`` списка. Требует элемент, ничего не возвращает.
+   Предполагает, что до сих пор такой элемент в списке отсутствовал
+   и существующий размер списка позволяет задать индекс ``pos``.
 
--  ``pop()`` removes and returns the last item in the list. It needs
-   nothing and returns an item. Assume the list has at least one item.
+-  ``pop()`` удаляет и возвращает последний элемент списка.
+   Не требует аргументов, возвращает элемент.
+   Предполагает, что в списке есть хотя бы один элемент.
 
--  ``pop(pos)`` removes and returns the item at position pos. It needs
-   the position and returns the item. Assume the item is in the list.
+-  ``pop(pos)`` удаляет и возвращает элемент из позиции ``pos``.
+   Требует позицию в качестве аргумента и возвращает элемент.
+   Предполагает, что такой элемент присутствует в списке.
 

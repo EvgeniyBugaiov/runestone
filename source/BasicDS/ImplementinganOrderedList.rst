@@ -7,32 +7,33 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Implementing an Ordered List
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Реализация упорядоченного списка
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In order to implement the ordered list, we must remember that the
-relative positions of the items are based on some underlying
-characteristic. The ordered list of integers given above (17, 26, 31,
-54, 77, and 93) can be represented by a linked structure as shown in
-:ref:`Figure 15 <fig_orderlinked>`. Again, the node and link structure is ideal
-for representing the relative positioning of the items.
+Перед тем, как начать реализовывать упорядоченный список, мы должны
+вспомнить, что положение элементов относительно друг друга основываются
+на некой базовой характеристике. Упорядоченный список целых чисел,
+представленный выше (17, 26, 31, 77 и 93), может быть выражен связанной
+структурой, показанной на :ref:`Рисунке 15 <fig_orderlinked>`.
+Опять же, узел и ссылка идеально подходят для представления
+взаимного расположения элементов.
 
 .. _fig_orderlinked:
 
 .. figure:: Figures/orderlinkedlist.png
    :align: center
 
-   Figure 15: An Ordered Linked List
+   Рисунок 15: Упорядоченный связанный список
 
 
-To implement the ``OrderedList`` class, we will use the same technique
-as seen previously with unordered lists. Once again, an empty list will
-be denoted by a ``head`` reference to ``None`` (see
-:ref:`Listing 8 <lst_orderlist>`).
+Для реализации класса ``OrderedList`` мы будем использовать ту же технику,
+что и для неупорядоченного списка. Пустой список вновь будет обозначаться
+ссылкой ``head`` на ``None`` (см. :ref:`Листинг 8 <lst_orderlist>`).
+
 
 .. _lst_orderlist:
 
-**Listing 8**
+**Листинг 8**
 
 ::
 
@@ -40,54 +41,50 @@ be denoted by a ``head`` reference to ``None`` (see
         def __init__(self):
             self.head = None
 
-As we consider the operations for the ordered list, we should note that
-the ``isEmpty`` and ``size`` methods can be implemented the same as
-with unordered lists since they deal only with the number of nodes in
-the list without regard to the actual item values. Likewise, the
-``remove`` method will work just fine since we still need to find the
-item and then link around the node to remove it. The two remaining
-methods, ``search`` and ``add``, will require some modification.
+Рассматривая операции для упорядоченного списка, стоит отметить, что методы
+``isEmpty`` и ``size`` могут быть реализованы аналогично неупорядоченному
+списку, поскольку имеют дело только с количеством узлов безотносительно их
+содержимого. Также хорошо будет работать метод ``remove``, потому что нам
+по-прежнему надо искать элемент, а затем окружающие узел ссылки, чтобы
+удалить его. Два оставшихся метода - ``search`` и ``add`` - потребуют
+некоторой модификации.
 
-The search of an unordered linked list required that we traverse the
-nodes one at a time until we either find the item we are looking for or
-run out of nodes (``None``). It turns out that the same approach would
-actually work with the ordered list and in fact in the case where we
-find the item it is exactly what we need. However, in the case where the
-item is not in the list, we can take advantage of the ordering to stop
-the search as soon as possible.
+Поиск в неупорядоченном списке требует, чтобы мы обходили узлы по одному
+за раз, пока не найдём искомый элемент или не выйдем за пределы списка
+(``None``). Такой подход будет работать и для упорядоченного списка. В
+том случае, когда элемент найдётся, - он будет тем, что нам нужен. Однако,
+в случае, когда элемент не содержится в списке, мы можем воспользоваться
+преимуществом упорядочения, чтобы остановить поиск как можно раньше.
 
-For example, :ref:`Figure 16 <fig_stopearly>` shows the ordered linked list as a
-search is looking for the value 45. As we traverse, starting at the head
-of the list, we first compare against 17. Since 17 is not the item we
-are looking for, we move to the next node, in this case 26. Again, this
-is not what we want, so we move on to 31 and then on to 54. Now, at this
-point, something is different. Since 54 is not the item we are looking
-for, our former strategy would be to move forward. However, due to the
-fact that this is an ordered list, that will not be necessary. Once the
-value in the node becomes greater than the item we are searching for,
-the search can stop and return ``False``. There is no way the item could
-exist further out in the linked list.
+Например, :ref:`Рисунок 16 <fig_stopearly>` показывает упорядоченный связанный
+список, в котором ищется значение 45. В процессе обхода мы начинаем с головы
+списка и сначала проверяем на соответствие 17. Поскольку 17 - не то, что мы
+ищем, то смещаемся к следующему узлу - 26. Это снова не то, и мы перемещаемся
+к 31, а затем к 54. В этот момент кое-что изменилось. Поскольку 54 не тот элемент,
+что мы ищем, наша предыдущая стратегия должна заключаться в продвижении вперёд.
+Однако, с учётом того факта, что список упорядочен, в этом больше нет необходимости.
+Раз значение в узле больше, чем искомое, значит поиск можно останавливать и возвращать
+``False``. Не существует способа значению оказаться среди остатка упорядоченного списка.
 
 .. _fig_stopearly:
 
 .. figure:: Figures/orderedsearch.png
    :align: center
 
-   Figure 16: Searching an Ordered Linked List
+   Рисунок 16: Поиск в упорядоченном списке
 
 
-:ref:`Listing 9 <lst_ordersearch>` shows the complete ``search`` method. It is
-easy to incorporate the new condition discussed above by adding another
-boolean variable, ``stop``, and initializing it to ``False`` (line 4).
-While ``stop`` is ``False`` (not ``stop``) we can continue to look
-forward in the list (line 5). If any node is ever discovered that
-contains data greater than the item we are looking for, we will set
-``stop`` to ``True`` (lines 9–10). The remaining lines are identical to
-the unordered list search.
+:ref:`Листинг 9 <lst_ordersearch>` показывает законченный метод ``search``.
+Новое условие, обсуждаемое выше, можно вставить очень легко: добавить ещё
+одну булеву переменную - ``stop`` - и инициализировать её ``False`` (строка 4).
+Пока ``stop`` равно ```False``` мы можем продолжать поиск в списке (строка 5).
+Если в любом из узлов обнаружится значение больше искомого, то мы установим
+``stop`` в ``True`` (строки 9-10). Оставшиеся строки идентичны поиску в
+неупорядоченном списке.
 
 .. _lst_ordersearch:
 
-**Listing 9**
+**Листинг 9**
 
 
 
@@ -108,51 +105,48 @@ the unordered list search.
 
         return found
 
-The most significant method modification will take place in ``add``.
-Recall that for unordered lists, the ``add`` method could simply place a
-new node at the head of the list. It was the easiest point of access.
-Unfortunately, this will no longer work with ordered lists. It is now
-necessary that we discover the specific place where a new item belongs
-in the existing ordered list.
+Наиболее значительная модификация затронет метод ``add``. Напомним, что
+в неупорядоченных списках он просто помещал новый элемент в голову списка -
+самую доступную точку. К сожалению, с упорядоченным списком это больше не
+сработает. Теперь нам надо искать специальное место, где будет размещаться
+новый элемент среди уже существующих в упорядоченном списке.
 
-Assume we have the ordered list consisting of 17, 26, 54, 77, and 93 and
-we want to add the value 31. The ``add`` method must decide that the new
-item belongs between 26 and 54. :ref:`Figure 17 <fig_orderinsert>` shows the setup
-that we need. As we explained earlier, we need to traverse the linked
-list looking for the place where the new node will be added. We know we
-have found that place when either we run out of nodes (``current``
-becomes ``None``) or the value of the current node becomes greater than
-the item we wish to add. In our example, seeing the value 54 causes us
-to stop.
+
+Предположим, что у нас есть упорядоченный список из 17, 26, 54, 77 и 93,
+и мы хотим добавить в него значение 31. Метод ``add`` должен решить, что
+новый элемент следует расположить между 26 и 54. :ref:`Рисунок 17 <fig_orderinsert>`
+показывает необходимую вставку. Как мы объясняли ранее, нам нужно обойти
+связанный список в поисках места, куда будет вставлен новый элемент.
+Мы знаем, что место найдено, если мы или вышли за пределы списка (``current``
+равно ``None``), или значение текущего узла стало больше, чем добавляемый элемент.
+В нашем примере нас вынудит остановится появление значения 54.
 
 .. _fig_orderinsert:
 
 .. figure:: Figures/linkedlistinsert.png
    :align: center
 
-   Figure 17: Adding an Item to an Ordered Linked List
+   Рисунок 17: Добавление элемента в упорядоченный связанный список
 
 
-As we saw with unordered lists, it is necessary to have an additional
-reference, again called ``previous``, since ``current`` will not provide
-access to the node that must be modified. :ref:`Listing 10 <lst_orderadd>` shows
-the complete ``add`` method. Lines 2–3 set up the two external
-references and lines 9–10 again allow ``previous`` to follow one node
-behind ``current`` every time through the iteration. The condition (line
-5) allows the iteration to continue as long as there are more nodes and
-the value in the current node is not larger than the item. In either
-case, when the iteration fails, we have found the location for the new
-node.
+Как мы уже видели для неупорядоченных списков, здесь понадобится дополнительная
+ссылка (``previous``), поскольку ``current`` не сможет предоставить доступ к
+узлу, который нужно будет изменить. :ref:`Листинг 10 <lst_orderadd>` показывает
+законченный метод ``add``. Строки 2-3 устанавливают две внешние ссылки, а строки
+9-10 вновь позволяют ``previous`` следовать на один узел после ``current`` во
+время каждой итерации. Условие в строке 5 разрешает итерациям продолжаться до
+тех пор, пока остаются непросмотренные узлы и значение текущего не превышает
+искомое. Противный случай - когда итерация терпит неудачу - означает, что мы
+нашли место для нового узла.
 
-The remainder of the method completes the two-step process shown in
-:ref:`Figure 17 <fig_orderinsert>`. Once a new node has been created for the item,
-the only remaining question is whether the new node will be added at the
-beginning of the linked list or some place in the middle. Again,
-``previous == None`` (line 13) can be used to provide the answer.
+Остаток метода завершает двухшаговый процесс, показанный на
+:ref:`Рисунке 17 <fig_orderinsert>`. Поскольку для элемента был создан новый узел,
+то остаётся единственный вопрос: куда он будет добавлен - в начало или в середину
+связанного списка? Для ответа на него вновь используется ``previous == None``.
 
 .. _lst_orderadd:
 
-**Listing 10**
+**Листинг 10**
 
 ::
 
@@ -175,14 +169,15 @@ beginning of the linked list or some place in the middle. Again,
             temp.setNext(current)
             previous.setNext(temp)
             
-The ``OrderedList`` class with methods discussed thus far can be found
-in ActiveCode 4.
-We leave the remaining methods as exercises. You should carefully
-consider whether the unordered implementations will work given that the
-list is now ordered.
+Класс ```OrderedList``` с реализованными на данный момент методами можно
+найти в ActiveCode 4.
+
+Оставшиеся операции мы оставляем в качестве упражнения.
+Вам следует внимательно рассмотреть, когда неупорядоченная реализация будет
+работать как следует с учётом того, что теперь список упорядочен.
 
 .. activecode:: orderedlistclass
-   :caption: OrderedList Class Thus Far
+   :caption: OrderedList класс на данный момент
    :hidecode:
    
    class Node:
@@ -268,24 +263,25 @@ list is now ordered.
    
    
 
-Analysis of Linked Lists
+Анализ связанных списков
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-To analyze the complexity of the linked list operations, we need to
-consider whether they require traversal. Consider a linked list that has
-*n* nodes. The ``isEmpty`` method is :math:`O(1)` since it requires
-one step to check the head reference for ``None``. ``size``, on the
-other hand, will always require *n* steps since there is no way to know
-how many nodes are in the linked list without traversing from head to
-end. Therefore, ``length`` is :math:`O(n)`. Adding an item to an
-unordered list will always be O(1) since we simply place the new node at
-the head of the linked list. However, ``search`` and ``remove``, as well
-as ``add`` for an ordered list, all require the traversal process.
-Although on average they may need to traverse only half of the nodes,
-these methods are all :math:`O(n)` since in the worst case each will
-process every node in the list.
+Чтобы проанализировать сложность операций для связанных списков, нам нужно
+выяснить, требуют ли они обход. Рассмотрим связанный список из *n* узлов
+Метод ``isEmpty`` имеет :math:`O(1)`, поскольку нужен всего один шаг, чтобы
+проверить, ссылается ли ``head`` на ``None``. С другой стороны, ``size``
+всегда требует *n* шагов, поскольку не существует способа узнать количество
+узлов в связанном списке, не обойдя его от головы до конца. Таким образом,
+``size`` имеет :math:`O(n)`. Добавление элемента в неупорядоченный список
+всегда будет :math:`O(1)`, ведь мы просто помещаем новый узел в голову
+связанного списка. Однако, ``search`` и ``remove``, а так же ``add`` для
+упорядоченных списков, требуют процесса обхода. Хотя в среднем им потребуется
+обойти только половину списка, все они имеют :math:`O(n)` - исходя из наихудшего
+случая с обработкой каждого узла в списке.
 
-You may also have noticed that the performance of this implementation
-differs from the actual performance given earlier for Python lists. This
-suggests that linked lists are not the way Python lists are implemented.
-The actual implementation of a Python list is based on the notion of an
+
+Вы также можете заметить, что представление этой реализации отличается от
+существующей, даваемой раньше для списков Python. Это предполагает, что там
+списки основываются не на связанной модели, а на чём-то ещё. Действительно,
+в основе существующей реализация списков в Python лежит понятие массива.
+Мы обсудим это более детально в другой главе. 

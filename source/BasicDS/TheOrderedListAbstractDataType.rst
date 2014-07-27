@@ -7,47 +7,51 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Ordered List Abstract Data Type
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Абстрактный тип данных "упорядоченный список"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We will now consider a type of list known as an ordered list. For
-example, if the list of integers shown above were an ordered list
-(ascending order), then it could be written as 17, 26, 31, 54, 77, and
-93. Since 17 is the smallest item, it occupies the first position in the
-list. Likewise, since 93 is the largest, it occupies the last position.
+А теперь рассмотрим такой подвид списков, как упорядоченный список.
+Например, если бы список целых, показанный выше, был упорядоченным
+(по возрастанию), то записался как 17, 26, 31, 54, 77 и 93. 17 -
+наименьший элемент, поэтому он ставится на первую позицию, а 93 -
+наибольший, так что он занимает последнее место.
 
-The structure of an ordered list is a collection of items where each
-item holds a relative position that is based upon some underlying
-characteristic of the item. The ordering is typically either ascending
-or descending and we assume that list items have a meaningful comparison
-operation that is already defined. Many of the ordered list operations
-are the same as those of the unordered list.
+По структуре упорядоченный список представляет собой коллекцию
+элементов, каждый из которых занимает положение в зависимости от
+некой общей для всех характеристики. Порядок упорядочения обычно
+или возрастающий, или убывающий, и мы полагаем, что для элементов
+списка существует и определена операция сравнения. Многие из
+операций для упорядоченного списка аналогичны методам неупорядоченного.
 
--  ``OrderedList()`` creates a new ordered list that is empty. It needs
-   no parameters and returns an empty list.
+-  ``OrderedList()`` создаёт новый упорядоченный список.
+   Не требует параметров, возвращает пустой список.
 
--  ``add(item)`` adds a new item to the list making sure that the order
-   is preserved. It needs the item and returns nothing. Assume the item
-   is not already in the list.
+-  ``add(item)`` добавляет в список новый элемент,
+   предварительно убедившись, что порядок сохраняется.
+   Требует элемент в качестве аргумента, ничего не возвращает.
+   Предполагается, что элемент ранее в списке отсутствовал. 
 
--  ``remove(item)`` removes the item from the list. It needs the item
-   and modifies the list. Assume the item is present in the list.
+-  ``remove(item)`` удаляет элемент из списка. Требует элемент
+   и изменяет список. Предполагается, что элемент присутствует в списке.
 
--  ``search(item)`` searches for the item in the list. It needs the item
-   and returns a boolean value.
+-  ``search(item)`` ищет элемент в списке. Требует элемент и
+   возвращает булево значение.
 
--  ``isEmpty()`` tests to see whether the list is empty. It needs no
-   parameters and returns a boolean value.
+-  ``isEmpty()`` проверяет список на пустоту. Не требует параметров
+   и возвращает булево значение.
 
--  ``size()`` returns the number of items in the list. It needs no
-   parameters and returns an integer.
+-  ``size()`` возвращает количество элементов в списке.
+   Не требует параметров и возвращает целое число.
 
--  ``index(item)`` returns the position of item in the list. It needs
-   the item and returns the index. Assume the item is in the list.
+-  ``index(item)`` возвращает позицию элемента в списке.
+   Требует элемент и возвращает индекс.
+   Предполагается, что элемент в списке присутствует.
 
--  ``pop()`` removes and returns the last item in the list. It needs
-   nothing and returns an item. Assume the list has at least one item.
+-  ``pop()`` выталкивает последний элемент списка.
+   Не требует параметров и возвращает элемент.
+   Предполагается, что список содержит как минимум один элемент.
 
--  ``pop(pos)`` removes and returns the item at position pos. It needs
-   the position and returns the item. Assume the item is in the list.
+-  ``pop(pos)`` выталкивает элемент с позиции pos.
+   Требует индекс в качестве аргумента, возвращает элемент.
+   Предполагается, что элемент в списке присутствует.
 
