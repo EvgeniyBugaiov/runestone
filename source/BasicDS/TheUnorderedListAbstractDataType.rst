@@ -7,15 +7,16 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Unordered List Abstract Data Type
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Абстрактный тип данных "неупорядоченный список"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The structure of an unordered list, as described above, is a collection
-of items where each item holds a relative position with respect to the
-others. Some possible unordered list operations are given below.
+Структура неупорядоченного списка, описанного выше, представляет из
+себя коллекцию элементов, каждый из которых находится на определённой
+позиции по отношению к остальным. Некоторые из возможных операций над
+неупорядоченными списками представлены ниже.
 
--  ``List()`` creates a new list that is empty. It needs no parameters
-   and returns an empty list.
+-  ``List()`` создаёт новый пустой список. Не нуждается в параметрах
+   и возвращает пустой список.
 
 -  ``add(item)`` adds a new item to the list. It needs the item and
    returns nothing. Assume the item is not already in the list.

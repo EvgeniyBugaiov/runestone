@@ -347,92 +347,89 @@ B C \*, то полученный эффект конвертирует подв
 Постфиксные вычисления
 ^^^^^^^^^^^^^^^^^^^^^^
 
-As a final stack example, we will consider the evaluation of an
-expression that is already in postfix notation. In this case, a stack is
-again the data structure of choice. However, as you scan the postfix
-expression, it is the operands that must wait, not the operators as in
-the conversion algorithm above. Another way to think about the solution
-is that whenever an operator is seen on the input, the two most recent
-operands will be used in the evaluation.
+В последнем примере использования стека мы рассмотрим вычисление выражения,
+которое уже находится в постфиксной форме. В этом случае стек вновь выбран
+структурой данных для решения задачи. Однако, поскольку вы сканируете
+постфиксное выражение, ждать своей очереди должны уже операнды, а не операторы,
+в противоположность алгоритму выше. Ещё один способ думать об этом решении:
+когда на входе обнаружится оператор, для вычисления будут использованы два
+самых последних операнда.
 
-To see this in more detail, consider the postfix expression
-``4 5 6 * +``. As you scan the expression from left to right, you first
-encounter the operands 4 and 5. At this point, you are still unsure what
-to do with them until you see the next symbol. Placing each on the stack
-ensures that they are available if an operator comes next.
+Чтобы увидеть это более детально, рассмотрим постфиксное выражение ``4 5 6 * +``.
+Сканируя его слева направо, прежде всего вы натолкнётесь на операнды 4 и 5.
+Что с ними делать вы не узнаете, пока не увидите следующий символ. Помещение
+каждого из них в стек гарантирует их доступность на случай, если следующим
+появится оператор.
 
-In this case, the next symbol is another operand. So, as before, push it
-and check the next symbol. Now we see an operator, \*. This means that
-the two most recent operands need to be used in a multiplication
-operation. By popping the stack twice, we can get the proper operands
-and then perform the multiplication (in this case getting the result
-30).
+В нашем случае следующий символ - ещё один операнд. Так что, как и раньше,
+помещаем его в стек и проверяем следующий символ. Теперь мы видим оператор \*.
+Это означает, что два самых последних операнда нужно перемножить. Сделав дважды
+выталкивание из стека, мы получим необходимые множители, а затем выполним умножение
+(в данном случае результатом будет 30).
 
-We can now handle this result by placing it back on the stack so that it
-can be used as an operand for the later operators in the expression.
-When the final operator is processed, there will be only one value left
-on the stack. Pop and return it as the result of the expression.
-:ref:`Figure 10 <fig_evalpost1>` shows the stack contents as this entire example
-expression is being processed.
+Теперь мы можем обработать полученное значение, поместив его обратно в стек,
+чтобы оно могло использоваться в качестве операнда для последующих операторов в
+выражении. Когда будет обработан последний оператор, в стеке останется только одно
+значение. Выталкиваем его и возвращаем как результат выражения.
+:ref:`Рисунок 10 <fig_evalpost1>` демонстрирует содержание стека на протяжении всего
+процесса вычисления выражения из примера.
 
 .. _fig_evalpost1:
 
 .. figure:: Figures/evalpostfix1.png
    :align: center
 
-   Figure 10: Stack Contents During Evaluation
+   Рисунок 10: Содержание стека в процессе вычисления
 
 
-:ref:`Figure 11 <fig_evalpost2>` shows a slightly more complex example, 7 8 + 3 2
-+ /. There are two things to note in this example. First, the stack size
-grows, shrinks, and then grows again as the subexpressions are
-evaluated. Second, the division operation needs to be handled carefully.
-Recall that the operands in the postfix expression are in their original
-order since postfix changes only the placement of operators. When the
-operands for the division are popped from the stack, they are reversed.
-Since division is *not* a commutative operator, in other words
-:math:`15/5` is not the same as :math:`5/15`, we must be sure that
-the order of the operands is not switched.
+На :ref:`Рисунке 11 <fig_evalpost2>` показан несколько более сложный
+пример: 7 8 + 3 2 + /. Здесь есть два момента, которые стоит отметить.
+Первый: размер стека возрастает, сужается и вновь растёт в процессе вычисления
+подвыражений. Второй: обрабатывать оператор деления нужно очень внимательно.
+Напомним, что операнды в постфиксном выражении идут в их изначальном порядке,
+поскольку постфикс меняет только положение оператора. Когда операнды деления
+выталкиваются из стека, они находятся в обратной последовательности. Поскольку
+деление **не** коммутативный оператор (другими словами, :math:`15/5` не то же
+самое, что :math:`5/15`), мы должны быть уверены, что порядок операндов не изменился.
 
 .. _fig_evalpost2:
 
 .. figure:: Figures/evalpostfix2.png
    :align: center
 
-   Figure 11: A More Complex Example of Evaluation
+   Рисунок 11: Более сложный пример вычисления
 
 
-Assume the postfix expression is a string of tokens delimited by spaces.
-The operators are \*, /, +, and - and the operands are assumed to be
-single-digit integer values. The output will be an integer result.
+Предположим, что постфиксное выражение - это строка токенов, разделённых пробелами.
+Операторами являются \*, /, + и -, а под операндами понимаются одноразрядные целые
+значения. На выходе будет целочисленный результат.
 
-#. Create an empty stack called ``operandStack``.
+#. Создать пустой стек под названием ``operandStack``.
 
-#. Convert the string to a list by using the string method ``split``.
+#. Преобразовать строку в список, используя строковый метод ``split``.
 
-#. Scan the token list from left to right.
+#. Сканировать список токенов слева направо.
 
-   -  If the token is an operand, convert it from a string to an integer
-      and push the value onto the ``operandStack``.
+   -  Если токен является операндом, преобразовать его из строки в целое
+      число и поместить значение в ``operandStack``.
 
-   -  If the token is an operator, \*, /, +, or -, it will need two
-      operands. Pop the ``operandStack`` twice. The first pop is the
-      second operand and the second pop is the first operand. Perform
-      the arithmetic operation. Push the result back on the
-      ``operandStack``.
+   -  Если токен является оператором \*, /, + или -, то он нуждается в двух
+      операндах. Произвести выталкивание из ``operandStack`` дважды. Сначала
+      вытолкнется второй операнд, а затем - первый. Выполнить арифметическую
+      операцию. Поместить результат обратно в ``operandStack``.
 
-#. When the input expression has been completely processed, the result
-   is on the stack. Pop the ``operandStack`` and return the value.
+#. Когда входное выражение полностью обработано, его результат находится в стеке.
+   Вытолкнуть его из ``operandStack`` и возвратить в качестве результата..
 
-The complete function for the evaluation of postfix expressions is shown
-in :ref:`ActiveCode 9 <lst_postfixeval>`. To assist with the arithmetic, a helper
-function ``doMath`` is defined that will take two operands and an
-operator and then perform the proper arithmetic operation.
+Полностью функция для вычисления постфиксных выражений показана в
+:ref:`ActiveCode 9 <lst_postfixeval>`. Для помощи с арифметикой определена
+вспомогательная функция ``doMath``. Она принимает два операнда и оператор,
+после чего совершает надлежащую арифметическую операцию.
 
 .. _lst_postfixeval:
 
 .. activecode:: postfixeval
-   :caption: Postfix Evaluation
+   :caption: Постфиксное вычисление
 
    from pythonds.basic.stack import Stack
 
@@ -462,11 +459,11 @@ operator and then perform the proper arithmetic operation.
 
    print(postfixEval('7 8 + 3 2 + /'))
 
-It is important to note that in both the postfix conversion and the
-postfix evaluation programs we assumed that there were no errors in the
-input expression. Using these programs as a starting point, you can
-easily see how error detection and reporting can be included. We leave
-this as an exercise at the end of the chapter.
+Важно отметить, что для обеих программ - постфиксного преобразования и
+постфиксного вычисления, - мы предполагаем, что во входном выражении нет
+ошибок. Используя эти программы, как точку отсчёта, вы можете легко увидеть,
+как в них могут быть включены определение ошибок и сообщение об этом.
+Мы оставляем это как упражнение в конце главы.
 
 .. admonition:: Self Check
 
@@ -477,7 +474,7 @@ this as an exercise at the end of the chapter.
       :feedback2: ('.*', 'Remember the numbers will be in the same order as the original equation')
       :blankid: pfblank1
 
-      Without using the activecode infixToPostfix function, convert the following expression to postfix  ``10 + 3 * 5 / (16 - 4)`` :textfield:`pfblank1::xlarge`
+      Без использования функции activecode infixToPostfix преобразуйте следующее выражение в постфиксную форму ``10 + 3 * 5 / (16 - 4)`` :textfield:`pfblank1::xlarge`
 
    .. fillintheblank:: postfix2
       :correct: \\b9\\b
@@ -491,7 +488,7 @@ this as an exercise at the end of the chapter.
       :feedback1: ('.*', 'Hint: You only need to add one line to the function!!')
       :blankid: pfblank3
 
-      Modify the infixToPostfix function so that it can convert the following expression:  ``5 * 3 ^ (4 - 2)``   Paste the answer here: :textfield:`pfblank3::large`
+      Модифицируйте функцию infixToPostfix таким образом, чтобы она могла конвертировать следующее выражение:  ``5 * 3 ^ (4 - 2)``   Вставьте ответ сюда: :textfield:`pfblank3::large`
 
 
 .. video:: video_Stack3
