@@ -7,307 +7,292 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Infix, Prefix and Postfix Expressions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Инфиксные, префиксные и постфиксные выражения
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When you write an arithmetic expression such as B \* C, the form of the
-expression provides you with information so that you can interpret it
-correctly. In this case we know that the variable B is being multiplied
-by the variable C since the multiplication operator \* appears between
-them in the expression. This type of notation is referred to as
-**infix** since the operator is *in between* the two operands that it is
-working on.
+Когда вы записываете арифметическое выражение вроде B \* C, то его форма
+предоставляет вам достаточно информации для корректной интерпретации. В
+данном случае мы знаем, что переменная B умножается на переменную C,
+поскольку оператор умножения \* находится в выражении между ними. Такой
+тип записи называется **инфиксной**, поскольку оператор расположен *между*
+(*in between*) двух операндов, с которыми он работает.
 
-Consider another infix example, A + B \* C. The operators + and \* still
-appear between the operands, but there is a problem. Which operands do
-they work on? Does the + work on A and B or does the \* take B and C?
-The expression seems ambiguous.
+Рассмотрим другой инфиксный пример: A + B \* C. Операторы + и \* по-прежнему
+располагаются между операндами, но тут уже есть проблема. С какими операндами
+они будут работать? + работает с A и B или \* принимает B и C? Выражение
+выглядит неоднозначно.
 
-In fact, you have been reading and writing these types of expressions
-for a long time and they do not cause you any problem. The reason for
-this is that you know something about the operators + and \*. Each
-operator has a **precedence** level. Operators of higher precedence are
-used before operators of lower precedence. The only thing that can
-change that order is the presence of parentheses. The precedence order
-for arithmetic operators places multiplication and division above
-addition and subtraction. If two operators of equal precedence appear,
-then a left-to-right ordering or associativity is used.
+Фактически, вы можете читать и писать выражения такого типа долгое время,
+и они не будут вызывать у вас вопросов. Причина в том, что вы кое-что знаете
+о + и \*. Каждый оператор имеет свой **приоритет**. Операторы с высоким
+приоритетом используются прежде операторов с низким. Единственной вещью,
+которая может изменить порядок приоритетов, являются скобки. Для
+арифметических операций умножение и деление стоят выше сложения и вычитания.
+Если появляются два оператора одинакового приоритета, то используются порядок
+слева направо или их ассоциативность.
 
-Let’s interpret the troublesome expression A + B \* C using operator
-precedence. B and C are multiplied first, and A is then added to that
-result. (A + B) \* C would force the addition of A and B to be done
-first before the multiplication. In expression A + B + C, by precedence
-(via associativity), the leftmost + would be done first.
+Давайте интерпретируем вызвавшее затруднение выражение A + B \* C, используя
+приоритет операторов. B и C перемножаются первыми, затем к результату
+добавляется A. (A + B) \* C заставит выполнить сложение A и B перед умножением.
+В выражении A + B + C по очерёдности (через ассоциативность) первым будет
+вычисляться самый левый +.
 
-Although all this may be obvious to you, remember that computers need to
-know exactly what operators to perform and in what order. One way to
-write an expression that guarantees there will be no confusion with
-respect to the order of operations is to create what is called a **fully
-parenthesized** expression. This type of expression uses one pair of
-parentheses for each operator. The parentheses dictate the order of
-operations; there is no ambiguity. There is also no need to remember any
-precedence rules.
+Хотя это и может быть очевидным для вас, помните, что компьютер нуждается в
+точном знании того, как и в какой последовательности вычисляются операторы.
+Одним из способов записи выражения, гарантирующим, что не возникнет путаницы
+по отношению к порядку операций, является создание того, что называется
+выражением **с полностью расставленными скобками**. Такой тип выражения
+использует пару скобок для каждого оператора. Скобки диктуют порядок операций,
+так что здесь не возникает многозначности. Так же отпадает необходимость
+помнить правила расстановки приоритетов.
 
-The expression A + B \* C + D can be rewritten as ((A + (B \* C)) + D)
-to show that the multiplication happens first, followed by the leftmost
-addition. A + B + C + D can be written as (((A + B) + C) + D) since the
-addition operations associate from left to right.
+Выражение A + B \* C может быть переписано как ((A + (B \* C)) + D) с целью
+показать, что умножение происходит в первую очередь, а затем следует крайнее
+левое сложение. A + B + C + D перепишется в (((A + B) + C) + D), поскольку
+операции сложения ассоциируются слева направо.
 
-There are two other very important expression formats that may not seem
-obvious to you at first. Consider the infix expression A + B. What would
-happen if we moved the operator before the two operands? The resulting
-expression would be + A B. Likewise, we could move the operator to the
-end. We would get A B +. These look a bit strange.
+Существует ещё два очень важных формата выражений, которые на первый взгляд
+могут показаться вам неочевидными. Рассмотрим инфиксную запись A + B. Что
+произойдёт, если мы поместим оператор перед двумя операндами? Результирующее
+выражение будет  + A B. Также мы можем переместить оператор в конец, получив
+A B +. Всё это выглядит несколько странным.
 
-These changes to the position of the operator with respect to the
-operands create two new expression formats, **prefix** and **postfix**.
-Prefix expression notation requires that all operators precede the two
-operands that they work on. Postfix, on the other hand, requires that
-its operators come after the corresponding operands. A few more examples
-should help to make this a bit clearer (see :ref:`Table 2 <tbl_example1>`).
+Эти изменения позиции оператора по отношению к операндам создают два новых
+формата - **префиксный** и **постфиксный**. Префиксная запись выражения требует,
+чтобы все операторы предшествовали двум операндам, с которыми они работают.
+Постфиксная, в свою очередь, требует, чтобы операторы шли после соответствующих
+операндов. Несколько дополнительных примеров помогут прояснить этот момент
+(см. :ref:`Таблицу 2 <tbl_example1>`).
 
-A + B \* C would be written as + A \* B C in prefix. The multiplication
-operator comes immediately before the operands B and C, denoting that \*
-has precedence over +. The addition operator then appears before the A
-and the result of the multiplication.
+A + B \* C можно переписать как + A \* B C в префиксной нотации. Оператор умножения
+ставится непосредственно перед операндами B и C, указывая на приоритет \* над +.
+Затем следует оператор сложения перед A и результатом умножения.
 
-In postfix, the expression would be A B C \* +. Again, the order of
-operations is preserved since the \* appears immediately after the B and
-the C, denoting that \* has precedence, with + coming after. Although
-the operators moved and now appear either before or after their
-respective operands, the order of the operands stayed exactly the same
-relative to one another.
+В постфиксной записи выражение выглядит как A B C \* +. Порядок операций вновь
+сохраняется, поскольку \* находится непосредственно после B и C, обозначая, что
+он имеет приоритет выше следующего +. Хотя операторы перемещаются и теперь
+находятся до или после соответствующих операндов, порядок последних по отношению
+друг к другу остаётся в точности таким, как был.
 
 .. _tbl_example1:
 
-.. table:: **Table 2: Examples of Infix, Prefix, and Postfix**
+.. table:: **Таблица 2: Примеры инфиксной, префиксной и постфиксной записи**
 
     ============================ ======================= ========================
-            **Infix Expression**   **Prefix Expression**   **Postfix Expression**
+            **Инфиксная запись**   **Префиксная запись**   **Постфиксная запись**
     ============================ ======================= ========================
                            A + B                  \+ A B                    A B +
                       A + B \* C             \+ A \* B C               A B C \* +
     ============================ ======================= ========================
 
 
-Now consider the infix expression (A + B) \* C. Recall that in this
-case, infix requires the parentheses to force the performance of the
-addition before the multiplication. However, when A + B was written in
-prefix, the addition operator was simply moved before the operands, + A
-B. The result of this operation becomes the first operand for the
-multiplication. The multiplication operator is moved in front of the
-entire expression, giving us \* + A B C. Likewise, in postfix A B +
-forces the addition to happen first. The multiplication can be done to
-that result and the remaining operand C. The proper postfix expression
-is then A B + C \*.
+А сейчас рассмотрим инфиксное выражение (A + B) \* C. Напомним, что в
+этом случае запись требует наличия скобок для указания выполнить сложение
+перед умножением. Однако, когда A + B записывается в префиксной форме, то
+оператор сложения просто помещается перед операндами:  + A B. Результат
+этой операции является первым операндом для умножения. Оператор умножения
+перемещается в начало всего выражения, давая нам \* + A B C. Аналогично, в
+постфиксной записи A B + явно указывается, что первым происходит сложение.
+Умножение может быть выполнено для получившегося результата и оставшегося
+операнда C. Соответствующим постфиксным выражением будет A B + C \*.
 
-Consider these three expressions again (see :ref:`Table 3 <tbl_parexample>`).
-Something very important has happened. Where did the parentheses go? Why
-don’t we need them in prefix and postfix? The answer is that the
-operators are no longer ambiguous with respect to the operands that they
-work on. Only infix notation requires the additional symbols. The order
-of operations within prefix and postfix expressions is completely
-determined by the position of the operator and nothing else. In many
-ways, this makes infix the least desirable notation to use.
+
+Рассмотрим эти три выражения ещё раз (см. :ref:`Таблицу 3 <tbl_parexample>`).
+Происходит что-то очень важное. Куда ушли скобки? Почему они не нужны нам в
+префиксной и постфиксной записи? Ответ в том, что операторы больше не являются
+неоднозначными по отношению к своим операндам. Только инфиксная запись требует
+дополнительных символов. Порядок операций внутри префиксного и постфиксного
+выражений полностью определён позицией операторов и ничем иным. Во многом именно
+это делает инфиксную запись наименее желательной нотацией для использования.
 
 .. _tbl_parexample:
 
-.. table:: **Table 3: An Expression with Parentheses**
+.. table:: **Таблица 3: Выражение со скобками**
 
-    ============================ ======================= ========================
-            **Infix Expression**   **Prefix Expression**   **Postfix Expression**
-    ============================ ======================= ========================
+    ============================ ========================== ==========================
+       **Инфиксное выражение**    **Префиксное выражение**   **Постфиксное выражение**
+    ============================ ========================== ==========================
                     (A + B) \* C              \* + A B C               A B + C \*
-    ============================ ======================= ========================
+    ============================ ========================== ==========================
 
 
-:ref:`Table 4 <tbl_example3>` shows some additional examples of infix expressions and
-the equivalent prefix and postfix expressions. Be sure that you
-understand how they are equivalent in terms of the order of the
-operations being performed.
+:ref:`Таблица 4 <tbl_example3>` демонстрирует некоторые дополнительные примеры
+инфиксных выражений и эквивалентных им префиксных и постфиксных записей.
+Убедитесь, что вы понимаете, почему они эквивалентны с точки зрения порядка
+выполнения операций.
+
 
 .. _tbl_example3:
 
-.. table:: **Table 4: Additional Examples of Infix, Prefix, and Postfix**
+.. table:: **Таблица 4: Дополнительные примеры инфиксной, префиксной и постфиксной записи**
 
-    ============================ ======================= ========================
-            **Infix Expression**   **Prefix Expression**   **Postfix Expression**
-    ============================ ======================= ========================
+    ============================ ========================== ===========================
+       **Инфиксное выражение**    **Префиксное выражение**   **Постфиксное выражение**
+    ============================ ========================== ===========================
                   A + B \* C + D        \+ \+ A \* B C D           A B C \* + D +
               (A + B) \* (C + D)          \* + A B + C D           A B + C D + \*
                  A \* B + C \* D        \+ \* A B \* C D          A B \* C D \* +
                    A + B + C + D          \+ + + A B C D            A B + C + D +
-    ============================ ======================= ========================
+    ============================ ========================== ===========================
 
 
-Conversion of Infix Expressions to Prefix and Postfix
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Преобразование инфиксного выражения в префиксное и постфиксное
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-So far, we have used ad hoc methods to convert between infix expressions
-and the equivalent prefix and postfix expression notations. As you might
-expect, there are algorithmic ways to perform the conversion that allow
-any expression of any complexity to be correctly transformed.
+До сих пор мы использовали специальные методы для преобразования между
+инфиксными выражениями и эквивалентными им префиксной и постфикской
+записями. Как вы можете ожидать, существуют алгоритмические способы
+выполнения таких преобразований, позволяющие корректно трансформировать
+любое выражение любой сложности.
 
-The first technique that we will consider uses the notion of a fully
-parenthesized expression that was discussed earlier. Recall that A + B
-\* C can be written as (A + (B \* C)) to show explicitly that the
-multiplication has precedence over the addition. On closer observation,
-however, you can see that each parenthesis pair also denotes the
-beginning and the end of an operand pair with the corresponding operator
-in the middle.
+Первой из рассматриваемых нами техник будет использование идеи полной
+расстановки скобок в выражении, рассмотренной нами ранее. Напомним, что
+A + B \* C можно записать как (A + (B \* C)), чтобы явно показать приоритет
+умножения перед сложением. Однако, при более близком рассмотрении вы увидите,
+что каждая пара скобок также отмечает начало и конец пары операндов с
+соответствующим оператором по середине.
 
-Look at the right parenthesis in the subexpression (B \* C) above. If we
-were to move the multiplication symbol to that position and remove the
-matching left parenthesis, giving us B C \*, we would in effect have
-converted the subexpression to postfix notation. If the addition
-operator were also moved to its corresponding right parenthesis position
-and the matching left parenthesis were removed, the complete postfix
-expression would result (see :ref:`Figure 6 <fig_moveright>`).
+Взгляните на правую скобку в подвыражении (B \* C) выше. Если мы передвинем
+символ умножения с его позиции и удалим соответствующую левую скобку, получив
+B C \*, то полученный эффект конвертирует подвыражение в постфиксную нотацию.
+Если оператор сложения тоже передвинуть к соответствующей правой скобке и удалить
+связанную с ним левую скобку, то результатом станет полное постфиксное выражение
+(см. :ref:`Изображение 6 <fig_moveright>`).</p>
 
 .. _fig_moveright:
 
 .. figure:: Figures/moveright.png
    :align: center
 
-   Figure 6: Moving Operators to the Right for Postfix Notation
+   Рисунок 6: Перемещение операторов вправо для постфиксной записи
 
-If we do the same thing but instead of moving the symbol to the position
-of the right parenthesis, we move it to the left, we get prefix notation
-(see :ref:`Figure 7 <fig_moveleft>`). The position of the parenthesis pair is
-actually a clue to the final position of the enclosed operator.
+Если мы сделаем тоже самое, но вместо передвижения символа на позицию к правой
+скобке, сдвинем его к левой, то получим префиксную нотацию
+(см. :ref:`Рисунок 7 <fig_moveleft>`). Позиция пары скобок на самом деле является
+ключом к окончательной позиции заключённого между ними оператора.
 
 .. _fig_moveleft:
 
 .. figure:: Figures/moveleft.png
    :align: center
 
-   Figure 7: Moving Operators to the Left for Prefix Notation
+   Рисунок 7: Перемещение операторов влево для префиксной записи.
 
 
-So in order to convert an expression, no matter how complex, to either
-prefix or postfix notation, fully parenthesize the expression using the
-order of operations. Then move the enclosed operator to the position of
-either the left or the right parenthesis depending on whether you want
-prefix or postfix notation.
+Таким образом, с целью преобразования выражения (неважно, насколько сложного) в
+префиксную или постфиксную запись, для установления порядка выполнения операций
+используется полная расстановка скобок. Затем передвигайте находящийся внутри
+них оператор на крайнюю левую или крайнюю правую позицию - в зависимости от
+того, префиксную или постфиксную запись вы хотите получить.
 
-Here is a more complex expression: (A + B) \* C - (D - E) \* (F + G).
-:ref:`Figure 8 <fig_complexmove>` shows the conversion to postfix and prefix
-notations.
+Вот более сложное выражение: (A + B) \* C - (D - E) \* (F + G).
+:ref:`Рисунок 8 <fig_complexmove>` демонстрирует его преобразование в постфиксный
+и префиксный виды.
 
 .. _fig_complexmove:
 
 .. figure:: Figures/complexmove.png
    :align: center
 
-   Figure 8: Converting a Complex Expression to Prefix and Postfix Notations
+   Рисунок 8: Преобразование сложного выражения к префиксной и постфиксной записи.
 
-General Infix-to-Postfix Conversion
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Обобщённое преобразование из инфиксного в постфиксный вид
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We need to develop an algorithm to convert any infix expression to a
-postfix expression. To do this we will look closer at the conversion
-process.
+Нам необходимо разработать алгоритм преобразования любого инфиксного выражения
+в постфиксное. Для этого посмотрим ближе на сам процесс конвертирования.
 
-Consider once again the expression A + B \* C. As shown above,
-A B C \* + is the postfix equivalent. We have already noted that the
-operands A, B, and C stay in their relative positions. It is only the
-operators that change position. Let’s look again at the operators in the
-infix expression. The first operator that appears from left to right is
-+. However, in the postfix expression, + is at the end since the next
-operator, \*, has precedence over addition. The order of the operators
-in the original expression is reversed in the resulting postfix
-expression.
+Рассмотрим ещё раз выражение A + B \* C. Как было показано выше, его постфиксным
+эквивалентом является A B C \* +. Мы уже отмечали, что операнды A, B и C остаются
+на своих местах, а местоположение меняют только операторы. Ещё раз взглянем на
+операторы в инфиксном выражении. Первым при проходе слева направо нам попадётся +.
+Однако, в постфиксном выражении + находится в конце, так как следующий оператор,
+\*, имеет приоритет над сложением. Порядок операторов в первоначальном выражении
+обратен результирующему постфиксному выражению.
 
-As we process the expression, the operators have to be saved somewhere
-since their corresponding right operands are not seen yet. Also, the
-order of these saved operators may need to be reversed due to their
-precedence. This is the case with the addition and the multiplication in
-this example. Since the addition operator comes before the
-multiplication operator and has lower precedence, it needs to appear
-after the multiplication operator is used. Because of this reversal of
-order, it makes sense to consider using a stack to keep the operators
-until they are needed.
+В процессе обработки выражения операторы должны где-то храниться, пока не найден
+их соответствующий правый операнд. Также порядок этих сохраняемых операторов может
+быть обратным (из-за их приоритета). Это случай со сложением и умножением в данном
+примере. Поскольку оператор сложения, появляющийся перед оператором умножения, имеет
+более низкий приоритет, то он должен появиться после использования оператора умножения.
+Из-за такого обратного порядка имеет смысл рассмотреть использование стека для хранения
+операторов до тех пор, пока они не понадобятся.
 
-What about (A + B) \* C? Recall that A B + C \* is the postfix
-equivalent. Again, processing this infix expression from left to right,
-we see + first. In this case, when we see \*, + has already been placed
-in the result expression because it has precedence over \* by virtue of
-the parentheses. We can now start to see how the conversion algorithm
-will work. When we see a left parenthesis, we will save it to denote
-that another operator of high precedence will be coming. That operator
-will need to wait until the corresponding right parenthesis appears to
-denote its position (recall the fully parenthesized technique). When
-that right parenthesis does appear, the operator can be popped from the
-stack.
+Что насчёт (A + B) \* C? Напомним, что его постфиксный эквивалент A B + C \*.
+Повторимся, что обрабатывая это инфиксное выражение слева направо, первым мы
+встретим +. В этом случае, когда мы увидим \*, + уже будет помещён в результирующее
+выражение, поскольку имеет преимущество над \* в силу использования скобок. Теперь
+можно начать рассматривать, как будет работать алгоритм преобразования. Когда мы
+видим левую скобку, мы сохраняем её как знак, что должен будет появиться другой
+оператор с высоким приоритетом. Он будет ожидать, пока не появится соответствующая
+правая скобка, чтобы отметить его местоположение (вспомните технику полной расстановки
+скобок). После появления правой скобки оператор выталкивается из стека.
 
-As we scan the infix expression from left to right, we will use a stack
-to keep the operators. This will provide the reversal that we noted in
-the first example. The top of the stack will always be the most recently
-saved operator. Whenever we read a new operator, we will need to
-consider how that operator compares in precedence with the operators, if
-any, already on the stack.
+Поскольку мы сканируем инфиксное выражение слева направо, то будем использовать
+стек для хранения операторов. Это предоставит нам обратный порядок, который мы
+отмечали в первом примере. На вершине стека всегда будет последний сохранённый
+оператор. Когда бы мы не прочитали новый оператор, мы должны сравнить его по
+приоритету с операторами в стеке (если таковые имеются).
 
-Assume the infix expression is a string of tokens delimited by spaces.
-The operator tokens are \*, /, +, and -, along with the left and right
-parentheses, ( and ). The operand tokens are the single-character
-identifiers A, B, C, and so on. The following steps will produce a
-string of tokens in postfix order.
+Предположим, что инфиксное выражение есть строка токенов, разделённых пробелами.
+Токенами операторов являются \*, /, + и - вместе с правой и левой скобками, ( и ).
+Токены операндов - это однобуквенные идентификаторы A, B, C и так далее.
+Следующая последовательность шагов даст строку токенов в постфиксном порядке.
 
-#. Create an empty stack called ``opstack`` for keeping operators.
-   Create an empty list for output.
+#. Создать пустой стек с названием ``opstack`` для хранения операторов.
+   Создать пустой список для вывода.
 
-#. Convert the input infix string to a list by using the string method
+#. Преобразовать инфиксную строку в список, используя строковый метод
    ``split``.
 
-#. Scan the token list from left to right.
+#. Сканировать список токенов слева направо.
 
-   -  If the token is an operand, append it to the end of the output
-      list.
+   -  Если токен является операндом, то добавить его в конец выходного
+      списка.
 
-   -  If the token is a left parenthesis, push it on the ``opstack``.
+   -  Если токен является левой скобкой, положить его в ``opstack``.
 
-   -  If the token is a right parenthesis, pop the ``opstack`` until the
-      corresponding left parenthesis is removed. Append each operator to
-      the end of the output list.
+   -  Если токен является правой скобкой, то выталкивать элементы из
+      ``opstack`` пока не будет найдена соответствующая левая скобка.
+      Каждый оператор добавлять в конец выходного списка.
 
-   -  If the token is an operator, \*, /, +, or -, push it on the
-      ``opstack``. However, first remove any operators already on the
-      ``opstack`` that have higher or equal precedence and append them
-      to the output list.
+   -  Если токен является оператором \*, /, + или -, поместить его в
+      ``opstack``. Однако, перед этим удалить любой из операторов, уже
+      находящихся в ``opstack``, который имеет больший или равный
+      приоритет, и добавить его в выходной список.
 
-#. When the input expression has been completely processed, check the
-   ``opstack``. Any operators still on the stack can be removed and
-   appended to the end of the output list.
+#. Когда входное выражение будет полностью обработано, проверить ``opstack``.
+Любые операторы, всё ещё находящиеся в нём, следует удалить и добавить в конец
+результирующего списка.
 
-:ref:`Figure 9 <fig_intopost>` shows the conversion algorithm working on the
-expression A \* B + C \* D. Note that the first \* operator is removed
-upon seeing the + operator. Also, + stays on the stack when the second
-\* occurs, since multiplication has precedence over addition. At the end
-of the infix expression the stack is popped twice, removing both
-operators and placing + as the last operator in the postfix expression.
+:ref:`Рисунок 9 <fig_intopost>` демонстрирует алгоритм преобразования, работающий
+над выражением A \* B + C \* D. Заметьте, что первый оператор \* удаляется до того,
+как мы встречаем оператор +. Также + остаётся в стеке, когда появляется второй \*,
+поскольку умножение имеет приоритет перед сложением. В конце инфиксного выражения
+из стека дважды происходит выталкивание, удаляя оба оператора и помещая + как
+последний элемент в результирующее постфиксное выражение.
 
 .. _fig_intopost:
 
 .. figure:: Figures/intopost.png
    :align: center
 
-   Figure 9: Converting A \* B + C \* D to Postfix Notation
+   Рисунок 9: Преобразование A \* B + C \* D в постфиксную запись
 
-In order to code the algorithm in Python, we will use a dictionary
-called ``prec`` to hold the precedence values for the operators. This
-dictionary will map each operator to an integer that can be compared
-against the precedence levels of other operators (we have arbitrarily
-used the integers 3, 2, and 1). The left parenthesis will receive the
-lowest value possible. This way any operator that is compared against it
-will have higher precedence and will be placed on top of it. 
-Line 15 defines the operands to be any upper-case character or digit.
-The complete conversion function is
-shown in :ref:`ActiveCode 8 <lst_intopost>`.
+Для того, чтобы закодировать алгоритм на Python, мы будем использовать словарь под
+именем ``prec`` для хранения значений приоритета операторов. Он связывает каждый
+оператор с целым числом, которые можно сравнивать с другими операторами как уровень
+приоритетности (мы произвольно выбрали для этого целые числа 3, 2 и 1). Левая скобка
+получит самое низкое значение. Таким образом, любой сравниваемый с ней оператор будет
+иметь приоритет выше и располагаться над ней. Строка 15 определяет, что операнды могут
+быть любыми символами в верхнем регистре или цифрами. Полная функция преобразования
+показана в :ref:`ActiveCode 8 <lst_intopost>`.
+
 
 .. _lst_intopost:
 
 .. activecode:: intopost
-   :caption: Converting Infix Expressions to Postfix Expressions
+   :caption: Преобразование инфиксного выражения в постфиксное
 
    from pythonds.basic.stack import Stack
 
@@ -347,7 +332,7 @@ shown in :ref:`ActiveCode 8 <lst_intopost>`.
 
 --------------
 
-A few more examples of execution in the Python shell are shown below.
+Ниже показаны ещё несколько примеров выполнения кода в оболочке Python.
 
 ::
 
@@ -359,8 +344,8 @@ A few more examples of execution in the Python shell are shown below.
     'A B C * +'
     >>>
 
-Postfix Evaluation
-^^^^^^^^^^^^^^^^^^
+Постфиксные вычисления
+^^^^^^^^^^^^^^^^^^^^^^
 
 As a final stack example, we will consider the evaluation of an
 expression that is already in postfix notation. In this case, a stack is

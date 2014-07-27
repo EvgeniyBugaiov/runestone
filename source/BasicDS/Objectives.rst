@@ -7,31 +7,26 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Objectives
+Цели
 ----------
 
--  To understand the abstract data types stack, queue, deque, and list.
+-  Понять абстрактные типы данных: стек, очередь, дек и список.
 
--  To be able to implement the ADTs stack, queue, and deque using Python
-   lists.
+-  Быть способными реализовать АТД для стека, очереди и дека с помощью списков Python.
 
--  To understand the performance of the implementations of basic linear
-   data structures.
+-  Понять эффективности реализаций основных линейных структур данных.
 
--  To understand prefix, infix, and postfix expression formats.
+-  Разобраться в префиксных, инфиксных и постфиксных форматах выражений.
 
--  To use stacks to evaluate postfix expressions.
+-  Научиться использовать стек для вычисления постфиксных выражений.
 
--  To use stacks to convert expressions from infix to postfix.
+-  Научиться использовать стек для конвертирования инфиксных выражений в постфиксные.
 
--  To use queues for basic timing simulations.
+-  Научиться использовать очереди для основных хронометражных симуляций.
 
--  To be able to recognize problem properties where stacks, queues, and
-   deques are appropriate data structures.
+-  Быть способными распознавать задачи, для решения которых подходящими структурами
+   данных будут стеки, очереди или деки.
 
--  To be able to implement the abstract data type list as a linked list
-   using the node and reference pattern.
+-  Быть способными реализовать АТД списка как связанный список, используя модель узлов и ссылок.
 
--  To be able to compare the performance of our linked list
-   implementation with Python’s list implementation.
-
+-  Быть способными сравнить производительность нашей реализации связанного списка со списком Python.

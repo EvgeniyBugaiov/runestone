@@ -7,49 +7,49 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Deque Abstract Data Type
+Абстрактный тип данных "дек"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The deque abstract data type is defined by the following structure and
-operations. A deque is structured, as described above, as an ordered
-collection of items where items are added and removed from either end,
-either front or rear. The deque operations are given below.
+Абстрактный тип данных дека определяется следующими структурой и операциями.
+Как было описано выше, дек имеет структуру упорядоченной коллекции элементов,
+которые могут добавляться и удаляться с любого конца - и с головы, и с хвоста.
+Операции для дека представлены ниже:
 
--  ``Deque()`` creates a new deque that is empty. It needs no parameters
-   and returns an empty deque.
+-  ``Deque()`` создаёт новый пустой дек. Не нуждается в параметрах и
+   возвращает пустой дек.
 
--  ``addFront(item)`` adds a new item to the front of the deque. It
-   needs the item and returns nothing.
+-  ``addFront(item)`` добавляет новый элемент в голову дека. Параметр
+   (элемент) необходим, ничего не возвращает.
 
--  ``addRear(item)`` adds a new item to the rear of the deque. It needs
-   the item and returns nothing.
+-  ``addRear(item)`` добавляет новый элемент в хвост дека. Параметр
+   (элемент) необходим, ничего не возвращает.
 
--  ``removeFront()`` removes the front item from the deque. It needs no
-   parameters and returns the item. The deque is modified.
+-  ``removeFront()`` удаляет первый элемент из дека. Не нуждается в
+   параметрах и возвращает элемент. Дек модифицируется.
 
--  ``removeRear()`` removes the rear item from the deque. It needs no
-   parameters and returns the item. The deque is modified.
+-  ``removeRear()`` удаляет последний элемент из дека. Не нуждается в
+   параметрах и возвращает элемент. Дек модифицируется.
 
--  ``isEmpty()`` tests to see whether the deque is empty. It needs no
-   parameters and returns a boolean value.
+-  ``isEmpty()`` проверяет дек на пустоту. Не нуждается в параметрах и
+   возвращает булево значение.
 
--  ``size()`` returns the number of items in the deque. It needs no
-   parameters and returns an integer.
+-  ``size()`` возвращает количество элементов в деке. Не нуждается в
+   параметрах и возвращает целое.
 
-As an example, if we assume that ``d`` is a deque that has been created
-and is currently empty, then Table {dequeoperations} shows the results
-of a sequence of deque operations. Note that the contents in front are
-listed on the right. It is very important to keep track of the front and
-the rear as you move items in and out of the collection as things can
-get a bit confusing.
+В качестве примера, если мы предположим, что ``d`` - это дек, который был
+создан и всё ещё пуст, то *таблица 1* демонстрирует результаты серии
+операций над ним. Обратите внимание, что содержимое головы располагается
+справа. Очень важно отслеживать, где голова, а где хвост дека, когда вы
+перемещаете элементы в и из коллекции, поскольку эти вещи могут быть
+несколько запутанными.
 
 .. _tbl_dequeoperations:
 
-.. table:: **Table 1: Examples of Deque Operations**
+.. table:: **Таблица 1: Пример операций для дека**
 
-    ============================ ============================ ================== 
-             **Deque Operation**           **Deque Contents**   **Return Value** 
-    ============================ ============================ ================== 
+    ============================ ============================ ===============================
+             **Операция**           **Содержимое дека**          **Возвращаемое значение** 
+    ============================ ============================ =============================== 
                  ``d.isEmpty()``                       ``[]``           ``True`` 
                 ``d.addRear(4)``                      ``[4]``                    
             ``d.addRear('dog')``               ``['dog',4,]``                    
@@ -60,6 +60,6 @@ get a bit confusing.
               ``d.addRear(8.4)`` ``[8.4,'dog',4,'cat',True]``                    
               ``d.removeRear()``     ``['dog',4,'cat',True]``            ``8.4`` 
              ``d.removeFront()``          ``['dog',4,'cat']``           ``True`` 
-    ============================ ============================ ================== 
+    ============================ ============================ =============================== 
 
 

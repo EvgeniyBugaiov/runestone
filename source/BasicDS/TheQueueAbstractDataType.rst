@@ -7,53 +7,53 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Queue Abstract Data Type
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Абстрактный тип данных "очередь"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The queue abstract data type is defined by the following structure and
-operations. A queue is structured, as described above, as an ordered
-collection of items which are added at one end, called the “rear,” and
-removed from the other end, called the “front.” Queues maintain a FIFO
-ordering property. The queue operations are given below.
+Абстрактный тип данных для очереди определяется следующими структурой и операциями.
+Как описывалось выше, очередь структурирована как упорядоченная коллекция элементов,
+которые добавляются с одного конца, называемого "хвост", и удаляются с другого,
+называемого "голова". Очередь поддерживает свойство упорядочения FIFO. Операции для
+очереди представлены ниже.
 
--  ``Queue()`` creates a new queue that is empty. It needs no parameters
-   and returns an empty queue.
+-  ``Queue()`` создаёт новую пустую очередь. Не нуждается в параметрах, возвращает
+   пустую очередь.
 
--  ``enqueue(item)`` adds a new item to the rear of the queue. It needs
-   the item and returns nothing.
+-  ``enqueue(item)`` добавляет новый элемент в конец очереди. Требует элемент в
+   качестве параметра, ничего не возвращает.
 
--  ``dequeue()`` removes the front item from the queue. It needs no
-   parameters and returns the item. The queue is modified.
+-  ``dequeue()`` удаляет передний элемент из очереди. Не нуждается в параметрах,
+   возвращает элемент. Очередь изменяется.
 
--  ``isEmpty()`` tests to see whether the queue is empty. It needs no
-   parameters and returns a boolean value.
+-  ``isEmpty()`` проверяет очередь на пустоту. Не нуждается в параметрах,
+   возвращает булево значение.
 
--  ``size()`` returns the number of items in the queue. It needs no
-   parameters and returns an integer.
+-  ``size()`` возвращает количество элементов в очереди (целое число).
+   Не нуждается в параметрах.
 
-As an example, if we assume that ``q`` is a queue that has been created
-and is currently empty, then :ref:`Table 1 <tbl_queueoperations>` shows the
-results of a sequence of queue operations. The queue contents are shown
-such that the front is on the right. 4 was the first item enqueued so it
-is the first item returned by dequeue.
+Как пример, если мы предположим, что ``q`` - это очередь, которая создана и
+пока пуста, то :ref:`Таблица 1 <tbl_queueoperations>` показывает результаты
+последовательности операций над нею. Содержимое очереди показано таким образом,
+что голова находится справа. 4 была первым элементом, ожидающим обработки,
+поэтому она будет первым элементом, убираемым из очереди.
 
 .. _tbl_queueoperations:
 
-.. table:: **Table 1: Example Queue Operations**
+.. table:: **Таблица 1: Пример операций для очереди**
 
-    ============================ ======================== ================== 
-             **Queue Operation**       **Queue Contents**   **Return Value** 
-    ============================ ======================== ================== 
-                 ``q.isEmpty()``                   ``[]``           ``True`` 
+    ============================ ======================== ===============================
+              **Оператор**             **Содержимое**         **Возвращаемое значение** 
+    ============================ ======================== ===============================
+                 ``q.isEmpty()``                   ``[]``                        ``True`` 
                 ``q.enqueue(4)``                  ``[4]``                    
             ``q.enqueue('dog')``            ``['dog',4]``                    
              ``q.enqueue(True)``       ``[True,'dog',4]``                    
-                    ``q.size()``       ``[True,'dog',4]``              ``3`` 
-                 ``q.isEmpty()``       ``[True,'dog',4]``          ``False`` 
+                    ``q.size()``       ``[True,'dog',4]``                           ``3`` 
+                 ``q.isEmpty()``       ``[True,'dog',4]``                       ``False`` 
               ``q.enqueue(8.4)``   ``[8.4,True,'dog',4]``                    
-                 ``q.dequeue()``     ``[8.4,True,'dog']``              ``4`` 
-                 ``q.dequeue()``           ``[8.4,True]``          ``'dog'`` 
-                    ``q.size()``           ``[8.4,True]``              ``2`` 
-    ============================ ======================== ================== 
+                 ``q.dequeue()``     ``[8.4,True,'dog']``                           ``4`` 
+                 ``q.dequeue()``           ``[8.4,True]``                       ``'dog'`` 
+                    ``q.size()``           ``[8.4,True]``                           ``2`` 
+    ============================ ======================== ===============================
 
 

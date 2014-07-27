@@ -7,33 +7,24 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-What Are Linear Structures?
----------------------------
+Что такое линейные структуры?
+-----------------------------
 
-We will begin our study of data structures by
-considering four simple but very powerful concepts. Stacks, queues,
-deques, and lists are examples of data collections whose items are
-ordered depending on how they are added or removed. Once an item is
-added, it stays in that position relative to the other elements that
-came before and came after it. Collections such as these are often
-referred to as **linear data structures**.
+Мы начнём наше изучение структур данных с рассмотрения четырёх простых, но
+очень мощных концепций. Стеки, очереди, деки и списки являются примерами
+коллекций данных, чьи составляющие упорядочены в зависимости от того, как
+они добавлялись или удалялись. Единожды добавленный, элемент остаётся на
+одном и том же месте по отношению к остальным, пришедшим раньше и позже
+него. Коллекции такого рода часто называют **линейными структурами данных**
 
-Linear structures can be thought of as having two ends. Sometimes these
-ends are referred to as the “left” and the “right” or in some cases the
-“front” and the “rear.” You could also call them the “top” and the
-“bottom.” The names given to the ends are not significant. What
-distinguishes one linear structure from another is the way in which
-items are added and removed, in particular the location where these
-additions and removals occur. For example, a structure might allow new
-items to be added at only one end. Some structures might allow items to
-be removed from either end.
+О линейных структурах можно думать, как об имеющих два конца. Иногда эти
+концы называют "левым" и "правым", иногда - "передним" и "задним". Вы также
+можете именовать их "верхним" и "нижним" - точная терминология тут не принципиальна.
+В чём отличие одной линейной структуры от другой, так это в способе, каким
+добавляются или удаляются их элементы, в частности - в месте, где происходят
+данные операции. Например, структура может разрешать новым элементам добавляться
+только в конец. Или отдельные структуры позволяют удалять элементы с любого края.
 
-These variations give rise to some of the most useful data structures in
-computer science. They appear in many algorithms and can be used to
-solve a variety of important problems.
-
-
-
-
-
-
+Эти различия порождают некоторые из наиполезнейших структур данных в информатике,
+которые фигурируют во многих алгоритмах и могут использоваться для решения целого
+ряда важных задач.

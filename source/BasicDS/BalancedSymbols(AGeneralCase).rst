@@ -7,18 +7,18 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Balanced Symbols (A General Case)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Сбалансированные символы (общий случай)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The balanced parentheses problem shown above is a specific case of a
-more general situation that arises in many programming languages. The
-general problem of balancing and nesting different kinds of opening and
-closing symbols occurs frequently. For example, in Python
-square brackets, ``[`` and ``]``, are used for lists; curly braces, ``{`` and ``}``, are
-used for dictionaries; and parentheses, ``(`` and ``)``, are used for tuples and
-arithmetic expressions. It is possible to mix symbols as long as each
-maintains its own open and close relationship. Strings of symbols such
-as
+Показанная выше задача о сбалансированных скобках является частным случаем
+более общей ситуации, возникающей во многих языках программирования.
+Обобщённая проблема балансировки и вложенности различных типов открывающих и
+закрывающих символов возникает очень часто. Например, в Python квадратные
+скобки, ``[`` и ``]``, используются для списков, фигурные скобки, ``{`` и ``}``,
+- для словарей, а круглые (``(`` и ``)``) - для кортежей и арифметических выражений.
+Можно сколько угодно перемешивать символы до тех пор, пока каждый из них поддерживает
+свои открывающие и закрывающие отношения. Для строк вроде
+
 
 ::
 
@@ -28,10 +28,11 @@ as
 
     [ ] [ ] [ ] ( ) { }
 
-are properly balanced in that not only does each opening symbol have a
-corresponding closing symbol, but the types of symbols match as well.
+"хорошая сбалансированность" заключается не только в том, что каждый открывающий
+символ имеет соответствующий закрывающий, но и в совпадении типов этих символов.
 
-Compare those with the following strings that are not balanced:
+
+Сравните верхний пример со следующими несбалансированными строками:
 
 ::
 
@@ -41,26 +42,25 @@ Compare those with the following strings that are not balanced:
 
     [ { ( ) ]
 
-The simple parentheses checker from the previous section can easily be
-extended to handle these new types of symbols. Recall that each opening
-symbol is simply pushed on the stack to wait for the matching closing
-symbol to appear later in the sequence. When a closing symbol does
-appear, the only difference is that we must check to be sure that it
-correctly matches the type of the opening symbol on top of the stack. If
-the two symbols do not match, the string is not balanced. Once again, if
-the entire string is processed and nothing is left on the stack, the
-string is correctly balanced.
+Простой контролёр скобок из предыдущего раздела может быть легко расширен для
+обработки этих новых типов символов. Напомним, что каждый открывающий символ
+просто помещается в стек в ожидании появления в последовательности соответствующего
+закрывающего символа. Когда это происходит, единственная разница в том, что мы
+должны проверить, корректна ли связь с типом символа на вершине стека. Если они
+не соответствуют друг другу, то строка не сбалансирована. Аналогично, если вся
+входная последовательность обработана и стек пуст, то строка сбалансирована правильно.
 
-The Python program to implement this is shown in :ref:`ActiveCode 5 <lst_parcheck2>`.
-The only change appears in line 16 where we call a helper function, ``matches``, to
-assist with symbol-matching. Each symbol that is removed from the stack
-must be checked to see that it matches the current closing symbol. If a
-mismatch occurs, the boolean variable ``balanced`` is set to ``False``.
+Реализующая это программа на Python показана в :ref:`ActiveCode 5 <lst_parcheck2>`.
+Единственное изменение коснулось строки 16, где вызывается вспомогательная функция
+``matches``, помогающая с соотнесением символов. Каждый символ, удаляемый из стека,
+должен быть проверен, чтобы убедиться, что он верно сопоставляется с текущим
+закрывающим символом. Если возникает ошибка, то булева переменная ``balanced``
+устанавливается в ``False``
 
 .. _lst_parcheck2:
 
 .. activecode :: parcheck2
-   :caption: Solving the General Balanced Symbol Problem
+   :caption: Решение общего случая балансирования символов
 
    from pythonds.basic.stack import Stack
    
@@ -94,10 +94,11 @@ mismatch occurs, the boolean variable ``balanced`` is set to ``False``.
    print(parChecker('{{([][])}()}'))
    print(parChecker('[{()]'))
 
-These two examples show that stacks are very important data structures
-for the processing of language constructs in computer science. Almost
-any notation you can think of has some type of nested symbol that must
-be matched in a balanced order. There are a number of other important
-uses for stacks in computer science. We will continue to explore them
-in the next sections.
+Эти два примера показывают, что стеки - очень важная структура данных для
+обработки языковых конструкций в информатике. Практически любая нотация,
+о которой вы можете подумать, имеет некоторый тип вложенных символов,
+которые должны согласовываться между собой сбалансированным образом.
+Кроме вышеизложенного, есть целый ряд других важных применений стеков
+в области информатики. Мы продолжим их исследовать в следующем разделе.
+
 

@@ -7,21 +7,21 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Implementing a Deque in Python
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Реализация дека в Python
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-As we have done in previous sections, we will create a new class for the
-implementation of the abstract data type deque. Again, the Python list
-will provide a very nice set of methods upon which to build the details
-of the deque. Our implementation (:ref:`Listing 1 <lst_dequecode>`) will assume that
-the rear of the deque is at position 0 in the list.
+Создадим новый класс для реализации абстрактного типа данных "дек", как мы
+неоднократно делали в предыдущих разделах. Список Python вновь предоставит
+очень хороший набор методов, с помощью которых мы построим детализацию дека.
+Наша реализация (:ref:`Листинг 1 <lst_dequecode>`) будет предполагать, что хвост
+дека находится в нулевой позиции списка.
 
 .. _lst_dequecode:
 
 .. highlight:: python
    :linenothreshold: 5
 
-**Listing 1**
+**Листинг 1**
 
 ::
 
@@ -50,18 +50,18 @@ the rear of the deque is at position 0 in the list.
 .. highlight:: python
    :linenothreshold: 500
 
-In ``removeFront`` we use the ``pop`` method to remove the last element
-from the list. However, in ``removeRear``, the ``pop(0)`` method must
-remove the first element of the list. Likewise, we need to use the
-``insert`` method (line 12) in ``addRear`` since the ``append`` method
-assumes the addition of a new element to the end of the list.
+В ``removeFront`` мы используем метод ``pop`` для удаления последнего
+элемента из списка. Однако, в ``removeRear`` метод ``pop(0)`` должен
+удалять первый из них. Также нам нужно использовать метод ``insert``
+(строка 12) в ``addRear``, поскольку ``append`` предполагает добавление
+нового элемента в конец списка.
 
-CodeLens 1 shows the ``Deque`` class in
-action as we perform the sequence of operations from
-:ref:`Table 1 <tbl_dequeoperations>`.
+
+CodeLens 1 демонстрирует класс ``Deque`` в последовательности действий,
+которую мы представили в :ref:`Таблице 1 <tbl_dequeoperations>`.
 
 .. codelens:: deqtest
-   :caption: Example Deque Operations
+   :caption: Пример операций над деком
 
    class Deque:
        def __init__(self):
@@ -98,11 +98,12 @@ action as we perform the sequence of operations from
    print(d.removeFront())
    
 
-You can see many similarities to Python code already described for
-stacks and queues. You are also likely to observe that in this
-implementation adding and removing items from the front is O(1) whereas
-adding and removing from the rear is O(n). This is to be expected given
-the common operations that appear for adding and removing items. Again,
-the important thing is to be certain that we know where the front and
-rear are assigned in the implementation.
+Вы можете увидеть много сходства в коде на Python, описывающем стеки и
+очереди. Вы также, вероятно, заметили, что в этой реализации добавление
+и удаление элементов из головы имеет O(1), в то время как те же операции
+для хвоста - O(n). Это и следовало ожидать, учитывая какие распространённые
+методы использовались для этой цели. Опять же, главное, в чём мы должны
+быть уверены, - так это в том, что в нашей реализации назначено хвостом,
+а что головой дека.
+
 

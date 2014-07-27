@@ -7,43 +7,42 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Palindrome-Checker
-~~~~~~~~~~~~~~~~~~
+Проверка палиндрома
+~~~~~~~~~~~~~~~~~~~
 
-An interesting problem that can be easily solved using the deque data
-structure is the classic palindrome problem. A **palindrome** is a
-string that reads the same forward and backward, for example, *radar*,
-*toot*, and *madam*. We would like to construct an algorithm to input a
-string of characters and check whether it is a palindrome.
+Интересная задача, которая может быть легко решена с использованием структуры
+данных "дек" - это классическая задача палиндрома. **Палиндромом** называют
+строку, которая одинаково читается справа налево и слева направо. Например,
+*radar*, *toot* или *madam*. Мы хотим создать алгоритм, принимающий на вход
+строку символов и проверяющий, является ли она палиндромом.
 
-The solution to this problem will use a deque to store the characters of
-the string. We will process the string from left to right and add each
-character to the rear of the deque. At this point, the deque will be
-acting very much like an ordinary queue. However, we can now make use of
-the dual functionality of the deque. The front of the deque will hold
-the first character of the string and the rear of the deque will hold
-the last character (see :ref:`Figure 2 <fig_palindrome>`).
+Для решения данной задачи мы будем использовать дек в качестве хранилища строковых
+символов. Мы будем обрабатывать строку слева направо и добавлять каждый её элемент
+в хвост дека. В этот момент он будет работать очень схоже с обычной очередью.
+Однако, теперь мы можем использовать дуальную функциональность дека. Его голова
+будет хранить первый символ строки, а хвост - последний (see :ref:`Рисунок 2 <fig_palindrome>`).
 
 .. _fig_palindrome:
 
 .. figure:: Figures/palindromesetup.png
    :align: center
 
-   Figure 2: A Deque
+   Рисунок 2: Дек
 
 
-Since we can remove both of them directly, we can compare them and
-continue only if they match. If we can keep matching first and the last
-items, we will eventually either run out of characters or be left with a
-deque of size 1 depending on whether the length of the original string
-was even or odd. In either case, the string must be a palindrome. The
-complete function for palindrome-checking appears in
-:ref:`ActiveCode 1 <lst_palchecker>`.
+Поскольку мы способны удалять оба элемента сразу, то можно производить
+сравнение и продолжать только в случае, если символы совпадают. Если
+соответствие первого и последнего элементов будет сохраняться, то в
+конечном итоге мы придём или к отсутствию символов, или останемся с деком
+размером 1 - в зависимости от того, была ли длина исходной строки чётным
+или нечётным числом. Но обоих случаях входная последовательность будет
+палиндромом. Полностью функция проверки представлена в :ref:`ActiveCode 1 <lst_palchecker>`.
+
 
 .. _lst_palchecker:
 
 .. activecode:: palchecker
-   :caption: A Palindrome Checker Using Deque
+   :caption: Проверка палиндрома с использованием дека
 
    from pythonds.basic.deque import Deque
    

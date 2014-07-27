@@ -7,32 +7,31 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Simple Balanced Parentheses
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Простые сбалансированные скобки
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We now turn our attention to using stacks to solve real computer science
-problems. You have no doubt written arithmetic expressions such as
+А теперь обратим наше внимание на использование стека при решении реальных
+задач в информатике. У вас не возникает сомнений при написании, например,
+такого арифметического выражения:
 
 :math:`(5+6)*(7+8)/(4+3)`
 
-where parentheses are used to order the performance of operations. You
-may also have some experience programming in a language such as Lisp
-with constructs like
+где скобки используются для задания порядка вычисления операций.
+Вы также можете иметь некоторый опыт программирования на языке вроде Лиспа
+с конструкциями наподобие
 
 ::
 
     (defun square(n)
          (* n n))
 
-This defines a function called ``square`` that will return the square of
-its argument ``n``. Lisp is notorious for using lots and lots of
-parentheses.
+Здесь определена функция ``square``, возвращающая квадрат аргумента ``n``.
+Лисп славится использованием огромного множества скобок.
 
-In both of these examples, parentheses must appear in a balanced
-fashion. **Balanced parentheses** means that each opening symbol has a
-corresponding closing symbol and the pairs of parentheses are properly
-nested. Consider the following correctly balanced strings of
-parentheses:
+В обоих примерах скобки должны появляться сбалансированным образом.
+**Сбалансированность скобок** означает, что каждый открывающий символ
+имеет соответствующий ему закрывающий, и пары скобок правильно вложены
+друг в друга. Рассмотрим следующие строки корректно сбалансированных скобок:
 
 ::
 
@@ -42,7 +41,7 @@ parentheses:
 
     (()((())()))
 
-Compare those with the following, which are not balanced:
+Сравним их со следующими, несбалансированными:
 
 ::
 
@@ -52,45 +51,42 @@ Compare those with the following, which are not balanced:
 
     (()()(()
 
-The ability to differentiate between parentheses that are correctly
-balanced and those that are unbalanced is an important part of
-recognizing many programming language structures.
+Способность различать, какие скобки сбалансированы корректно, а какие
+нет - важная часть распознавания структур во многих языках программирования.
 
-The challenge then is to write an algorithm that will read a string of
-parentheses from left to right and decide whether the symbols are
-balanced. To solve this problem we need to make an important
-observation. As you process symbols from left to right, the most recent
-opening parenthesis must match the next closing symbol (see
-:ref:`Figure 4 <fig_parmatch>`). Also, the first opening symbol processed may have to
-wait until the very last symbol for its match. Closing symbols match
-opening symbols in the reverse order of their appearance; they match
-from the inside out. This is a clue that stacks can be used to solve the
-problem.
+Таким образом, задача заключается в написании алгоритма, читающего строку из
+скобок слева неправо и определяющего, являются ли они сбалансированными. Чтобы
+найти решение, нам нужно сделать важное наблюдение. Обрабатывая символы слева
+направо, чаще всего вы встретитесь с тем, что последняя открывающая скобка
+соответствует следующей закрывающей (см. :ref:`Рисунок 4 <fig_parmatch>`). Так
+же обработка самого первого открывающего символа может откладываться, пока с
+ним не будет связан самый последний в строке. Закрывающие символы соотносятся
+с открывающими в порядке, обратном их появлению - изнутри наружу. Это явный
+признак того, что для решения данной задачи можно использовать стек.
 
 .. _fig_parmatch:
 
 .. figure:: Figures/simpleparcheck.png
    :align: center
 
-   Figure 4: Matching Parentheses
+   Рисунок 4: Связывание скобок
 
-Once you agree that a stack is the appropriate data structure for
-keeping the parentheses, the statement of the algorithm is
-straightforward. Starting with an empty stack, process the parenthesis
-strings from left to right. If a symbol is an opening parenthesis, push
-it on the stack as a signal that a corresponding closing symbol needs to
-appear later. If, on the other hand, a symbol is a closing parenthesis,
-pop the stack. As long as it is possible to pop the stack to match every
-closing symbol, the parentheses remain balanced. If at any time there is
-no opening symbol on the stack to match a closing symbol, the string is
-not balanced properly. At the end of the string, when all symbols have
-been processed, the stack should be empty. The Python code to implement
-this algorithm is shown in :ref:`ActiveCode 4 <lst_parcheck1>`.
+Как только вы соглашаетесь, что стек является подходящей структурой данных
+для хранения скобок, положения алгоритма становятся очевидными. Начиная с
+пустого стека, строка скобок обрабатывается слева направо. Если символ -
+открывающая скобка, то она кладётся в стек, как напоминание, что соответствующий
+закрывающий знак должен появиться позже. С другой стороны, если символ - закрывающая
+скобка, то из стека выталкивается верхний элемент. До тех пор, пока будет происходить
+выталкивание для соотнесения каждого закрывающего символа, скобки будут
+сбалансированными. Если в какой-то момент в стеке не окажется открывающей скобки для
+связи с закрывающим символом, то строка является несбалансированной. В конце строки,
+когда будут обработаны все символы, стек должен быть пуст. Реализующий этот алгоритм
+код на Python показан в :ref:`ActiveCode 4 <lst_parcheck1>`
 
 .. _lst_parcheck1:
 
 .. activecode:: parcheck1
-    :caption: Solving the Balanced Parentheses Problem
+    :caption: Решение задачи балансирования скобок
 
     from pythonds.basic.stack import Stack
 
@@ -119,14 +115,14 @@ this algorithm is shown in :ref:`ActiveCode 4 <lst_parcheck1>`.
     print(parChecker('(()'))
 
 
-This function, ``parChecker``, assumes that a ``Stack`` class is
-available and returns a boolean result as to whether the string of
-parentheses is balanced. Note that the boolean variable ``balanced`` is
-initialized to ``True`` as there is no reason to assume otherwise at the
-start. If the current symbol is ``(``, then it is pushed on the stack
-(lines 9–10). Note also in line 15 that ``pop`` simply removes a symbol
-from the stack. The returned value is not used since we know it must be
-an opening symbol seen earlier. At the end (lines 19–22), as long as the
-expression is balanced and the stack has been completely cleaned off,
-the string represents a correctly balanced sequence of parentheses.
+Данная функция, ``parChecker``, предполагает доступность класса ``Stack``
+и возвращает булев результат, сообщающий, сбалансирована ли строка. Обратите
+внимание, что булева переменная ``balanced`` инициализируется ``True``,
+поскольку в начале у нас нет причин предполагать обратное. Если текущим
+символом является ``(``, то она помещается в стек (строки 9-10). Обратите
+внимание, что в строке 15 ``pop`` просто удаляет символ из стека. Возвращаемое
+значение не используется, поскольку мы знаем, что это должна быть открывающая
+скобка, встреченная ранее. В конце (строки 19-22), при условии, что выражение
+сбалансировано и стек абсолютно пуст, делается вывод, что входной параметр
+представляет из себя правильно сбалансированную последовательность скобок.
 

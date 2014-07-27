@@ -7,120 +7,116 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Simulation: Printing Tasks
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Симуляция: Задания на печать
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A more interesting simulation allows us to study the behavior of the
-printing queue described earlier in this section. Recall that as
-students send printing tasks to the shared printer, the tasks are placed
-in a queue to be processed in a first-come first-served manner. Many
-questions arise with this configuration. The most important of these
-might be whether the printer is capable of handling a certain amount of
-work. If it cannot, students will be waiting too long for printing and
-may miss their next class.
+Более интересная симуляция позволит нам изучить поведение очереди на печать,
+описанной ранее в этом разделе. Напомним, что когда студенты отправляют документы
+для печати на общем принтере, то задания помещаются в очередь, чтобы быть
+обработанными в манере "первым пришёл - первым обслужен". В связи с такого рода
+конфигурацией возникает много вопросов. Возможно, наиболее важный из них: способен
+ли принтер обработать определённое количество документов? Если нет, то студенты будут
+ждать чересчур долго и могут пропустить своё следующее занятие.
 
-Consider the following situation in a computer science laboratory. On
-any average day about 10 students are working in the lab at any given
-hour. These students typically print up to twice during that time, and
-the length of these tasks ranges from 1 to 20 pages. The printer in the
-lab is older, capable of processing 10 pages per minute of draft
-quality. The printer could be switched to give better quality, but then
-it would produce only five pages per minute. The slower printing speed
-could make students wait too long. What page rate should be used?
+Рассмотрим такую ситуацию в лаборатории информатики. В любой среднестатистический
+день в любой час в лаборатории работает порядка 10 студентов. В течение этого времени
+они обычно печатают дважды, причём длина задания варьируется от одной до двадцати
+страниц. Принтер в лаборатории стар и в черновом качестве способен обрабатывать всего
+10 страниц в минуту. Можно переключить его на лучшее качество печати, но тогда
+производительность упадёт до 5 страниц/мин. Низкая скорость печати заставляет студентов
+ждать слишком долго. Какую скорость для страниц следует использовать?
 
-We could decide by building a simulation that models the laboratory. We
-will need to construct representations for students, printing tasks, and
-the printer (:ref:`Figure 4 <fig_qulabsim>`). As students submit printing tasks,
-we will add them to a waiting list, a queue of print tasks attached to
-the printer. When the printer completes a task, it will look at the
-queue to see if there are any remaining tasks to process. Of interest
-for us is the average amount of time students will wait for their papers
-to be printed. This is equal to the average amount of time a task waits
-in the queue.
+Мы можем определить это, построив симуляционную модель лаборатории. Нам
+потребуется создать представления студентов, заданий на печать и принтера
+(:ref:`Рисунок 4 <fig_qulabsim>`). Когда студенты подают документы на печать,
+мы будем добавлять их в список ожидания - очередь заданий на печать,
+прикреплённую к принтеру. Когда принтер заканчивает очередное задание, он
+смотрит в очередь на предмет наличия оставшихся документов для обработки.
+Интерес для нас представляет среднее время ожидания задачи в очереди.
 
 .. _fig_qulabsim:
 
 .. figure:: Figures/simulationsetup.png
    :align: center
 
-   Figure 4: Computer Science Laboratory Printing Queue
+   Рисунок 4: Очередь на печать в лаборатории информатики
 
 
-To model this situation we need to use some probabilities. For example,
-students may print a paper from 1 to 20 pages in length. If each length
-from 1 to 20 is equally likely, the actual length for a print task can
-be simulated by using a random number between 1 and 20 inclusive. This
-means that there is equal chance of any length from 1 to 20 appearing.
+Для моделирования этой ситуации нам нужно использовать некоторые вероятности.
+Например, студенты могут печатать документы величиной от одной до двадцати
+страниц. Если каждая длина от 1 до 20 одинаково возможна, то текущий размер
+задания на печать можно симулировать, используя случайное число от 1 до 20
+включительно. Это означает, что шансы возникновения документа любой длины от
+1 до 20 равны.
 
-If there are 10 students in the lab and each prints twice, then there
-are 20 print tasks per hour on average. What is the chance that at any
-given second, a print task is going to be created? The way to answer
-this is to consider the ratio of tasks to time. Twenty tasks per hour
-means that on average there will be one task every 180 seconds:
+
+Если в лаборатории находятся десять студентов и каждый из них печатает дважды,
+то в среднем в час будет 20 заданий на печать. Какова вероятность, что в любую
+заданную секунду одно из них будет создано? Способ ответить на этот вопрос -
+рассмотреть отношение количества заданий к времени. Двадцать заданий на час
+означают одно задание на каждые 180 секунд:
 
 :math:`\frac {20\ tasks}{1\ hour} \times \frac {1\ hour}  {60\ minutes} \times \frac {1\ minute} {60\ seconds}=\frac {1\ task} {180\ seconds}`
 
-For every second we can simulate the chance that a print task occurs by
-generating a random number between 1 and 180 inclusive. If the number is
-180, we say a task has been created. Note that it is possible that many
-tasks could be created in a row or we may wait quite a while for a task
-to appear. That is the nature of simulation. You want to simulate the
-real situation as closely as possible given that you know general
-parameters.
+Для каждой секунды мы можем симулировать вероятность появления задания путём
+генерации случайного числа между 1 и 180 включительно. Если число равно 180,
+то мы говорим, что задание создано. Заметьте, что возможно создание множества
+заданий одного за другим или наоборот - мы можем ждать долгое время, пока
+что-то появится. Такова природа моделирования. Вы хотите симулировать реальную
+ситуацию настолько близко к реальности, насколько это возможно, учитывая всё,
+что знаете об общих параметрах.
 
-Main Simulation Steps
-^^^^^^^^^^^^^^^^^^^^^
 
-Here is the main simulation.
+Основные шаги симуляции
+^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Create a queue of print tasks. Each task will be given a timestamp
-   upon its arrival. The queue is empty to start.
+Вот основная модель.
 
-#. For each second (``currentSecond``):
+#. Создать очередь из заданий на печать. Каждое из них будет иметь
+   отметку о времени постановки в очередь. В самом начале очередь пуста.
 
-   -  Does a new print task get created? If so, add it to the queue with
-      the ``currentSecond`` as the timestamp.
+#. Для каждой секунды (``currentSecond``):
 
-   -  If the printer is not busy and if a task is waiting,
+   -  Создано ли новое задание на печать? Если да, то добавить его в очередь
+      с ``currentSecond`` в качестве отметки времени.
 
-      -  Remove the next task from the print queue and assign it to the
-         printer.
+   -  Если принтер не занят и есть ожидающее задание, то
 
-      -  Subtract the timestamp from the ``currentSecond`` to compute
-         the waiting time for that task.
+      -  Удалить следующее задание из очереди на печать и передать его принтеру.
 
-      -  Append the waiting time for that task to a list for later
-         processing.
+      -  Извлечь отметку о времени из ``currentSecond`` чтобы вычислить время
+         ожидания для данного задания.
 
-      -  Based on the number of pages in the print task, figure out how
-         much time will be required.
+      -  Добавить время ожидания этой задачи в список для дальнейшей обработки.
 
-   -  The printer now does one second of printing if necessary. It also
-      subtracts one second from the time required for that task.
+      -  Основываясь на количестве страниц в задании на печать, вычислить,
+         сколько для него потребуется времени.
 
-   -  If the task has been completed, in other words the time required
-      has reached zero, the printer is no longer busy.
+   -  Если необходимо, принтер тратит одну секунду печати. Также он вычитает её из
+      времени, необходимого для выполнения задачи.
 
-#. After the simulation is complete, compute the average waiting time
-   from the list of waiting times generated.
+   -  Если задание завершено (другими словами, требуемое на его выполнение время
+      равно нулю), то принтер более не занят.
 
-Python Implementation
-^^^^^^^^^^^^^^^^^^^^^
+#. После завершения симуляции вычисляется среднее время ожидания из сгенерированного
+   списка времён ожидания.
 
-To design this simulation we will create classes for the three
-real-world objects described above: ``Printer``, ``Task``, and
-``PrintQueue``.
+Реализация на Python
+^^^^^^^^^^^^^^^^^^^^
 
-The ``Printer`` class (:ref:`Listing 2 <lst_printer>`) will need to track whether
-it has a current task. If it does, then it is busy (lines 13–17) and the
-amount of time needed can be computed from the number of pages in the
-task. The constructor will also allow the pages-per-minute setting to be
-initialized. The ``tick`` method decrements the internal timer and sets
-the printer to idle (line 11) if the task is completed.
+Для этой симуляции мы создадим классы трёх объектов реального мира, описанных выше:
+``Printer``, ``Task``, и ``PrintQueue``.
+
+Классу ``Printer`` (:ref:`Листинг 2 <lst_printer>`) будет необходима возможность
+отслеживать, имеет ли он текущую задачу. Если да, то он занят (строки 13-17), и
+необходимо вычислить временнЫе затраты, исходя из количества страниц в задании.
+Так же конструктор позволяет инициализировать настройку количества печатаемых в
+минуту страниц. Метод ``tick`` уменьшает на единицу внутренний таймер и устанавливает
+холостой ход принтера (строка 11), если задание выполнено.
 
 .. _lst_printer:
 
-**Listing 2**
+**Листинг 2**
 
 .. highlight:: python
     :linenothreshold: 5
@@ -152,10 +148,11 @@ the printer to idle (line 11) if the task is completed.
 .. highlight:: python
     :linenothreshold: 500
 
-The Task class (:ref:`Listing 3 <lst_task>`) will represent a single printing
-task. When the task is created, a random number generator will provide a
-length from 1 to 20 pages. We have chosen to use the ``randrange``
-function from the ``random`` module.
+Класс заданий (:ref:`Листинг 3 <lst_task>`) будет представлять единичное задание
+для печати. Когда оно создаётся, генератор случайных чисел предоставляет его длину
+в диапазоне от 1 до 20 страниц. Мы выбрали использование функции ``randrange``
+из модуля ``random``.
+
 
 ::
 
@@ -166,15 +163,15 @@ function from the ``random`` module.
     8
     >>> 
 
-Each task will also need to keep a timestamp to be used for computing
-waiting time. This timestamp will represent the time that the task was
-created and placed in the printer queue. The ``waitTime`` method can
-then be used to retrieve the amount of time spent in the queue before
-printing begins.
+Так же каждое задание нуждается в отметке, которая будет использоваться для подсчёта
+времени ожидания. Она будет представлять из себя момент, когда задание было создано
+и помещено в очередь принтера. Затем может быть использован метод ``waitTime`` для
+извлечения времени, затраченного на ожидание в очереди начала печати.
+
 
 .. _lst_task:
 
-**Listing 3**
+**Листинг 3**
 
 
 
@@ -196,23 +193,22 @@ printing begins.
        def waitTime(self, currenttime):
            return currenttime - self.timestamp
 
-The main simulation (:ref:`Listing 4 <lst_qumainsim>`) implements the algorithm
-described above. The ``printQueue`` object is an instance of our
-existing queue ADT. A boolean helper function, ``newPrintTask``, decides
-whether a new printing task has been created. We have again chosen to
-use the ``randrange`` function from the ``random`` module to return a
-random integer between 1 and 180. Print tasks arrive once every 180
-seconds. By arbitrarily choosing 180 from the range of random integers
-(line 32), we can simulate this random event. The simulation function
-allows us to set the total time and the pages per minute for the
-printer.
+Основная симуляция (:ref:`Листинг 4 <lst_qumainsim>`) реализует алгоритм, описанный
+выше. Объект ``printQueue`` представляет собой экземпляр нашего существующего АТД
+очереди. Вспомогательная булева функция ``newPrintTask`` определяет, было ли создано
+новое задание на печать. Мы вновь выбрали функцию ``randrange`` из модуля ``random``,
+чтобы возвращать случайное целое из диапазона от 1 до 180. Задания на печать появляются
+раз в каждые 180 секунд. Произвольно выбрав 180 из диапазона целых чисел (строка 32),
+мы можем симулировать это случайное событие. Функция симуляции позволяет нам установить
+для принтера общее время и количество страниц в минуту.
+
 
 .. highlight:: python
     :linenothreshold: 5
 
 .. _lst_qumainsim:
 
-**Listing 4**
+**Листинг 4**
 
 ::
 
@@ -255,16 +251,16 @@ printer.
 .. highlight:: python
    :linenothreshold: 500
 
-When we run the simulation, we should not be concerned that the
-results are different each time. This is due to the probabilistic nature
-of the random numbers. We are interested in the trends that may be
-occurring as the parameters to the simulation are adjusted. Here are
-some results.
+Когда мы запускаем симуляцию, нас не должно беспокоить, что результаты каждый
+раз будут разными. Это заложено в вероятностную природу случайных чисел. Нас
+интересуют тенденции, которые появляются при корректировке параметров симуляции.
+Вот некоторые результаты.
 
-First, we will run the simulation for a period of 60 minutes (3,600
-seconds) using a page rate of five pages per minute. In addition, we
-will run 10 independent trials. Remember that because the simulation
-works with random numbers each run will return different results.
+
+В первый раз мы запускаем симуляцию для периода в 60 минут (3600 секунд), используя
+скорость печати 5 страниц в минуту. Дополнительно мы проводим 10 независимых попыток.
+Помните, что поскольку симуляция работает со случайными числами, то на каждом запуске
+мы получим разные результаты.
 
 ::
 
@@ -282,15 +278,14 @@ works with random numbers each run will return different results.
     Average Wait  39.31 secs 3 tasks remaining.
     Average Wait 376.05 secs 1 tasks remaining.
 
-After running our 10 trials we can see that the mean average wait time
-is 122.155 seconds. You can also see that there is a large variation in
-the average weight time with a minimum average of 17.27 seconds and a
-maximum of 239.61 seconds. You may also notice that in only two of the
-cases were all the tasks completed.
+После запуска наших десяти попыток мы видим, что среднее время ожидания
+составляет 122,155 секунд. Так же заметен большой разброс средних весов
+времени от 17,27 до максимальных 376,05 секунд. Обратите внимание, что
+задания завершили выполнение всего в двух случаях.
 
-Now, we will adjust the page rate to 10 pages per minute, and run the 10
-trials again, with a faster page rate our hope would be that more tasks
-would be completed in the one hour time frame.
+А теперь установим скорость печать на 10 страниц в минуту и вновь запустим
+10 попыток. С большей скоростью мы можем надеяться выполнить больше заданий
+в рамках одного часа.
 
 ::
 
@@ -309,10 +304,10 @@ would be completed in the one hour time frame.
     Average Wait  18.17 secs 0 tasks remaining.
     
     
-You can run the simulation for yourself in ActiveCode 2.
+Вы можете запустить симуляцию самостоятельно в ActiveCode 2.
 
 .. activecode:: qumainsim
-   :caption: Printer Queue Simulation
+   :caption: Симуляция очереди принтера
 
    from pythonds.basic.queue import Queue
 
@@ -387,51 +382,49 @@ You can run the simulation for yourself in ActiveCode 2.
    for i in range(10):
        simulation(3600,5)
 
-Discussion
+Обсуждение
 ^^^^^^^^^^
 
-We were trying to answer a question about whether the current printer
-could handle the task load if it were set to print with a better quality
-but slower page rate. The approach we took was to write a simulation
-that modeled the printing tasks as random events of various lengths and
-arrival times.
+Мы пытались ответить на вопрос о том, может ли текущий принтер обработать
+загруженное задание, если установлена печать лучшего качества, но с более
+низкой скоростью. Подход, который мы использовали для написания симуляции,
+моделировал задания на печать как случайные события различной длины и времени
+появления.
 
-The output above shows that with 5 pages per minute printing, the
-average waiting time varied from a low of 17 seconds to a high of 376
-seconds (about 6 minutes). With a faster printing rate, the low value
-was 1 second with a high of only 28. In addition, in 8 out of 10 runs at
-5 pages per minute there were print tasks still waiting in the queue at
-the end of the hour.
+Вывод выше показывает, что с пятью страницами в минуту среднее время ожидания
+варьируется от 17 до 376 секунд (около шести минут). С более высокой скоростью
+печати нижним значением становится одна секунда, а верхним - всего 28. Более
+того, в 8 из 10 запусков при 5 страниц/мин по истечение часа в очереди остаются
+ожидающие задания.
 
-Therefore, we are perhaps persuaded that slowing the printer down to get
-better quality may not be a good idea. Students cannot afford to wait
-that long for their papers, especially when they need to be getting on
-to their next class. A six-minute wait would simply be too long.
+Таким образом, мы, возможно, убедились, что снижение скорости печати в пользу
+улучшения качества - не самая лучшая идея. Студенты не могут позволить себе так
+долго ждать свои документы, особенно когда им надо спешить на следующую пару.
+Шестиминутное ожидание будет просто чересчур долгим.
 
-This type of simulation analysis allows us to answer many questions,
-commonly known as “what if” questions. All we need to do is vary the
-parameters used by the simulation and we can simulate any number of
-interesting behaviors. For example,
+Такой тип анализа симуляции позволяет нам ответить на множество вопросов, в целом
+известных как "что, если?". Всё, что нужно - это менять параметры, используемые для
+симуляции, и тогда мы можем моделировать любое количество интересных случаев. Например,
 
--  What if enrollment goes up and the average number of students
-   increases by 20?
+-  Что, если возрастёт среднее число принятых заявок на печать, а среднее
+   количество студентов увеличится до 20 человек?
 
--  What if it is Saturday and students are not needing to get to class?
-   Can they afford to wait?
+-  Что, если сегодня суббота, и студентам не нужно идти на занятия? Могут
+   ли они позволить себе ожидание?
 
--  What if the size of the average print task decreases since Python is
-   such a powerful language and programs tend to be much shorter?
+-  Что, если размер среднего задания на печать уменьшится, поскольку Python -
+   очень мощный язык, и программы на нём имеют тенденцию становиться короче?
 
-These questions could all be answered by modifying the above simulation.
-However, it is important to remember that the simulation is only as good
-as the assumptions that are used to build it. Real data about the number
-of print tasks per hour and the number of students per hour was
-necessary to construct a robust simulation.
 
-.. admonition:: Self Check
+На все эти вопросы можно ответить, модифицируя симуляцию выше. Однако, важно
+помнить, что модель хороша настолько, насколько хороши допущения, на которых
+она построена. Для создания надёжной модели были необходимы настоящие данные
+о числе заданий на печать и количестве студентов в час.
+
+
+.. admonition:: Самопроверка
    
-   How would you modify the printer simulation to reflect a larger number of students?  Suppose that the number of students was doubled.  You make need to make some reasonable assumptions about how this simulation was put together but what would you change?  Modify the code.  Also suppose that the length of the average print task was cut in half.  Change the code to reflect that change.  Finally How would you parametertize the number of students, rather than changing the code we would like
-   to make the number of students a parameter of the simulation.
+   Как бы вы модифицировали симуляцию принтера, чтобы отразить большее число студентов? Предположим, что оно удвоилось. Вам необходимо сделать некоторые разумные допущения о том, как связать это с данной моделью. Что бы вы изменили? Модифицируйте код. Также предположите, что длина среднего задания на печать уменьшилась в половину. Измените код, чтобы отразить это. Наконец, как бы вы параметризировали количество студентов? Вместо того, чтобы каждый раз изменять код, мы бы предпочли просто задавать число студентов параметром симуляции.
 
    .. actex:: print_sim_selfcheck
 

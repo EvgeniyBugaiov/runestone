@@ -7,66 +7,67 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Converting Decimal Numbers to Binary Numbers
+Конвертирование десятичных чисел в двоичные
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In your study of computer science, you have probably been
-exposed in one way or another to the idea of a binary number. Binary
-representation is important in computer science since all values stored
-within a computer exist as a string of binary digits, a string of 0s and
-1s. Without the ability to convert back and forth between common
-representations and binary numbers, we would need to interact with
-computers in very awkward ways.
+Изучая информатику, вы, вероятно, так или иначе сталкивались с идеей бинарных
+чисел. Двоичное представление важно в информатике, поскольку все значения,
+хранящиеся в компьютере, представляют собой строки двоичных цифр, строки из
+нулей и единиц. Без возможности конвертации в одну и другую сторону между
+общепринятым представлением и двоичным нам бы пришлось взаимодействовать с
+компьютерами весьма неудобными способами.
 
-Integer values are common data items. They are used in computer programs
-and computation all the time. We learn about them in math class and of
-course represent them using the decimal number system, or base 10. The
-decimal number :math:`233_{10}` and its corresponding binary
-equivalent :math:`11101001_{2}` are interpreted respectively as
+
+Целые числа - очень распространённые элементы данных. Они постоянно используются
+в компьютерных программах и вычислениях. Мы изучаем их на уроках математики и,
+конечно, представляем в десятичной системе счисления (по основанию 10). Десятичное
+число :math:`233_{10}` и связанный с ним эквивалент :math:`11101001_{2}`
+соответственно интерпретируются как:
 
 :math:`2\times10^{2} + 3\times10^{1} + 3\times10^{0}`
 
-and
+и
 
 :math:`1\times2^{7} + 1\times2^{6} + 1\times2^{5} + 0\times2^{4} + 1\times2^{3} + 0\times2^{2} + 0\times2^{1} + 1\times2^{0}`
 
-But how can we easily convert integer values into binary numbers? The
-answer is an algorithm called “Divide by 2” that uses a stack to keep
-track of the digits for the binary result.
+Но как нам легко конвертировать целые значения в бинарные числа? Ответ заключается
+в алгоритме под названием "Разделяй на 2", который использует стек для запоминания
+цифр двоичного результата.
 
-The Divide by 2 algorithm assumes that we start with an integer greater
-than 0. A simple iteration then continually divides the decimal number
-by 2 and keeps track of the remainder. The first division by 2 gives
-information as to whether the value is even or odd. An even value will
-have a remainder of 0. It will have the digit 0 in the ones place. An
-odd value will have a remainder of 1 and will have the digit 1 in the
-ones place. We think about building our binary number as a sequence of
-digits; the first remainder we compute will actually be the last digit
-in the sequence. As shown in :ref:`Figure 5 <fig_decbin>`, we again see the
-reversal property that signals that a stack is likely to be the
-appropriate data structure for solving the problem.
+
+Алгоритм "Разделяй на 2" подразумевает, что мы начинаем с целого большего,
+чем нуль. Затем простыми итерациями последовательно делим десятичное число на
+два и записываем остаток. Первое деление пополам даёт информацию о том, является
+ли число чётным или нечётным. Чётное число будет иметь в остатке нуль и цифру 0
+на первом месте. Нечётное значение будет иметь в остатке единицу и цифру 1 на
+первом месте. Мы думаем о построении нашего двоичного числа как о последовательности
+цифр; первый вычисленный нами остаток фактически будет последней цифрой в
+последовательности. Как показано на :ref:`Рисунке 5 <fig_decbin>`, мы снова наблюдаем
+свойство разворота входных данных, сигнализирующее, что, вполне вероятно, подходящей
+структурой для решения задачи будет стек.
 
 .. _fig_decbin:
 
 .. figure:: Figures/dectobin.png
    :align: center
 
-   Figure 5: Decimal-to-Binary Conversion
+   Рисунок 5: Преобразование числа из десятичного в бинарное
 
 
-The Python code in :ref:`ActiveCode 6 <lst_binconverter>` implements the Divide by 2
-algorithm. The function ``divideBy2`` takes an argument that is a
-decimal number and repeatedly divides it by 2. Line 7 uses the built-in
-modulo operator, %, to extract the remainder and line 8 then pushes it
-on the stack. After the division process reaches 0, a binary string is
-constructed in lines 11-13. Line 11 creates an empty string. The binary
-digits are popped from the stack one at a time and appended to the
-right-hand end of the string. The binary string is then returned.
+Код на Python в :ref:`ActiveCode 6 <lst_binconverter>` реализует алгоритм
+"Разделяй на 2". Функция <code>divideBy2</code> принимает десятичное число в
+качестве аргумента и последовательно делит его пополам. В строке 7 используется
+встроенный оператор остатка от деления %, чтобы выделить остаток и в строке 8
+поместить его в стек. После того, как процесс деления закончится нулём, в
+строках 11-13 собирается бинарная последовательность. Строка 11 создаёт пустую
+строку. Из стека по одной выталкиваются двоичные цифры и добавляются к ней справа.
+В итоге возвращается бинарный результат.
+
 
 .. _lst_binconverter:
 
 .. activecode:: divby2
-   :caption: Converting from Decimal to Binary
+   :caption: Преобразование числа из десятичного в бинарное
 
    from pythonds.basic.stack import Stack
    
@@ -86,40 +87,41 @@ right-hand end of the string. The binary string is then returned.
 
    print(divideBy2(42))
 
-The algorithm for binary conversion can easily be extended to perform
-the conversion for any base. In computer science it is common to use a
-number of different encodings. The most common of these are binary,
-octal (base 8), and hexadecimal (base 16).
+Алгоритм бинарного преобразования может быть легко расширен для конвертации по
+любому основанию. В информатике широко используется несколько различных кодировок.
+Наиболее распространены двоичная, восьмеричная и шестнадцатиричная.
 
-The decimal number :math:`233` and its corresponding octal and
-hexadecimal equivalents :math:`351_{8}` and :math:`E9_{16}` are
-interpreted as
+
+Десятичное число :math:`233` и связанные с ним восьмеричный и шестнадцатиричный
+эквиваленты :math:`351_{8}` и :math:`E9_{16}` интерпретируются как:
+
 
 :math:`3\times8^{2} + 5\times8^{1} + 1\times8^{0}`
 
-and
+и
 
 :math:`14\times16^{1} + 9\times16^{0}`
 
-The function ``divideBy2`` can be modified to accept not only a decimal
-value but also a base for the intended conversion. The “Divide by 2”
-idea is simply replaced with a more general “Divide by base.” A new
-function called ``baseConverter``, shown in :ref:`ActiveCode 7 <lst_baseconverter>`,
-takes a decimal number and any base between 2 and 16 as parameters. The
-remainders are still pushed onto the stack until the value being
-converted becomes 0. The same left-to-right string construction
-technique can be used with one slight change. Base 2 through base 10
-numbers need a maximum of 10 digits, so the typical digit characters 0,
-1, 2, 3, 4, 5, 6, 7, 8, and 9 work fine. The problem comes when we go
-beyond base 10. We can no longer simply use the remainders, as they are
-themselves represented as two-digit decimal numbers. Instead we need to
-create a set of digits that can be used to represent those remainders
-beyond 9.
+Функция ``divideBy2`` может быть модифицирована, чтобы принимать не
+только десятичные значения, но и основание для предназначенного преобразования.
+Идея "Разделяй на 2" просто заменяется на более общую "Разделяй на основание".
+Новая функция под названием ``baseConverter``, показанная в
+:ref:`ActiveCode 7 <lst_baseconverter>`, принимает в качестве параметров десятичное
+число и любое основание между 2 и 16. Остатки по-прежнему помещаются в стек до тех
+пор, пока конвертируемое значение не станет равным нулю. Аналогичная техника
+конструирования слева направо может использоваться с одним небольшим изменением.
+От основания 2 до 10 для чисел нужно максимум 10 цифр, так что обычные символы
+0, 1, 2, 3, 4, 5, 6, 7, 8 и 9 работают нормально. Проблемы возникают, когда мы
+выходим за основание 10. Мы больше не можем использовать остатки, поскольку они
+сами представляются как двуциферные десятичные числа. Вместо них мы должны создать
+свой набор цифр, которые можно использовать для представления таких остатков за
+пределами 9.
+
 
 .. _lst_baseconverter:
 
 .. activecode:: baseconvert
-    :caption: Converting from Decimal to any Base
+    :caption: Преобразование числа из десятичного в число по любому основанию
 
     from pythonds.basic.stack import Stack
     
@@ -142,38 +144,38 @@ beyond 9.
     print(baseConverter(25,2))
     print(baseConverter(25,16))
 
-A solution to this problem is to extend the digit set to include some
-alphabet characters. For example, hexadecimal uses the ten decimal
-digits along with the first six alphabet characters for the 16 digits.
-To implement this, a digit string is created (line 4 in
-:ref:`Listing 6 <lst_baseconverter>`) that stores the digits in their corresponding
-positions. 0 is at position 0, 1 is at position 1, A is at position 10,
-B is at position 11, and so on. When a remainder is removed from the
-stack, it can be used to index into the digit string and the correct
-resulting digit can be appended to the answer. For example, if the
-remainder 13 is removed from the stack, the digit D is appended to the
-resulting string.
+Решением этой задачи будет расширить набор цифр включением некоторых алфавитных
+символов. Например, шестнадцатиричная система счисления использует десять десятичных
+цифр вместе с первыми шестью буквами алфавита для своих шестнадцати цифр. Чтобы
+воплотить это, создаётся цифровая строка
+(см. строку 4 в :ref:`Листинге 6 <lst_baseconverter>`), как хранилище цифр на
+соответствующих позициях. 0 - на позиции 0, 1 - на позиции 1, А - на позиции 10,
+В - на позиции 11 и так далее. Когда остаток удаляется из стека, он может быть
+использован в качестве индекса в цифровой строке, и к концу ответа добавляется
+правильная итоговая цифра. Например, если из стека удаляется остаток 13, в
+результирующую строку добавляется цифра D.
 
-.. admonition:: Self Check
+
+.. admonition:: Самопроверка
 
    .. fillintheblank:: baseconvert1
       :correct: \\b31\\b
       :blankid: bcblank1
 
-      What is value of 25 expressed as an octal number :textfield:`bcblank1::mini`
+      Каково значение 25 в восьмеричной системе счисления :textfield:`bcblank1::mini`
 
    .. fillintheblank:: baseconvert2
       :correct: \\b100\\b
       :blankid: bcblank2
 
-      What is value of 256 expressed as a hexidecimal number :textfield:`bcblank2::mini`
+      Каково значение 256 в шестнадцатеричной системе счисления :textfield:`bcblank2::mini`
 
    .. fillintheblank:: baseconvert3
       :correct: \\b10\\b
       :feedback1: ('.*', 'You may need to modify the baseConverter function, or simply find a pattern in the conversion of bases.')
       :blankid: bcblank3
 
-      What is value of 26 expressed in base 26 :textfield:`bcblank3::mini`
+      Каково значение 26 в системе счисления по основанию 26 :textfield:`bcblank3::mini`
 
 
 .. video:: video_Stack2

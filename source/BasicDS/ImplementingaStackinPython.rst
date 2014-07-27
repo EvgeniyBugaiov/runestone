@@ -7,39 +7,38 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Implementing a Stack in Python
+Реализация стека на Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now that we have clearly defined the stack as an abstract data type we
-will turn our attention to using Python to implement the stack. Recall
-that when we give an abstract data type a physical implementation we
-refer to the implementation as a data structure.
+Теперь, когда у нас есть чёткое определение стека, как абстрактного типа
+данных, обратим своё внимание на использование Python для реализации стека.
+Напомним, что когда мы даём физическую реализацию абстрактного типа данных,
+то ссылаемся на реализацию структуры данных.
 
-As we described in Chapter 1, in Python, as in any object-oriented
-programming language, the implementation of choice for an abstract data
-type such as a stack is the creation of a new class. The stack
-operations are implemented as methods. Further, to implement a stack,
-which is a collection of elements, it makes sense to utilize the power
-and simplicity of the primitive collections provided by Python. We will
-use a list.
 
-Recall that the list class in Python provides an ordered collection
-mechanism and a set of methods. For example, if we have the list
-[2,5,3,6,7,4], we need only to decide which end of the list will be
-considered the top of the stack and which will be the base. Once that
-decision is made, the operations can be implemented using the list
-methods such as ``append`` and ``pop``.
+Как мы уже говорили в главе 1, в Python (как и в любом объектно-ориентированном
+языке) реализация выбранного абстрактного типа данных (например, стека) - это
+создание нового класса. Стековые операции воплотятся в его методах. Далее,
+чтобы реализовать стек, который суть - коллекция элементов, имеет смысл
+воспользоваться мощью и простотой примитивных коллекций, предоставляемых
+Python. Мы будем использовать список.
 
-The following stack implementation (:ref:`ActiveCode 1 <lst_stackcode1>`) assumes that
-the end of the list will hold the top element of the stack. As the stack
-grows (as ``push`` operations occur), new items will be added on the end
-of the list. ``pop`` operations will manipulate that same end.
+Напомним, что класс списка в Python предоставляет механизм и набор методов для
+упорядоченной коллекции. Например, если у нас есть список [2, 5, 3, 6, 7, 4], то
+нам нужно только определиться, который из его концов принять за вершину стека,
+а который - за базу. Как только решение принято, можно начинать реализовывать
+операции, используя такие списковые методы, как ``append`` и ``pop``
+
+Нижеследующая реализация стека (:ref:`ActiveCode 1 <lst_stackcode1>`) предполагает,
+что верхний элемент стека расположен в конце списка. По мере роста стека (имеет место
+операция ``push``), новые элементы будут добавляться туда же. Им же будет
+манипулировать операция ``pop``
 
 .. _lst_stackcode1:
 
 
 .. activecode:: stack_1ac
-   :caption: Implementing a Stack class using Python lists
+   :caption: Реализация класса Stack с использованием списков Python
 
    class Stack:
         def __init__(self):
@@ -60,11 +59,11 @@ of the list. ``pop`` operations will manipulate that same end.
         def size(self):
             return len(self.items)
 
-Remember that nothing happens when we click the ``run`` button other than the
-definition of the class.  We must create a ``Stack`` object and then use it.
-:ref:`ActiveCode 2 <lst_stackcode1>` shows the ``Stack`` class in
-action as we perform the sequence of operations from
-:ref:`Table 1 <tbl_stackops>`.
+Помните, что с нажатием кнопки ``run`` не произойдёт ничего, кроме объявления
+класса. Мы должны создать объект ``Stack``, а затем его использовать.
+:ref:`ActiveCode 2 <lst_stackcode1>` демонстрирует класс ``Stack`` в действии,
+которое мы представили последовательностью операций из :ref:`Таблицы 1 <tbl_stackops>`
+
 
 .. activecode:: stack_ex_1
    :include:  stack_1ac
@@ -85,17 +84,17 @@ action as we perform the sequence of operations from
 
 
 
-It is important to note that we could have chosen to implement the stack
-using a list where the top is at the beginning instead of at the end. In
-this case, the previous ``pop`` and ``append`` methods would no longer
-work and we would have to index position 0 (the first item in the list)
-explicitly using ``pop`` and ``insert``. The implementation is shown in
-:ref:`CodeLens 1 <lst_stackcode2>`.
+<p>Важно отметить, что мы можем выбрать реализацию стека через список, где
+вершиной считается первый, а не последний элемент. В этом случае предыдущие
+методы ``append`` и ``pop`` работать не будут. Мы должны будем явно использовать
+``pop`` и ``insert`` для позиции с индексом 0 (первый элемент в списке).
+Реализация показана в :ref:`CodeLens 1 <lst_stackcode2>`
+
 
 .. _lst_stackcode2:
 
 .. codelens:: stack_cl_1
-   :caption: Alternative Implementation of the Stack class
+   :caption: Альтернативная реализация класса Stack
 
    class Stack:
         def __init__(self):
@@ -122,20 +121,19 @@ explicitly using ``pop`` and ``insert``. The implementation is shown in
    print(s.pop())
 
 
-This ability to change the physical implementation of an abstract data
-type while maintaining the logical characteristics is an example of
-abstraction at work. However, even though the stack will work either
-way, if we consider the performance of the two implementations, there is
-definitely a difference. Recall that the ``append`` and ``pop()``
-operations were both O(1). This means that the first implementation will
-perform push and pop in constant time no matter how many items are on
-the stack. The performance of the second implementation suffers in that
-the ``insert(0)`` and ``pop(0)`` operations will both require O(n) for a
-stack of size n. Clearly, even though the implementations are logically
-equivalent, they would have very different timings when performing
-benchmark testing.
+Эта возможность изменять физическое воплощение абстрактного типа данных
+при поддержке логических характеристик - пример того, как работает абстракция.
+Однако, даже если стек будет вести себя аналогично, рассмотрение
+производительности этих двух реализаций покажет их несомненное различие.
+Напомним, что операции ``append`` и ``pop`` обе являются О(1). Это означает,
+что первая реализация будет выполнять добавление и выталкивание за постоянное
+время, независимо от количества элементов в стеке. Производительность второго
+варианта страдает, поскольку и ``insert(0)``, и ``pop(0)`` для стека, размером
+n, являются O(n). Очевидно, что даже если реализации логически эквивалентны,
+то при тестировании они будут иметь очень разные затраты по времени.
 
-.. admonition:: Self Check
+
+.. admonition:: Самопроверка
 
    .. mchoicemf:: stack_1
       :iscode:
@@ -149,7 +147,7 @@ benchmark testing.
       :feedback_c: Good job.
       :feedback_d: Remember that a stack is built from the bottom up.
 
-      Given the following sequence of stack operations, what is the top item on the stack when the sequence is complete?
+      Дана следующая последовательность стековых операций. Что будет на вершине стека, когда последовательность завершится?
        
       .. code-block:: python
        
@@ -171,7 +169,7 @@ benchmark testing.
       :feedback_c: Good Job.
       :feedback_d: You may want to check out the docs for isEmpty
 
-      Given the following sequence of stack operations, what is the top item on the stack when the sequence is complete?
+      Дана следующая последовательность стековых операций. Что будет на вершине стека, когда последовательность завершится?
 
       .. code-block:: python
   
@@ -183,8 +181,7 @@ benchmark testing.
            m.pop()
            m.pop()
 
-   Write a function `revstring(mystr)` that uses a stack to reverse the
-   characters in a string.
+   Напишите функцию ``revstring(mystr)``, используя стек для изменения порядка символов в строке на противоположный.
 
    .. actex:: stack_stringrev
 

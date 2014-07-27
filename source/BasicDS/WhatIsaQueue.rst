@@ -7,53 +7,51 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-What Is a Queue?
-~~~~~~~~~~~~~~~~
+Что такое очередь?
+~~~~~~~~~~~~~~~~~~
 
-A queue is an ordered collection of items where the addition of new
-items happens at one end, called the “rear,” and the removal of existing
-items occurs at the other end, commonly called the “front.” As an
-element enters the queue it starts at the rear and makes its way toward
-the front, waiting until that time when it is the next element to be
-removed.
+Очередь - это упорядоченная коллекция элементов, в которой добавление новых
+происходит с одного конца, называемого "хвост очереди", а удаление существующих
+- с другого, "головы очереди". Как только элемент добавляется в конец очереди,
+он начинает путь по направлению к её началу, ожидая удаления предыдущих.
 
-The most recently added item in the queue must wait at the end of the
-collection. The item that has been in the collection the longest is at
-the front. This ordering principle is sometimes called **FIFO**,
-**first-in first-out**. It is also known as “first-come first-served.”
+Самые последние из добавленных в очередь единиц должны ждать в конце коллекции.
+Элемент, который пробыл в коллекции дольше всего, находится в начале очереди.
+Такой принцип упорядочения иногда называют **FIFO, first-in first-out**
+(*англ. "первый пришёл, первый вышел"*). Ещё он известен, как "первый пришёл -
+первым обслужен".
 
-The simplest example of a queue is the typical line that we all
-participate in from time to time. We wait in a line for a movie, we wait
-in the check-out line at a grocery store, and we wait in the cafeteria
-line (so that we can pop the tray stack). Well-behaved lines, or queues,
-are very restrictive in that they have only one way in and only one way
-out. There is no jumping in the middle and no leaving before you have
-waited the necessary amount of time to get to the front.
-:ref:`Figure 1 <fig_qubasicqueue>` shows a simple queue of Python data objects.
+Простейший пример такой структуры данных - это обычная очередь, в которой все
+мы иногда стоим: в кинотеатре, перед кассой в бакалейной лавке, в закусочной
+(где мы, кстати, можем "выталкивать" поднос из стопки/стека). Правильные очереди
+очень огранены тем, что имеют только один путь в и один путь из. Для них не
+предусмотрены прыжки в середину или выход до того, как пройдёт достаточно
+времени, чтобы переместиться в начало. *Рисунок 1* показывает простую очередь
+из объектов данных Python.
+:ref:`Рисунок 1 <fig_qubasicqueue>` очередь из объектов данных Python
 
 .. _fig_qubasicqueue:
 
 .. figure:: Figures/basicqueue.png
    :align: center
 
-   Figure 1: A Queue of Python Data Objects
+   Рисунок 1: Очередь из объектов данных Python
 
 
-Computer science also has common examples of queues. Our computer
-laboratory has 30 computers networked with a single printer. When
-students want to print, their print tasks “get in line” with all the
-other printing tasks that are waiting. The first task in is the next to
-be completed. If you are last in line, you must wait for all the other
-tasks to print ahead of you. We will explore this interesting example in
-more detail later.
+В информатике тоже есть распространённые примеры очередей. В нашей компьютерной
+лаборатории стоит 30 компьютеров, подключённых по сети к одному принтеру. Когда
+студенты хотят что-то распечатать, они набирают задание "встать в очередь" вместе
+со всеми другими ожидающими печати заданиями. Первое задание - следующее, которое
+будет выполнено. Если вы последний в очереди, то должны ждать, пока напечатаются
+все стоящие перед вами документы. Позднее мы исследуем этот интересный пример
+более подробно.
 
-In addition to printing queues, operating systems use a number of
-different queues to control processes within a computer. The scheduling
-of what gets done next is typically based on a queuing algorithm that
-tries to execute programs as quickly as possible and serve as many users
-as it can. Also, as we type, sometimes keystrokes get ahead of the
-characters that appear on the screen. This is due to the computer doing
-other work at that moment. The keystrokes are being placed in a
-queue-like buffer so that they can eventually be displayed on the screen
-in the proper order.
+В дополнение к очереди на печать оперативная система использует несколько различных
+очередей для контроля процессов внутри компьютера. Планирование, что делать следующим,
+обычно основывается на алгоритме очереди, который пытается запускать программы на
+выполнение так быстро, как это возможно, и обслуживать максимальное число пользователей.
+Также иногда в процессе печати на клавиатуре нажатия клавиш опережают появление символов
+на экране. Это происходит из-за того, что компьютер в этот момент выполняет другую работу.
+Нажатия клавиш помещаются в очередеподобный буфер, чтобы в конце концов отобразиться на
+экране в правильном порядке.
 

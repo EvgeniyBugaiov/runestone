@@ -7,31 +7,31 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-What is a Stack?
+Что такое "стек"?
 ~~~~~~~~~~~~~~~~
 
-A **stack** (sometimes called a “push-down stack”) is an ordered
-collection of items where the addition of new items and the removal of
-existing items always takes place at the same end. This end is commonly
-referred to as the “top.” The end opposite the top is known as the
-“base.”
+**Стек** (иногда говорят "магазин" - по аналогии с магазином огнестрельного
+оружия) - это упорядоченная коллекция элементов, где добавление нового или
+удаление существующих всегда происходит только на одном из концов. Этот
+конец обычно называют "вершиной", а противоположный ему - "основанием".
 
-The base of the stack is significant since items stored in the stack
-that are closer to the base represent those that have been in the stack
-the longest. The most recently added item is the one that is in position
-to be removed first. This ordering principle is sometimes called
-**LIFO**, **last-in first-out**. It provides an ordering based on length
-of time in the collection. Newer items are near the top, while older
-items are near the base.
+Важность основания стека в том, что хранящиеся ближе к нему элементы
+представляют из себя те, что находятся в стеке дольше всего. Элемент,
+добавленный последним, расположен на той позиции, с которой будет удалён
+в первую очередь. Такой принцип организации иногда называется
+**LIFO, last-in first-out** (*англ. «последним пришёл — первым вышел»*).
+Он предоставляет упорядочение по длительности нахождения в коллекции.
+Более новые элементы расположены ближе к вершине, в то время как более
+старые - ближе к основанию.
 
-Many examples of stacks occur in everyday situations. Almost any
-cafeteria has a stack of trays or plates where you take the one at the
-top, uncovering a new tray or plate for the next customer in line.
-Imagine a stack of books on a desk (:ref:`Figure 1 <fig_bookstack>`). The only
-book whose cover is visible is the one on top. To access others in the
-stack, we need to remove the ones that are sitting on top of them.
-:ref:`Figure 2 <fig_objectstack>` shows another stack. This one contains a number
-of primitive Python data objects.
+С примерами стека мы сталкиваемся ежедневно. Едва ли не каждая закусочная
+имеет стопку из подносов или тарелок, где вам нужно брать одну сверху,
+открывая новый поднос или тарелку для следующего посетителя в очереди.
+Вообразите стек из книг на столе (:ref:`Рисунок 1 <fig_bookstack>`).
+Единственной книгой, чья обложка видна, является самая верхняя. Чтобы
+получить доступ к остальным в стопке, нам нужно удалить лежащую поверх
+остальных. :ref:`Рисунок 2 <fig_objectstack>` демонстрирует другой стек,
+содержащий несколько простых объектов данных Python.
 
 .. _fig_bookstack:
 
@@ -39,7 +39,7 @@ of primitive Python data objects.
    :align: center
    :scale: 50 %
 
-   Figure 1: A Stack of Books
+   Рисунок 1: Стек из книг
 
 .. _fig_objectstack:
 
@@ -47,33 +47,35 @@ of primitive Python data objects.
    :align: center
    :scale: 50 %
 
-   Figure 2: A Stack of Primitive Python Objects
+   Рисунок 2: Стек из простых объектов Python
 
-One of the most useful ideas related to stacks comes from the simple
-observation of items as they are added and then removed. Assume you
-start out with a clean desktop. Now place books one at a time on top of
-each other. You are constructing a stack. Consider what happens when you
-begin removing books. The order that they are removed is exactly the
-reverse of the order that they were placed. Stacks are fundamentally
-important, as they can be used to reverse the order of items. The order
-of insertion is the reverse of the order of removal.
-:ref:`Figure 3 <fig_reversal>` shows the Python data object stack as it was
-created and then again as items are removed. Note the order of the
-objects.
+Одна из наиболее часто используемых идей, связанных со стеком, пришла из
+простого наблюдения за тем, как добавляются и удаляются его элементы.
+Предположим, что вы начинаете с чистого стола. Теперь кладите книги по
+одной за раз друг поверх друга. Вы конструируете стек. Посмотрим, что
+случится, когда вы начнёте их удалять. Очерёдность, в которой это будет
+происходить, в точности противоположна тому, как они клались. Стеки
+фундаментально важны, поскольку их можно использовать для реверсирования
+порядка элементов. Последовательность вставок противоположена последовательности
+удалений. :ref:`Рисунок 3 <fig_reversal>` показывает стек из объектов
+данных Python в процессе его создания и удаления из него элементов.
+Обратите внимание на порядок объектов.
+
 
 .. _fig_reversal:
 
 .. figure:: Figures/simplereversal.png
    :align: center
 
-   Figure 3: The Reversal Property of Stacks
+   Рисунок 3: Свойство реверсирования у стеков
 
 
-Considering this reversal property, you can perhaps think of examples of
-stacks that occur as you use your computer. For example, every web
-browser has a Back button. As you navigate from web page to web page,
-those pages are placed on a stack (actually it is the URLs that are
-going on the stack). The current page that you are viewing is on the top
-and the first page you looked at is at the base. If you click on the
-Back button, you begin to move in reverse order through the pages.
+Рассматривая это реверсивное свойство, вы, возможно, подумаете о примерах
+стека, имеющих место в процессе использования вами компьютера. Например,
+каждый веб-браузер имеет кнопку "Назад". Когда вы перемещаетесь от одной
+веб-страницы к другой, они помещаются в стек (точнее, в стек помещаются
+их URL'ы). Текущая страница, которую вы просматриваете, находится на вершине,
+а самая первая из просмотренных - в основании. Если вы нажмёте кнопку "Назад",
+то начнёте перемещаться по страницам в обратном порядке.
+
 

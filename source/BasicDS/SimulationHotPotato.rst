@@ -7,69 +7,68 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Simulation: Hot Potato
+Симуляция: Hot Potato
 ~~~~~~~~~~~~~~~~~~~~~~
 
-One of the typical applications for showing a queue in action is to
-simulate a real situation that requires data to be managed in a FIFO
-manner. To begin, let’s consider the children’s game Hot Potato. In this
-game (see :ref:`Figure 2 <fig_quhotpotato>`) children line up in a circle and
-pass an item from neighbor to neighbor as fast as they can. At a certain
-point in the game, the action is stopped and the child who has the item
-(the potato) is removed from the circle. Play continues until only one
-child is left.
+Одно из типичных приложений для демонстрации очереди в действии - это
+симуляция реальной ситуации, которая требует управления данными в манере
+FIFO. Для начала давайте рассмотрим детскую игру Hot Potato. В этой игре
+(см. :ref:`Рисунок 2 <fig_quhotpotato>`) дети выстраиваются в круг и
+перебрасывают предмет от соседа к соседу так быстро, как только могут.
+В некоторый момент игры действие останавливается, и ребёнок, у которого
+остался в руках предмет (картошка), выбывает из круга. Игра продолжается
+до тех пор, пока не останется единственный победитель.
+
 
 .. _fig_quhotpotato:
 
 .. figure:: Figures/hotpotato.png
    :align: center
 
-   Figure 2: A Six Person Game of Hot Potato
+   Рисунок 2: Игра Hot Potato с шестью игроками
 
 
-This game is a modern-day equivalent of the famous Josephus problem.
-Based on a legend about the famous first-century historian Flavius
-Josephus, the story is told that in the Jewish revolt against Rome,
-Josephus and 39 of his comrades held out against the Romans in a cave.
-With defeat imminent, they decided that they would rather die than be
-slaves to the Romans. They arranged themselves in a circle. One man was
-designated as number one, and proceeding clockwise they killed every
-seventh man. Josephus, according to the legend, was among other things
-an accomplished mathematician. He instantly figured out where he ought
-to sit in order to be the last to go. When the time came, instead of
-killing himself, he joined the Roman side. You can find many different
-versions of this story. Some count every third man and some allow the
-last man to escape on a horse. In any case, the idea is the same.
+Эта игра - современный вариант знаменитой считалки Джозефуса. Основываясь
+на легенде о знаменитом историке первого века Иосифе Флавии, история
+рассказывает, что когда евреи восстали против Рима, Иосиф и 39 его товарищей
+оборонялись против римлян в пещере. Осознав, что поражение неизбежно, они
+решили, что лучше умереть, чем стать рабами империи. Воины встали в круг,
+и один из них был назначен первым номером. Затем, следуя по часовой стрелке,
+они убивали каждого седьмого. Иосиф, как говорит легенда, кроме всего прочего
+был прекрасным математиком. Он сразу сообразил, где нужно встать, чтобы
+оказаться последним. Когда подошло время, то вместо того, чтобы убить себя,
+он перешёл на сторону римлян. Вы можете найти множество различных версий этой
+истории. Одни считают каждого третьего человека, а другие полагают, что
+последний мог сбежать на лошади. В любом случае, идея остаётся прежней.
 
-We will implement a general **simulation** of Hot Potato. Our program
-will input a list of names and a constant, call it “num,” to be used for
-counting. It will return the name of the last person remaining after
-repetitive counting by ``num``. What happens at that point is up to you.
+Мы реализуем общую **симуляцию** игры Hot Potato. Наша программа будет получать
+на входе список имён и константу "num", используемую для подсчёта. Она будет
+возвращать имя последнего человека, оставшегося после повторяющегося отсчёта
+``num``. Что случится в этот момент - зависит уже от вас.
 
-To simulate the circle, we will use a queue (see
-:ref:`Figure 3 <fig_qupotatoqueue>`). Assume that the child holding the potato will
-be at the front of the queue. Upon passing the potato, the simulation
-will simply dequeue and then immediately enqueue that child, putting her
-at the end of the line. She will then wait until all the others have
-been at the front before it will be her turn again. After ``num``
-dequeue/enqueue operations, the child at the front will be removed
-permanently and another cycle will begin. This process will continue
-until only one name remains (the size of the queue is 1).
+Для симуляции круга мы будем использовать очередь
+(см. :ref:`Рисунок 3 <fig_qupotatoqueue>`). Предположим, что ребёнок, держащий
+картошку, - первый в очереди. После переброса картошки мы просто извлечём его
+оттуда и тут же поставим обратно, но уже в хвост. Ребёнок будет ждать, пока все,
+кто перед ним, побудут первыми, а затем вернётся на это место снова. После ``num``
+операций извлечений/постановок ребёнок, стоящий впереди, будет удалён окончательно,
+и цикл начнётся заново. Этот процесс будет продолжаться до тех пор, пока не останется
+всего одно имя (размер очереди станет равным 1).
 
 .. _fig_qupotatoqueue:
 
 .. figure:: Figures/namequeue.png
    :align: center
 
-   Figure 3: A Queue Implementation of Hot Potato
+   Рисунок 3: Реализация Hot Potato в виде очереди
 
-The program is shown in :ref:`ActiveCode 1 <lst_josephussim>`. A call to the
-``hotPotato`` function using 7 as the counting constant returns ``Susan``.
+Программа показана в :ref:`ActiveCode 1 <lst_josephussim>`. Вызов функции
+``hotPotato``, использующий 7 в качестве константы для подсчёта, возвращает ``Susan``.
 
 .. _lst_josephussim:
 
 .. activecode:: qujosephussim
-   :caption: Hot Potato Simulation
+   :caption: Симуляция Hot Potato
 
    from pythonds.basic.queue import Queue
    
@@ -89,12 +88,10 @@ The program is shown in :ref:`ActiveCode 1 <lst_josephussim>`. A call to the
    print(hotPotato(["Bill","David","Susan","Jane","Kent","Brad"],7))
 
 
-Note that in this example the value of the counting constant is greater
-than the number of names in the list. This is not a problem since the
-queue acts like a circle and counting continues back at the beginning
-until the value is reached. Also, notice that the list is loaded into
-the queue such that the first name on the list will be at the front of
-the queue. ``Bill`` in this case is the first item in the list and
-therefore moves to the front of the queue. A variation of this
-implementation, described in the exercises, allows for a random counter.
-
+Обратите внимание, что в этом примере значение константы подсчёта больше количества
+имён в списке. Это не является проблемой, поскольку очередь работает как круг и
+продолжает считать с начала до тех пор, пока не будет достигнуто нужное значение.
+Также заметьте, что список загружается в очередь таким образом, чтобы его первое имя
+было в её начале. В данном случае первым элементом в списке будет ``Bill``, поэтому
+он помещается в начало очереди. Варианты этой реализации, описанные в упражнениях,
+позволяют выбирать счётчик случайным образом.

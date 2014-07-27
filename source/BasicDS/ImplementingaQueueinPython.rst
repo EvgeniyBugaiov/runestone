@@ -7,25 +7,24 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Implementing a Queue in Python
+Реализация очереди на Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-It is again appropriate to create a new class for the implementation of
-the abstract data type queue. As before, we will use the power and
-simplicity of the list collection to build the internal representation
-of the queue.
+Вновь будет подходящим создать новый класс для реализации абстрактного типа
+данных очереди. Как и раньше, мы будем использовать мощь и простоту коллекции
+"список" для построения внутреннего представления очереди.
 
-We need to decide which end of the list to use as the rear and which to
-use as the front. The implementation shown in :ref:`Listing 1 <lst_queuecode>`
-assumes that the rear is at position 0 in the list. This allows us to
-use the ``insert`` function on lists to add new elements to the rear of
-the queue. The ``pop`` operation can be used to remove the front element
-(the last element of the list). Recall that this also means that enqueue
-will be O(n) and dequeue will be O(1). 
+Нам надо определиться, какой конец списках считать головой, а какой - хвостом.
+Реализация, показанная в :ref:`Листинге 1 <lst_queuecode>` предполагает, что
+последний элемент очереди находится на нулевой позиции списка. Это позволяет
+нам использовать функцию ```insert``` для добавления новых элементов в конец
+очереди. Операция ```pop``` будет использоваться для удаления переднего элемента
+(последнего элемента в списке). Напомним, что это также означает, что постановка
+в очередь будет O(n), а извлечение - O(1).
 
 .. _lst_queuecode:
 
-**Listing 1**
+**Листинг 1**
 
 ::
 
@@ -45,12 +44,12 @@ will be O(n) and dequeue will be O(1).
         def size(self):
             return len(self.items)
 
-CodeLens 1 shows the ``Queue`` class in
-action as we perform the sequence of operations from
-:ref:`Table 1 <tbl_queueoperations>`.
+CodeLens 1 демонстрирует класс ``Queue`` в действии
+для последовательности операций из :ref:`Таблицы 1 <tbl_queueoperations>`
+
 
 .. codelens:: ququeuetest
-   :caption: Example Queue Operations
+   :caption: Пример операций очереди
 
    class Queue:
        def __init__(self):
@@ -94,7 +93,7 @@ action as we perform the sequence of operations from
     >>> q.size()
     2
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
    .. mchoicemf:: queue_1
       :correct: b
@@ -108,7 +107,7 @@ action as we perform the sequence of operations from
       :feedback_c: Queues, and Stacks are both data structures where you can only access the first and the last thing.
       :feedback_d: Ooops, maybe you missed the dequeue call at the end?
 
-      Suppose you have the following series of queue operations.
+      Предположим, что у вас есть следующая последовательность операций с кодом.
 
       ::
       
@@ -118,5 +117,5 @@ action as we perform the sequence of operations from
           q.enqueue(3)
           q.dequeue()
 
-      What items are left on the queue?
+      Какие элементы находятся в очереди слева?
 

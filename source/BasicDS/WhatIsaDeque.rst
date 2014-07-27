@@ -10,26 +10,25 @@
 What Is a Deque?
 ~~~~~~~~~~~~~~~~
 
-A **deque**, also known as a double-ended queue, is an ordered
-collection of items similar to the queue. It has two ends, a front and a
-rear, and the items remain positioned in the collection. What makes a
-deque different is the unrestrictive nature of adding and removing
-items. New items can be added at either the front or the rear. Likewise,
-existing items can be removed from either end. In a sense, this hybrid
-linear structure provides all the capabilities of stacks and queues in a
-single data structure. :ref:`Figure 1 <fig_basicdeque>` shows a deque of Python
-data objects.
+**Дек**, также называемый двусторонней очередью, - это упорядоченная
+коллекция элементов, подобная очереди. Он имеет два конца (голову и хвост),
+и его элементы остаются позиционированными. Что отличает дек, так это
+нестрогая природа добавления и удаления составляющих. Новые элементы могут
+быть добавлены как в голову, так и в хвост. Аналогично, существующие компоненты
+также могут удаляться из обоих концов. В каком-то смысле, этот гибрид линейной
+структуры предоставляет все возможности стеков и очередей в единой структуре
+данных. :ref:`Рисунок 1 <fig_basicdeque>` демонстрирует дек из объектов данных Python.
 
-It is important to note that even though the deque can assume many of
-the characteristics of stacks and queues, it does not require the LIFO
-and FIFO orderings that are enforced by those data structures. It is up
-to you to make consistent use of the addition and removal operations.
+Важно отметить, что несмотря на обладание деком многих характеристик стеков и
+очередей, он не поддерживает LIFO или FIFO упорядочение, которые воплощаются в
+жизнь этими структурами данных. Только от вас зависит, какого типа операции
+добавления или удаления использовать.
 
 .. _fig_basicdeque:
 
 .. figure:: Figures/basicdeque.png
    :align: center
 
-   Figure 1: A Deque of Python Data Objects
+   Рисунок 1: Дек из объектов данных Python
 
 

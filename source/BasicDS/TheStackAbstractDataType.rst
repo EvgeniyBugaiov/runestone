@@ -7,56 +7,53 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Stack Abstract Data Type
+Абстрактный тип данных "стек"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The stack abstract data type is defined by the following structure and
-operations. A stack is structured, as described above, as an ordered
-collection of items where items are added to and removed from the end
-called the “top.” Stacks are ordered LIFO. The stack operations are
-given below.
+Абстрактный тип данных для стека определяется следующими структурой и
+операциями. Как писалось выше, стек организован как упорядоченная коллекция
+элементов, добавляемых и удаляемых из конца, называемого "вершина"
+(LIFO-упорядоченность). Ниже представлены операции над стеком.
 
--  ``Stack()`` creates a new stack that is empty. It needs no parameters
-   and returns an empty stack.
+-  ``Stack()`` создаёт новый пустой стек. Параметры не нужны, возвращает пустой стек.
 
--  ``push(item)`` adds a new item to the top of the stack. It needs the
-   item and returns nothing.
+-  ``push(item)`` добавляет новый элемент на вершину стека.
+   В качестве параметра выступает элемент; функция ничего не возвращает.
 
--  ``pop()`` removes the top item from the stack. It needs no parameters
-   and returns the item. The stack is modified.
+-  ``pop()`` удаляет верхний элемент из стека. Параметры не требуются, функция
+   возвращает элемент. Стек изменяется.
 
--  ``peek()`` returns the top item from the stack but does not remove
-   it. It needs no parameters. The stack is not modified.
+-  ``peek()`` возвращает верхний элемент стека, но не удаляет его. Параметры
+   не требуются, стек не модифицируется.
 
--  ``isEmpty()`` tests to see whether the stack is empty. It needs no
-   parameters and returns a boolean value.
+-  ``isEmpty()`` проверяет стек на пустоту. Параметры не требуются, возвращает
+   булево значение.
 
--  ``size()`` returns the number of items on the stack. It needs no
-   parameters and returns an integer.
+-  ``size()`` возвращает количество элементов в стеке. Параметры не требуются,
+   тип результата - целое число.
 
-For example, if ``s`` is a stack that has been created and starts out
-empty, then :ref:`Table 1 <tbl_stackops>` shows the results of a sequence of
-stack operations. Under stack contents, the top item is listed at the
-far right.
+Например, если ``s`` - свежесозданный пустой стек, то в :ref:`Таблице 1 <tbl_stackops>`
+показаны результаты проведения над ним последовательности операций. Согласуясь с
+сущностью стека, верхний элемент будет самым правым в списке.
 
 .. _tbl_stackops:
 
-.. table:: **Table 1: Sample Stack Operations**
+.. table:: **Таблица 1: Простые стековые операции**
 
-    ============================ ======================== ==================
-             **Stack Operation**       **Stack Contents**   **Return Value**
-    ============================ ======================== ==================
-                 ``s.isEmpty()``                   ``[]``           ``True``
+    ============================ ======================== ============================
+       **Операция над стеком**     **Содержание стека**     **Возвращаемое значение**
+    ============================ ======================== ============================
+                 ``s.isEmpty()``                   ``[]``                     ``True``
                    ``s.push(4)``                  ``[4]``
                ``s.push('dog')``            ``[4,'dog']``
-                    ``s.peek()``            ``[4,'dog']``          ``'dog'``
+                    ``s.peek()``            ``[4,'dog']``                    ``'dog'``
                 ``s.push(True)``       ``[4,'dog',True]``
-                    ``s.size()``       ``[4,'dog',True]``              ``3``
-                 ``s.isEmpty()``       ``[4,'dog',True]``          ``False``
+                    ``s.size()``       ``[4,'dog',True]``                        ``3``
+                 ``s.isEmpty()``       ``[4,'dog',True]``                    ``False``
                  ``s.push(8.4)``   ``[4,'dog',True,8.4]``
-                     ``s.pop()``       ``[4,'dog',True]``            ``8.4``
-                     ``s.pop()``            ``[4,'dog']``           ``True``
-                    ``s.size()``            ``[4,'dog']``              ``2``
-    ============================ ======================== ==================
+                     ``s.pop()``       ``[4,'dog',True]``                      ``8.4``
+                     ``s.pop()``            ``[4,'dog']``                     ``True``
+                    ``s.size()``            ``[4,'dog']``                        ``2``
+    ============================ ======================== ============================
 
 
