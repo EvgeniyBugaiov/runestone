@@ -17,8 +17,8 @@
 By Brad Miller and David Ranum, Luther College
 
 
-Introduction
-::::::::::::
+Введение
+::::::::
 
 .. toctree::
     :maxdepth: 2
@@ -41,8 +41,8 @@ Introduction
     Introduction/DiscussionQuestions.rst
     Introduction/ProgrammingExercises.rst
 
-Analysis
-::::::::
+Анализ
+::::::
 
 .. toctree::
     :maxdepth: 2
@@ -59,8 +59,8 @@ Analysis
     AlgorithmAnalysis/DiscussionQuestions.rst
     AlgorithmAnalysis/ProgrammingExercises.rst
 
-Basic Data Structures
-:::::::::::::::::::::
+Основные структуры данных
+:::::::::::::::::::::::::
 
 .. toctree::
     :maxdepth: 2
