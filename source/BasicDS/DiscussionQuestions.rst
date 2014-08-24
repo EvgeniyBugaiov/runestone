@@ -19,8 +19,8 @@
 
    -  96
 
-#. Convert the following infix expressions to prefix (use full
-   parentheses):
+#. Преобразуйте следующие инфиксные выражения в префиксные
+   (используя полную расстановку скобок)
 
    -  (A+B)\*(C+D)\*(E+F)
 
