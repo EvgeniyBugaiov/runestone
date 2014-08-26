@@ -7,33 +7,15 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Tower of Hanoi
-~~~~~~~~~~~~~~
+Ханойская башня
+~~~~~~~~~~~~~~~~
 
-The Tower of Hanoi puzzle was invented by the French mathematician
-Edouard Lucas in 1883. He was inspired by a legend that tells of a Hindu
-temple where the puzzle was presented to young priests. At the beginning
-of time, the priests were given three poles and a stack of 64 gold
-disks, each disk a little smaller than the one beneath it. Their
-assignment was to transfer all 64 disks from one of the three poles to
-another, with two important constraints. They could only move one disk
-at a time, and they could never place a larger disk on top of a smaller
-one. The priests worked very efficiently, day and night, moving one disk
-every second. When they finished their work, the legend said, the temple
-would crumble into dust and the world would vanish.
+Головоломка о ханойской башне была изобретена французским математиком Эдуардом Лукасом в 1883 году. Его вдохновила легенда, рассказывающая о замке Хинду, где эту загадку задали юным жрецам. В начале времён им дали три стержня и стопку из шестидесяти четырёх золотых дисков, каждый из которых немного меньше предыдущего. Требовалось переставить все диски с одного стержня на другой, соблюдая два строгих условия. Во-первых, за раз можно было перемещать только один диск. Во-вторых, нельзя класть больший диск поверх меньшего. Жрецы работали (и работают по сей день) очень споро, день и ночь, переставляя каждую секунду по одному диску. Легенда гласит, что когда они закончат свою работу, замок обратится в пыль, и мир исчезнет.
 
-Although the legend is interesting, you need not worry about the world
-ending any time soon. The number of moves required to correctly move a
-tower of 64 disks is :math:`2^{64}-1 = 18,446,744,073,709,551,615`. At
-a rate of one move per second, that is :math:`584,942,417,355` years! Clearly
-there is more to this puzzle than meets the eye.
+Хотя легенда и интересна, вам не стоит беспокоиться о скором конце света. Число ходов, требующихся для правильной перестановки башни из 64 дисков, равняется :math:`2^{64}-1 = 18,446,744,073,709,551,615`.
+Со скоростью один ход в секунду это займёт :math:`584,942,417,355` лет! Большая цифра для такой несложной на первый взгляд головоломки.
 
-:ref:`Figure 1 <fig_hanoi>` shows an example of a configuration of disks in the
-middle of a move from the first peg to the third. Notice that, as the
-rules specify, the disks on each peg are stacked so that smaller disks
-are always on top of the larger disks. If you have not tried to solve
-this puzzle before, you should try it now. You do not need fancy disks
-and poles–a pile of books or pieces of paper will work.
+:ref:`Рисунок 1 <fig_hanoi>` показывает пример конфигурации дисков в середине перемещения с первого колышка на третий. Обратите внимание, что (как регламентировано правилами) диски на каждом из колышков складываются таким образом, чтобы меньший всегда лежал на большем. Если вы не пытались раньше решить эту головоломку, то можете попробовать сейчас. Для это не нужны настоящие диски и стержни - сработает и стопка книг или листочков бумаги.
 
 .. _fig_hanoi:
 
@@ -41,50 +23,21 @@ and poles–a pile of books or pieces of paper will work.
    :align: center
    :alt: image
 
-   
-   Figure 1: An Example Arrangement of Disks for the Tower of Hanoi
+Рисунок 1: Пример расположения дисков ханойских башен.
 
-How do we go about solving this problem recursively? How would you go
-about solving this problem at all? What is our base case? Let’s think
-about this problem from the bottom up. Suppose you have a tower of five
-disks, originally on peg one. If you already knew how to move a tower of
-four disks to peg two, you could then easily move the bottom disk to peg
-three, and then move the tower of four from peg two to peg three. But
-what if you do not know how to move a tower of height four? Suppose that
-you knew how to move a tower of height three to peg three; then it would
-be easy to move the fourth disk to peg two and move the three from peg
-three on top of it. But what if you do not know how to move a tower of
-three? How about moving a tower of two disks to peg two and then moving
-the third disk to peg three, and then moving the tower of height two on
-top of it? But what if you still do not know how to do this? Surely you
-would agree that moving a single disk to peg three is easy enough,
-trivial you might even say. This sounds like a base case in the making.
+Как нам решить эту задачу рекурсивно? С чего бы вы начали? Что является здесь базовым случаем? Давайте подумаем над этим от конца к началу. Предположим, изначально на первом колышке у вас находится башня из пяти дисков. Если вы уже знаете, как передвинуть четыре из них на второй колышек, то можете с лёгкостью переложить нижний диск на стержень №3, а затем переложить туда же башню со стержня №2. Но что, если вы понятия не имеете, как переместить башню из четырёх верхних? Предположим, что вы знаете, как передвинуть башню из трёх верхних дисков на третий колышек. Тогда с перемещением четвёртого трудностей не возникнет: переложите его на второй стержень, а затем положите сверху те три, что нанизаны на третий колышек. Но если вы не знаете как переместить три? Что ж, можно переложить башню из двух дисков на стержень №2, а третий - на стержень №3, а потом сверху положить башню из двух. Но если вы до сих пор не понимаете, как это сделать? Уверен, что вы согласитесь: переместить один диск на третий колышек легче лёгкого - тривиальнее вы ничего не найдёте. Звучит как базовый случай, а?
 
-Here is a high-level outline of how to move a tower from the starting
-pole, to the goal pole, using an intermediate pole:
+Вот общая схема того, как переместить башню с исходного стержня на заданный с использованием промежуточного:
 
-#. Move a tower of height-1 to an intermediate pole, using the final
-   pole.
+#. Передвинуть башню из (количество дисков - 1) на промежуточный колышек, используя конечный стержень.
+#. Положить оставшийся диск на конечный стержень.
+#. Переместить башню из оставшихся на промежуточном стержне дисков на конечный, используя первоначальный колышек.
 
-#. Move the remaining disk to the final pole.
-
-#. Move the tower of height-1 from the intermediate pole to the final
-   pole using the original pole.
-
-As long as we always obey the rule that the larger disks remain on the
-bottom of the stack, we can use the three steps above recursively,
-treating any larger disks as though they were not even there. The only
-thing missing from the outline above is the identification of a base
-case. The simplest Tower of Hanoi problem is a tower of one disk. In
-this case, we need move only a single disk to its final destination. A
-tower of one disk will be our base case. In addition, the steps outlined
-above move us toward the base case by reducing the height of the tower
-in steps 1 and 3. :ref:`Listing 1 <lst_hanoi>` shows the Python code to solve the
-Tower of Hanoi puzzle.
+Пока мы следуем правилу, что больший диск находится внизу стека, мы можем использовать три описанных выше шага рекурсивно, обрабатывая любые большие диски, даже если их там ещё нет. Единственная вещь, которую мы упустили в схеме выше, - это идентификация базового случая. Простейшая задача ханойских башен - это башня из одного диска. В этом случае нам нужно передвинуть единственный диск на его конечное место назначения. Башня из одного диска будет нашим базовым случаем. В дополнение, шаги схемы выше ведут к базовому случаю, уменьшая каждый раз высоту башни на единицу в пунктах 1 и 3. :ref:`Листинг 1 <lst_hanoi>` показывает код на Python для решения задачи ханойских башен.
 
 .. _lst_hanoi:
 
-**Listing 1**
+**Листинг 1**
 
 .. highlight:: python
     :linenothreshold: 2
@@ -100,37 +53,23 @@ Tower of Hanoi puzzle.
 .. highlight:: python
     :linenothreshold: 500
 
-Notice that the code in :ref:`Listing 1 <lst_hanoi>` is almost identical to the
-English description. The key to the simplicity of the algorithm is that
-we make two different recursive calls, one on line 3 and a
-second on line 5. On line 3 we move all but the bottom
-disk on the initial tower to an intermediate pole. The next line simply
-moves the bottom disk to its final resting place. Then on line
-5 we move the tower from the intermediate pole to the top of
-the largest disk. The base case is detected when the tower height is 0;
-in this case there is nothing to do, so the ``moveTower`` function
-simply returns. The important thing to remember about handling the base
-case this way is that simply returning from ``moveTower`` is what
-finally allows the ``moveDisk`` function to be called.
+Заметьте, что :ref:`листинг 1 <lst_hanoi>` практически идентичен словесному описанию. Ключ к простоте алгоритма в том, что мы делаем два различных рекурсивных вызова, один в строке 3, а второй - в строке 5. В строке 3 мы перемещаем все диски, кроме нижнего, с начального стержня на промежуточный. Следующая строка просто переставляет нижний диск на его конечную позицию. Затем в строке 5 мы перемещаем башню с промежуточного стержня поверх наибольшего диска. Базовый случай обнаруживается, когда высота башни равна нулю. В этом случае ничего не происходит, поэтому функция ``moveTower`` делает пустой возврат. При обработке базового случая важно помнить, что простой возврат из ``moveTower`` - это то, что в итоге позволяет функции ``moveDisk`` быть вызванной.
 
-The function ``moveDisk``, shown in :ref:`Listing 2 <lst_movedisk>`, is very
-simple. All it does is print out that it is moving a disk from one pole
-to another. If you type in and run the ``moveTower`` program you can see
-that it gives you a very efficient solution to the puzzle.
+Функция ``moveDisk``, показанная в :ref:`листинге 2 <lst_movedisk>`, очень проста. Всё, что она делает, - это печатает, что диск был передвинут с одного стержня на другой. Если вы наберёте и запустите программу ``moveTower``, то увидите, как она даст вам очень эффективное решение головоломки.
 
 .. _lst_movedisk:
 
-**Listing 2**
+**Листинг 2**
 
 ::
 
     def moveDisk(fp,tp):
         print("moving disk from",fp,"to",tp)
         
-The program in ActiveCode 1 provides the entire solution for three disks.
-        
+Программа в *ActiveCode 1* даёт полное решения для задачи с тремя дисками.
+
 .. activecode:: hanoi
-    :caption: Solving Tower of Hanoi Recursively
+    :caption: Рекурсивное решение задачи о ханойских башнях.
 
     def moveTower(height,fromPole, toPole, withPole):
         if height >= 1:
@@ -141,11 +80,6 @@ The program in ActiveCode 1 provides the entire solution for three disks.
     def moveDisk(fp,tp):
         print("moving disk from",fp,"to",tp)
     
-    moveTower(3,"A","B","C")
+    moveTower(3,"A","B","C") 
 
-Now that you have seen the code for both ``moveTower`` and ``moveDisk``,
-you may be wondering why we do not have a data structure that explicitly
-keeps track of what disks are on what poles. Here is a hint: if you were
-going to explicitly keep track of the disks, you would probably use
-three ``Stack`` objects, one for each pole. The answer is that Python
-provides the stacks that we need implicitly through the call stack.
+Теперь, когда вы можете видеть код и для ``moveTower``, и для ``moveDisk``, то можете задаться вопросом, почему у нас нет структуры данных, которая явно отслеживает, какой диск на каком стержне находится. Вот подсказка: если вы будете явно отслеживать диски, то вам, возможно, придётся использовать три объекта ``Stack`` - по одному для каждого стержня. Ответ в том, что Python предоставляет стеки в наше распоряжение неявно, когда нам это нужно.
