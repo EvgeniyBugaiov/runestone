@@ -7,27 +7,19 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Summary
--------
+Заключение
+-----------
 
--  A sequential search is :math:`O(n)` for ordered and unordered
-   lists.
+- Последовательный поиск имеет :math:`O(n)` для упорядоченных и неупорядоченных списков.
 
--  A binary search of an ordered list is :math:`O(\log n)` in the
-   worst case.
+- Бинарный поиск для упорядоченных списков в худшем случае имеет :math:`O(\log n)`.
 
--  Hash tables can provide constant time searching.
+- Хэш-таблицы могут предоставлять константное время поиска.
 
--  A bubble sort, a selection sort, and an insertion sort are
-   :math:`O(n^{2})` algorithms.
+- Пузырькова сортировка, сортировка выбором и сортировка вставками - :math:`O(n^{2})` алгоритмы.
 
--  A shell sort improves on the insertion sort by sorting incremental
-   sublists. It falls between :math:`O(n)` and :math:`O(n^{2})`.
+- Сортировка Шелла улучшает сортировку вставками путём дополнительной сортировки подсписков. Её производительность колеблется между :math:`O(n)` и :math:`O(n^{2})`.
 
--  A merge sort is :math:`O(n \log n)`, but requires additional space
-   for the merging process.
+- Сортировка слиянием имеет :math:`O(n \log n)`, но требует дополнительного объёма памяти.
 
--  A quick sort is :math:`O(n \log n)`, but may degrade to
-   :math:`O(n^{2})` if the split points are not near the middle of the
-   list. It does not require additional space.
-
+- Быстрая сортировка имеет :math:`O(n \log n)`, но может деградировать до :math:`O(n^{2})`, если точка разбиения не находится близко к середине списка. Не требует дополнительного объёма памяти.
