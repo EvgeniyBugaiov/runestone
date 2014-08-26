@@ -94,7 +94,7 @@ By Brad Miller and David Ranum, Luther College
     BasicDS/ProgrammingExercises.rst
 
 
-Recursion
+Рекурсия
 :::::::::
 
 .. toctree::
@@ -119,7 +119,7 @@ Recursion
     Recursion/ProgrammingExercises.rst
 
 
-Sorting and Searching
+Поиск и сортировка
 :::::::::::::::::::::
 
 .. toctree::
