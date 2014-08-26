@@ -7,28 +7,14 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Quick Sort
-~~~~~~~~~~~~~~
+Быстрая сортировка
+~~~~~~~~~~~~~~~~~~~
 
-The **quick sort** uses divide and conquer to gain the same advantages
-as the merge sort, while not using additional storage. As a trade-ÁÁ off,
-however, it is possible that the list may not be divided in half. When
-this happens, we will see that performance is diminished.
+**Быстрая сортировка** использует технику "разделяй и властвуй", чтобы получить те же преимущества, что и сортировка слиянием, но при этом не использовать дополнительное место. Однако, ценой за это станет то, что список может не поделиться пополам, приводя к уменьшению производительности.
 
-A quick sort first selects a value, which is called the **pivot value**.
-Although there are many different ways to choose the pivot value, we
-will simply use the first item in the list. The role of the pivot value
-is to assist with splitting the list. The actual position where the
-pivot value belongs in the final sorted list, commonly called the
-**split point**, will be used to divide the list for subsequent calls to
-the quick sort.
+Сначала быстрая сортировка выбирает значение, которое называется **опорным элементом**. Несмотря на то, что есть много способов выбрать его, мы будем просто использовать первое значение в списке. Роль опорного элемента заключается в помощи при разбиении списка. Позиция, на которой он окажется в итоговом сортированном списке, обычно называемая **точкой разбиения**, будет использоваться для разделения списка при последующих вызовах быстрой сортировки.
 
-:ref:`Figure 12 <fig_splitvalue>` shows that 54 will serve as our first pivot value.
-Since we have looked at this example a few times already, we know that
-54 will eventually end up in the position currently holding 31. The
-**partition** process will happen next. It will find the split point and
-at the same time move other items to the appropriate side of the list,
-either less than or greater than the pivot value.
+:ref:`Рисунок 12 <fig_splitvalue>` показывает, как 54 выступает в роли первого опорного значения. Поскольку мы уже рассматривали этот пример несколько раз, то знаем, что 54 в итоге окажется на позиции, занятой сейчас 31. Далее происходит процесс **разделения**. Он находит точку разделения и одновременно перемещает элементы по соответствующим сторонам списка, в зависимости от того, больше они или меньше опорной величины.
 
 .. _fig_splitvalue:
 
@@ -36,62 +22,34 @@ either less than or greater than the pivot value.
 .. figure:: Figures/firstsplit.png
    :align: center
 
-   Figure 12: The First Pivot Value for a Quick Sort
+    Рисунок 12: Первая опорная величина для быстрой сортировки
 
-
-
-
-
-Partitioning begins by locating two position markers—let’s call them
-``leftmark`` and ``rightmark``—at the beginning and end of the remaining
-items in the list (positions 1 and 8 in :ref:`Figure 13 <fig_partitionA>`). The goal
-of the partition process is to move items that are on the wrong side
-with respect to the pivot value while also converging on the split
-point. :ref:`Figure 13 <fig_partitionA>` shows this process as we locate the position
-of 54.
+Разбиение начинается с определения двух маркеров положения - назовём их ``leftmark`` и ``rightmark`` - в начале и в конце оставшихся элементов списка (позиции 1 и 8 на :ref:`рисунке 13 <fig_partitionA>`). Целью процесса разбиения является перемещать элементы, лежащие по неправильным сторонам от опорного, пока они не сойдутся в точке разделения. :ref:`Рисунок 13 <fig_partitionA>` показывает этот процесс, когда мы находимся на позиции 54-го элемента.
 
 .. _fig_partitionA:
 
 .. figure:: Figures/partitionA.png
    :align: center
 
-   Figure 13: Finding the Split Point for 54
+    Рисунок 13: Поиск точки разделения для 54
 
-We begin by incrementing ``leftmark`` until we locate a value that is
-greater than the pivot value. We then decrement ``rightmark`` until we
-find a value that is less than the pivot value. At this point we have
-discovered two items that are out of place with respect to the eventual
-split point. For our example, this occurs at 93 and 20. Now we can
-exchange these two items and then repeat the process again.
+Мы начинаем с увеличения на единицу ``leftmark``, пока не находим значение, большее опорного. Тогда мы уменьшаем на единицу ``rightmark``, пока не находим значение, меньшее опорного. В этот момент мы имеем два элемента, находящихся на своих местах относительно итоговой точки разбиения. В нашем примере таковыми являются 93 и 20. Теперь можно поменять их местами и повторить процесс заново.
 
-At the point where ``rightmark`` becomes less than ``leftmark``, we
-stop. The position of ``rightmark`` is now the split point. The pivot
-value can be exchanged with the contents of the split point and the
-pivot value is now in place (:ref:`Figure 14 <fig_partitionB>`). In addition, all the
-items to the left of the split point are less than the pivot value, and
-all the items to the right of the split point are greater than the pivot
-value. The list can now be divided at the split point and the quick sort
-can be invoked recursively on the two halves.
+Когда ``rightmark`` становится меньше ``leftmark``, мы останавливаемся. Позиция ``rightmark`` в данный момент - точка разбиения. Опорное значение следует поменять местами с её содержимым, и тогда оно будет стоять на своём месте (:ref:`рисунок 14 <fig_partitionB>`). В дополнение, все элементы слева от точки разбиения теперь меньше опорного значения, а справа - больше. Список поделен на две части, и быстрая сортировка может быть рекурсивно применена к каждой из них.
 
 .. _fig_partitionB:
 
 .. figure:: Figures/partitionB.png
    :align: center
 
-   Figure 14: Completing the Partition Process to Find the Split Point for 54
+    Рисунок 14: Завершение процесса с целью поиска точки разбиения для 54
 
-
-The ``quickSort`` function shown in :ref:`CodeLens 7 <lst_quick>` invokes a recursive
-function, ``quickSortHelper``. ``quickSortHelper`` begins with the same
-base case as the merge sort. If the length of the list is less than or
-equal to one, it is already sorted. If it is greater, then it can be
-partitioned and recursively sorted. The ``partition`` function
-implements the process described earlier.
+Функция ``quickSort``, показанная в :ref:`CodeLens 7 <lst_quick>`, вызывает другую рекурсивную функцию - ``quickSortHelper``. Она начинает рабоать с базового случая, аналогичного сортировке слиянием. Если длина списка меньше или равна единице, то он уже отсортирован. Если больше, то он может быть разделен и рекурсивно отсортирован. Функция ``partition`` воплощает описанный ранее процесс.
 
 .. _lst_quick:
 
 .. activecode:: lst_quick
-    :caption: Quick Sort
+    :caption: Быстрая сортировка
 
     def quickSort(alist):
        quickSortHelper(alist,0,len(alist)-1)
@@ -146,13 +104,12 @@ implements the process described earlier.
    :modelfile: sortmodels.js
    :viewerfile: sortviewers.js
    :model: QuickSortModel
-   :viewer: BarViewer
+   :viewer: BarViewer 
 
-
-For more detail, CodeLens 7 lets you step through the algorithm.
+Для большей детализации, CodeLens 7 помогут вам пошагово пройти весь алгоритм.
 
 .. codelens:: quicktrace
-    :caption: Tracing the Quick Sort
+    :caption: Трассировка быстрой сортировки
 
     def quickSort(alist):
        quickSortHelper(alist,0,len(alist)-1)
@@ -199,37 +156,15 @@ For more detail, CodeLens 7 lets you step through the algorithm.
 
     alist = [54,26,93,17,77,31,44,55,20]
     quickSort(alist)
-    print(alist)
+    print(alist) 
 
-To analyze the ``quickSort`` function, note that for a list of length
-*n*, if the partition always occurs in the middle of the list, there
-will again be :math:`\log n` divisions. In order to find the split
-point, each of the *n* items needs to be checked against the pivot
-value. The result is :math:`n\log n`. In addition, there is no need
-for additional memory as in the merge sort process.
+Для анализа функции ``quickSort`` стоит отметить, что для списка длиной *n*, если деление приходится на его середину, мы вновь получим :math:`\log n` разделений. С целью найти точку разбиения, каждый из *n* элементов нуждается в сравнении с опорным значением. Результатом станет :math:`n\log n`. При этом не требуется дополнительной памяти, как в сортировке слиянием.
 
-Unfortunately, in the worst case, the split points may not be in the
-middle and can be very skewed to the left or the right, leaving a very
-uneven division. In this case, sorting a list of *n* items divides into
-sorting a list of 0 items and a list of :math:`n-1` items. Then
-sorting a list of :math:`n-1` divides into a list of size 0 and a list
-of size :math:`n-2`, and so on. The result is an :math:`O(n^{2})`
-sort with all of the overhead that recursion requires.
+К сожалению, в наихудшем случае точка разбиения может быть не по середине, а скакать слева направо, делая разделение очень неравномерным. В этом случае сортировка списка из *n* элементов разделится на сортировку списков размером 0 и :math:`n-1` элементов. Далее сортировка списка длиной :math:`n-1` опять даст подсписки из 0 и :math:`n-2` элементов, и так далее. Результат: :math:`O(n^{2})` со всеми накладными расходами, требуемыми для рекурсии.
 
-We mentioned earlier that there are different ways to choose the pivot
-value. In particular, we can attempt to alleviate some of the potential
-for an uneven division by using a technique called **median of three**.
-To choose the pivot value, we will consider the first, the middle, and
-the last element in the list. In our example, those are 54, 77, and 20.
-Now pick the median value, in our case 54, and use it for the pivot
-value (of course, that was the pivot value we used originally). The idea
-is that in the case where the the first item in the list does not belong
-toward the middle of the list, the median of three will choose a better
-“middle” value. This will be particularly useful when the original list
-is somewhat sorted to begin with. We leave the implementation of this
-pivot value selection as an exercise.
+Ранее мы упоминали, что есть несколько способов выбора опорного значения. В частности, мы можем попытаться сгладить потенциальный дисбаланс в разбиении с помощью метода, называемого **медианой трёх**. Чтобы выбрать опорное значение, мы рассматриваем первый, средний и последний элементы списка. В нашем примере это будут 54, 77 и 20. Теперь определим из них медиану - 54 в данном случае - и используем её в качестве опоры (естественно, это было опорное значение, которое мы использовали первоначально). Идея в том, что когда первый элемент списка не принадлежит его середине, медиана трёх станет лучшим "срединным" значением. Особенно это полезно, если первоначальный список уже подвергался частичной сортировке. Мы вам оставляем реализацию такого выбора опорного значения в качестве упражнения.
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
    .. mchoicemf:: question_sort_7
       :correct: d
@@ -237,12 +172,12 @@ pivot value selection as an exercise.
       :answer_b: [9, 3, 10, 13, 12, 14]
       :answer_c: [9, 3, 10, 13, 12, 14, 17, 16, 15, 19]
       :answer_d: [9, 3, 10, 13, 12, 14, 19, 16, 15, 17]
-      :feedback_a: It's important to remember that quicksort works on the entire list and sorts it in place.
-      :feedback_b: Remember quicksort works on the entire list and sorts it in place.
-      :feedback_c: The first partitioning works on the entire list, and the second partitioning works on the left partition not the right.
-      :feedback_d: The first partitioning works on the entire list, and the second partitioning works on the left partition.
+      :feedback_a: Важно помнить, что быстрая сортировка работает со списком целиком, и сортирует его "по месту".
+      :feedback_b: Помните, что быстрая сортировка работает со списком целиком, и сортирует его "по месту".
+      :feedback_c: Первое разбиение работает со списком целиком, второе - с полученной левой (не правой) частью.
+      :feedback_d: Первое разбиение работает со списком целиком, второе - с полученной левой частью.
 
-      Given the following list of numbers [14, 17, 13, 15, 19, 10, 3, 16, 9, 12] which answer shows the contents of the list after the second partitioning according to the quicksort algorithm?
+      Какой из ответов показывает содержимое списка после второго разбиения с помощью алгоритма быстрой сортировки для следующего списка чисел [14, 17, 13, 15, 19, 10, 3, 16, 9, 12]?
 
    .. mchoicemf:: question_sort_8
        :correct: b
@@ -250,14 +185,12 @@ pivot value selection as an exercise.
        :answer_b: 9
        :answer_c: 16
        :answer_d: 19
-       :feedback_a: The three numbers used in selecting the pivot are 1, 9, 19.  1 is not the median, and would be a very bad choice for the pivot since it is the smallest number in the list.
-       :feedback_b:  Good job.
-       :feedback_c: although 16 would be the median of 1, 16, 19 the middle is at len(list) // 2.
-       :feedback_d: the three numbers used in selecting the pivot are 1, 9, 19.  9 is the median.  19 would be a bad choice since it is almost the largest.
+       :feedback_a: Три числа, из которых выбирается опорное значение, - это 1, 9, 19.  1 - не медиана и будет в принципе плохим опорным значением, потому как является наименьшим элементом.
+       :feedback_b:  Отлично!
+       :feedback_c: Хотя 16 - медиана для 1, 16, 19, середина списка - len(list) // 2.
+       :feedback_d: Три числа, используемые для выбора опорного значения -это 1, 9, 19.  9 - медиана.  19 будет плохим выбором, потому что это - наибольшее значение.
 
-       Given the following list of numbers [1, 20, 11, 5, 2, 9, 16, 14, 13, 19] what would be the first pivot value using the median of 3 method?
-
-
+        Для следующего списка чисел [1, 20, 11, 5, 2, 9, 16, 14, 13, 19] каким будет первый опорный элемент при использовании метода "медиана трёх"?
 
    .. mchoicema:: question_sort_9
        :answer_a: Shell Sort
@@ -265,9 +198,9 @@ pivot value selection as an exercise.
        :answer_c: Merge Sort
        :answer_d: Insertion Sort
        :correct: c
-       :feedback_a: Shell sort is about ``n^1.5``
-       :feedback_b: Quick sort can be O(n log n), but if the pivot points are not well chosen and the list is just so, it can be O(n^2).
-       :feedback_c: Merge Sort is the only guaranteed O(n log n) even in the worst case.  The cost is that merge sort uses more memory.
-       :feedback_d: Insertion sort is ``O(n^2)``
+       :feedback_a: Сортировка Шелла порядка ``n^1.5``
+       :feedback_b: Быстрая сортировка может иметь O(n log n), но если опорная величина выбрана плохо, то она O(n^2).
+       :feedback_c: Сортировка слия нием единственная гарантирует O(n log n) даже в наихудшем случае.  Цена этого - использование дополнительного объёма памяти.
+       :feedback_d: Сортировка вставками имеет ``O(n^2)``.
 
-       Which of the following sort algorithms are guaranteed to be O(n log n) even in the worst case?
+        Какие из следующих алгоритмов сортировки гарантированно имеют *O(n log n)* даже для наихудшего случая?
