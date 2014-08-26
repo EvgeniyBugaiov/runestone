@@ -7,20 +7,12 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Searching
----------
+Поиск
+------
 
-We will now turn our attention to some of the most common problems that
-arise in computing, those of searching and sorting. In this section we
-will study searching. We will return to sorting later in the chapter.
-Searching is the algorithmic process of finding a particular item in a
-collection of items. A search typically answers either ``True`` or
-``False`` as to whether the item is present. On occasion it may be
-modified to return where the item is found. For our purposes here, we
-will simply concern ourselves with the question of membership.
+Теперь обратим наше внимание задачи, наиболее часто возникающие при вычислениях: поиск и сортировку. В этом разделе мы изучим первую из них, а ко второй вернёмся в этой главе чуть позже. Поиск - это алгоритмический процесс нахождения конкретного элемента в коллекции. Обычно он даёт результат ``True`` или ``False``, в зависимости от присутствия элемента. Иногда поиск может быть модифицирован, чтобы возвращать найденный элемент. Для наших целей будет достаточно просто решить вопрос наличия искомого.
 
-In Python, there is a very easy way to ask whether an item is in a list
-of items. We use the ``in`` operator.
+В Python есть очень простой способ узнать, входит ли данный элемент в список. Для этого используют оператор ``in``::
 
 ::
 
@@ -30,8 +22,4 @@ of items. We use the ``in`` operator.
     True
     >>> 
 
-Even though this is easy to write, an underlying process must be carried
-out to answer the question. It turns out that there are many different
-ways to search for the item. What we are interested in here is how these
-algorithms work and how they compare to one another.
-
+Хотя это легко написать, для ответа на вопрос должен запуститься скрытый процесс. Оказывается, существует множество различных способов поиска элемента. Нас будет интересовать, как эти алгоритмы работают и соотносятся друг с другом.
