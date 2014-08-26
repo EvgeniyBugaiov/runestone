@@ -7,55 +7,18 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Dynamic Programming
--------------------
+Динамическое программирование
+------------------------------
 
-Many programs in computer science are written to optimize some value;
-for example, find the shortest path between two points, find the line
-that best fits a set of points, or find the smallest set of objects that
-satisfies some criteria. There are many strategies that computer
-scientists use to solve these problems. One of the goals of this book is
-to expose you to several different problem solving strategies. **Dynamic
-programming** is one strategy for these types of optimization problems.
+Многие программы в информатике пишутся для того, чтобы оптимизировать некоторое значение. Например, найти кратчайший путь между двумя точками, найти линию, лучше всего соответствующую набору точек, или найти наименьшее множество объектов, удовлетворяющих некоему критерию. Для их решения существует множество стратегий, которыми пользуются учёные-информатики. Одна из целей этой книги и состоит в том, чтобы представить вам несколько различных способов поиска решения задач. Один из них - **динамическое программирование**, которое используют при решении задач по оптимизации такого типа.
 
-A classic example of an optimization problem involves making change
-using the fewest coins. Suppose you are a programmer for a vending
-machine manufacturer. Your company wants to streamline effort by giving
-out the fewest possible coins in change for each transaction. Suppose a
-customer puts in a dollar bill and purchases an item for 37 cents. What
-is the smallest number of coins you can use to make change? The answer
-is six coins: two quarters, one dime, and three pennies. How did we
-arrive at the answer of six coins? We start with the largest coin in our
-arsenal (a quarter) and use as many of those as possible, then we go to
-the next lowest coin value and use as many of those as possible. This
-first approach is called a **greedy method** because we try to solve as
-big a piece of the problem as possible right away.
+К классическим примерам задач на оптимизацию является выдача сдачи с использованием наименьшего количества монет. Допустим, вы программист на производстве торговых автоматов. Ваша компания хочет оптимизировать усилия, выдавая как можно меньше монет на сдачу. Предположим, клиент вносит долларовую банкноту и покупает товар за 37 центов. Какое наименьшее количество монет вы можете использовать, чтобы выдать ему сдачу? Ответ: шесть - два четвертака, один десятицентовик и три пенни. Как мы получили ответ в шесть монет? Мы начали с монеты наибольшего номинала в нашем арсенале (четвертак) и использовали их столько, сколько это было возможно. Затем тоже самое проделали со следующейю по номиналу монетой, и так далее. Этот подход называется **жадным методом**, поскольку пытается решить настолько большой кусок задачи, насколько это возможно здесь и сейчас.
 
+Жадный метод хорошо срабатывает, когда мы используем монеты США, но предположим, что ваша компания решила поставлять свои автоматы в Нижнюю Эльбонию, где в дополнение к монетам номиналом 1, 5, 10 и 25 центов используются монеты в 21 цент. В этом случае жадный метод потерпит поражение в поиске оптимального решения для поиска 63 центов на сдачу. С добавленной 21-центовой монетой он по-прежнему найдёт решение в шесть монет. Однако, правильным ответом будут три монеты по 21-му центу.
 
+Давайте рассмотрим метод, о котором с уверенностью можно сказать, что он всегда найдёт оптимальное решение. Поскольку эта глава о рекурсии, вы можете догаться, что он будет рекурсивным. Начнём с определения базового случая: если мы попытаемся выдать на сдачу некоторую сумму, являющуюся одним из имеющихся номиналов, то ответ прост - одна монета.
 
-The greedy method works fine when we are using U.S. coins, but suppose
-that your company decides to deploy its vending machines in Lower
-Elbonia where, in addition to the usual 1, 5, 10, and 25 cent coins they
-also have a 21 cent coin. In this instance our greedy method fails to
-find the optimal solution for 63 cents in change. With the addition of
-the 21 cent coin the greedy method would still find the solution to be
-six coins. However, the optimal answer is three 21 cent pieces.
-
-Let’s look at a method where we could be sure that we would find the
-optimal answer to the problem. Since this section is about recursion,
-you may have guessed that we will use a recursive solution. Let’s start
-with identifying the base case. If we are trying to make change for the
-same amount as the value of one of our coins, the answer is easy, one
-coin.
-
-If the amount does not match we have several options. What we want is
-the minimum of a penny plus the number of coins needed to make change
-for the original amount minus a penny, or a nickel plus the number of
-coins needed to make change for the original amount minus five cents, or
-a dime plus the number of coins needed to make change for the original
-amount minus ten cents, and so on. So the number of coins needed to make
-change for the original amount can be computed according to the
-following: 
+Если это невозможно, то у нас есть несколько вариантов. Нам нужен минимум из пенни плюс количество монет, требуемых для первоначальной суммы сдачи минус пенни, или из пятицентовика плюс количество монет для первоначальной суммы сдачи минус пять центов, или из десятицентовика плюс количество монет сдачи с оригинальной суммы минус десять центов, и так далее. Таким образом, необходимое для сдачи количество монет может быть посчитано следующим образом:
 
 .. math::
 
@@ -69,20 +32,7 @@ following:
    \end{cases}
    \label{eqn_change}
 
-
-The algorithm for doing what we have just described is shown in
-:ref:`Listing 7 <lst_change1>`. In line 3 we are checking our base case;
-that is, we are trying to make change in the exact amount of one of our
-coins. If we do not have a coin equal to the amount of change, we make
-recursive calls for each different coin value less than the amount of
-change we are trying to make. Line 6 shows how we filter the
-list of coins to those less than the current value of change using a
-list comprehension. The recursive call also reduces the total amount of
-change we need to make by the value of the coin selected. The recursive
-call is made in line 7. Notice that on that same line we add 1
-to our number of coins to account for the fact that we are using a coin.
-Just adding 1 is the same as if we had made a recursive call asking
-where we satisfy the base case condition immediately.
+Алгоритм, выполняющий то, что мы только что описали, показан в :ref:`листинге 7 <lst_change1>`. В строке 3 мы проверяем наш базовый случай, т.е. пытаемся дать сдачу одной монетой. Если это не получается, то делаем рекурсивный вызов для каждого номинала, меньшего, чем сумма сдачи. Строка 6 показывает, как отфильтровать список монет, которые меньше текущего значения сдачи, используя генераторы списков. Рекурсивный вызов также уменьшает общую сумму сдачи, которую мы пытаемся выдать, на номинал выбранной монеты. Это происходит в строке 7. Обратите внимание, что там же мы добавляем единицу к количеству монет на счёте, отражая тот факт использования монеты. Просто добавить 1 - это то же самое, что сделать рекурсивный вызов, спрашивающий, не соответствуем ли мы сейчас базовому случаю.
 
 .. _lst_change1:
 
@@ -90,7 +40,7 @@ where we satisfy the base case condition immediately.
 .. highlight:: python
     :linenothreshold: 5
 
-**Listing 7**
+**Листинг 7**
 
 ::
 
@@ -111,24 +61,9 @@ where we satisfy the base case condition immediately.
 .. highlight:: python
     :linenothreshold: 500
 
-The trouble with the algorithm in :ref:`Listing 7 <lst_change1>` is that it is
-extremely inefficient. In fact, it takes 67,716,925 recursive calls to
-find the optimal solution to the 4 coins, 63 cents problem! To
-understand the fatal flaw in our approach look at :ref:`Figure 5 <fig_c1ct>`,
-which illustrates a small fraction of the 377 function calls needed to
-find the optimal set of coins to make change for 26 cents.
+Проблема алгоритма из :ref:`листинга 7 <lst_change1>` в том, что он ужасно неэффективный. По факту, для поиска оптимального решения в четыре монеты для 63-х центовой задачи потребуется 67 716 925 рекурсивных вызовов! Чтобы понять фатальный недостаток нашего подхода, посмотрите на :ref:`рисунок 5 <fig_c1ct>`, который иллюстрирует небольшую часть 377 вызовов функции, необходимых для поиска оптимального набора монет на сдачу 26-и центов.
 
-Each node in the graph corresponds to a call to ``recMC``. The label on
-the node indicates the amount of change for which we are computing the
-number of coins. The label on the arrow indicates the coin that we just
-used. By following the graph we can see the combination of coins that
-got us to any point in the graph. The main problem is that we are
-re-doing too many calculations. For example, the graph shows that the
-algorithm would recalculate the optimal number of coins to make change
-for 15 cents at least three times. Each of these computations to find
-the optimal number of coins for 15 cents itself takes 52 function calls.
-Clearly we are wasting a lot of time and effort recalculating old
-results.
+Каждый узел графа связан с вызовом ``recMC``. Метка узла показывает сумму сдачи, для которой считается количество монет. Метка стрелки показывает монету, которую мы только что использовали. Следуя графу, мы можем видеть комбинации монет, имеющиеся в любой его точке. Главная проблема в том, что мы повторно делаем слишком много вычислений. Например, граф показывает, что алгоритм будет перевычислять оптимальное количество монет, составляющих сдачу в 15 центов, как минимум трижды. Каждое такое вычисление потребует 52 вызова функции. Очевидно, что мы потратим в пустую много времени и усилий, перевычисляя уже имеющиеся результаты.
 
 .. _fig_c1ct:
 
@@ -137,21 +72,15 @@ results.
    :width: 100%
    :alt: image
 
-   Figure 3: Call Tree for Listing 7
+Рисунок 3: Дерево вызовов для листинга 7.
 
-The key to cutting down on the amount of work we do is to remember some
-of the past results so we can avoid recomputing results we already know.
-A simple solution is to store the results for the minimum number of
-coins in a table when we find them. Then before we compute a new
-minimum, we first check the table to see if a result is already known.
-If there is already a result in the table, we use the value from the
-table rather than recomputing. :ref:`ActiveCode 3 <lst_change2>` shows a modified
-algorithm to incorporate our table lookup scheme.
+Ключ к сокращению объёма работы - это запоминать предыдущие результаты, чтобы избежать перевычисления уже известного. Простым решением будет сохранять результаты с минимальным количеством монет в таблицу. Тогда перед тем, как вычислять новый минимум, мы сначала проверим, не известен ли нам результат заранее. Если он есть в таблице - используем это значение. :ref:`ActiveCode 3 <lst_change2>` демонстрирует изменённый алгоритм совместно со схемой поиска в таблице.
+
 
 .. _lst_change2:
 
 .. activecode:: lst_change2
-    :caption: Recursively Counting Coins with Table Lookup
+    :caption: Рекурсивный подсчёт монет с поиском в таблице
 
     def recDC(coinValueList,change,knownResults):
        minCoins = change
@@ -169,62 +98,31 @@ algorithm to incorporate our table lookup scheme.
                 knownResults[change] = minCoins
        return minCoins
 
-    print(recDC([1,5,10,25],63,[0]*64))
+    print(recDC([1,5,10,25],63,[0]*64)) 
 
-Notice that in line 6 we have added a test to see if our table
-contains the minimum number of coins for a certain amount of change. If
-it does not, we compute the minimum recursively and store the computed
-minimum in the table. Using this modified algorithm reduces the number
-of recursive calls we need to make for the four coin, 63 cent problem to
-221 calls!
+Обратите внимание, что в строке 6 мы добавили проверку, не содержится ли в таблице минимальное количество монет для данной суммы сдачи. Если нет, то рекурсивно вычисляем минимум и сохраняем его в таблицу. В этом изменённом алгоритме количество рекурсивных вызовов для 63-х центовой задачи уменьшилось до 221!
 
-Although the algorithm in :ref:`AcitveCode 3 <lst_change2>` is correct, it looks and
-feels like a bit of a hack.  Also, if we look at the ``knownResults`` lists
-we can see that there are some holes in the table. In fact the term for
-what we have done is not dynamic programming but rather we have improved
-the performance of our program by using a technique known as
-“memoization,” or more commonly called “caching.”
+Хотя алгоритм из :ref:`AcitveCode 3 <lst_change2>` верен, он выглядит несколько рваным. Также если мы посмотрим на список ``knownResults``, то увидим, что в таблице есть несколько дыр. На самом делесделанное нами описывается не термином "динамическое программирование". Мы улучшили производительность нашей программы с помощью метода, известного как "запоминание" (чаще его называют "кэширование").
 
-A truly dynamic programming algorithm will take a more systematic
-approach to the problem. Our dynamic programming solution is going to
-start with making change for one cent and systematically work its way up
-to the amount of change we require. This guarantees us that at each step
-of the algorithm we already know the minimum number of coins needed to
-make change for any smaller amount.
+Настоящий алгоритм динамического программирования потребует более систематичного подхода к задаче. Наше решение начинает со сдачи в один цент и систематично работает над получением требуемой суммы. Это гарантирует нам, что на каждом шаге алгоритма мы уже знаем минимальное количество монет, требуемое для сдачи любой меньшей суммы.
 
-Let’s look at how we would fill in a table of minimum coins to use in
-making change for 11 cents. :ref:`Figure 4 <fig_dpcoins>` illustrates the
-process. We start with one cent. The only solution possible is one coin
-(a penny). The next row shows the minimum for one cent and two cents.
-Again, the only solution is two pennies. The fifth row is where things
-get interesting. Now we have two options to consider, five pennies or
-one nickel. How do we decide which is best? We consult the table and see
-that the number of coins needed to make change for four cents is four,
-plus one more penny to make five, equals five coins. Or we can look at
-zero cents plus one more nickel to make five cents equals 1 coin. Since
-the minimum of one and five is one we store 1 in the table. Fast forward
-again to the end of the table and consider 11 cents. :ref:`Figure 5 <fig_eleven>`
-shows the three options that we have to consider:
+Давайте посмотрим, как мы можем заполнить таблицу минимумами монет для сдачи в 11 центов. :ref:`Рисунок 4 <fig_dpcoins>` иллюстрирует этот процесс. Мы начинаем с одного цента. Единственное возможное решение - одна монета (пенни). Следующая строка показывает минимум для одного и двух центов. Решение вновь единственное и равняется двум пенни. На пятой строке жизнь становится интереснее. Теперь у нас есть два варианта для рассмотрения: пять пенни или один пятицентовик. Как мы решим, какой из них лучше? Мы проконсультируемся с таблицей и увидим, что сдача в четыре цента даст четыре монеты, плюс ещё одно пенни - итого пять монет. Или мы рассмотрим нуль монет плюс один пятицентовик, что даст нам одну монету. Поскольку минимум из одного и пяти равен одному, то мы сохраняем в таблице единицу. Перенесёмся в конец таблицы и рассмотрим 11 центов. :ref:`Рисунок 5 <fig_eleven>` показывает три варианта для изучения:
 
-#. A penny plus the minimum number of coins to make change for
-   :math:`11-1 = 10` cents (1)
+#. Пенни плюс минимальное количество монет для сдачи в 11 - 1 = 10 центов (1)
 
-#. A nickel plus the minimum number of coins to make change for
-   :math:`11 - 5 = 6` cents (2)
+#. Пятицентовик плюс минимально количество монет для сдачи в 11 - 5 = 6 центов (2)
 
-#. A dime plus the minimum number of coins to make change for
-   :math:`11 - 10 = 1` cent (1)
+#. Десятицентовик плюс минимальное количество монет для сдачи в 11 - 10 = 1 цент (1)
 
-Either option 1 or 3 will give us a total of two coins which is the
-minimum number of coins for 11 cents.
+Варианты 1 и 3 дают нам ответ в две монеты, что и является минимальным количеством для сдачи в 11 центов.
 
 .. _fig_dpcoins:
 
 .. figure:: Figures/changeTable.png
    :align: center
    :alt: image
-       
-   Figure 4: Minimum Number of Coins Needed to Make Change
+
+Рисунок 4: Минимальное количество монет, составляющее сдачу.
 
 .. _fig_eleven:
 
@@ -232,18 +130,13 @@ minimum number of coins for 11 cents.
    :align: center
    :alt: image
 
-   Figure 5: Three Options to Consider for the Minimum Number of Coins for Eleven Cents
+Рисунок 5: Три варианта для нахождения минимального количества монет для сдачи в 11 центов.
 
-:ref:`Listing 8 <lst_dpchange>` is a dynamic programming algorithm to solve our
-change-making problem. ``dpMakeChange`` takes three parameters: a list
-of valid coin values, the amount of change we want to make, and a list
-of the minimum number of coins needed to make each value. When the
-function is done ``minCoins`` will contain the solution for all values
-from 0 to the value of ``change``.
+:ref:`Листинг 8 <lst_dpchange>` - это алгоритм динамического программирования, решающий нашу задачу о сдаче. ``dpMakeChange`` принимает три параметра: список действующих номиналов монет, сумму сдачи, которую мы хотим выдать, и список из минимальных количеств монет, необходимых для выдачи каждого значения. Когда функция закончит свою работу, ``minCoins`` будет содержать решение для всех значений от нуля до ``change``.
 
 .. _lst_dpchange:
 
-**Listing 8**
+**Листинг 8**
 
 ::
 
@@ -256,48 +149,18 @@ from 0 to the value of ``change``.
           minCoins[cents] = coinCount
        return minCoins[change]
 
-Note that ``dpMakeChange`` is not a recursive function, even though we
-started with a recursive solution to this problem. It is important to
-realize that just because you can write a recursive solution to a
-problem does not mean it is the best or most efficient solution. The
-bulk of the work in this function is done by the loop that starts on
-line 4. In this loop we consider using all possible coins to
-make change for the amount specified by ``cents``. Like we did for the
-11 cent example above, we remember the minimum value and store it in our
-``minCoins`` list.
+Обратите внимание, что ``dpMakeChange`` не является рекурсивной, хотя  начинали мы с рекурсивного решения задачи. Важно понимать, что одна возможность написать рекурсивное решение не означает, что оно будет лучшим или наиболее эффективным. Основная часть работы в этой функции приходится на цикл, который начинается в строке 4. В нём мы рассматриваем все возможные сочетания монет, дающие заданную сумму, определённую ``cents``. Как мы уже делали в примере для одиннадцати центов выше, мы запоминаем минимальные значения и сохраняем их в списке ``minCoins``.
 
-Although our making change algorithm does a good job of figuring out the
-minimum number of coins, it does not help us make change since we do not
-keep track of the coins we use. We can easily extend ``dpMakeChange`` to
-keep track of the coins used by simply remembering the last coin we add
-for each entry in the ``minCoins`` table. If we know the last coin
-added, we can simply subtract the value of the coin to find a previous
-entry in the table that tells us the last coin we added to make that
-amount. We can keep tracing back through the table until we get to the
-beginning. 
+Хотя этот алгоритм выдачи сдачи проделывает хорошую работу по представлению минимального количества монет, он не поможет нам выдать сдачу пока мы не отследим монеты, которые используем. Для этого можно легко расширить ``dpMakeChange``, используя простое запоминание последней добавленной монеты для каждого экземпляра в таблице ``minCoins``. Если мы знаем последнюю добавленную монету, её значение можно просто вычесть, чтобы найти в таблице предыдущий экземпляр, который скажет нам последнюю добавленную монету для составления этой суммы. Мы сможем отслеживат монеты по таблице до тех пор, пока не придём к началу.
 
-:ref:`ActiveCode 4 <lst_dpremember>` shows the ``dpMakeChange`` algorithm
-modified to keep track of the coins used, along with a function
-``printCoins`` that walks backward through the table to print out the
-value of each coin used.
-This shows the algorithm in
-action solving the problem for our friends in Lower Elbonia. The first
-two lines of ``main`` set the amount to be converted and create the list of coins used. The next two
-lines create the lists we need to store the results. ``coinsUsed`` is a
-list of the coins used to make change, and ``coinCount`` is the minimum
-number of coins used to make change for the amount corresponding to the
-position in the list.
+:ref:`ActiveCode 4 <lst_dpremember>` демонстрирует алгоритм ``dpMakeChange``, изменённый для возможности отслеживать использованные монеты, вместе с функцией ``printCoins``, проходящей по таблице в обратном направлении и печатающей значение каждой использованной монеты. Это демонстрирует алгоритм, в действии решающий проблему наших друзей из Нижней Эльбонии. Первые две строки в ``main`` устанавливают сумму, которую нужно конвертировать, и создают список используемых монет. Следующие две строки инициализируют список, необходимый для хранения результатов. ``coinsUsed`` - список монет, использованных для выдачи сдачи, а ``coinCount`` - минимальное количество монет для сдачи суммы, связанной с позицией в списке.
 
-Notice that the coins we print out come directly from the ``coinsUsed``
-array. For the first call we start at array position 63 and print 21.
-Then we take :math:`63 - 21 = 42` and look at the 42nd element of the
-list. Once again we find a 21 stored there. Finally, element 21 of the
-array also contains 21, giving us the three 21 cent pieces.
+Обратите внимание, что монеты, которые мы печатаем, берутся непосредственно из массива ``coinsUsed``. На первом вызове мы начинаем с 63-го индекса в массиве и печатаем 21. Затем берём 63 - 21 = 42 и смотрим на 42-й элемент в списке, где вновь обнаруживаем сохранённое 21. Наконец, 21-й элемент списка тоже содержит 21, что даёт нам три монеты в 21 цент.
 
 .. _lst_dpremember:
 
 .. activecode:: lst_dpremember
-    :caption: Complete Solution to the Change Problem
+    :caption: Полное решение задачи о сдаче
 
     def dpMakeChange(coinValueList,change,minCoins,coinsUsed):
        for cents in range(change+1):
@@ -331,8 +194,4 @@ array also contains 21, giving us the three 21 cent pieces.
         print("The used list is as follows:")
         print(coinsUsed)
         
-    main()
-        
-
-
-
+    main() 
