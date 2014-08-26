@@ -7,25 +7,19 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Summary
--------
+Заключение
+-----------
 
-In this chapter we have looked at examples of several recursive
-algorithms. These algorithms were chosen to expose you to several
-different problems where recursion is an effective problem-solving
-technique. The key points to remember from this chapter are as follows:
+В этой главе мы рассмотрели примеры нескольких рекурсивных алгоритмов. Они были выбраны, чтобы продемонстрировать вам различные задачи, для которых рекурсия является эффективной техникой решения. Ключевые моменты этой главы заключаются в следующем:
 
--  All recursive algorithms must have a base case.
+- Все рекурсивные алгоритмы должны иметь базовый случай.
 
--  A recursive algorithm must change its state and make progress toward
-   the base case.
+- Рекурсивный алгоритм должны изменять своё состояние и двигаться по направлению к базовому случаю.
 
--  A recursive algorithm must call itself (recursively).
+- Рекурсивный алгоритм должен вызывать самоё себя (рекурсивно).
 
--  Recursion can take the place of iteration in some cases.
+- В некоторых случаях рекурсией можно заменять итерирование.
 
--  Recursive algorithms often map very naturally to a formal expression
-   of the problem you are trying to solve.
+- Часто рекурсивные алгоритмы естественно отображают формальное выражение задачи, которую вы пытаетесь решить.
 
--  Recursion is not always the answer. Sometimes a recursive solution
-   may be more computationally expensive than an alternative algorithm.
+- Рекурсия - не "серебряная пуля". Иногда рекурсивное решение может быть более ресурсоёмким, чем альтернативный алгоритм.
