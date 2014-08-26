@@ -7,19 +7,15 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Stack Frames: Implementing Recursion
-------------------------------------
+Фрейм стека: реализация рекурсии
+---------------------------------
 
-Suppose that instead of concatenating the result of the recursive call
-to ``toStr`` with the string from ``convertString``, we modified our
-algorithm to push the strings onto a stack prior to making the recursive
-call. The code for this modified algorithm is shown in
-:ref:`ActiveCode 6 <lst_recstack>`.
+Предположим, что вместо того, чтобы объединять результаты рекурсивных вызовов ``toStr`` со строкой из ``convertString``, мы изменим наш алгоритм таким образом, чтобы он складывал строки в стек перед тем, как сделать рекурсивный вызов. Код такого алгоритма показан в :ref:`ActiveCode 6 <lst_recstack>`.
 
 .. _lst_recstack:
 
 .. activecode:: lst_recstack
-    :caption: Converting an Integer to a String Using a Stack
+    :caption: Преобразование целого числа в строку с использованием стека
 
     from pythonds.basic.stack import Stack
 
@@ -38,47 +34,30 @@ call. The code for this modified algorithm is shown in
             res = res + str(rStack.pop())
         return res
 
-    print(toStr(1453,16))
+    print(toStr(1453,16)) 
 
-Each time we make a call to ``toStr``, we push a character on the stack.
-Returning to the previous example we can see that after the fourth call
-to ``toStr`` the stack would look like :ref:`Figure 5 <fig_recstack>`. Notice
-that now we can simply pop the characters off the stack and concatenate
-them into the final result, ``"1010"``.
+Каждый раз, когда вызывается ``toStr``, в стек помещается символ. Возвращаясь к предыдущему примеру, мы можем увидеть, что после четвёртого вызова ``toStr`` стек будет выглядеть, как показано на :ref:`рисунке 5 <fig_recstack>`. Обратите внимание, что теперь мы можем просто вытолкнуть символы из стека и объединить их в итоговый результат ``"1010"``.
 
-.. _fig_recstack:
+ .. _fig_recstack:
 
 .. figure:: Figures/recstack.png
    :align: center
 
-   Figure 5: Strings Placed on the Stack During Conversion
+    Рисунок 5: Строки, помещённые в стек во время преобразования.
 
-
-The previous example gives us some insight into how Python implements a
-recursive function call. When a function is called in Python, a **stack
-frame** is allocated to handle the local variables of the function. When
-the function returns, the return value is left on top of the stack for
-the calling function to access. :ref:`Figure 6 <fig_callstack>` illustrates the
-call stack after the return statement on line 4.
+Предыдущий пример даёт нам некоторое представление о том, как в Python реализованы рекурсивные вызовы. Когда в Python вызывается функция, для управления её локальными переменными выделяется **фрейм стека**. Возвращаемое значение к моменту окончания работы функции будет лежать на вершине стека, доступное для вызывающей части программы. *Рисунок 6* иллюстрирует стек после оператора ``return`` в строке 4.
 
 .. _fig_callstack:
 
 .. figure:: Figures/newcallstack.png
    :align: center
 
-   Figure 6: Call Stack Generated from ``toStr(10,2)``
+    Рисунок 6: Стек вызовов, сгенерированный ``toStr(10, 2)``.
 
 
-Notice that the call to ``toStr(2//2,2)`` leaves a return value of
-``"1"`` on the stack. This return value is then used in place of the
-function call (``toStr(1,2)``) in the expression ``"1" + convertString[2%2]``, which will leave the string ``"10"`` on the top of
-the stack. In this way, the Python call stack takes the place of the
-stack we used explicitly in :ref:`Listing 4 <lst_recstack>`. In our list summing
-example, you can think of the return value on the stack taking the place
-of an accumulator variable.
+Обратите внимание, что вызов ``toStr(2//2, 2)`` оставляет возвращаемое значение ``"1"`` в стеке. Затем оно подставляется вместо функции ``toStr(1, 2)`` в выражение ``"1" + convertString[2%2]``, которое оставляет на вершине стека ``"10"``. Таким образом, стек вызовов Python работает так же, как и стек, который мы явно использовали в :ref:`листинге 4 <lst_recstack>`. В нашем суммирующем список примере вы можете думать о возвращаемом значении в стеке, как об аккумулирующей переменной.
 
-The stack frames also provide a scope for the variables used by the
-function. Even though we are calling the same function over and over,
-each call creates a new scope for the variables that are local to the
-function.
 
+Также фрейм стека предоставляет область видимости для переменных, используемых функцией. Несмотря на то, что мы вновь и вновь вызываем одну и ту же функцию, каждый вызов создаёт новую область видимости для её локальных переменных.
+
+Если вы хорошо уясните для себя идею стека, то вам будет намного легче писать соответствующие рекурсивные функции.
