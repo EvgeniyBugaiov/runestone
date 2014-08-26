@@ -7,36 +7,11 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Sorting
--------
+Сортировка
+-----------
 
-Sorting is the process of placing elements from a collection in some
-kind of order. For example, a list of words could be sorted
-alphabetically or by length. A list of cities could be sorted by
-population, by area, or by zip code. We have already seen a number of
-algorithms that were able to benefit from having a sorted list (recall
-the final anagram example and the binary search).
+Сортировка - это процесс размещения элементов коллекции в неком порядке. Например, список слов может быть отсортирован по алфавиту или по длине. Список городов - по численности населения, площади или почтовому индексу. Мы уже видели несколько алгоритмов, способных использовать преимущества отсортированного списка (вспомните последний пример с анаграммой или бинарный поиск).
 
-There are many, many sorting algorithms that have been developed and
-analyzed. This suggests that sorting is an important area of study in
-computer science. Sorting a large number of items can take a substantial
-amount of computing resources. Like searching, the efficiency of a
-sorting algorithm is related to the number of items being processed. For
-small collections, a complex sorting method may be more trouble than it
-is worth. The overhead may be too high. On the other hand, for larger
-collections, we want to take advantage of as many improvements as
-possible. In this section we will discuss several sorting techniques and
-compare them with respect to their running time.
+Существует очень много алгоритмов сортировки, которые были разработаны и проанализированы. Это предполагает, что в информатике сортировка - важная область для изучения. Сортировка большого количества элементов может занимать значительную долю вычислительных ресурсов. Как и поиск, эффективность сортировочного алгоритма зависит от количества обрабатываемых элементов. Для малых коллекций сложные сортировочные методы могут принести больше проблем, чем пользы, из-за высоких накладных расходов. С другой стороны, для больших коллекций хотелось бы использовать максимум усовершенствований. В этом разделе мы обсудим несколько сортировочных техник и сравним их по времени выполнения.
 
-Before getting into specific algorithms, we should think about the
-operations that can be used to analyze a sorting process. First, it will
-be necessary to compare two values to see which is smaller (or larger).
-In order to sort a collection, it will be necessary to have some
-systematic way to compare values to see if they are out of order. The
-total number of comparisons will be the most common way to measure a
-sort procedure. Second, when values are not in the correct position with
-respect to one another, it may be necessary to exchange them. This
-exchange is a costly operation and the total number of exchanges will
-also be important for evaluating the overall efficiency of the
-algorithm.
-
+Прежде, чем углубляться в специфичные алгоритмы, стоит подумать об операциях, которые можно было бы использовать при анализе сортировочного процесса. Во-первых, необходимо будет сравнивать два числа, чтобы узнать, какое из них меньше (больше). Для сортировки коллекции может потребоваться некий систематический способ сравнения значений, чтобы увидеть, в правильном ли они стоят порядке. Количество сравнений будет наиболее общим способом измерения сортировочной процедуры. Во-вторых, когда значения стоят на неверных позициях относительно друг друга, их необходимо поменять местами. Этот обмен - затратная операция, так что количество обменов тоже важно при вычислении общей эффективности алгоритма.
