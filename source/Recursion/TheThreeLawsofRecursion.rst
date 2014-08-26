@@ -7,75 +7,50 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Three Laws of Recursion
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Три закона рекурсии
+~~~~~~~~~~~~~~~~~~~~
 
-Like the robots of Asimov, all recursive algorithms must obey three
-important laws:
+Подобно роботам Азимова, все рекурсивные алгоритмы должны подчиняться трём важным законам:
 
-#. A recursive algorithm must have a **base case**.
+#. Рекурсивный алгоритм должен иметь **базовый случай**.
 
-#. A recursive algorithm must change its state and move toward the base
-   case.
+#. Рекурсивный алгоритм должен изменять своё состояние и двигаться по направлению к базовому случаю.
 
-#. A recursive algorithm must call itself, recursively.
+#. Рекурсивный алгоритм должен вызывать сам себя.
 
-Let’s look at each one of these laws in more detail and see how it was
-used in the ``listsum`` algorithm. First, a base case is the condition
-that allows the algorithm to stop recursing. A base case is typically a
-problem that is small enough to solve directly. In the ``listsum``
-algorithm the base case is a list of length 1.
+Давайте рассмотрим каждый из этих законов более подробно и найдём их применение в алгоритме ``listsum``. Первый - базовый случай - это условие, которое позволяет алгоритму остановить рекурсию. Он представляет собой задачу настолько малую, что её можно решить без применения каких-то дополнительных средств. В алгоритме ``listsum`` базовый случай - это список длиной 1.
 
-To obey the second law, we must arrange for a change of state that moves
-the algorithm toward the base case. A change of state means that some
-data that the algorithm is using is modified. Usually the data that
-represents our problem gets smaller in some way. In the ``listsum``
-algorithm our primary data structure is a list, so we must focus our
-state-changing efforts on the list. Since the base case is a list of
-length 1, a natural progression toward the base case is to shorten the
-list. This is exactly what happens on line 5 of :ref:`ActiveCode 2 <lst_recsum>` when we call ``listsum`` with a shorter list.
+Чтобы соблюсти второй закон, мы должны организовать изменения состояния таким образом, чтобы алгоритм двигался по направлению к базовому случаю. Изменение состояния означает модификацию каких-то данных, используемых алгоритмом. Обычно объём данных, представленных в задаче, уменьшается каким-либо образом. В алгоритме ``listsum`` наша первоначальная структура данных - это список, так что следует сфокусировать усилия по изменению состояние на списке. Поскольку базовый случай - это список единичной длины, естественным прогрессом в его сторону будет сокращение списка. Это в точности то, что происходит в строке 5 :ref:`ActiveCode 2 <lst_recsum>`, когда мы вызываем ``listsum`` с более коротким списком.
 
-The final law is that the algorithm must call itself. This is the very
-definition of recursion. Recursion is a confusing concept to many
-beginning programmers. As a novice programmer, you have learned that
-functions are good because you can take a large problem and break it up
-into smaller problems. The smaller problems can be solved by writing a
-function to solve each problem. When we talk about recursion it may seem
-that we are talking ourselves in circles. We have a problem to solve
-with a function, but that function solves the problem by calling itself!
-But the logic is not circular at all; the logic of recursion is an
-elegant expression of solving a problem by breaking it down into a
-smaller and easier problems.
+Последний закон заключается в том, что алгоритм должен вызывать сам себя. Собственно, в этом и заключается определение рекурсии. Рекурсия - смущающая концепция для многих новичков-программистов. Как начинающий программист вы учили, что функции хороши тем, что позволяют взять большую задачу и разбить её на более мелкие части. Их можно решить, написав функцию для каждой. Когда же мы говорим о рекурсии, то может показаться, что мы собираемся зациклиться. У нас есть задача, решаемая с помощью функции, но для этого ей необходимо вызывать саму себя! Однако, логически здесь ничего не замкнуто: логика рекурсии в элегантном выражении решения задачи с помощью разбиения её на более мелкие и лёгкие подзадачи.
 
-In the remainder of this chapter we will look at more examples of
-recursion. In each case we will focus on designing a solution to a
-problem by using the three laws of recursion.
+В конце этой части мы рассмотрим много примеров рекурсии. В каждом случае мы сфокусируемся на разработке решения задачи с помощью использования трёх законов рекурсии.
 
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
-   .. mchoicemf:: question_recsimp_1
+ .. mchoicemf:: question_recsimp_1
       :correct: c
       :answer_a: 6
       :answer_b: 5
       :answer_c: 4
       :answer_d: 3
-      :feedback_a: There are only five numbers on the list, the number of recursive calls will not be greater than the size of the list.
-      :feedback_b: The initial call to listsum is not a recursive call.
-      :feedback_c: the first recursive call passes the list [4,6,8,10], the second [6,8,10] and so on until [10].
-      :feedback_d: This would not be enough calls to cover all the numbers on the list
+      :feedback_a: В списке всего пять чисел. Количество рекурсивных вызовов не может превышать размер списка.
+      :feedback_b: Первоначальный вызов ``listsum`` не считается рекурсивным.
+      :feedback_c: первый рекурсивный вызов работает со списком [4,6,8,10], второй - с [6,8,10] и так далее до [10].
+      :feedback_d: Недостаточно вызовов, чтобы охватить все числа в списке.
 
-      How many recursive calls are made when computing the sum of the list [2,4,6,8,10]?
+	Сколько рекурсивных вызовов делается в процессе подсчёта суммы списка [2,4,6,8,10]?
 
-   .. mchoicemf:: question_recsimp_2    
+.. mchoicemf:: question_recsimp_2    
       :correct: d
       :answer_a: n == 0
       :answer_b: n == 1
       :answer_c: n &gt;= 0
       :answer_d: n &lt;= 1
-      :feedback_a:  Although this would work there are better and slightly more efficient choices. since fact(1) and fact(0) are the same.
-      :feedback_b: A good choice, but what happens if you call fact(0)?
-      :feedback_c: This basecase would be true for all numbers greater than zero so fact of any positive number would be 1.
-      :feedback_d: Good, this is the most efficient, and even keeps your program from crashing if you try to compute the factorial of a negative number.
+      :feedback_a:  Несмотря на то, что это работает, существует более эффективный базовый случай, поскольку fact(1) и fact(0) возвращают одинаковый результат.
+      :feedback_b: Хороший выбор, но что случится, если вы вызовете fact(0)?
+      :feedback_c: Этот базовый случай верен для всех чисел больше нуля, т.е. ``fact`` любого положительного числа будет равен 1.
+      :feedback_d: Прекрасно, этот вариант наиболее эффективен. Он обрушит вашу программу только в том случае, если вы попытаетесь вычислить факториал отрицательного числа.
 
-      Suppose you are going to write a recusive function to calculate the factorial of a number.  fact(n) returns n * n-1 * n-2 * ... Where the factorial of zero is definded to be 1.  What would be the most appropriate base case?
+	Предположим, вы собираетесь написать рекурсивную фунцию для подсчёта факториала числа. ``fact(n)`` возвращает ``n * (n-1) * (n-2)...`` Здесь факториал нуля по определению равен единице. Что будет подходящим базовым случаем?
