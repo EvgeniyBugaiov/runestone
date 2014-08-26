@@ -7,62 +7,22 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Glossary
---------
+Глоссарий
+-----------------
 
 .. glossary::
 
-    base case
-        A branch of the conditional statement in a recursive function that does
-        not give rise to further recursive calls.
+    базовый случай
+        Ветка условного оператора рекурсивной функции, которая не делает следующий рекурсивный вызов.
 
-    data structure
-        An organization of data for the purpose of making it easier to use.
+    бесконечная рекурсия
+        Рекурсивная функция, которая вызывает сама себя и никогда не достигает базового случая. В итоге это приводит к возникновению ошибки времени выполнения.
 
-    exception
-        An error that occurs at runtime.
+    рекурсия
+        Процесс вызова функции, которая уже выполняется.
 
-    handle an exception
-        To prevent an exception from terminating a program by wrapping
-        the block of code in a ``try`` / ``except`` construct.
+    рекурсивный вызов
+        Опреатор, вызывающий уже выполняющуюся функцию.  Рекурсия может быть ненаправленной --- функция `f` может вызывать `g`, которая вызывает `h`, а `h`, в свою очередь, вызывает `f`.
 
-    immutable data type
-        A data type which cannot be modified.  Assignments to elements or
-        slices of immutable types cause a runtime error.
-
-    infinite recursion
-        A function that calls itself recursively without ever reaching the base
-        case. Eventually, an infinite recursion causes a runtime error.
-
-    mutable data type
-        A data type which can be modified. All mutable types are compound
-        types.  Lists and dictionaries (see next chapter) are mutable data
-        types; strings and tuples are not.
-
-    raise
-        To cause an exception by using the ``raise`` statement.
-
-    recursion
-        The process of calling the function that is already executing.
-
-    recursive call
-        The statement that calls an already executing function.  Recursion can
-        even be indirect --- function `f` can call `g` which calls `h`, 
-        and `h` could make a call back to `f`.
-
-    recursive definition
-        A definition which defines something in terms of itself. To be useful
-        it must include *base cases* which are not recursive. In this way it
-        differs from a *circular definition*.  Recursive definitions often
-        provide an elegant way to express complex data structures.
-
-    tuple
-        A data type that contains a sequence of elements of any type, like a
-        list, but is immutable. Tuples can be used wherever an immutable type
-        is required, such as a key in a dictionary (see next chapter).
-
-    tuple assignment
-        An assignment to all of the elements in a tuple using a single
-        assignment statement. Tuple assignment occurs in parallel rather than
-        in sequence, making it useful for swapping values.
-
+    рекурсивное определение
+        Определение, описывающее нечто в терминах самого себя. Чтобы быть пригодным к использованию, должно включать нерекурсивный *базовый случай*. В этом его отличие от *кругового определения*. Рекурсивные определния часто предоставляют элегантный способ выражения сложных структур данных.
