@@ -7,57 +7,23 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Converting an Integer to a String in Any Base
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Конвертирование целого числа в строку по любому основанию
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Suppose you want to convert an integer to a string in some base between
-binary and hexadecimal. For example, convert the integer 10 to its
-string representation in decimal as ``"10"``, or to its string
-representation in binary as ``"1010"``. While there are many algorithms
-to solve this problem, including the algorithm discussed in the stack
-section, the recursive formulation of the problem is very
-elegant.
+Предположим, вы хотите преобразовать целое число в строку по какому-либо основанию между двойкой и шестнадцатью. Например, переведём число 10 в его строковое десятичное ``"10"`` или двоичное ``"1010"`` представление. Хотя существует множество алгоритмов для решения этой задачи (в том числе, алгоритм, обсуждавшийся в разделе о стеках), рекурсивная формулировка задания самая элегантная.
 
-Let’s look at a concrete example using base 10 and the number 769.
-Suppose we have a sequence of characters corresponding to the first 10
-digits, like ``convString = "0123456789"``. It is easy to convert a
-number less than 10 to its string equivalent by looking it up in the
-sequence. For example, if the number is 9, then the string is
-``convString[9]`` or ``"9"``. If we can arrange to break up the number
-769 into three single-digit numbers, 7, 6, and 9, then converting it to
-a string is simple. A number less than 10 sounds like a good base case.
+Давайте рассмотрим конкретный пример, используя основание 10 и число 769. Предположим, у нас есть последовательность символов, соответствующих первым десяти цифрам, - что-то вроде ``convString = "0123456789"``. Тогда конвертировать число, меньшее десяти, в его строковый эквивалент очень просто: достаточно всего лишь найти его в этом перечне. Например, для числа 9 строка будет ``convString[9]`` или ``"9"``. Если мы сможем организовать разбиение числа 769 на три цифры 7, 6 и 9, то конвертировать их будет просто. Вариант с числом меньше 10 очень подходит для базового случая рекурсии.
 
-Knowing what our base is suggests that the overall algorithm will
-involve three components:
+Зная наше основание, можно положить, что алгоритм в целом будет включать три компонента:
 
-#. Reduce the original number to a series of single-digit numbers.
+#. Разбить первоначальное число на последовательность из цифр.
+#. Конвертировать каждое из них в строку с помощью поиска.
+#. Слить получившиеся односимвольные строки в одну, которая и будет конечным результатом.
 
-#. Convert the single digit-number to a string using a lookup.
+Следующий шаг - это придумать, как изменять состояние и продвигаться в строну базового случая. Поскольку мы работаем с числовыми значениями, то давайте рассмотрим, какие математические операции могут уменьшить число. Наиболее очевидными кандидатами будут деление и вычитание. Хотя последнее может работать, не совсем понятно, что из чего требуется вычитать. А вот деление нацело с получением остатка даёт нам чёткое направление. Давайте посмотрим, что произойдёт, если мы разделим число на основание, по которому пытаемся конвертировать.
 
-#. Concatenate the single-digit strings together to form the final
-   result.
 
-The next step is to figure out how to change state and make progress
-toward the base case. Since we are working with an integer, let’s
-consider what mathematical operations might reduce a number. The most
-likely candidates are division and subtraction. While subtraction might
-work, it is unclear what we should subtract from what. Integer division
-with remainders gives us a clear direction. Let’s look at what happens
-if we divide a number by the base we are trying to convert to.
-
-Using integer division to divide 769 by 10, we get 76 with a remainder
-of 9. This gives us two good results. First, the remainder is a number
-less than our base that can be converted to a string immediately by
-lookup. Second, we get a number that is smaller than our original and
-moves us toward the base case of having a single number less than our
-base. Now our job is to convert 76 to its string representation. Again
-we will use integer division plus remainder to get results of 7 and 6
-respectively. Finally, we have reduced the problem to converting 7,
-which we can do easily since it satisfies the base case condition of
-:math:`n < base`, where :math:`base = 10`. The series of operations
-we have just performed is illustrated in :ref:`Figure 3 <fig_tostr>`. Notice that
-the numbers we want to remember are in the remainder boxes along the
-right side of the diagram.
+Разделив 769 на 10 нацело, мы получим 76 и 9 в остатке. Это даст нам два хороших результата. Во-первых, остаток меньше нашего основания, следовательно, сразу же может быть преобразован в строку. Во-вторых, у нас есть число, меньшее первоначального и приближающееся к базовому случаю. Теперь наша задача - конвертировать 76 в строковое представление. Вновь использовав деление нацело, получим 7 и 6 в остатке. Наконец, задача свелась к конвертированию 7, что может быть легко сделано, поскольку удовлетворяет условию :math:`n < base` базового случая (:math:`base = 10`). Последовательность проделанных нами операций проиллюстрирована на :ref:`рисунке 3 <fig_tostr>`. Заметьте, что число, которое мы хотим запомнить, находится в коробочке остатка вдоль правого края диаграммы.
 
 .. _fig_tostr:
 
@@ -65,15 +31,16 @@ right side of the diagram.
    :align: center
    :alt: image
 
-   Figure 3: Converting an Integer to a String in Base 10
+	Рисунок 3: Преобразование целого числа в строку по основанию 10.
 
-:ref:`ActiveCode 3 <lst_rectostr>` shows the Python code that implements the algorithm
-outlined above for any base between 2 and 16.
+
+:ref:`ActiveCode 3 <lst_rectostr>` демонстрирует код на Python, реализующий описанный выше алгоритм для любого основания между двойкой и шестнадцатью.
+
 
 .. _lst_rectostr:
 
 .. activecode:: lst_rectostr
-    :caption: Recursively Converting from Integer to String
+    :caption: Рекурсивное конвертирование целого числа в строку
 
     def toStr(n,base):
        convertString = "0123456789ABCDEF"
@@ -83,16 +50,12 @@ outlined above for any base between 2 and 16.
           return toStr(n//base,base) + convertString[n%base]
 
     print(toStr(1453,16))
+ 
 
-Notice that in line 3 we check for the base case where ``n``
-is less than the base we are converting to. When we detect the base
-case, we stop recursing and simply return the string from the
-``convertString`` sequence. In line 6 we satisfy both the
-second and third laws–by making the recursive call and by reducing the
-problem size–using division.
+Обратите внимание, что в строке 3 мы проверяем базовый случай, в котором ``n`` должно быть меньше, чем основание, по которому мы конвертируем. Когда мы определяем базовый случай, то останавливаем рекурсию и просто возвращаем строку из последовательности ``convertString``. Строка 6 удовлетворяет требования второго и третьего законов: делает рекурсивный вызов и уменьшает размер задачи с помощью деления.
 
-Let’s trace the algorithm again; this time we will convert the number 10
-to its base 2 string representation (``"1010"``).
+
+Давайте пройдём по алгоритму ещё раз. На этот раз мы будем конвертировать число 10 в его строковое представление по основанию 2 ("1010").
 
 .. _fig_tostr2:
 
@@ -100,23 +63,18 @@ to its base 2 string representation (``"1010"``).
    :align: center
    :alt: image
 
-   Figure 4: Converting the Number 10 to its Base 2 String Representation
+Рисунок 4: Преобразование числа 10 в строку по основанию 2.
 
-:ref:`Figure 4 <fig_tostr2>` shows that we get the results we are looking for,
-but it looks like the digits are in the wrong order. The algorithm works
-correctly because we make the recursive call first on line
-6, then we add the string representation of the remainder.
-If we reversed returning the ``convertString`` lookup and returning the
-``toStr`` call, the resulting string would be backward! But by delaying
-the concatenation operation until after the recursive call has returned,
-we get the result in the proper order. This should remind you of our
-discussion of stacks back in the previous chapter.
 
-.. admonition:: Self Check
+:ref:`Рисунок 4 <fig_tostr2>` показывает, что мы получаем искомый результат, вот только цифры находятся в неверном порядке. Алгоритм работает правильно, потому что мы сначала делаем рекурсивный вызов в строке 6, а затем добавляем строковое представление остатка. Если мы поменяем местами возврат из поиска по ``convertString`` и возврат из вызова ``toStr``, то результирующая строка будет задом наперёд! Но если придержать операцию слияния до тех пор, пока не вернётся результат рекурсивного вызова, то ответ получит нужный порядок. Это должно напомнить вам наше обсуждение обратной работы стека в предыдущей главе.
 
-   Write a function that takes a string as a parameter and returns a new string that is the reverse of the old string.
 
-   .. actex:: recursion_sc_1
+.. admonition:: Самопроверка
+
+
+Напишите функцию, которая принимает строку в качестве параметра и возвращает её же, но задом наперёд.
+
+.. actex:: recursion_sc_1
 
       from test import testEqual
       def reverse(s):
@@ -127,18 +85,17 @@ discussion of stacks back in the previous chapter.
       testEqual(reverse("follow"),"wollof")
       testEqual(reverse(""),"")
 
-   Write a function that takes a string as a parameter and returns True if the string is a palindrome, False otherwise.  Remember that a string is a palindrome if it is spelled the same both forward and backward.  for example:  radar is a palindrome.  for bonus points palindromes can also be phrases, but you need to remove the spaces and punctuation before checking.  for example:  madam i'm adam  is a palindrome.  Other fun palindromes include:
-   
-   * kayak
-   * aibohphobia
-   * Live not on evil
-   * Reviled did I live, said I, as evil I did deliver
-   * Go hang a salami; I'm a lasagna hog.
-   * Able was I ere I saw Elba
-   * Kanakanak --  a town in Alaska
-   * Wassamassaw -- a town in South Dakota
+Напишите функцию, которая принимает строку в качестве параметра и возвращает истину в случае палиндрома, ложь - в обратном. Напомним, что строка является ппалиндромом, если одинаково читается справа налево и слева направо. Например, radar - это палиндром. Словосочетания тоже могут быть палиндромами, но прежде из них нужно удалить все пробелы и знаки препинания. Например, madam i’m adam - это палиндром. Вот ещё несколько забавных палиндромов:
+* kayak
+* aibohphobia
+* Live not on evil
+* Reviled did I live, said I, as evil I did deliver
+* Go hang a salami; I’m a lasagna hog.
+* Able was I ere I saw Elba
+* Kanakanak – a town in Alaska
+* Wassamassaw – a town in South Dakota
 
-   .. actex:: recursion_sc_2
+ .. actex:: recursion_sc_2
 
       from test import testEqual
       def removeWhite(s):
@@ -153,4 +110,3 @@ discussion of stacks back in the previous chapter.
       testEqual(isPal(removeWhite("")),True)                  
       testEqual(isPal(removeWhite("hannah")),True)      
       testEqual(isPal(removeWhite("madam i'm adam")),True)
-
