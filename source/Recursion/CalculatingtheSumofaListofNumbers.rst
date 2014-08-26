@@ -7,21 +7,16 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Calculating the Sum of a List of Numbers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Вычисление суммы списка чисел
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We will begin our investigation with a simple problem that you already
-know how to solve without using recursion. Suppose that you want to
-calculate the sum of a list of numbers such as:
-:math:`[1, 3, 5, 7, 9]`. An iterative function that computes the sum
-is shown in :ref:`ActiveCode 1 <lst_itsum>`. The function uses an accumulator variable
-(``theSum``) to compute a running total of all the numbers in the list
-by starting with :math:`0` and adding each number in the list.
+Начнём наше исследование с простой задачи, решение для которой вы уже знаете и без использования рекурсии. Предположим, вы хотите подсчитать сумму списка чисел :math:`[1, 3, 5, 7, 9]`. Решение в виде итеративной функции показано в :ref:`ActiveCode 1 <lst_itsum>`. Она использует переменную ``theSum`` в качестве аккумулятора, чьё начальное значение равно нулю и к которому прибавляются все числа из списка.
+
 
 .. _lst_itsum:
 
 .. activecode:: lst_itsum
-    :caption: Iterative Summation
+    :caption: Итеративное суммирование
 
     def listsum(numList):
         theSum = 0
@@ -29,30 +24,21 @@ by starting with :math:`0` and adding each number in the list.
             theSum = theSum + i
         return theSum
         
-    print(listsum([1,3,5,7,9]))
+    print(listsum([1,3,5,7,9])) 
 
-Pretend for a minute that you do not have ``while`` loops or ``for``
-loops. How would you compute the sum of a list of numbers? If you were a
-mathematician you might start by recalling that addition is a function
-that is defined for two parameters, a pair of numbers. To redefine the
-problem from adding a list to adding pairs of numbers, we could rewrite
-the list as a fully parenthesized expression. Such an expression looks
-like this: 
+
+Представьте на минуту, что вы не можете использовать циклы ``while`` или ``for``. Как бы вы подсчитали сумму чисел в списке? Если бы вы были математиками, то могли бы начать с того, что сложение - это функция, которая принимает два параметра (пару чисел). Чтобы переопределить задачу от сложения значений в списке к сложению пар чисел, мы перепишем список в виде выражения с полной расстановкой скобок. Выглядеть оно будет примерно так:
 
 .. math::
     ((((1 + 3) + 5) + 7) + 9)
-    
-We can also parenthesize
-the expression the other way around,
+
+В прнципе, скобки можно расставить и в обратном порядке:
 
 .. math::
 
      (1 + (3 + (5 + (7 + 9)))) 
 
-Notice that the innermost set of
-parentheses, :math:`(7 + 9)`, is a problem that we can solve without a
-loop or any special constructs. In fact, we can use the following
-sequence of simplifications to compute a final sum.
+Обратите внимание, что самое внутренне выражение в скобках - :math:`(7 + 9)` - это задача, которую можно решить без использования циклов или каких-то специальных конструкций. Фактически, мы можем использовать следующую последовательность упрощений для вычисления итоговой суммы:
 
 .. math::
 
@@ -62,29 +48,19 @@ sequence of simplifications to compute a final sum.
     total = \  (1 + 24) \\
     total = \  25
 
-
-How can we take this idea and turn it into a Python program? First,
-let’s restate the sum problem in terms of Python lists. We might say the
-the sum of the list ``numList`` is the sum of the first element of the
-list (``numList[0]``), and the sum of the numbers in the rest of the
-list (``numList[1:]``). To state it in a functional form:
+Осталось только переписать эту идею в виде программы на Python. Для начала, давайте заново сформулируем задачу сложения в терминах списков Python. Мы можем сказать, что что сумма списка ``numList`` - это сумма первого его элемента (``numList[0]``) и уже посчитанной суммы остатка списка (``numList[1:]``). В виде функции это выглядит так:
 
 .. math::
 
       listSum(numList) = first(numList) + listSum(rest(numList))
     \label{eqn:listsum}
 
-
-
-In this equation :math:`first(numList)` returns the first element of
-the list and :math:`rest(numList)` returns a list of everything but
-the first element. This is easily expressed in Python as shown in
-:ref:`ActiveCode 2 <lst_recsum>`.
+В этом выражении :math:`first(numList)` возвращает первый элемент списка, а :math:`rest(numList)` - список из оставшихся чисел. Это легко выражается в коде (см. :ref:`ActiveCode 2 <lst_recsum>`):
 
 .. _lst_recsum:
 
 .. activecode:: lst_recsum
-    :caption: Recursive Summation
+    :caption: Рекурсивное суммирование
 
     def listsum(numList):
        if len(numList) == 1:
@@ -92,20 +68,11 @@ the first element. This is easily expressed in Python as shown in
        else:
             return numList[0] + listsum(numList[1:])
             
-    print(listsum([1,3,5,7,9]))
+    print(listsum([1,3,5,7,9])) 
 
-There are a few key ideas in this listing to look at. First, on line 2 we are checking to see if the list is one element long. This
-check is crucial and is our escape clause from the function. The sum of
-a list of length 1 is trivial; it is just the number in the list.
-Second, on line 5 our function calls itself! This is the
-reason that we call the ``listsum`` algorithm recursive. A recursive
-function is a function that calls itself.
+Из этого листинга можно извлечь несколько ключевых моментов. Во-первых, в строке 2 мы проверяем, не является ли список единичным. Эта проверка имеет решающее значение и является "лазейкой" из функции. Нахождение суммы единичного списка - тривиальная задача. Ею будет значение единственного его элемента. Во-вторых, в строке 5 функция вызывает саму себя! Вот почему мы называем алгоритм ``listsum`` рекурсивным. Рекурсивная функция - это функция, вызывающая саму себя.
 
-:ref:`Figure 1 <fig_recsumin>` shows the series of **recursive calls** that are
-needed to sum the list :math:`[1, 3, 5, 7, 9]`. You should think of
-this series of calls as a series of simplifications. Each time we make a
-recursive call we are solving a smaller problem, until we reach the
-point where the problem cannot get any smaller.
+На :ref:`рисунке 1 <fig_recsumin>` показана последовательность **рекурсивных вызовов**, которые требуются для подсчёта суммы списка :math:`[1, 3, 5, 7, 9]`. Вы можете думать о ней, как о серии упрощений. Каждый раз, когда мы делаем рекурсивный вызов, мы решаем задачу меньшего размера до тех пор пока не достигнем точки, в которой её нельзя будет уменьшить.
 
 .. _fig_recsumin:
 
@@ -113,15 +80,9 @@ point where the problem cannot get any smaller.
    :align: center
    :alt: image
 
+	Рисунок 1: Последовательность рекурсивных вызовов для сложения списка чисел.
 
-   Figure 1: Series of Recursive Calls Adding a List of Numbers
-
-When we reach the point where the problem is as simple as it can get, we
-begin to piece together the solutions of each of the small problems
-until the initial problem is solved. :ref:`Figure 2 <fig_recsumout>` shows the
-additions that are performed as ``listsum`` works its way backward
-through the series of calls. When ``listsum`` returns from the topmost
-problem, we have the solution to the whole problem.
+Когда мы достигаем точки максимального упрощения задачи, то начинаем собирать вместе кусочки решения каждой из маленьких подзадач до тех пор, пока они не сольются в решение первоначальной задачи. :ref:`Рисунок 2 <fig_recsumout>` показывает операции сложения, которые выполняются во время работы ``listsum`` в обратном направлении по последовательности вызовов. Когда ```listsum``` вернёт ответ самой верхней задачи, мы будем иметь итоговое решение.
 
 .. _fig_recsumout:
 
@@ -129,4 +90,4 @@ problem, we have the solution to the whole problem.
    :align: center
    :alt: image
 
-   Figure2: Series of Recursive Returns from Adding a List of Numbers
+    Рисунок 2: Последовательность рекурсивных возвратов для сложения списка чисел.
