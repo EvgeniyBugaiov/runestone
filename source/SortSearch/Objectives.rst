@@ -7,18 +7,16 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Objectives
-----------
+Цели
+-----
 
--  To be able to explain and implement sequential search and binary
-   search.
+- Уметь объяснить и реализовать последовательный и бинарный поиск.
 
--  To be able to explain and implement selection sort, bubble sort,
-   merge sort, quick sort, insertion sort, and shell sort.
+- Уметь объяснить и реализовать сортировки выбором, слиянием, вставками, быструю сортировку и сортировку Шелла.
 
--  To understand the idea of hashing as a search technique.
+- Понять идею хэширования как техники поиска.
 
--  To introduce the map abstract data type.
+- Получить представление об абстрактном типе данных ``map``.
 
--  To implement the map abstract data type using hashing.
+- Реализовать абстрактный тип ``map`` с использованием хэширования.
 
