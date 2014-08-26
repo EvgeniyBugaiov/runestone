@@ -7,60 +7,31 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Hashing
-~~~~~~~
+Хэширование
+~~~~~~~~~~~~
 
-In previous sections we were able to make improvements in our search
-algorithms by taking advantage of information about where items are
-stored in the collection with respect to one another. For example, by
-knowing that a list was ordered, we could search in logarithmic time
-using a binary search. In this section we will attempt to go one step
-further by building a data structure that can be searched in
-:math:`O(1)` time. This concept is referred to as **hashing**.
+В предыдущих разделах мы смогли усовершенствовать наши алгоритмы поиска, используя преимущества информации о том, где элементы хранятся относительно друг друга. Например, зная, что список упорядочен, мы можем осуществлять поиск за логарифмическое время, используя бинарный алгоритм. В этом разделе мы попытаемся пойти ещё на шаг дальше, построив такую структуру данных, в которой можно будет осуществлять поиск за время :math:`O(1)`. Эту концепцию называют **хэшированием**.
 
-In order to do this, we will need to know even more about where the
-items might be when we go to look for them in the collection. If every
-item is where it should be, then the search can use a single comparison
-to discover the presence of an item. We will see, however, that this is
-typically not the case.
+Для этого нам нужно знать больше, чем просто расположение элемента, когда мы ищем его в коллекции. Если каждый элемент находится там, где ему следует быть, то поиск может использовать только сравнения для обнаружения присутствия искомого. Однако, дальше мы увидим, что это, как правило, не единственный выход.
 
-A **hash table** is a collection of items which are stored in such a way
-as to make it easy to find them later. Each position of the hash table,
-often called a **slot**, can hold an item and is named by an integer
-value starting at 0. For example, we will have a slot named 0, a slot
-named 1, a slot named 2, and so on. Initially, the hash table contains
-no items so every slot is empty. We can implement a hash table by using
-a list with each element initialized to the special Python value
-``None``. :ref:`Figure 4 <fig_hashtable1>` shows a hash table of size :math:`m=11`.
-In other words, there are *m* slots in the table, named 0 through 10.
+**Хэш-таблица** - это коллекция элементов, которые сохраняются таким образом, чтобы позже их было легко найти. Каждая позиция в хэш-таблице () часто называемая **слотом**) может содержать собственно элемент и целое число, начинающееся с нуля. Например, у нас есть слот 0, слот 1, слот 2 и так далее. Первоначально хэш-таблица не содержит элементов, так что каждый из них пуст. Мы можем сделать реализацию хэш-таблицы, используя список, в котором каждый элемент инициализирован специальным значением Python ``None``. :ref:`Рисунок 4 <fig_hashtable1>` демонстрирует хэш-таблицу размером :math:`m=11`. Другими словами, в ней есть *m* слотов, пронумерованных от 0 до 10.
 
 .. _fig_hashtable1:
 
 .. figure:: Figures/hashtable.png
    :align: center
 
-   Figure 4: Hash Table with 11 Empty Slots
+Рисунок 4: Хэш-таблица с 11 пустыми слотами
 
-
-The mapping between an item and the slot where that item belongs in the
-hash table is called the **hash function**. The hash function will take
-any item in the collection and return an integer in the range of slot
-names, between 0 and *m*-1. Assume that we have the set of integer items
-54, 26, 93, 17, 77, and 31. Our first hash function, sometimes referred
-to as the “remainder method,” simply takes an item and divides it by the
-table size, returning the remainder as its hash value
-(:math:`h(item)=item \% 11`). :ref:`Table 4 <tbl_hashvalues1>` gives all of the
-hash values for our example items. Note that this remainder method
-(modulo arithmetic) will typically be present in some form in all hash
-functions, since the result must be in the range of slot names.
+Связь между элементом и слотом, в который кладётся элемент, называется **хэш-функцией**. Она принимает любой элемент из коллекции и возвращает целое число из диапазона имён слотов (от 0 до *m-1*). Предположим, что у нас есть набор целых чисел 54, 26, 93, 17, 77 и 31. Наша первая хэш-функция, иногда называемая "методом остатков", просто берёт элемент и далит его на размер таблицы, возвращая остаток в качестве хэш-значения (:math:`h(item)=item \% 11`). В :ref:`таблице 4 <tbl_hashvalues1>` представлены все хэш-значения чисел из нашего примера. Обратите внимание, что метод остатков (модульная арифметика) обычно представлен в некоторой форме во всех хэш-функциях, поскольку результат должен лежать в диапазоне имён слотов.
 
 .. _tbl_hashvalues1:
 
-.. table:: **Table 4: Simple Hash Function Using Remainders**
+.. table:: **Таблица 4: Простая хэш-функция, использующая остатки**
 
 
     ================= ================ 
-             **Item**   **Hash Value** 
+         **Элемент**  **Хэш-значение** 
     ================= ================ 
                    54               10 
                    26                4 
@@ -70,108 +41,51 @@ functions, since the result must be in the range of slot names.
                    31                9 
     ================= ================ 
 
-
-Once the hash values have been computed, we can insert each item into
-the hash table at the designated position as shown in
-:ref:`Figure 5 <fig_hashtable2>`. Note that 6 of the 11 slots are now occupied. This
-is referred to as the **load factor**, and is commonly denoted by
-:math:`\lambda = \frac {numberofitems}{tablesize}`. For this example,
-:math:`\lambda = \frac {6}{11}`.
-
+Поскольку хэш-значения могут быть посчитаны, мы можем вставить каждый элемент в хэш-таблицу на определённое место, как это показано на :ref:`рисунке 5 <fig_hashtable2>`. Обратите внимание, что теперь заняты 6 из 11 слотов. Это называется **фактором загрузки** и обычно обозначается :math:`\lambda = \frac {numberofitems}{tablesize}`. В этом примере :math:`\lambda = \frac {6}{11}`.
 
 .. _fig_hashtable2:
 
 .. figure:: Figures/hashtable2.png
    :align: center
 
-   Figure 5: Hash Table with Six Items
+Рисунок 5: Хэш-таблица с шестью элементами
+
+Теперь, когда мы хотим найти элемент, мы просто используем хэш-функцию, чтобы вычислить имя слота элемента и затем проверить по таблице его наличие. Эта операция поиска имеет :math:`O(1)`, поскольку на вычисление хэш-значения требуется константное время, как и на переход по найденному индексу. Если всё находится там, где ему положено, то мы получаем алгоритм поиска за константное время.
+
+Возможно, вы уже заметили, что такая техника работает только если каждый элемент отображается на уникальную позицию в хэш-таблице. Например, если следующим в нашей коллекции будет элемент 44, то он будет иметь хэш-значение 0 (:math:`44 \% 11 == 0`). А так как 77 тоже имеет хэш-значение 0, то у нас проблемы. В соответствии с хэш-функцией два или более элементов должны иметь один слот. Это называется **коллизией** (иногда "столкновением"). Очевидно, что коллизии создают проблемы для техники хэширования. Позднее мы обсудим их в деталях.
 
 
-Now when we want to search for an item, we simply use the hash function
-to compute the slot name for the item and then check the hash table to
-see if it is present. This searching operation is :math:`O(1)`, since
-a constant amount of time is required to compute the hash value and then
-index the hash table at that location. If everything is where it should
-be, we have found a constant time search algorithm.
+Хэш-функции
+^^^^^^^^^^^^
 
-You can probably already see that this technique is going to work only
-if each item maps to a unique location in the hash table. For example,
-if the item 44 had been the next item in our collection, it would have a
-hash value of 0 (:math:`44 \% 11 == 0`). Since 77 also had a hash
-value of 0, we would have a problem. According to the hash function, two
-or more items would need to be in the same slot. This is referred to as
-a **collision** (it may also be called a “clash”). Clearly, collisions
-create a problem for the hashing technique. We will discuss them in
-detail later.
+Для заданной коллекции элементов хэш-функция, связывающая каждый из них с уникальным слотом, называется **идеальной хэш-функцией**. Если мы знаем, что элемент коллекции никогда не будет меняться, то возможно создать идеальную хэш-функцию (см. упражнения, чтобы узнать о них больше). К сожалению, для произвольной коллекции элементов не существует систематического способа сконструировать идеальную хэш-функцию. К счастью, для эффективной работы она нам и не нужна.
 
-Hash Functions
-^^^^^^^^^^^^^^
+Один из способов всегда иметь идеальную хэш-функцию состоит в увеличении размера хэш-таблицы таким образом, чтобы в ней могло быть размещено каждое из возможных значений элементов. Это гарантирует, что каждый элемент будет иметь уникальный слот. Хотя это практично для малого числа элементов, при возрастании их количества такой метод перестаёт быть осуществимым. Например, если элементы будут девятизначными номерами социального страхования, то этот метод потребует порядка миллиарда слотов. Если мы захотим всего лишь хранить данные для класса из 25 студентов, то мы потратим на это чудовищное количество памяти.
 
-Given a collection of items, a hash function that maps each item into a
-unique slot is referred to as a **perfect hash function**. If we know
-the items and the collection will never change, then it is possible to
-construct a perfect hash function (refer to the exercises for more about
-perfect hash functions). Unfortunately, given an arbitrary collection of
-items, there is no systematic way to construct a perfect hash function.
-Luckily, we do not need the hash function to be perfect to still gain
-performance efficiency.
+Наша цель: создать хэш-функцию, которая минимизировала бы количество коллизий, легко считалась и равномерно распределяла элементы в хэш-таблице. Существует несколько распространённых способов расширить простой метод остатков. Рассмотрим некоторые из них.
 
-One way to always have a perfect hash function is to increase the size
-of the hash table so that each possible value in the item range can be
-accommodated. This guarantees that each item will have a unique slot.
-Although this is practical for small numbers of items, it is not
-feasible when the number of possible items is large. For example, if the
-items were nine-digit Social Security numbers, this method would require
-almost one billion slots. If we only want to store data for a class of
-25 students, we will be wasting an enormous amount of memory.
+**Метод свёртки** для создания хэш-функций начинает с деления элемента на кусочки одинаковой величины (последний из них может иметь отличающийся размер). Эти кусочки складываются вместе и дают результирующее хэш-значение. Например, если наш элемент - телефонный номер 436-555-4601, то мы можем взять цифры и рабить их на группы по два (43, 65, 55, 46, 01). После сложения :math:`43+65+55+46+01` мы получим 210. Если предположить, что хэш-таблица имеет 11 слотов, то нам нужно выполнить дополнительный шаг, поделив это число на 11 и взяв остаток. В данном случае :math:`210\ \%\ 11` равно 1, так что телефонный номер 436-555-4601 хэшируется в слот 1. Некоторые методы свёртки идут на шаг дальше и перед сложением переворачивают каждый из кусочков разбиения. Для примера выше мы бы получили :math:`43+56+55+64+01 = 219`, что даёт :math:`219\ \%\ 11 = 10`.
 
-Our goal is to create a hash function that minimizes the number of
-collisions, is easy to compute, and evenly distributes the items in the
-hash table. There are a number of common ways to extend the simple
-remainder method. We will consider a few of them here.
-
-The **folding method** for constructing hash functions begins by
-dividing the item into equal-size pieces (the last piece may not be of
-equal size). These pieces are then added together to give the resulting
-hash value. For example, if our item was the phone number 436-555-4601,
-we would take the digits and divide them into groups of 2
-(43,65,55,46,01). After the addition, :math:`43+65+55+46+01`, we get
-210. If we assume our hash table has 11 slots, then we need to perform
-the extra step of dividing by 11 and keeping the remainder. In this case
-:math:`210\ \%\ 11` is 1, so the phone number 436-555-4601 hashes to
-slot 1. Some folding methods go one step further and reverse every other
-piece before the addition. For the above example, we get
-:math:`43+56+55+64+01 = 219` which gives :math:`219\ \%\ 11 = 10`.
-
-Another numerical technique for constructing a hash function is called
-the **mid-square method**. We first square the item, and then extract
-some portion of the resulting digits. For example, if the item were 44,
-we would first compute :math:`44 ^{2} = 1,936`. By extracting the
-middle two digits, 93, and performing the remainder step, we get 5
-(:math:`93\ \%\ 11`). :ref:`Table 5 <tbl_hashvalues2>` shows items under both the
-remainder method and the mid-square method. You should verify that you
-understand how these values were computed.
+Другая числовая техника для создания хэш-функций называется **методом средних квадратов**. Сначала значение элемента возводится в квадрат, а затем из получившихся в результате цифр выделяется некоторая порция. Например, если элемент равен 44, то мы прежде вычислим :math:`44 ^{2} = 1,936`. Выделив две средние цифры (93) и выполнив шаг получения остатка, мы получим 5 (:math:`93\ \%\ 11`). :ref:`Таблица 5 <tbl_hashvalues2>` показывает элементы, к которым применили оба метода: остатков и средних квадратов. Убедитесь, что понимаете, как эти значения были получены.
 
 .. _tbl_hashvalues2:
 
-.. table:: **Table 5: Comparison of Remainder and Mid-Square Methods**
+.. table:: **Таблица 5: Сравнение методов остаков и средних квадратов**
 
 
-    ================= =============== ================ 
-             **Item**   **Remainder**   **Mid-Square** 
-    ================= =============== ================ 
+    ================= =============== =================== 
+          **Элемент**   **Остаток**   **Средний квадрат** 
+    ================= =============== =================== 
                    54              10                3 
                    26               4                7 
                    93               5                9 
                    17               6                8 
                    77               0                4 
                    31               9                6 
-    ================= =============== ================ 
+    ================= =============== ================== 
 
 
-We can also create hash functions for character-based items such as
-strings. The word “cat” can be thought of as a sequence of ordinal
-values.
+Мы также можем создать хэш-функцию для символьных элементов (таких, как строки). Слово "cat" можно рассматривать, как последовательность кодов его букв.
 
 ::
 
@@ -182,24 +96,18 @@ values.
     >>> ord('t')
     116
 
-We can then take these three ordinal values, add them up, and use the
-remainder method to get a hash value (see :ref:`Figure 6 <fig_stringhash>`).
-:ref:`Listing 1 <lst_hashfunction1>` shows a function called ``hash`` that takes a
-string and a table size and returns the hash value in the range from 0
-to ``tablesize``-1.
-
+Затем мы можем взять эти три кода, сложить их и спользовать метод остатков, чтобы получить хэш-значение (см. :ref:`рисунок 6 <fig_stringhash>`). :ref:`Листинг 1 <lst_hashfunction1>` демонстрирует функцию ``hash``, принимающую строку и размер таблицы и возвращающую хэш-значение из диапазона от 0 до ``tablesize``-1.
 
 .. _fig_stringhash:
 
 .. figure:: Figures/stringhash.png
    :align: center
 
-   Figure 6: Hashing a String Using Ordinal Values
-
+Рисунок 6: Хэширование строки с использованием кодов символов
 
 .. _lst_hashfunction1:
 
-**Listing 1**
+**Листинг 1**
 
 ::
 
@@ -209,170 +117,81 @@ to ``tablesize``-1.
             sum = sum + ord(astring[pos])
 
         return sum%tablesize
-        
 
-It is interesting to note that when using this hash function, anagrams
-will always be given the same hash value. To remedy this, we could use
-the position of the character as a weight. :ref:`Figure 7 <fig_stringhash2>` shows
-one possible way to use the positional value as a weighting factor. The
-modification to the ``hash`` function is left as an exercise.
+Интересное наблюдение: когда мы используем эту хэш-функцию, анаграммы всегда будут иметь одинаковое хэш-значение. Чтобы исправить это, следует использовать позицию символа в качестве веса. :ref:`Рисунок 7 <fig_stringhash2>` показывает один из вариантов использования позиционного значения в качестве весового фактора. Модификацию функции ``hash`` мы оставляем в качестве упражнения.
 
 .. _fig_stringhash2:
 
 .. figure:: Figures/stringhash2.png
    :align: center
 
-   Figure 7: Hashing a String Using Ordinal Values with Weighting
+Рисунок 7: Хэширование строки с использованием кодов символов и весов
+
+Вы можете придумать другие числовые способы вычисления хэш-значений для элементов коллекции. Важно только помнить, эффекитвная хэш-функция не должна являться доминирующей частью процессов хранения и поиска. Если она слишком сложна, то требует много работы на вычисление имени слота. В этом случае проще было бы использовать последовательный или бинарный поиск, описанные выше. Таким образом, сама идея хэширования терпит поражение.
 
 
-You may be able to think of a number of additional ways to compute hash
-values for items in a collection. The important thing to remember is
-that the hash function has to be efficient so that it does not become
-the dominant part of the storage and search process. If the hash
-function is too complex, then it becomes more work to compute the slot
-name than it would be to simply do a basic sequential or binary search
-as described earlier. This would quickly defeat the purpose of hashing.
-
-Collision Resolution
+Разрешение коллизий
 ^^^^^^^^^^^^^^^^^^^^
 
-We now return to the problem of collisions. When two items hash to the
-same slot, we must have a systematic method for placing the second item
-in the hash table. This process is called **collision resolution**. As
-we stated earlier, if the hash function is perfect, collisions will
-never occur. However, since this is often not possible, collision
-resolution becomes a very important part of hashing.
+Вернёмся к проблеме коллизий. Когда два элемента хэшируются в один слот, нам требуется систематический метод для размещения в хэш-таблице второго элемента. Этот процесс называется **разрешением коллизии**. Как мы утверждали ранее, если хэш-функция идеальна, то коллизии никогда не произойдёт. Однако, поскольку часто такое положение дел невозможно, разрешение коллизий становится важной частью хэширования.
 
-One method for resolving collisions looks into the hash table and tries
-to find another open slot to hold the item that caused the collision. A
-simple way to do this is to start at the original hash value position
-and then move in a sequential manner through the slots until we
-encounter the first slot that is empty. Note that we may need to go back
-to the first slot (circularly) to cover the entire hash table. This
-collision resolution process is referred to as **open addressing** in
-that it tries to find the next open slot or address in the hash table.
-By systematically visiting each slot one at a time, we are performing an
-open addressing technique called **linear probing**.
+Одним из методов разрешения коллизий является просмотр хэш-таблицы и поиск другого свободного слота для размещения в нём элемента, вызывающего коллизию. Простой способ сделать это - начать с оригинальной позиции хэш-значения и перемещаться по слотам определённым образом до тех пор, пока не будет найден пустой. Заметьте, что нам может понадобиться вернуться обратно к первому слоту (циклически), чтобы охватить хэш-таблицу целиком. Этот процесс разрешения коллизий называется **открытой адресацией**, поскольку пытается найти следующий свободный слот (или адрес) в хэш-таблице. Симстематически посещая каждый слот по одному разу, мы действуем в соответствии с техникой открытой адресации, называемой **линейным пробированием**.
 
-:ref:`Figure 8 <fig_linearprobing>` shows an extended set of integer items under the
-simple remainder method hash function (54,26,93,17,77,31,44,55,20).
-:ref:`Table 4 <tbl_hashvalues1>` above shows the hash values for the original items.
-:ref:`Figure 5 <fig_hashtable2>` shows the original contents. When we attempt to
-place 44 into slot 0, a collision occurs. Under linear probing, we look
-sequentially, slot by slot, until we find an open position. In this
-case, we find slot 1.
+:ref:`Рисунок 8 <fig_linearprobing>` показывает расширенный набор целых элементов после применения простой хэш-функции метода остатков (54,26,93,17,77,31,44,55,20). В :ref:`таблице 4 <tbl_hashvalues1>` выше собраны хэш-значения оригинальных элементов. На :ref:`рисунке 5 <fig_hashtable2>` представлено первоначальные значения. Когда мы пытаемся поместить 44 в слот 0, возникает коллизия. При линейном пробировании мы последовательно - слот за слотом - просматриваем таблицу, до тех пор, пока не найдём открытую позицию. В данном случае это оказался слот 1.
 
-Again, 55 should go in slot 0 but must be placed in slot 2 since it is
-the next open position. The final value of 20 hashes to slot 9. Since
-slot 9 is full, we begin to do linear probing. We visit slots 10, 0, 1,
-and 2, and finally find an empty slot at position 3.
+В следующий раз 55, которое должно разместиться в слоте 0, будет положено в слот 2 - следующую незанятую позицию. Последнее значение 20 хэшируется в слот 9. Но поскольку он занят, мы делаем линейное пробирование. Мы посещаем слоты 10, 0, 1, 2 и наконец находим пустой слот на позиции 3.
 
 .. _fig_linearprobing:
 
 .. figure:: Figures/linearprobing1.png
    :align: center
 
-   Figure 8: Collision Resolution with Linear Probing
+Рисунок 8: Разрешение коллизий путём линейного пробирования
 
+Поскольку мы построили хэш-таблицу с помощью открытой адресации (или линейного пробирования), важно использовать тот же метод при поиске элемента. Предположим, мы хотим найти число 93. Вчисление его хэш-значения даст 5. Обнаружив в пятом слоте 93, мы вернём ``True``. Но что если мы ищем 20? Теперь хэш-значение равно 9, а слот 9 содержит 31. Нельзя просто вернуть ``False``, поскольку здесь могла быть коллизия. Так что мы вынуждены провести последвательный поиск, начиная с десятой позиции, который закончится, когда найдётся число 20 или пустой слот.
 
-Once we have built a hash table using open addressing and linear
-probing, it is essential that we utilize the same methods to search for
-items. Assume we want to look up the item 93. When we compute the hash
-value, we get 5. Looking in slot 5 reveals 93, and we can return
-``True``. What if we are looking for 20? Now the hash value is 9, and
-slot 9 is currently holding 31. We cannot simply return ``False`` since
-we know that there could have been collisions. We are now forced to do a
-sequential search, starting at position 10, looking until either we find
-the item 20 or we find an empty slot.
-
-A disadvantage to linear probing is the tendency for **clustering**;
-items become clustered in the table. This means that if many collisions
-occur at the same hash value, a number of surrounding slots will be
-filled by the linear probing resolution. This will have an impact on
-other items that are being inserted, as we saw when we tried to add the
-item 20 above. A cluster of values hashing to 0 had to be skipped to
-finally find an open position. This cluster is shown in
-:ref:`Figure 9 <fig_clustering>`.
+Недостатком линейного пробирования является его склонность к кластеризации: элементы в таблице группируются. Это означает, что если возникает много коллизий с одним хэш-значением, то окружающие его слоты при линейном пробировании будут заполнены. Это начнёт оказывать влияние на вставку других элементов, как мы наблюдали выше при попытке вставить в таблицу число 20. В итоге, кластер значений, хэшируемых в 0, должен быть пропущен, чтобы найти вакантное место. Этот кластер показан на :ref:`рисунке 9 <fig_clustering>`.
 
 .. _fig_clustering:
 
 .. figure:: Figures/clustering.png
    :align: center
 
-   Figure 9: A Cluster of Items for Slot 0
+    Рисунок 9: Кластер элементов для слота 0
 
-
-One way to deal with clustering is to extend the linear probing
-technique so that instead of looking sequentially for the next open
-slot, we skip slots, thereby more evenly distributing the items that
-have caused collisions. This will potentially reduce the clustering that
-occurs. :ref:`Figure 10 <fig_linearprobing2>` shows the items when collision
-resolution is done with a “plus 3” probe. This means that once a
-collision occurs, we will look at every third slot until we find one
-that is empty.
+Одним из способов иметь дело с кластеризацией является расширение линейного пробирования таким образом, чтобы вместо последовательного поиска следующего свободного места мы пропускали слоты, получая таким образом более равномерное распределение элементов, вызвавших коллизии. Потенциально это уменьшит возникающую кластеризацию. :ref:`Рисунок 10 <fig_linearprobing2>` показывает элементы после разрешения коллизий с использованием пробирования "плюс 3". Это означает, что при возникновении коллизии, мы рассматриваем каждый третий слот до тех пор, пока не найдём пустой.
 
 .. _fig_linearprobing2:
 
 .. figure:: Figures/linearprobing2.png
    :align: center
 
-   Figure 10: Collision Resolution Using “Plus 3”
+    Рисунок 10: Разрешение коллизий с использованием методики "плюс 3"
 
+Общее название для такого процесса поиска другого слота после коллизии - **повторное хэширование**. С помощью простого линейного пробирования повторная хэш-функция выглядит как :math:`newhashvalue = rehash(oldhashvalue)`, где :math:`rehash(pos) = (pos + 1) \% sizeoftable`. Повторное хэширование "плюс 3" может быть определёно как :math:`rehash(pos) = (pos+3) \% sizeoftable`. В общем случае: :math:`rehash(pos) = (pos + skip) \% sizeoftable`. Важно отметить, что величина "пропуска" должен быть такой, чтобы в конце концов пройти по всем слотам таблицы. В противном случае часть таблицы окажется неиспользованной. Для обеспечения этого часто предполагается, что размер таблицы является простым числом. Вот почему в примере мы использовали 11.
 
-The general name for this process of looking for another slot after a
-collision is **rehashing**. With simple linear probing, the rehash
-function is :math:`newhashvalue = rehash(oldhashvalue)` where
-:math:`rehash(pos) = (pos + 1) \% sizeoftable`. The “plus 3” rehash
-can be defined as :math:`rehash(pos) = (pos+3) \% sizeoftable`. In
-general, :math:`rehash(pos) = (pos + skip) \% sizeoftable`. It is
-important to note that the size of the “skip” must be such that all the
-slots in the table will eventually be visited. Otherwise, part of the
-table will be unused. To ensure this, it is often suggested that the
-table size be a prime number. This is the reason we have been using 11
-in our examples.
-
-A variation of the linear probing idea is called **quadratic probing**.
-Instead of using a constant “skip” value, we use a rehash function that
-increments the hash value by 1, 3, 5, 7, 9, and so on. This means that
-if the first hash value is *h*, the successive values are :math:`h+1`,
-:math:`h+4`, :math:`h+9`, :math:`h+16`, and so on. In other words,
-quadratic probing uses a skip consisting of successive perfect squares.
-:ref:`Figure 11 <fig_quadratic>` shows our example values after they are placed using
-this technique.
+Ещё одним вариантом линейного сканирования является **квадратичное пробирование**. Вместо использования константного значения "пропуска", мы используем повторную хэш-функцию, которая инкрементирует хэш-значение на 1, 3, 5, 7, 9 и так далее. Это означает, что если первое хэш-значение равно *h*, то последующими будут :math:`h+1`,
+:math:`h+4`, :math:`h+9`, :math:`h+16` и так далее. Другими словами, квадратичное пробирование использует пропуск, состоящий из следующих один за другим полных квадратов. :ref:`Рисунок 11 <fig_quadratic>` демонстрирует значения из нашего примера после использования этой методики.
 
 .. _fig_quadratic:
 
 .. figure:: Figures/quadratic.png
    :align: center
 
-   Figure 11: Collision Resolution with Quadratic Probing
+    Рисунок 11: Разрешение коллизий с помощью квадратичного сканирования
 
-
-An alternative method for handling the collision problem is to allow
-each slot to hold a reference to a collection (or chain) of items.
-**Chaining** allows many items to exist at the same location in the hash
-table. When collisions happen, the item is still placed in the proper
-slot of the hash table. As more and more items hash to the same
-location, the difficulty of searching for the item in the collection
-increases. :ref:`Figure 12 <fig_chaining>` shows the items as they are added to a hash
-table that uses chaining to resolve collisions.
+Альтернативным методом решения проблемы коллизий является разрешение каждому слоту содержать ссылку на коллекцию (или цепочку) значений. **Цепочки** позволяют множеству элементов занимать одну и ту же позицию в хэш-таблице. Чем больше элементов хэшируются в одно место, тем сложнее найти элемент в коллекции. :ref:`Рисунок 12 <fig_chaining>` показывает, как элементы добавляются в хэш-таблицу с использованием цепочек для разрешения коллизий.
 
 .. _fig_chaining:
 
 .. figure:: Figures/chaining.png
    :align: center
 
-   Figure 12: Collision Resolution with Chaining
+    Рисунок 12: Разрешение коллизий с помощью цепочек
 
+Когда мы хотим найти элемент, мы используем хэш-функцию для генерации номера слота, в котором он должен размещаться. Поскольку каждый слот содержит коллекцию, мы используем различные техники поиска, чтобы определить, представлен ли он в ней. Преимуществом данного подхода является вероятность получить гораздо меньше элементов в каждом слоте, так что поиск будет более эффективным. Более подробный анализ мы проведём в конце этой главы.
 
-When we want to search for an item, we use the hash function to generate
-the slot where it should reside. Since each slot holds a collection, we
-use a searching technique to decide whether the item is present. The
-advantage is that on the average there are likely to be many fewer items
-in each slot, so the search is perhaps more efficient. We will look at
-the analysis for hashing at the end of this section.
-
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
    .. mchoicemf:: HASH_1
       :correct: c
@@ -380,12 +199,12 @@ the analysis for hashing at the end of this section.
       :answer_b: 13, 0
       :answer_c: 1, 0
       :answer_d: 2, 3
-      :feedback_a:  Be careful to use modulo not integer division
-      :feedback_b:  Don't divide by two, use the modulo operator.
-      :feedback_c: 27 % 13 == 1 and 130 % 13 == 0
-      :feedback_d: Use the modulo operator
+      :feedback_a:  Будте внимательны, используйте оператор остатка, а не результат целочисленного деления.
+      :feedback_b:  Не делите на два, используйте оператор деления с остатком.
+      :feedback_c: 27 % 13 == 1 и 130 % 13 == 0
+      :feedback_d: Используйте оператор деления с остатком.
 
-      In a hash table of size 13 which index positions would the following two keys map to?  27,  130
+      В хэш-таблице размером 13 какой индекс будет связан со следующими двумя ключами 27, 130?
 
    .. mchoicemf:: HASH_2
       :correct: b
@@ -393,65 +212,41 @@ the analysis for hashing at the end of this section.
       :answer_b: 99, 100, __, 113, 114, __, 116, 117, 105, 97, 108
       :answer_c: 100, 113, 117, 97, 14, 108, 116, 105, 99, __, __
       :answer_d: 117, 114, 108, 116, 105, 99, __, __, 97, 100, 113
-      :feedback_a:  It looks like you may have been doing modulo 2 arithmentic.  You need to use the hash table size as the modulo value.
-      :feedback_b:  Using modulo 11 arithmetic and linear probing gives these values
-      :feedback_c: It looks like you are using modulo 10 arithmetic, use the table size.
-      :feedback_d: Be careful to use modulo not integer division.
+      :feedback_a:  Похоже, что вы использовали арифметику по модулю 2. Вам нужно использовать размер хэш-таблицы в качестве модуля.
+      :feedback_b:  Использование арифметики для модуля 11 и линейного пробирования даст эти значения.
+      :feedback_c: Похоже, вы использовали арифметику для модуля 10. Попробуйте арифметику для модуля размера таблицы.
+      :feedback_d: Будте внимательны, используйте оператор остатка, а не результат целочисленного деления.
 
-      Suppose you are given the following set of keys to insert into a hash table that holds exactly 11 values:  113 , 117 , 97 , 100 , 114 , 108 , 116 , 105 , 99 Which of the following best demonstrates the contents of the has table after all the keys have been inserted using linear probing?
+      Предположим, у вас есть следующий набор ключей для вставки в хэш-таблицу, содержащую ровно 11 значений: 113 , 117 , 97 , 100 , 114 , 108 , 116 , 105 , 99. Что из следующего лучше всего демонстрирует содержимое таблицы после вставки всех ключей с использованием линейного сканирования?
 
-Implementing the ``Map`` Abstract Data Type
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-One of the most useful Python collections is the dictionary. Recall that
-a dictionary is an associative data type where you can store key–data
-pairs. The key is used to look up the associated data value. We often
-refer to this idea as a **map**.
 
-The map abstract data type is defined as follows. The structure is an
-unordered collection of associations between a key and a data value. The
-keys in a map are all unique so that there is a one-to-one relationship
-between a key and a value. The operations are given below.
+Реализация абстрактного типа данных ``Map``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--  ``Map()`` Create a new, empty map. It returns an empty map
-   collection.
+Одной из наиболее используемых коллекций Python являются словари. Напомним, что словарь - ассоциативный тип данных, в котором можно хранить пары ключ-значение. Ключи используются для поиска ассоциативных значений данных. Мы часто называем эту идею **отображением**.
 
--  ``put(key,val)`` Add a new key-value pair to the map. If the key is
-   already in the map then replace the old value with the new value.
+Абстрактный тип данных ``Map`` можно определить следующим образом. Его структура - неупорядоченная коллекция ассоциаций между ключами и значениями. Все ключи уникальны, таким образом поддерживаются отношения "один к одному" между ключами и значениями. Операции для такого типа данных представлены ниже:
 
--  ``get(key)`` Given a key, return the value stored in the map or
-   ``None`` otherwise.
+- ``Map()`` Создаёт новый пустой экземпляр типа. Возвращает пустую коллекцию отображений.
 
--  ``del`` Delete the key-value pair from the map using a statement of
-   the form ``del map[key]``.
+- ``put(key, val)`` Добавляет новую пару ключ-значение в отображение. Если такой ключ уже имеется, то заменяет старое значение новым.
 
--  ``len()`` Return the number of key-value pairs stored in the map.
+- ``get(key)`` Принимает ключ, возвращает соответствующее ему значение из коллекции или ``None``.
 
--  ``in`` Return ``True`` for a statement of the form ``key in map``, if
-   the given key is in the map, ``False`` otherwise.
+- ``del`` Удаляет пару ключ-значение из отображения, используя оператор вида ``del map[key]``.
 
-One of the great benefits of a dictionary is the fact that given a key,
-we can look up the associated data value very quickly. In order to
-provide this fast look up capability, we need an implementation that
-supports an efficient search. We could use a list with sequential or
-binary search but it would be even better to use a hash table as
-described above since looking up an item in a hash table can approach
-:math:`O(1)` performance.
+- ``len()`` Возвращает количество пар ключ-значение, хранящихся в коллекции.
 
-In :ref:`Listing 2 <lst_hashtablecodeconstructor>` we use two lists to create a
-``HashTable`` class that implements the Map abstract data type. One
-list, called ``slots``, will hold the key items and a parallel list,
-called ``data``, will hold the data values. When we look up a key, the
-corresponding position in the data list will hold the associated data
-value. We will treat the key list as a hash table using the ideas
-presented earlier. Note that the initial size for the hash table has
-been chosen to be 11. Although this is arbitrary, it is important that
-the size be a prime number so that the collision resolution algorithm
-can be as efficient as possible.
+- ``in`` Возвращает ``True`` для оператора вида ``key in map``, если данный ключ есть в коллекции, или ``False`` в противном случае.
+
+Одним из болших преимуществ словарей является то, что, имея ключ, мы можем найти ассоциированное с ним значение очень быстро. Для обеспечения надлежащей скорости нам нужна реализация, поддерживающая эффективный поиск. Мы можем использовать список с последовательным или бинарным поиском, но правильнее будет воспользоваться хэш-таблицей, описанной выше, поскольку поиск элемента в ней может приближаться к производительности :math:`O(1)`.
+
+В :ref:`листинге 2 <lst_hashtablecodeconstructor>` мы используем два списка, чтобы создать класс ``HashTable``, реализующий абстрактный тип данных ``Map``. Один список, называемый ``slots``, будет содержать ключи элементов, а параллельный ему список ``data`` - значения данных. Когда мы находим ключ, на соответствующей позиции в списке с данными будет находиться связанное с ним значение. Мы будем работать со списком ключей, как с хэш-таблицей, используя идеи, представленные ранее. Обратите внимание, что первоначальный размер хэш-таблицы выбран равным 11. Хотя это число произвольно, важно, чтобы размер был простым числом. Это сделает алгоритм разрешения коллизий максимально эффективным.
 
 .. _lst_hashtablecodeconstructor:
 
-**Listing 2**
+**Листинг 2**
 
 ::
 
@@ -461,19 +256,11 @@ can be as efficient as possible.
             self.slots = [None] * self.size
             self.data = [None] * self.size
 
-
-``hashfunction`` implements the simple remainder method. The collision
-resolution technique is linear probing with a “plus 1” rehash function.
-The ``put`` function (see :ref:`Listing 3 <lst_hashtablecodestore>`) assumes that
-there will eventually be an empty slot unless the key is already present
-in the ``self.slots``. It computes the original hash value and if that
-slot is not empty, iterates the ``rehash`` function until an empty slot
-occurs. If a nonempty slot already contains the key, the old data value
-is replaced with the new data value.
+``hashfunction`` реализует простой метод остатков. В качестве техники разрешения коллизий используется линейное пробирование с функцией повторного хэширования "плюс 1". Функция ``put`` (см. :ref:`листинг 3 <lst_hashtablecodestore>`) предполагает, что в конце-концов найдётся пустой слот, или такой ключ уже присутствует в ``self.slots``. Она вычисляет оригинальное хэш-значение и, если слот не пуст, применяет функцию ``rehash`` до тех пор, пока не найдёт свободное место. Если непустой слот уже содержит ключ, старое значение данных будет заменено на новое.
 
 .. _lst_hashtablecodestore:
 
-**Listing 3**
+**Листинг 3**
 
 ::
 
@@ -504,24 +291,13 @@ is replaced with the new data value.
     def rehash(self,oldhash,size):
         return (oldhash+1)%size
 
+Аналогично функция ``get`` (см. :ref:`листинг 4 <lst_hashtablecodesearch>`) начинает с вычисления начального хэш-значения. Если искомая величина не содержится в этом слоте, то используется ``rehash`` для определения следующей позиции. Обратите внимание: строка 15 гарантирует, что поиск закончится, проверяя не вернулись ли мы в начальный слот. Если такое происходит, значит все возможные слоты исчерпаны, и элемент в коллекции не представлен.
 
-Likewise, the ``get`` function (see :ref:`Listing 4 <lst_hashtablecodesearch>`)
-begins by computing the initial hash value. If the value is not in the
-initial slot, ``rehash`` is used to locate the next possible position.
-Notice that line 15 guarantees that the search will terminate by
-checking to make sure that we have not returned to the initial slot. If
-that happens, we have exhausted all possible slots and the item must not
-be present.
-
-The final methods of the ``HashTable`` class provide additional
-dictionary functionality. We overload the __getitem__ and
-__setitem__ methods to allow access using``[]``. This means that
-once a ``HashTable`` has been created, the familiar index operator will
-be available. We leave the remaining methods as exercises.
+Кончный метод класса ``HashTable`` предоставляет для словарей дополнительный функционал. Мы перегружаем методы ``__getitem__`` и ``__setitem__``, чтобы получать доступ к элементам с помощью ``[]``. Это подразумевает, что созданному экземпляру ``HashTable`` будет доступен знакомый оператор индекса. Оставшиеся методы мы оставляем в качестве упражнения.
 
 .. _lst_hashtablecodesearch:
 
-**Listing 4**
+**Листинг 4**
 
 .. highlight:: python
     :linenothreshold: 5
@@ -556,12 +332,8 @@ be available. We leave the remaining methods as exercises.
         
 .. highlight:: python
     :linenothreshold: 500
-    
-    
 
-The following session shows the ``HashTable`` class in action. First we
-will create a hash table and store some items with integer keys and
-string data values.
+Следующая сессия демонстрирует класс ``HashTable`` в действии. Сначала мы создаём хэш-таблицу и сохраняем в неё несколько элементов с целочисленными ключами и строковыми значениями данных.
 
 ::
 
@@ -581,8 +353,7 @@ string data values.
     ['bird', 'goat', 'pig', 'chicken', 'dog', 'lion',
            'tiger', None, None, 'cow', 'cat']
 
-Next we will access and modify some items in the hash table. Note that
-the value for the key 20 is being replaced.
+Далее мы получаем доступ и изменяем некоторые из элементов в хэш-таблице. Обратите внимание, что значение с ключом 20 заменяется.
 
 ::
 
@@ -600,10 +371,10 @@ the value for the key 20 is being replaced.
     None
 
 
-The complete hash table example can be found in ActiveCode 1.
+Целиком пример хэш-таблицы можно увидеть в ActiveCode 1.
 
 .. activecode:: hashtablecomplete
-   :caption: Complete Hash Table Example
+   :caption: Пример хэш-таблицы целиком
    :hidecode:
    
    class HashTable:
@@ -682,35 +453,13 @@ The complete hash table example can be found in ActiveCode 1.
    H[20]='duck'
    print(H[20])
    print(H[99])
-   
-    
 
-Analysis of Hashing
+
+Анализ хэширования
 ^^^^^^^^^^^^^^^^^^^
 
-We stated earlier that in the best case hashing would provide a
-:math:`O(1)`, constant time search technique. However, due to
-collisions, the number of comparisons is typically not so simple. Even
-though a complete analysis of hashing is beyond the scope of this text,
-we can state some well-known results that approximate the number of
-comparisons necessary to search for an item.
+Как мы заключили выше, в лучшем случае хэширование предоставляет технику поиска за константное время: :math:`O(1)`. Однако, из-за некоторого числа коллизий с количеством сравнений всё не так просто. Несмотря на то, что полный анализ хэширования выходит за рамки этого текста, мы можем определить несколько общеизвестных результатов, аппроксимирующих количество сравнений, необходимое для поиска элемента.
 
-The most important piece of information we need to analyze the use of a
-hash table is the load factor, :math:`\lambda`. Conceptually, if
-:math:`\lambda` is small, then there is a lower chance of collisions,
-meaning that items are more likely to be in the slots where they belong.
-If :math:`\lambda` is large, meaning that the table is filling up,
-then there are more and more collisions. This means that collision
-resolution is more difficult, requiring more comparisons to find an
-empty slot. With chaining, increased collisions means an increased
-number of items on each chain.
+Наиболее важной частью информации, которую нам надо проанализировать при использовании хэш-таблицы, является фактор загрузки :math:`\lambda`. Концептуально, если :math:`\lambda` мало, то вероятность столкновений низкая. Это означает, что элементы вероятнее всего будут находиться в тех слотах, которым они принадлежат. Если же :math:`\lambda` велико, то это означает, что таблица близка к заполнению, т.е. будет возникать всё больше и больше коллизий. Следовательно, их разрешение будет более сложным, требовать больше сравнений для поиска свободного слота. В случае цепочек увеличение коллизий означает возрастание количества элементов в каждой из них.
 
-As before, we will have a result for both a successful and an
-unsuccessful search. For a successful search using open addressing with
-linear probing, the average number of comparisons is approximately
-:math:`\frac{1}{2}\left(1+\frac{1}{1-\lambda}\right)` and an
-unsuccessful search gives
-:math:`\frac{1}{2}\left(1+\left(\frac{1}{1-\lambda}\right)^2\right)`
-If we are using chaining, the average number of comparisons is
-:math:`1 + \frac {\lambda}{2}` for the successful case, and simply
-:math:`\lambda` comparisons if the search is unsuccessful.
+Как и раньше, мы будем рассматривать результаты удачного и неудачного поиска. В первом случае с использованием открытой адресации с линейным пробированием среднее число сравнений приблизительно равно :math:`\frac{1}{2}\left(1+\frac{1}{1-\lambda}\right)`. Во втором - :math:`\frac{1}{2}\left(1+\left(\frac{1}{1-\lambda}\right)^2\right)`. Если мы используем цепочки, то среднее количество сравнений будет :math:`1 + \frac {\lambda}{2}` для удачного поиска и :math:`\lambda` для неудачного.
