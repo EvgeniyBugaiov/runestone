@@ -7,99 +7,85 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Discussion Questions
---------------------
+Вопросы для обсуждения
+----------------------
 
-#. Using the hash table performance formulas given in the chapter,
-   compute the average number of comparisons necessary when the table is
+#.  Используя формулы для производительности хэш-таблиц, данные в этой главе, посчитайте среднее количество сравнений, необходимых при заполненности таблицы на
 
-   -  10% full
+- 10%
 
-   -  25% full
+- 25%
 
-   -  50% full
+- 50%
 
-   -  75% full
+- 75%
 
-   -  90% full
+- 90%
 
-   -  99% full
+- 99%
 
-   At what point do you think the hash table is too small? Explain.
+Как вы думаете, в какой момент хэш-таблица становится чересчур мала?
 
-#. Modify the hash function for strings to use positional weightings.
+#. Измените хэш-функцию для строк таким образом, чтобы использовать веса позиций.
 
-#. We used a hash function for strings that weighted the characters by
-   position. Devise an alternative weighting scheme. What are the biases
-   that exist with these functions?
+#. Мы использовали для строк хэш-функцию, которая взвешивает символ с учётом его позиции. Придумайте альтернативную схему весов. Какие у них существуют недостатки?
 
-#. Research perfect hash functions. Using a list of names (classmates,
-   family members, etc.), generate the hash values using the perfect
-   hash algorithm.
+#. Исследуйте идеальные хэш-функции. Используя список имён (одноклассников, членов семьи и т.п.), сгенерируйте хэш-значения с помощью алгоритма идеальной хэш-функции.
 
-#. Generate a random list of integers. Show how this list is sorted by
-   the following algorithms:
+#. Сгенерируйте список случайных чисел. Покажите, как его можно отсортировать с помощью алгоритмов
 
-   -  bubble sort
+- пузырьковой сортировки
 
-   -  selection sort
+- сортировки выбором
 
-   -  insertion sort
+- сортировки вставками
 
-   -  shell sort (you decide on the increments)
+- сортировки Шелла (инкремент выберите самостоятельно)
 
-   -  merge sort
+- сортировки слиянием
 
-   -  quick sort (you decide on the pivot value)
+- быстрой сортировки (способ выбора опорного значения выберите самостоятельно)
 
-#. Consider the following list of integers: [1,2,3,4,5,6,7,8,9,10]. Show
-   how this list is sorted by the following algorithms:
+#. Рассмотрите следующий список чисел: [1,2,3,4,5,6,7,8,9,10]. Покажите, как он будет сортироваться с помощью алгоритмов
 
-   -  bubble sort
+- пузырьковой сортировки
 
-   -  selection sort
+- сортировки выбором
 
-   -  insertion sort
+- сортировки вставками
 
-   -  shell sort (you decide on the increments)
+- сортировки Шелла (инкремент выберите самостоятельно)
 
-   -  merge sort
+- сортировки слиянием
 
-   -  quick sort (you decide on the pivot value)
+- быстрой сортировки (способ выбора опорного значения выберите самостоятельно)
 
-#. Consider the following list of integers: [10,9,8,7,6,5,4,3,2,1]. Show
-   how this list is sorted by the following algorithms:
+#. Рассмотрите следующий список чисел: [10,9,8,7,6,5,4,3,2,1]. Покажите, как он будет сортироваться с помощью алгоритмов
 
-   -  bubble sort
+- пузырьковой сортировки
 
-   -  selection sort
+- сортировки выбором
 
-   -  insertion sort
+- сортировки вставками
 
-   -  shell sort (you decide on the increments)
+- сортировки Шелла (инкремент выберите самостоятельно)
 
-   -  merge sort
+- сортировки слиянием
 
-   -  quick sort (you decide on the pivot value)
+- быстрой сортировки (способ выбора опорного значения выберите самостоятельно)
 
-#. Consider the list of characters: [``'P','Y','T','H','O','N'``]. Show
-   how this list is sorted using the following algorithms:
+#. Рассмотрите список символов:  ['P','Y','T','H','O','N']. Покажите, как он будет сортироваться с помощью алгоритмов
 
-   -  bubble sort
+- пузырьковой сортировки
 
-   -  selection sort
+- сортировки выбором
 
-   -  insertion sort
+- сортировки вставками
 
-   -  shell sort (you decide on the increments)
+- сортировки Шелла (инкремент выберите самостоятельно)
 
-   -  merge sort
+- сортировки слиянием
 
-   -  quick sort (you decide on the pivot value)
+- быстрой сортировки (способ выбора опорного значения выберите самостоятельно)
 
-#. Devise alternative strategies for choosing the pivot value in quick
-   sort. For example, pick the middle item. Re-implement the algorithm
-   and then execute it on random data sets. Under what criteria does
-   your new strategy perform better or worse than the strategy from this
-   chapter?
-
+#. Придумайте альтернативную стратегию выбора опорного элемента в быстрой сортировке. Например, используйте значение из середины списка. Переделайте алгоритм и примените его к набору случайных данных. По каким критериям ваша новая стратегия превосходит или уступает стратегиям из этой главы?
