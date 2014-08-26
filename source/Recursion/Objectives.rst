@@ -7,20 +7,20 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Objectives
-----------
+Цели
+-----
 
-The goals for this chapter are as follows:
+В этой главе перед нами стоят следующие цели:
 
--  To understand that complex problems that may otherwise be difficult
-   to solve may have a simple recursive solution.
 
--  To learn how to formulate programs recursively.
+- Понять, что сложные проблемы, которые в противном случае трудно решить, могут иметь простое рекурсивное решение.
 
--  To understand and apply the three laws of recursion.
+- Изучить, как рекурсивно формулировать программы.
 
--  To understand recursion as a form of iteration.
+- Понять и научиться применять на практике три закона рекурсии.
 
--  To implement the recursive formulation of a problem.
+- Понять рекурсию, как форму интерирования.
 
--  To understand how recursion is implemented by a computer system.
+- Научиться воплощать рекурсивную формулировку задачи.
+
+- Понять, как реализуется рекурсия в вычислительных системах.
