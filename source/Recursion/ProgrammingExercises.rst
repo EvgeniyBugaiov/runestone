@@ -7,81 +7,49 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Programming Exercises
----------------------
+Упражнения для программирования
+--------------------------------
 
-#. Write a recursive function to compute the factorial of a number.
+#. Напишите рекурсивную функцию для вычисления факториала числа.
 
-#. Write a recursive function to reverse a list.
+#. Напишите рекурсивную функцию для переворота списка.
 
-#. Modify the recursive tree program using one or all of the following
-   ideas:
+#. Измените программу рекурсивного рисования дерева, используя одну из следующих идей:
 
-   -  Modify the thickness of the branches so that as the ``branchLen``
-      gets smaller, the line gets thinner.
+- Изменяйте толщину ветвей таким образом, чтобы с уменьшением ``branchLen`` линии становились тоньше.
 
-   -  Modify the color of the branches so that as the ``branchLen`` gets
-      very short it is colored like a leaf.
+- Изменяейте цвет ветвей, чтобы при маленьких ``branchLen`` цвет линий был зелёным (как у листьев).
 
-   -  Modify the angle used in turning the turtle so that at each branch
-      point the angle is selected at random in some range. For example
-      choose the angle between 15 and 45 degrees. Play around to see
-      what looks good.
+- Измените угол поворота "черепашки", чтобы для каждой ветки он выбирался произвольным образом из некоторого интервала. Например, используйте углы между 15-ю и 45-ю градусами. Поэкспериментируйте для улучшения внешнего вида дерева.
 
-   -  Modify the ``branchLen`` recursively so that instead of always
-      subtracting the same amount you subtract a random amount in some
-      range.
+- Рекурсивно изменяйте ``branchLen`` таким образом, чтобы вместо вычитания заданной величины, из неё каждый раз вычиталось произвольное число из некоторого интервала.
 
-   If you implement all of the above ideas you will have a very
-   realistic looking tree.
+Если вы реализуете все эти идеи, то получите очень реалистично выглядящее дерево.
 
-#. Find or invent an algorithm for drawing a fractal mountain. Hint: One
-   approach to this uses triangles again.
+#. Найдите или придумайте алгоритм для рисования фрактальных гор. Подсказка: одним из возможных методов снова будет использование треугольников.
 
-#. Write a recursive function to compute the Fibonacci sequence. How
-   does the performance of the recursive function compare to that of an
-   iterative version?
+#. Напишите рекурсивную функцию для вычисления последовательности Фибоначчи. Как её производительность соотносится с итеративной версией?
 
-#. Implement a solution to the Tower of Hanoi using three stacks to keep
-   track of the disks.
+#. Реализуйте решение для ханойской башни, используя три стека для хранения дисков.
 
-#. Using the turtle graphics module, write a recursive program to
-   display a Hilbert curve.
+#. Используя графический модуль ``turtle``, напишите рекурсивную программу, рисующую кривую Гильберта. 
 
-#. Using the turtle graphics module, write a recursive program to
-   display a Koch snowflake.
+#. Используя графический модуль ``turtle``, напишите рекурсивную программу, рисующую снежинку Коха.
 
-#. Write a program to solve the following problem: You have two jugs: a
-   4-gallon jug and a 3-gallon jug. Neither of the jugs have markings on
-   them. There is a pump that can be used to fill the jugs with water.
-   How can you get exactly two gallons of water in the 4-gallon jug?
+#. Напишите программу для решения слудеющей задачи: у вас есть два кувшина - на четыре и три галлона. Но ни на одном из них нет маркировки. Есть насос, с помощью которого в кувшины можно набрать воды. Как получить ровно два галлона в четырёхгаллоновом кувшине?
 
-#. Generalize the problem above so that the parameters to your solution
-   include the sizes of each jug and the final amount of water to be
-   left in the larger jug.
+#. Обощите программу выше таким образом, чтобы параметры вашего решения включали размер каждого кувшина и итоговое количество воды, которое нужно оставить в наибольшем кувшине.
 
-#. Write a program that solves the following problem: Three missionaries
-   and three cannibals come to a river and find a boat that holds two
-   people. Everyone must get across the river to continue on the
-   journey. However, if the cannibals ever outnumber the missionaries on
-   either bank, the missionaries will be eaten. Find a series of
-   crossings that will get everyone safely to the other side of the
-   river.
+#. Напишите программу для решения следующей задачи: три миссионера и три каннибала подошли к берегу реки, возле которого привязана лодка, вмещающая только двух человек. Каждому нужно перебраться на другой берег, чтобы продолжить путешествие. Однако, если на каком-нибудь из берегов каннибалов окажется больше, чем миссионеров, то миссионеры будут съедены. Найдите серию перевозок, чтобы все безопасно оказались на другом берегу реки.
 
-#. Modify the Tower of Hanoi program using turtle graphics to animate
-   the movement of the disks. Hint: You can make multiple turtles and
-   have them shaped like rectangles.
+#. Измените программу ханойской башни, используя модуль ``turtle`` для анимации перемещения дисков. Подсказка: вы можете создать несколько "черепашек" и придать им форму прямоугольников.
 
-#. Pascal’s triangle is a number triangle with numbers arranged in
-   staggered rows such that 
+#. Треугольник Паскаля - это треугольник из чисел, расположенных в шахматном порядке таким образом, что 
 
    .. math::
       a_{nr} = {n! \over{r! (n-r)!}}
-   
-   This equation is the equation for a binomial coefficient. You can
-   build Pascal’s triangle by adding the two numbers that are diagonally
-   above a number in the triangle. An example of Pascal’s triangle is
-   shown below.
+
+Это выражение имеет биномиальный коэффициент. Вы можете построить треугольник Паскаля, складывая два числа, лежащих выше него по диагоналям. Пример треугольника Паскаля:
 
    ::
 
@@ -91,19 +59,11 @@ Programming Exercises
                    1   3   3   1
                  1   4   6   4   1
 
-   Write a program that prints out Pascal’s triangle. Your program
-   should accept a parameter that tells how many rows of the triangle to
-   print.
+Напишите программу, печатающую треугольник Паскаля. Она должна иметь параметр, задающий количество строк в треугольнике.
 
-#. Suppose you are a computer scientist/art thief who has broken into a
-   major art gallery. All you have with you to haul out your stolen art
-   is your knapsack which only holds :math:`W` pounds of art, but for
-   every piece of art you know its value and its weight. Write a dynamic
-   programming function to help you maximize your profit. Here is a
-   sample problem for you to use to get started: Suppose your knapsack
-   can hold a total weight of 20. You have 5 items as follows:
+#. Предположим, что вы учёный-информатик и вор произведений искусства в одном лице. Вы проникли в художественную галерею, но всё, что у вас есть с собой для переноски украденного - это рюкзак, вместимостью в W фунтов произведений искусства. Для каждой ценности из галереи вы знаете её стоимость и вес. Напишите динамическую функцию, которая поможет вам максимизировать прибыль. Вот аналогичная задача, с которой можно начать: допустим, ваш рюкзак выдерживает вес в 20 фунтов и есть пять следующих элементов:
 
-   :: 
+:: 
    
         item     weight      value
           1        2           3
@@ -112,14 +72,4 @@ Programming Exercises
           4        5           8
           5        9          10
 
-#. This problem is called the string edit distance problem, and is quite
-   useful in many areas of research. Suppose that you want to transform
-   the word “algorithm” into the word “alligator.” For each letter you
-   can either copy the letter from one word to another at a cost of 5,
-   you can delete a letter at cost of 20, or insert a letter at a cost
-   of 20. The total cost to transform one word into another is used by
-   spell check programs to provide suggestions for words that are close
-   to one another. Use dynamic programming techniques to develop an
-   algorithm that gives you the smallest edit distance between any two
-   words.
-
+#. Эта задача называется "о расстоянии между строками" и используется во многих исследовательских областях. Предположим, вы хотите трансформировать слово "algorithm" в слово "alligator". Вы можете копировать буквы из одного слова в другое (стоимость 5 единиц), удалять буквы (стоимость 20 единиц) или вставлять дополнительные буквы (стоимость 20 едениц). Общая стоимость трансформации одного слова в другое используется программами проверки орфографии для выдачи предположений близких друг к другу слов. Используя технику динамического программирования, разработайте алгоритм, дающий вам наименьшее расстояние между любыми двумя словами.
