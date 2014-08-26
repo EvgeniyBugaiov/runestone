@@ -7,53 +7,31 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Merge Sort
-~~~~~~~~~~~~~~
+Сортировка слиянием
+~~~~~~~~~~~~~~~~~~~~
 
-We now turn our attention to using a divide and conquer strategy as a
-way to improve the performance of sorting algorithms. The first
-algorithm we will study is the **merge sort**. Merge sort is a recursive
-algorithm that continually splits a list in half. If the list is empty
-or has one item, it is sorted by definition (the base case). If the list
-has more than one item, we split the list and recursively invoke a merge
-sort on both halves. Once the two halves are sorted, the fundamental
-operation, called a **merge**, is performed. Merging is the process of
-taking two smaller sorted lists and combining them together into a
-single, sorted, new list. :ref:`Figure 10 <fig_mergesortA>` shows our familiar example
-list as it is being split by ``mergeSort``. :ref:`Figure 11 <fig_mergesortB>` shows
-the simple lists, now sorted, as they are merged back together.
+Теперь обратим наше внимание на использование стратегии "разделяй и властвуй", как способа улучшить производительность сортировочных алгоритмов. Первым из них станет **сортировка слиянием**. Это рекурсивный алгоритм, который постоянно разбивает список пополам. Если список пуст или состоит из одного элемента, то он отсортирован по определению (базовый случай). Если в списке больше, чем один элемент, мы разбиваем его и рекурсивно вызываем сортировку слиянием для каждой из половин. После того, как обе они уже отсортированы, выполняется основная операция, называемая **слиянием**. Слияние - это процесс комбинирования двух меньших сортированных списков в один новый, но тоже отсортированный. :ref:`Рисунок 10 <fig_mergesortA>` демонстрирует в качестве примера старый знакомый список, который начинают разбивать с помощью ``mergeSort``. :ref:`Рисунок 11 <fig_mergesortB>` показывает отсортированные списки и их слияние вместе.
 
-
-.. _fig_mergesortA:
+. _fig_mergesortA:
 
 .. figure:: Figures/mergesortA.png
    :align: center
 
-   Figure 10: Splitting the List in a Merge Sort
-
+    Рисунок 10: Разбиение списка в сортировке слиянием
 
 .. _fig_mergesortB:
 
 .. figure:: Figures/mergesortB.png
    :align: center
 
-   Figure 11: Lists as They Are Merged Together
+    Рисунок 11: Списки, которые соединяются вместе
 
-
-
-The ``mergeSort`` function shown in :ref:`ActiveCode 6 <lst_merge>` begins by asking the
-base case question. If the length of the list is less than or equal to
-one, then we already have a sorted list and no more processing is
-necessary. If, on the other hand, the length is greater than one, then
-we use the Python ``slice`` operation to extract the left and right
-halves. It is important to note that the list may not have an even
-number of items. That does not matter, as the lengths will differ by at
-most one.
+Функция ``mergeSort``, показанная в :ref:`ActiveCode 6 <lst_merge>`, начинает с проверки базового условия. Если длина списка меньше или равна единице, то он уже отсортирован, и в дальшейшей обработке нет необходимости. С другой стороны, если длина больше единицы, то мы используем операцию Python ``slice``, чтобы извлечь правую и левую части. Важно отметить, что список может иметь нечётное количество элементов. Для алгоритма это не принципиально, поскольку длины будут различаться максимум на единицу.
 
 .. _lst_merge:
 
 .. activecode:: lst_merge
-    :caption: Merge Sort
+    :caption: Сортировка слиянием
 
     def mergeSort(alist):
         print("Splitting ",alist)
@@ -90,38 +68,22 @@ most one.
         
     alist = [54,26,93,17,77,31,44,55,20]
     mergeSort(alist)
-    print(alist)
+    print(alist) 
 
+После того, как функция ``mergeSort`` была вызывана для правой и левой частей (строки 8 - 9), предполагается, что они отсортированы. Остаток функции (строки 11 - 31) отвечает за слияние двух меньших сортированных списков в больший. Обратите внимание, что операция слияния помещает элементы обратно в оригинальный список (``alist``) по одному за раз с помощью повторяющегося выбора наименьшего элемента из двух сортированных списков.
 
-Once the ``mergeSort`` function is invoked on the left half and the
-right half (lines 8–9), it is assumed they are sorted. The rest of the
-function (lines 11–31) is responsible for merging the two smaller sorted
-lists into a larger sorted list. Notice that the merge operation places
-the items back into the original list (``alist``) one at a time by
-repeatedly taking the smallest item from the sorted lists.
-
-The ``mergeSort`` function has been augmented with a ``print`` statement
-(line 2) to show the contents of the list being sorted at the start of
-each invocation. There is also a ``print`` statement (line 32) to show
-the merging process. The transcript shows the result of executing the
-function on our example list. Note that the list with 44, 55, and 20
-will not divide evenly. The first split gives [44] and the second gives
-[55,20]. It is easy to see how the splitting process eventually yields a
-list that can be immediately merged with other sorted lists.
-
+Функцию ``mergeSort`` дополняет оператор ``print`` (строка 2), который выводит содержимое сортируемого списка на начало каждого вызова. Также есть оператор ``print`` (строка 32), показывающий процесс слияния. Результат вычисления функции на нашем примере списка выводится на экран. Обратите внимание, что список с 44, 55 и 20 не делится поровну. Первая его часть равна [44], а вторая - [55, 20]. Легко увидеть, как процесс разбивки в итоге приводит к тому, что список может быть немедленно слит с другими сортированными списками.
 
 .. animation:: merge_anim
    :modelfile: sortmodels.js
    :viewerfile: sortviewers.js
    :model: MergeSortModel
    :viewer: BarViewer
-  
-  
-For more detail, CodeLens 6 allows you to step through the algorithm.
 
+Для большей детализации, CodeLens позволят вам пошагово пройти весь алгоритм.
 
 .. codelens:: mergetrace
-    :caption: Tracing the Merge Sort
+    :caption: Трассировка сортировки слиянием
 
     def mergeSort(alist):
         print("Splitting ",alist)
@@ -158,48 +120,27 @@ For more detail, CodeLens 6 allows you to step through the algorithm.
         
     alist = [54,26,93,17,77,31,44,55,20]
     mergeSort(alist)
-    print(alist)
+    print(alist) 
 
+Чтобы проанализировать функцию ``megreSort``, нам надо рассмотреть два различных процесса, которые составляют её реализацию. Во-первых, список разбивается пополам. Мы уже вычисляли (для бинарного поиска), что разделять список на две половины можно :math:`\log n` раз, где *n* - длина списка. Второй процесс - это слияние. Каждый элемент будет обработан и помещён в сортированный список. Таким образом, операция слияния, чей результат - список из *n* элементов, потребует *n* операций. Итог данного анализа: :math:`\log n` разбиений, каждое стоимостью :math:`n`, в сумме даст :math:`n\log n` операций. Таким образом, сортировка слиянием :math:`O(n\log n)` алгоритм.
 
-In order to analyze the ``mergeSort`` function, we need to consider the
-two distinct processes that make up its implementation. First, the list
-is split into halves. We already computed (in a binary search) that we
-can divide a list in half :math:`\log n` times where *n* is the
-length of the list. The second process is the merge. Each item in the
-list will eventually be processed and placed on the sorted list. So the
-merge operation which results in a list of size *n* requires *n*
-operations. The result of this analysis is that :math:`\log n` splits,
-each of which costs :math:`n` for a total of :math:`n\log n`
-operations. A merge sort is an :math:`O(n\log n)` algorithm.
+Напомним, что встроенный оператор разбиения имеет :math:`O(k)`, где k - размер разбиения. С целью гарантировать :math:`O(n\log n)` для сортировки слиянием, нам нужно от него избавиться. Напомним, что это возможно, если просто помещать начальный и конечный индексы вместе со списком в качестве аргументов рекурсивного вызова. Мы оставляем это вам в качестве упражнения.
 
-Recall that the slicing operator is :math:`O(k)` where k is the size
-of the slice. In order to guarantee that ``mergeSort`` will be
-:math:`O(n\log n)` we will need to remove the slice operator. Again,
-this is possible if we simply pass the starting and ending indices along
-with the list when we make the recursive call. We leave this as an
-exercise.
+Важно отметить, что функция ``mergeSort`` требует дополнительного места для хранения двух извлечённых операцией разбиения частей. Это дополнительное пространство может стать критичным фактором, если список велик, и сделать этот способ сортировки проблемным для больших наборов данных.
 
-It is important to notice that the ``mergeSort`` function requires extra
-space to hold the two halves as they are extracted with the slicing
-operations. This additional space can be a critical factor if the list
-is large and can make this sort problematic when working on large data
-sets.
-
-
-.. admonition:: Self Check
-
+.. admonition:: Самопроверка
    .. mchoicemf:: question_sort_5
       :correct: b
       :answer_a: [16, 49, 39, 27, 43, 34, 46, 40]
       :answer_b: [21,1]
       :answer_c: [21, 1, 26, 45]
       :answer_d: [21]
-      :feedback_a: This is the second half of the list.
-      :feedback_b: Yes, mergesort will continue to recursively move toward the beginning of the list until it hits a base case.
-      :feedback_c: Remember mergesort doesn't work on the right half of the list until the left half is completely sorted.
-      :feedback_d: This is the list after 4 recursive calls
+      :feedback_a: Это вторая часть списка.
+      :feedback_b: Верно, сортировка слиянием будет продолжать рекурсчивно перемещаться к началу списка, пока не достигнет базового случая.
+      :feedback_c: Не забывайте, сортировка слиянием не работает с правой половиной списка, пока полностью не отсортирует левую.
+      :feedback_d: Это список после четырёх рекурсивных вызовов.
 
-      Given the following list of numbers: <br> [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40] <br> which answer illustrates the list to be sorted after 3 recursive calls to mergesort?
+      Дан следующий список чисел: [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40]. Который из ответов иллюстрирует список после трёх рекурсивных вызовов сортировки слиянием?
 
    .. mchoicemf:: question_sort_6
       :correct: c
@@ -207,10 +148,9 @@ sets.
       :answer_b: [[1, 2, 9, 21, 26, 28, 29, 45] and [16, 27, 34, 39, 40, 43, 46, 49]
       :answer_c: [21] and [1]
       :answer_d: [9] and [16]
-      :feedback_a: The first two lists merged will be base case lists, we have not yet reached a base case.
-      :feedback_b: These will be the last two lists merged
-      :feedback_c: The lists [21] and [1] are the first two base cases encountered by mergesort and will therefore be the first two lists merged.
-      :feedback_d: Although 9 and 16 are next to each other they are in different halves of the list starting with the first split.
+      :feedback_a:  Первые два списка, которые будут слиты, представляют из себя базовый случай, а мы его ещё не достигли.
+      :feedback_b: Это результат слияния двух последних списков.
+      :feedback_c: Списки [21] и [1] - два первых базовых случая, с которыми сталкивается сортировка слиянием. Поэтому они будут первыми двумя слитыми списками.
+      :feedback_d: Хотя 9 и 16 следуют друг за другом, они находятся в разных половиная списка, начиная с первого разбиения.
 
-      Given the following list of numbers: <br> [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40] <br> which answer illustrates the first two lists to be merged?
-
+       Дан следующий список чисел:  [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40]. Какой ответ иллюстрирует первые два списка для слияния?
