@@ -7,20 +7,20 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Key Terms
----------
+Ключевые термины
+-----------------
 
 ========================= ========================= =========================
-            binary Search               bubble Sort                  chaining
-               clustering                 collision      collision resolution
-           folding method                       gap             hash function
-               hash table                   hashing            insertion sort
-           linear probing               load factor                       map
-          median of three                     merge                merge sort
-        mid-square method           open addressing                 partition
-    perfect hash function               pivot value         quadratic probing
-               quick sort                 rehashing            selection sort
-        sequential search                shell sort              short bubble
-                     slot               split point                          
+           Бинарный поиск    Пузырьковая сортировка                   Цепочки
+            Кластеризация                  Коллизия       Разрешение коллизий
+            Метод свёртки                  Интервал               Хэш-функция
+              Хэш-таблица               Хэширование      Сортировка вставками
+    Линейное пробирование        Загрузочный фактор               Отображение
+             Медиана трёх                   Слияние       Сортировка слиянием
+  Метод средних квадратов        Открытая адресация                 Разбиение
+    Идеальная хэш-функция          Опорное значение Квадратичное пробирование
+       Быстрая сортировка     Повторное хэширование        Сортировка выбором
+   Последовательный поиск          Сортировка Шелла          Короткий пузырёк
+                     Слот           Точка разбиения                          
 ========================= ========================= =========================
 
