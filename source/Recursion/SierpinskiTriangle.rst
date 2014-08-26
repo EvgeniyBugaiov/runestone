@@ -7,22 +7,10 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Sierpinski Triangle
--------------------
+Треугольник Серпинского
+------------------------
 
-
-Another fractal that exhibits the property of self-similarity is the
-Sierpinski triangle. An example is shown in :ref:`Figure 3 <fig_sierpinski>`. The
-Sierpinski triangle illustrates a three-way recursive algorithm. The
-procedure for drawing a Sierpinski triangle by hand is simple. Start
-with a single large triangle. Divide this large triangle into four new
-triangles by connecting the midpoint of each side. Ignoring the middle
-triangle that you just created, apply the same procedure to each of the
-three corner triangles. Each time you create a new set of triangles, you
-recursively apply this procedure to the three smaller corner triangles.
-You can continue to apply this procedure indefinitely if you have a
-sharp enough pencil. Before you continue reading, you may want to try
-drawing the Sierpinski triangle yourself, using the method described.
+Ещё один фрактал, обладающий свойством самоподобия, - это треугольник Серпинского. Его пример показан на :ref:`рисунке 3 <fig_sierpinski>`. Треугольник Серпинского иллюстрирует трёхходовой рекурсивный алгоритм. Процедура его отрисовки вручную очень проста. Начинаем с большого треугольника, который делим на четыре маленьких, связанных с серединами сторон первоначального. Игнорируя вновь созданный внутренний треугольник, делаем всё то же самое для каждого из трёх угловых. Каждый раз при создании нового набора треугольников, вы рекурсивно применяете эту процедуру к трём меньшим угловым фигурам. Так можно продолжать до бесконечности (если у вас достаточно острый карандаш). Перед тем, как продолжить чтение, можете попробовать самостоятельно нарисовать треугольник Серпинского, используя описанный метод.
 
 
 .. _fig_sierpinski:
@@ -30,21 +18,15 @@ drawing the Sierpinski triangle yourself, using the method described.
 .. figure:: Figures/sierpinski.png
      :align: center
 
-     Figure 3: The Sierpinski Triangle
+Рисунок 3: Треугольник Серпинского.
 
-Since we can continue to apply the algorithm indefinitely, what is the
-base case? We will see that the base case is set arbitrarily as the
-number of times we want to divide the triangle into pieces. Sometimes we
-call this number the “degree” of the fractal. Each time we make a
-recursive call, we subtract 1 from the degree until we reach 0. When we
-reach a degree of 0, we stop making recursive calls. The code that
-generated the Sierpinski Triangle in :ref:`Figure 3 <fig_sierpinski>` is shown in
-:ref:`ActiveCode 4 <lst_st>`.
+Поскольку мы можем повторять этот алгоритм до бесконечности, что сделать базовым случаем? Им станет произвольное число - сколько раз мы хотим разделить треугольник на части. Иногда это число называют "степенью" фрактала. Каждый раз, когда делается рекурсивный вызов, мы вычитаем из степени единицу, пока она не станет равной нулю. Тогда мы останавливаем рекурсию. Код, генерирующий треугольник Серпинского на :ref:`рисунке 3 <fig_sierpinski>`, показан в :ref:`ActiveCode 4 <lst_st>`.
+
 
 .. _lst_st:
 
 .. activecode:: lst_st
-    :caption: Drawing a Sierpinski Triangle
+    :caption:  Рисование треугольника Серпинского
 
     import turtle
 
@@ -90,46 +72,17 @@ generated the Sierpinski Triangle in :ref:`Figure 3 <fig_sierpinski>` is shown i
     main()
 
 
+Программа из :ref:`ActiveCode 4 <lst_st>` следует изложенным выше идеям. Первое, что делает ``sierpinski``, - это прорисовывает внешний треугольника. Затем идут три рекурсивных вызова, по одному для каждого из новых угловых треугольников, полученных после соединения средних точек сторон. Мы снова используем стандартный модуль Python ``turtle``. Вы можете изучить в подробностях все его методы, воспользовавшись командой ``help('turtle')`` в командной строке Python.
 
-    
-    
-The program in :ref:`ActiveCode 4 <lst_st>` follows the ideas outlined above. The
-first thing ``sierpinski`` does is draw the outer triangle. Next, there
-are three recursive calls, one for each of the new corner triangles we
-get when we connect the midpoints. Once again we make use of the
-standard turtle module that comes with Python. You can learn all the
-details of the methods available in the turtle module by using
-``help('turtle')`` from the Python prompt.
+Посмотрите на код и подумайте, в каком порядке будут прорисовываться треугольники. Поскольку точный порядок углов определяется спецификацией начального набора, давайте предположим, что углы идут в следующем порядке: нижний левый, верхний, нижний правый. Поскольку функция ``sierpinski`` вызывает сама себя, вычисление будет идти к наименьшему возможному треугольнику в левом нижнем углу, а затем уже будут заполняться остальные треугольники в обратном порядке. Потом заполнятся треугольники в верхнем углу - к наименьшему и самому верхнему. Наконец, будут заполнен правый нижний угол, опять же по направлению к наименьшему нижнему правому.
 
-Look at the code and think about the order in which the triangles will
-be drawn. While the exact order of the corners depends upon how the
-initial set is specified, let’s assume that the corners are ordered
-lower left, top, lower right. Because of the way the ``sierpinski``
-function calls itself, ``sierpinski`` works its way to the smallest
-allowed triangle in the lower-left corner, and then begins to fill out
-the rest of the triangles working back. Then it fills in the triangles
-in the top corner by working toward the smallest, topmost triangle.
-Finally, it fills in the lower-right corner, working its way toward the
-smallest triangle in the lower right.
-
-Sometimes it is helpful to think of a recursive algorithm in terms of a
-diagram of function calls. :ref:`Figure 4 <fig_stcalltree>` shows that the recursive
-calls are always made going to the left. The active functions are
-outlined in black, and the inactive function calls are in gray. The
-farther you go toward the bottom of :ref:`Figure 4 <fig_stcalltree>`, the smaller the
-triangles. The function finishes drawing one level at a time; once it is
-finished with the bottom left it moves to the bottom middle, and so on.
-
+Иногда полезно думать о рекурсивных алгоритмах в терминах диаграммы вызовов функции. :ref:`Рисунок 4 <fig_stcalltree>` показывает, что рекурсивные вызовы всегда начинаются слева. Ативная функция выделена чёрным, неактивные вызовы - серым. Чем ниже вы спускаетесь по :ref:`рисунку 4 <fig_stcalltree>`, тем меньше треугольники. Функция заканчивает рисунок одного уровня за один раз; закончив с нижней левой частью, она перемещается к нижней середине и так далее.
 
 .. _fig_stcalltree:
 
 .. figure:: Figures/stCallTree.png
-    :align: center   
-   
-    Figure 4: Building a Sierpinski Triangle
+    :align: center 
 
-The ``sierpinski`` function relies heavily on the ``getMid`` function.
-``getMid`` takes as arguments two endpoints and returns the point
-halfway between them. In addition, :ref:`ActiveCode 4 <lst_st>` has a function that
-draws a filled triangle using the ``begin_fill`` and ``end_fill`` turtle
-methods. This means that each degree of the Sierpinski triangle is drawn
+Рисунок 4: Построение треугольника Серпинского.
+
+Функция ``sierpinski`` сильно зависит от функции ``getMid``. Последняя принимает в качестве аргументов две конечные точки и возвращает точку, находящуюся по середине между ними. В дополнение, :ref:`ActiveCode 4 <lst_st>` содержит функцию раскраски треугольников, использующую методы ``begin_fill`` и ``end_fill`` из модуля ``turtle``. Это означает, что каждая степень треугольника Серпинского рисуется другим цветом.
