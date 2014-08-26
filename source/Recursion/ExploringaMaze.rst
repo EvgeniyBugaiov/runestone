@@ -7,119 +7,62 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Exploring a Maze
-----------------
+Исследование лабиринта
+-----------------------
 
-In this section we will look at a problem that has relevance to the
-expanding world of robotics: How do you find your way out of a maze? If you have
-a Roomba vacuum cleaner for your dorm room (don’t all college students?)
-you will wish that you could reprogram it using what you have learned in
-this section. The problem we want to solve is to help our turtle find
-its way out of a virtual maze. The maze problem has roots as deep as the
-Greek myth about Theseus who was sent into a maze to kill the minotaur.
-Theseus used a ball of thread to help him find his way back out again
-once he had finished off the beast. In our problem we will assume that
-our turtle is dropped down somewhere into the middle of the maze and
-must find its way out. Look at :ref:`Figure 2 <fig_mazescreen>` to get an idea of
-where we are going in this section.
+В этом разделе мы рассмотрим задачу, имеющую отношение ко всё расширяющемуся миру робототехники: как найти выход из лабиринта? Если у вас есть пылесос Roomba для вашей комнаты в общежитии (или тут не все - студенты колледжа?), то вы можете захотеть перепрограммировать его, используя то, чему научитесь в этом разделе. Задача, которую мы хотим решить, состоит в помощи нашей черепашке найти выход из виртуального лабиринта. Задача лабиринта имеет глубокие корни: греческий миф о Тесее, спустившимся в лабиринт, чтобы убить Минотавра. Тесей использовал клубок нитей, который помог ему вернуться обратно после победы над чудовищем. В нашей задаче мы предположим, что черепашка брошена где-то по середине лабиринта и должна выбраться из него. Посмотрите на :ref:`рисунок 2 <fig_mazescreen>`, чтобы получить представление о том, чем мы будем заниматься в этом разделе.
 
 .. _fig_mazescreen:
 
 .. figure:: Figures/maze.png
    :align: center
 
-   Figure 2: The Finished Maze Search Program
+Рисунок 2: Законченная задача поиска пути из лабиринта.
 
+Чтобы сделать нашу жизнь проще, предположим, что лабиринт разбит на "квадраты". Каждый из них свободен или занят секцией стены. Черепашка может проходить только через свободные квадраты лабиринта. Если она ударяется о стену, то должна попытаться двигаться в другом направлении. Черепашке потребуется систематизированная процедура поиска пути из лабиринта. Например, такая:
 
-To make it easier for us we will assume that our maze is divided up into
-“squares.” Each square of the maze is either open or occupied by a
-section of wall. The turtle can only pass through the open squares of
-the maze. If the turtle bumps into a wall it must try a different
-direction. The turtle will require a systematic procedure to find its
-way out of the maze. Here is the procedure:
+- Из начальной позиции пробуем сначала продвинуться на один квадрат на север, а затем рекурсивно повторить процедуру уже отсюда.
 
--  From our starting position we will first try going North one square
-   and then recursively try our procedure from there.
+- Если попытка из первого шага закончилась неудачей, то делаем шаг на юг и рекурсивно повторяем эту процедуру.
 
--  If we are not successful by trying a Northern path as the first step
-   then we will take a step to the South and recursively repeat our
-   procedure.
+- Если южный путь закрыт, то делаем шаг в западном направлении, после чего опятьрекурсивно применяем процедуру.
 
--  If South does not work then we will try a step to the West as our
-   first step and recursively apply our procedure.
+- Если шаги на север, юг и запад окончились неудачно, то пробуем идти на восток.
 
--  If North, South, and West have not been successful then apply the
-   procedure recursively from a position one step to our East.
+- Если же ни одна из попыток выше не сработала, то выхода из лабиринта нет, и мы потерпели поражение.
 
--  If none of these directions works then there is no way to get out of
-   the maze and we fail.
+Звучит достаточно просто, но есть ещё несколько требующих обсуждения деталей. Предположим, мы делаем первый рекурсивный шаг на север. Согласно нашей процедуре, следующий шаг тоже должен быть в том же направлении. Но если путь заблокирован стеной, мы должны посмотреть на следующий шаг по процедуре и попытаться идти на юг. К несчастью, шаг в этом направлении вернёт нас в первоначальную позицию. Если мы применим рекурсивную процедуру отсюда, мы всего лишь вновь продвинемся на шаг в северном направлении и войдём в бесконечный цикл. Так что нужна стратегия запоминания мест, где мы уже были. В этом случае можно предположить, что у нас есть сумка с хлебными крошками, которые мы разбрасываем по пути. Если мы сделали шаг в данном направлении и обнаружили хлебную крошку в этом квадрате, значит надо незамедлительно вернуться и попытаться идти в следующем направлении по процедуре. Как мы увидим при рассмотрении кода этого алгортма, возвращение - всего лишь возврат из вызова рекурсивной функции.
 
-Now, that sounds pretty easy, but there are a couple of details to talk
-about first. Suppose we take our first recursive step by going North. By
-following our procedure our next step would also be to the North. But if
-the North is blocked by a wall we must look at the next step of the
-procedure and try going to the South. Unfortunately that step to the
-south brings us right back to our original starting place. If we apply
-the recursive procedure from there we will just go back one step to the
-North and be in an infinite loop. So, we must have a strategy to
-remember where we have been. In this case we will assume that we have a
-bag of bread crumbs we can drop along our way. If we take a step in a
-certain direction and find that there is a bread crumb already on that
-square, we know that we should immediately back up and try the next
-direction in our procedure. As we will see when we look at the code for
-this algorithm, backing up is as simple as returning from a recursive
-function call.
+Поскольку мы работаем с рекурсивными алгоритмами, то давайте рассмотрим базовые случаи. Некоторые из вас уже могли догадаться об их сути, основываясь на предыдущем абзаце. В этом алгоритме четыре базовых случая:
 
-As we do for all recursive algorithms let us review the base cases. Some
-of them you may already have guessed based on the description in the
-previous paragraph. In this algorithm, there are four base cases to
-consider:
+#. Черепашка упирается в стену. Поскольку квадрат занят стеной, то дальнейшее изучение невозможно.
 
-#. The turtle has run into a wall. Since the square is occupied by a
-   wall no further exploration can take place.
+#. Черепашка находится в квадрате, который уже был исследован. Мы не хотим продолжать исследование с этой позиции, иначе зациклимся.
 
-#. The turtle has found a square that has already been explored. We do
-   not want to continue exploring from this position or we will get into
-   a loop.
+#. Мы нашли внешний край, не занятый стеной. Иными словами, мы вышли из лабиринта.
 
-#. We have found an outside edge, not occupied by a wall. In other words
-   we have found an exit from the maze.
+#. Исследование квадрата закончилось неудачей по всем направлениям.
 
-#. We have explored a square unsuccessfully in all four directions.
+Для работы программы нужно найти способ представления лабиринта. Чтобы сделать его более интересным, используем модуль ``turtle`` для прорисовки и исследования лабиринта. Так можно будет наблюдать алгоритм в действии. Объект "лабиринт"" предоставляет нам следующие методы для написания алгоритма поиска:
 
-For our program to work we will need to have a way to represent the
-maze. To make this even more interesting we are going to use the turtle
-module to draw and explore our maze so we can watch this algorithm in
-action. The maze object will provide the following methods for us to use
-in writing our search algorithm:
+- ``__init__`` Считывает данные, представляющие лабиринт, инициализирует его внутреннее представление и находит начальную позицию для черепашки.
 
--  ``__init__`` Reads in a data file representing a maze, initializes
-   the internal representation of the maze, and finds the starting
-   position for the turtle.
+- ``drawMaze`` Рисует лабиринт на экране.
 
--  ``drawMaze`` Draws the maze in a window on the screen.
+- ``updatePosition`` Обновляет внутреннее представление лабиринта и изменяет позицию черепашки на экране.
 
--  ``updatePosition`` Updates the internal representation of the maze
-   and changes the position of the turtle in the window.
+- ``isExit`` Проверяет, является ли заданная позиция выходом из лабиринта.
 
--  ``isExit`` Checks to see if the current position is an exit from the
-   maze.
+Класс ``Maze`` также перегружает оператор индекса ``[]``, чтобы алгоритм мог легко получить доступ к статусу любого заданного квадрата.
 
-The ``Maze`` class also overloads the index operator ``[]`` so that our
-algorithm can easily access the status of any particular square.
-
-Let’s examine the code for the search function which we call
-``searchFrom``. The code is shown in :ref:`Listing 3 <lst_mazesearch>`. Notice
-that this function takes three parameters: a maze object, the starting
-row, and the starting column. This is important because as a recursive
-function the search logically starts again with each recursive call.
+Давайте проверим код функции поиска, которую мы назвали ``searchFrom``. Он показан в :ref:`листинге 3 <lst_mazesearch>`. Обратите внимание,  функция принимает три параметра: объект ``maze``, начальную строку и начальный столбец. Это важно, так как, будучи рекурсивной, функция поиска логически стартует заново на каждом вызове.
 
 .. _lst_mazesearch:
 
 .. highlight:: python
     :linenothreshold: 5
-    
-**Listing 3**
+
+**Листинг 3**
 
 ::
 
@@ -150,38 +93,12 @@ function the search logically starts again with each recursive call.
             maze.updatePosition(startRow, startColumn, DEAD_END)
         return found
 
-As you look through the algorithm you will see that the first thing the
-code does (line 2) is call ``updatePosition``. This is simply to help
-you visualize the algorithm so that you can watch exactly how the turtle
-explores its way through the maze. Next the algorithm checks for the
-first three of the four base cases: Has the turtle run into a wall (line
-5)? Has the turtle circled back to a square already explored (line 8)?
-Has the turtle found an exit (line 11)? If none of these conditions is
-true then we continue the search recursively.
+Проглядывая алгоритм, вы увидите, что первое действие в коде (строка 2) - это вызов ``updatePosition``. Она просто помогает вам визуализировать алгоритм, чтобы можно было наблюдать за тем, как черепашка ищет путь сквозь лабиринт. Затем алгоритм проверяет первые три из четырёх базовых случаев. Упёрлась ли черепашка в стену (строка 5)? Не вернулась ли в уже исследованный квадрат (строка 8)? Не нашла ли выход (строка 11)? Если ни одно из условий не выполнилось, то продолжаем рекурсивный поиск.
 
-You will notice that in the recursive step there are four recursive
-calls to ``searchFrom``. It is hard to predict how many of these
-recursive calls will be used since they are all connected by ``or``
-statements. If the first call to ``searchFrom`` returns ``True`` then
-none of the last three calls would be needed. You can interpret this as
-meaning that a step to ``(row-1,column)`` (or North if you want to think
-geographically) is on the path leading out of the maze. If there is not
-a good path leading out of the maze to the North then the next recursive
-call is tried, this one to the South. If South fails then try West, and
-finally East. If all four recursive calls return false then we have
-found a dead end. You should download or type in the whole program and
-experiment with it by changing the order of these calls.
+Вы можете заметить, что для рекурсивного шага существует четыре рекурсивных вызова ``searchFrom``. Трудно предсказать, сколько из них будет использовано, пока все они не свяжутся оператором ``or``. Если первый вызов ``searchFrom`` венёт истину, то ни один из следующих трёх не понадобится. Вы можете интерпретировать это в том смысле, что шаг ``(row-1, column)`` (или на север, если удобнее думать географически) лежит на пути, ведущем из лабиринта. Если продвижение на север не приведёт к выходу, то следующий рекурсивный вызов попробует движение на юг. Если южное направление не оправдает себя, то будет испробован путь на запад и, наконец, на восток. Если все четыре рекурсивных вызова вернут ложь, значит мы находимся в тупике. Вам стоит загрузить или набрать программу целиком, чтобы поэкспериментировать над сменой очерёдности этих вызовов.
 
-The code for the ``Maze`` class is shown in :ref:`Listing 4 <lst_maze>`, :ref:`Listing 5 <lst_maze1>`, and :ref:`Listing 6 <lst_maze2>`. 
-The ``__init__`` method takes the name of a file as its
-only parameter. This file is a text file that represents a maze by using
-“+” characters for walls, spaces for open squares, and the letter “S” to
-indicate the starting position. :ref:`Figure 3 <fig_exmaze>` is an example of a
-maze data file. The internal representation of the maze is a list of
-lists. Each row of the ``mazelist`` instance variable is also a list.
-This secondary list contains one character per square using the
-characters described above. For the data file in :ref:`Figure 3 <fig_exmaze>` the
-internal representation looks like the following:
+Код класса ``Maze`` показан в :ref:`листинге 4 <lst_maze>`, :ref:`листинге 5 <lst_maze1>` и :ref:`листинге 6 <lst_maze2>`. Метод ``__init__`` принимает имя файла как свой единственный параметр. Это текстовый документ, который содержит представление лабиринта с использованием символов "+" для обозначения стен, пробелов для пустых квадратов и буквы "S", указывающей на начальную позицию. :ref:`Рисунок 3 <fig_exmaze>` - пример того, как может выглядеть файл с данными лабиринта. Внутреннее представление лабиринта - список списков. Каждая строка экземпляра ``mazelist`` тоже является списком. Этот второй список содержит по одному символу на квадрат, используя описанные выше договорённости. Для файла данных с :ref:`рисунка 3 <fig_exmaze>` внутреннее представление будет следующим:
+
 
 .. highlight:: python
     :linenothreshold: 500
@@ -200,13 +117,12 @@ internal representation looks like the following:
       ['+',' ',' ',' ',...,' ',' ','+',' ','+','+','+'],
       ['+','+','+','+',...,'+','+','+',' ','+','+','+']]
 
-The ``drawMaze`` method uses this internal representation to draw the
-initial view of the maze on the screen.
+
+Метод ``drawMaze`` использует это внутренне представление, чтобы нарисовать первоначальный вид лабиринта на экране.
 
 .. _fig_exmaze:
 
-
-Figure 3: An Example Maze Data File
+Рисунок 3: Пример файла данных для лабиринта.
 
 ::
     
@@ -223,22 +139,13 @@ Figure 3: An Example Maze Data File
       ++++++++++++++++++ +++
 
 
-The ``updatePosition`` method, as shown in :ref:`Listing 5 <lst_maze1>` uses the
-same internal representation to see if the turtle has run into a wall.
-It also updates the internal representation with a “.” or “-” to
-indicate that the turtle has visited a particular square or if the
-square is part of a dead end. In addition, the ``updatePosition`` method
-uses two helper methods, ``moveTurtle`` and ``dropBreadCrumb``, to
-update the view on the screen.
+Метод ``updatePosition``, показанный в :ref:`листинге 5 <lst_maze1>`, использует аналогичное внутреннее представление для проверки не упёрлась ли черепашка в стену. Он также меняет внутреннее представление, ставя символы "." или "-". Первый используется для обозначения уже посещённых квадратов, второй - если квадрат является частью тупика. Метод ``updatePosition`` использует два вспомогательных метода: ``moveTurtle`` и ``dropBreadCrumb``, изменяющих изображение на экране.
 
-Finally, the ``isExit`` method uses the current position of the turtle
-to test for an exit condition. An exit condition is whenever the turtle
-has navigated to the edge of the maze, either row zero or column zero,
-or the far right column or the bottom row.
+Наконец, метод ``isExit`` использует текущую позицию черепашки для проверки условия выхода. Оно заключается в том, что черепашка подошла к краю лабиринта: нулевым строке или столбцу, крайнему правому столбцу или нижнему ряду.
 
 .. _lst_maze:
 
-**Listing 4**
+**Листинг 4**
 
 .. highlight:: python
     :linenothreshold: 500
@@ -278,7 +185,8 @@ or the far right column or the bottom row.
 
 .. _lst_maze1:
 
-**Listing 5**
+
+**Листинг 5**
 
 ::
 
@@ -336,7 +244,8 @@ or the far right column or the bottom row.
 
 .. _lst_maze2:
 
-**Listing 6**
+
+**Листинг 6**
 
 ::
 
@@ -350,12 +259,11 @@ or the far right column or the bottom row.
             return self.mazelist[idx]
 
 
-The complete program is shown in ActiveCode 2.  This program uses the data file ``maze2.txt`` shown below.
-Note that it is a much more simple example file in that the exit is very close to the starting position of the turtle.
+Целиком программа демонстрируется в *ActiveCode 2*. Она использует данные из файла ``maze2.txt``, показанного ниже. Отметьте, что это намного более простой пример, потому что выход находится очень близко к стартовой позиции черепашки.
 
 .. raw:: html
 
-	<pre id="maze2.txt">
+  <pre id="maze2.txt">
   ++++++++++++++++++++++
   +   +   ++ ++        +
         +     ++++++++++
@@ -370,7 +278,7 @@ Note that it is a much more simple example file in that the exit is very close t
     </pre>
 
 .. activecode:: completemaze
-    :caption: Complete Maze Solver
+    :caption: Полное решение задачи о лабиринте.
 
     import turtle
 
@@ -468,22 +376,22 @@ Note that it is a much more simple example file in that the exit is very close t
 
 
     def searchFrom(maze, startRow, startColumn):
-        # try each of four directions from this point until we find a way out.
-        # base Case return values:
-        #  1. We have run into an obstacle, return false
+        # пробуем идти из этой точки в каждом направлении, пока не найдём путь наружу.
+        # возвращаемые занчения для базового случая:
+        #  1. Мы столкнулись с препятствием, возвращаем ложь
         maze.updatePosition(startRow, startColumn)
         if maze[startRow][startColumn] == OBSTACLE :
             return False
-        #  2. We have found a square that has already been explored
+        #  2. Мы нашли квадрат, который уже был исследован
         if maze[startRow][startColumn] == TRIED or maze[startRow][startColumn] == DEAD_END:
             return False
-        # 3. We have found an outside edge not occupied by an obstacle
+        # 3. Мы нашли внешний край, не занятый препятствием
         if maze.isExit(startRow,startColumn):
             maze.updatePosition(startRow, startColumn, PART_OF_PATH)
             return True
         maze.updatePosition(startRow, startColumn, TRIED)
-        # Otherwise, use logical short circuiting to try each direction 
-        # in turn (if needed)
+        # В противном случае начинаем крутиться на месте, пробуя все 
+        # направления (если необходимо) 
         found = searchFrom(maze, startRow-1, startColumn) or \
                 searchFrom(maze, startRow+1, startColumn) or \
                 searchFrom(maze, startRow, startColumn-1) or \
@@ -501,6 +409,7 @@ Note that it is a much more simple example file in that the exit is very close t
 
     searchFrom(myMaze, myMaze.startRow, myMaze.startCol)
 
-.. admonition:: Self Check
 
-   Modify the maze search program so that the calls to searchFrom are in a different order.  Watch the program run. Can you explain why the behavior is different?  Can you predict what path the turtle will follow for a given change in order?
+.. admonition:: Самопроверка
+
+Измените программу поиска выхода из лабиринта таким образом, чтобы вызовы ``searchFrom`` следовали в другом порядке. Посмотрите, как она работает. Можете объяснить, почему её поведение изменилось? Сможете предсказать, по какому пути пойдёт черепаха, следуя изменившейся последовательности вызовов?   
