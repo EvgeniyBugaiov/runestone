@@ -7,15 +7,11 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Discussion Questions
---------------------
+Вопросы для обсуждения
+-----------------------
 
-#. Draw a call stack for the Tower of Hanoi problem. Assume that you
-   start with a stack of three disks.
+#. Нарисуйте стек вызовов для задачи о ханойской башне. Предположите, что вы начинаете со стопки из трёх дисков.
 
-#. Using the recursive rules as described, draw a
-   Sierpinski triangle using paper and pencil.
+#. Используя описанные правила рекурсии, нарисуйте на бумаге треугольник Серпинского.
 
-#. Using the dynamic programming algorithm for making change, find the
-   smallest number of coins that you can use to make 33 cents in change.
-   In addition to the usual coins assume that you have an 8 cent coin.
+#. Используя алгоритм динамического программирования для выдачи сдачи, найдите наименьшее количество монет для сдачи в 33 цента. В дополнение к имеющимся номиналам предположите, что у вас есть монета в 8 центов.
