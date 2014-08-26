@@ -7,14 +7,7 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Complex Recursive Problems
---------------------------
+Сложные рекурсивные задачи
+---------------------------
 
-In the previous sections we looked at some problems that are relatively
-easy to solve and some graphically interesting problems that can help
-us gain a mental model of what is happening in a recursive algorithm. In
-this section we will look at some problems that are really difficult to
-solve using an iterative programming style but are very elegant and easy
-to solve using recursion. We will finish up by looking at a deceptive
-problem that at first looks like it has an elegant recursive solution
-but in fact does not.
+В предущих разделах мы рассмотрели задачи, которые решаются относительно легко, и несколько интересных графических задач, позволяющих составить мысленное представление о том, как работает рекурсивный алгоритм. В этом разделе мы рассмотрим задачи, которые очень сложно решить, используя итеративный стиль программирования, но чьи решения с использованием рекурсии просты и элегантны. Мы закончим рассмотрением обманчивой задачи, которая на первый взгляд имеет элегантное рекурсивное решение, но на самом деле это не так.
