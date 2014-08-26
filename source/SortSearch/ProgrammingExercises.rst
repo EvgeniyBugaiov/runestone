@@ -7,68 +7,37 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Programming Exercises
----------------------
+Упражнения для программирования
+--------------------------------
 
-#. Set up a random experiment to test the difference between a
-   sequential search and a binary search on a list of integers.
+#. Проведите эксперимент по тестированию различий между последовательным и бинарным поиском на списке случайных целых чисел.
 
-#. Use the binary search functions given in the text (recursive and
-   iterative). Generate a random, ordered list of integers and do a
-   benchmark analysis for each one. What are your results? Can you
-   explain them?
+#. Используйте функции бинарного поиска, данные в тексте (итеративную и рекурсивную). Сгенерируйте упорядоченный список случайных целых чисел и сделайте сравнительный анализ для каждой. Какие результаты вы получили? Можете ли вы их объяснить?
 
-#. Implement the binary search using recursion without the slice
-   operator. Recall that you will need to pass the list along with the
-   starting and ending index values for the sublist. Generate a random,
-   ordered list of integers and do a benchmark analysis.
+#. Реализуйте бинарный поиск, используя рекурсию без оператора среза. Напоминаем, что для этого вам нужно передать в функцию начальный и конечный индексы подсписка. Сгенерируйте упорядоченный список случайных значений и проведите сравнительный анализ.
 
-#. Implement the ``len`` method (\_\_len\_\_) for the hash table Map ADT
-   implementation.
+#. Реализуйте метод ``len`` (``__len__``) для хэш-таблицы реализации АТД Map.
 
-#. Implement the ``in`` method (\_\_contains\_\_) for the hash table Map
-   ADT implementation.
+#. Реализуйте метод ``in`` (``__contains__``) для хэш-таблицы реализации АТД Map.
 
-#. How can you delete items from a hash table that uses chaining for
-   collision resolution? How about if open addressing is used? What are
-   the special circumstances that must be handled? Implement the ``del``
-   method for the ``HashTable`` class.
+#. Как вы можете удалять элементы из хэш-таблицы, использующей цепочки для разрешения коллизий? А если используется открытая адресация? Какие особые случаи должны обрабатываться? Реализуйте метод ``del`` для класса ``HashTable``.
 
-#. In the hash table map implementation, the hash table size was chosen
-   to be 101. If the table gets full, this needs to be increased.
-   Re-implement the ``put`` method so that the table will automatically
-   resize itself when the loading factor reaches a predetermined value
-   (you can decide the value based on your assessment of load versus
-   performance).
+#. Для хэш-таблицы реализации отображения выбран размер 11. Если таблица полна, его требуется увеличить. Переделайте метод ``put`` таким образом, чтобы таблица автоматически меняла размер, когда загрузочный фактор достигает предопределённого значения (его вы можете определить, основываясь на оценке "загрузка vs производительность").
 
-#. Implement quadratic probing as a rehash technique.
+#. Реализуйте квадратичное сканирование как технику повторного хэширования.
 
-#. Using a random number generator, create a list of 500 integers.
-   Perform a benchmark analysis using some of the sorting algorithms
-   from this chapter. What is the difference in execution speed?
+#. Создайте список из 500 целых, используя генератор случайных чисел. Проведите сравнительный анализ, используя любые алгоритмы сортировки из этой главы. Каковы различия в скорости выполнения?
 
-#. Implement the bubble sort using simultaneous assignment.
+#. Реализуйте сортировку пузырьком, руководствуясь аналогичным заданием.
 
-#. A bubble sort can be modified to “bubble” in both directions. The
-   first pass moves “up” the list, and the second pass moves “down.”
-   This alternating pattern continues until no more passes are
-   necessary. Implement this variation and describe under what
-   circumstances it might be appropriate.
+#. Пузырьковая сортировка может быть изменена, чтобы "пузыриться" в обоих направлениях. Первый проход перемещает "верх" списка, второй - "низ". Этот альтернативный шаблон продолжается, пока не иссякнет необходимость в проходах. Воплотите этот вариант и опишите, в каких обстоятельствах он может использоваться.
 
-#. Implement the selection sort using simultaneous assignment.
+#. Реализуйте сортировку выбором, используя аналогичное задание.
 
-#. Perform a benchmark analysis for a shell sort, using different
-   increment sets on the same list.
+#. Проведите сравнительный анализ для сортировки Шелла, используя различные наборы инкрементов на одном и том же списке.
 
-#. Implement the ``mergeSort`` function without using the slice
-   operator.
+#. Реализуйте функцию ``mergeSort`` без оператора среза.
 
-#. One way to improve the quick sort is to use an insertion sort on
-   lists that have a small length (call it the “partition limit”). Why
-   does this make sense? Re-implement the quick sort and use it to sort
-   a random list of integers. Perform an analysis using different list
-   sizes for the partition limit.
+#. Одним из способов улучшить быструю сортировку является использование сортирки вставками на списках малой длины (назовите её "пределом деления"). Почему это работает? Реализуйте заново быструю сортировку и используйте её для сортировки списка случайных целых чисел. Проанализируйте результат использования различных величин для предела деления.
 
-#. Implement the median-of-three method for selecting a pivot value as a
-   modification to ``quickSort``. Run an experiment to compare the two
-   techniques.
+#. Реализуйте метод "медианы трёх" для выбора опорного значения, как модификацию ``quickSort``. Запустите эксперимент по сравнению двух техник.
