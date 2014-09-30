@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Приступая к работе с данными &mdash; Problem Solving with Algorithms and Data Structures</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
+    <link rel="next" title="Ввод и вывод" href="InputandOutput.html" />
+    <link rel="prev" title="Обзор основ Python" href="ReviewofBasicPython.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'pythonds';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.build_info = "2.1.5";
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<script>
+var _prum = [['id', '521dfcc4abe53d0749000000'],
+             ['mark', 'firstbyte', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName('script')[0]
+      , p = document.createElement('script');
+    p.async = 'async';
+    p.src = '//rum-static.pingdom.net/prum.min.js';
+    s.parentNode.insertBefore(p, s);
+})();
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Problem Solving with Algorithms and Data Structures</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHNwYJKoZIhvcNAQcEoIIHKDCCByQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAcrkqh1hn3lYqIpfXxNqe1T82EhXzCJGy1yMAmklpyZshyMkfDGe1Bhx+iwyGeoYRTTyphFmP+9M3NyO0+Q5XdHxgZPx/zYjjBxlZHgEV6jhE8bN2fHkkPf0VHfz0a0QQylQOPlKiOTZV7B37Jpk6yM47oVZ1tG/KNm0NkfmB76DELMAkGBSsOAwIaBQAwgbQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIi0GmFfOlcjuAgZBbYOo9UO+CpMQa+PYqwsUmUnJvXIImeMeNI3KVTUx5Cfk9gNMo3WzPeiB5IqZo9nRAQ0mf1qL2ecLeB5tidM+lgBUhOxfj3/FecpnVFa0263gp4g+PLw8jzhvVRdUon1K3SeO1Rzh23fIRKwnrD6btt73uwtj0sl3tGd8qz+6GIcwPDdRk9VcUffiBJT/ZagKgggOHMIIDgzCCAuygAwIBAgIBADANBgkqhkiG9w0BAQUFADCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wHhcNMDQwMjEzMTAxMzE1WhcNMzUwMjEzMTAxMzE1WjCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMFHTt38RMxLXJyO2SmS+Ndl72T7oKJ4u4uw+6awntALWh03PewmIJuzbALScsTS4sZoS1fKciBGoh11gIfHzylvkdNe/hJl66/RGqrj5rFb08sAABNTzDTiqqNpJeBsYs/c2aiGozptX2RlnBktH+SUNpAajW724Nv2Wvhif6sFAgMBAAGjge4wgeswHQYDVR0OBBYEFJaffLvGbxe9WT9S1wob7BDWZJRrMIG7BgNVHSMEgbMwgbCAFJaffLvGbxe9WT9S1wob7BDWZJRroYGUpIGRMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbYIBADAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAIFfOlaagFrl71+jq6OKidbWFSE+Q4FqROvdgIONth+8kSK//Y/4ihuE4Ymvzn5ceE3S/iBSQQMjyvb+s2TWbQYDwcp129OPIbD9epdr4tJOUNiSojw7BHwYRiPh58S1xGlFgHFXwrEBb3dgNbMUa+u4qectsMAXpVHnD9wIyfmHMYIBmjCCAZYCAQEwgZQwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tAgEAMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMzExMDMxMzQxMzFaMCMGCSqGSIb3DQEJBDEWBBRDJF8w+zsMr7FSk+pwinB5f5D4rzANBgkqhkiG9w0BAQEFAASBgHw1LMHpkpaqHIvDGdFE0eG+2mZlmMnUeDCBhQlbc7QMzFQYKTV94NfaebBO4PmNdADe1rq4WidSRZZbE7CzkX9IGENYnBTWY0hb2l0lGdGrJdGeWyV3ekg9WVaFMMumrekds96h3Cx7dGz2kWDzIai2iEXE/qoE+xpkyXAYZNV3-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='/runestone/static/pythonds/genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/pythonds/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Приступая к работе с данными</a><ul>
+<li><a class="reference internal" href="#id2">Встроенные элементарные типы данных</a></li>
+<li><a class="reference internal" href="#id3">Встроенные составные типы данных</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - Обзор основ Python" data-toggle="tooltip">
+    <a href="ReviewofBasicPython.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Ввод и вывод' data-toggle="tooltip" >
+    <a href="InputandOutput.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="id1">
+<h1>Приступая к работе с данными<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Выше мы уже отмечали, что Python поддерживает парадигму
+объектно-ориентированного программирования. Это означает, что в фокус
+процесса решения задачи Python ставит данные. В Python, как и в любом
+другом объектно-ориентированном языке программирования, мы определяем
+<strong>класс</strong>, являющийся описанием того, как, собственно, выглядят данные
+(состояние) и что они могут делать (поведение). Классы аналогичны
+абстрактным типам данных, поскольку пользователь класса видит только
+состояние и поведение единицы данных. Такие единицы в
+объектно-ориентированной парадигме называются <strong>объектами</strong>. Объект
+является экземпляром класса.</p>
+<div class="section" id="id2">
+<h2>Встроенные элементарные типы данных<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Начнём наш обзор с рассмотрения элементарных типов данных. У Python
+есть два основных встроенных числовых класса, реализующих типы для
+целых чисел и чисел с плавающей запятой. Они называются <tt class="docutils literal"><span class="pre">int</span></tt> и
+<tt class="docutils literal"><span class="pre">float</span></tt>. Стандартные арифметические операции +, -, <em>, / и *</em>
+(возведение в степень) могут использоваться со скобками, задающими
+порядок операций, отличный от обусловленного обычным приоритетом
+операторов. Другими полезными операциями являются оператор остатка
+целочисленного деления % и собственно целочисленного деления //.
+Обратите внимание, что при делении двух целых чисел результат - число
+с плавающей запятой. Оператор целочисленного деления возвращает целую
+часть частного путём отсечения от неё дробной части.</p>
+
+<div id="cont"></div>
+<div id="intro_1" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="intro_1_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_1_saveb" onclick="saveEditor('intro_1');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_1_loadb" onclick="requestCode('intro_1');">Load</button>
+
+</div>
+<br/>
+<div id="intro_1_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="intro_1_code" class="active_code", prefixcode="undefined" lang="python">
+print 2+3*4
+print (2+3)*4
+print 2**10
+print 6/3
+print 7/3
+print 7//3
+print 7%3
+print 3/6
+print 3//6
+print 3%6
+print 2**100
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="intro_1_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="intro_1_suffix" style="display:none">
+</pre><pre id="intro_1_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text">Основные арифметические операторы (intro_1)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#intro_1_saveb').toggle();
+    $('#intro_1_loadb').toggle();
+}
+if ($("#intro_1_code_div").parents(".admonition").length == 0 && $("#intro_1_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#intro_1_code_div").offset({
+			left: $("#intro_1 .clearfix").offset().left
+		});
+	}
+	$("#intro_1_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#intro_1_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#intro_1_runb").parent().siblings(".ac_output").show();
+			runit('intro_1',this, undefined);
+			$("#intro_1_runb").on("click", function(){
+				runit('intro_1',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#intro_1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#intro_1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#intro_1_runb").on("click", function(){
+		console.log("button clicked");
+		runit('intro_1',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>Логический тип данных, реализованный в Python как класс <tt class="docutils literal"><span class="pre">bool</span></tt>,
+будет весьма полезен для представления значений истинности. Возможными
+значениями для логического объекта являются <tt class="docutils literal"><span class="pre">True</span></tt> и <tt class="docutils literal"><span class="pre">False</span></tt> со
+стандартными булевыми операторами <tt class="docutils literal"><span class="pre">and</span></tt>, <tt class="docutils literal"><span class="pre">or</span></tt> и <tt class="docutils literal"><span class="pre">not</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="bp">True</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">False</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">False</span> <span class="ow">or</span> <span class="bp">True</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="ow">not</span> <span class="p">(</span><span class="bp">False</span> <span class="ow">or</span> <span class="bp">True</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">True</span> <span class="ow">and</span> <span class="bp">True</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Объекты булева типа данных также используются в качестве результатов
+операций сравнения, таких как &#8220;равно&#8221; (==) и &#8220;больше, чем&#8221; (<span class="math">\(&gt;\)</span>).
+Кроме того, операторы отношений и логических операций могут быть
+скомбинированы вместе в форме сложных логических вопросов.
+В <a class="reference internal" href="#tab-relational"><em>Таблице&nbsp;1</em></a> показаны операторы отношений и
+логические операторы вместе с примерами их использования.</p>
+<table border="1" class="docutils" id="tab-relational">
+<caption><strong>Таблица 1: Логические операторы и операторы отношений</strong></caption>
+<colgroup>
+<col width="25%" />
+<col width="13%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Название</strong></th>
+<th class="head"><strong>Оператор</strong></th>
+<th class="head"><strong>Описание</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>меньше</td>
+<td><span class="math">\(&lt;\)</span></td>
+<td>Оператор &#8220;меньше&#8221;</td>
+</tr>
+<tr class="row-odd"><td>больше</td>
+<td><span class="math">\(&gt;\)</span></td>
+<td>Оператор &#8220;больше&#8221;</td>
+</tr>
+<tr class="row-even"><td>меньше или равно</td>
+<td><span class="math">\(&lt;=\)</span></td>
+<td>Оператор &#8220;меньше или равно&#8221;</td>
+</tr>
+<tr class="row-odd"><td>больше или равно</td>
+<td><span class="math">\(&gt;=\)</span></td>
+<td>Оператор &#8220;больше или равно&#8221;</td>
+</tr>
+<tr class="row-even"><td>равно</td>
+<td><span class="math">\(==\)</span></td>
+<td>Оператор равенства</td>
+</tr>
+<tr class="row-odd"><td>не равно</td>
+<td><span class="math">\(!=\)</span></td>
+<td>Оператор неравенства</td>
+</tr>
+<tr class="row-even"><td>логическое &#8220;и&#8221;</td>
+<td><span class="math">\(and\)</span></td>
+<td>Если оба операнда истинны, то результат тоже истина</td>
+</tr>
+<tr class="row-odd"><td>логическое &#8220;или&#8221;</td>
+<td><span class="math">\(or\)</span></td>
+<td>Если хотя бы один из операндов истина, то результат - истина</td>
+</tr>
+<tr class="row-even"><td>логическое &#8220;не&#8221;</td>
+<td><span class="math">\(not\)</span></td>
+<td>Инвертирует значение: False становится True и наоборот</td>
+</tr>
+</tbody>
+</table>
+
+<div id="cont"></div>
+<div id="intro_2" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="intro_2_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_2_saveb" onclick="saveEditor('intro_2');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_2_loadb" onclick="requestCode('intro_2');">Load</button>
+
+</div>
+<br/>
+<div id="intro_2_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="intro_2_code" class="active_code", prefixcode="undefined" lang="python">
+print(5==10)
+print(10 > 5)
+print((5 >= 1) and (5 <= 10))
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="intro_2_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="intro_2_suffix" style="display:none">
+</pre><pre id="intro_2_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text">Основные логические операторы и операторы отношений (intro_2)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#intro_2_saveb').toggle();
+    $('#intro_2_loadb').toggle();
+}
+if ($("#intro_2_code_div").parents(".admonition").length == 0 && $("#intro_2_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#intro_2_code_div").offset({
+			left: $("#intro_2 .clearfix").offset().left
+		});
+	}
+	$("#intro_2_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#intro_2_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#intro_2_runb").parent().siblings(".ac_output").show();
+			runit('intro_2',this, undefined);
+			$("#intro_2_runb").on("click", function(){
+				runit('intro_2',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#intro_2_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#intro_2_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#intro_2_runb").on("click", function(){
+		console.log("button clicked");
+		runit('intro_2',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>В качестве имён в языках программирования используются идентификаторы.
+В Python они начинаются с буквы или подчёркивания (_), чувствительны к
+регистру и могут быть произвольной длины. Не забывайте о том, что
+давать имена, отражающие смысл переменной, - всегда здравая идея,
+делающая ваш код более простым для чтения и понимания.</p>
+<p>В Python переменная создаётся при первом использовании имени с левой
+стороны от оператора присваивания. Присваивание предоставляет возможность
+ассоциировать имя со значением. Переменная будет содержать ссылку на
+кусочек данных, а не сами данные. Рассмотрим следующий код:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">theSum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theSum</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theSum</span> <span class="o">=</span> <span class="n">theSum</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theSum</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theSum</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">theSum</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Присваивание <tt class="docutils literal"><span class="pre">theSum</span> <span class="pre">=</span> <span class="pre">0</span></tt> создаёт переменную с именем <tt class="docutils literal"><span class="pre">theSum</span></tt>,
+содержащую ссылку на объект данных <tt class="docutils literal"><span class="pre">0</span></tt>
+(см. <a class="reference internal" href="#fig-assignment1"><em>Рисунок 3</em></a>). В целом, когда правая часть
+оператора присваивания вычисляется, ссылка на результат &#8220;назначается&#8221;
+имени в левой части. В данный момент в нашем примере тип переменной -
+целое, и это тип данных, на которые сейчас ссылается <tt class="docutils literal"><span class="pre">theSum</span></tt>. Если
+он изменится (см. <a class="reference internal" href="#fig-assignment2"><em>Рисунок 4</em></a>), как показано
+выше, на булево значение <tt class="docutils literal"><span class="pre">True</span></tt>, то изменится и тип переменной
+(сейчас <tt class="docutils literal"><span class="pre">theSum</span></tt> имеет тип <tt class="docutils literal"><span class="pre">bool</span></tt>). Оператор присваивания меняет
+ссылки, хранящиеся в переменной. Это динамическая характеристика Python.
+Одна и та же переменная может ссылаться на различные типы данных.</p>
+<div class="figure align-center" id="fig-assignment1">
+<img alt="../_images/assignment1.png" src="../_images/assignment1.png" />
+<p class="caption">Рисунок 3: Переменная содержит ссылку на объект данных</p>
+</div>
+<div class="figure align-center" id="fig-assignment2">
+<img alt="../_images/assignment2.png" src="../_images/assignment2.png" />
+<p class="caption">Рисунок 4: Присваивание изменяет ссылку</p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Встроенные составные типы данных<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Кроме числовых и булева типов данных у Python есть несколько мощных
+встроенных составных классов. Списки, строки и кортежи являются
+упорядоченными коллекциями. Они весьма схожи по общей структуре, но
+имеют специфические различия, понимать которые необходимо для уместного
+их использования. К неупорядоченным коллекциям относятся множества и
+словари.</p>
+<p><strong>Список</strong> - это упорядоченная коллекция из нуля или более ссылок на
+объекты данных Python. Списки записываются как разделённые запятыми
+значения, заключённые в квадратные скобки. Пустой список выглядит
+просто <tt class="docutils literal"><span class="pre">[]</span></tt>. Списки гетерогенны. Это означает, что их объекты не
+обязательно должны иметь один и тот же тип, и коллекция может быть
+присвоена переменной, как показано ниже. Следующий фрагмент показывает
+различные объекты данных Python, объединённые в список.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="mf">6.5</span><span class="p">]</span>
+<span class="go">[1, 3, True, 6.5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="mf">6.5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myList</span>
+<span class="go">[1, 3, True, 6.5]</span>
+</pre></div>
+</div>
+<p>Обратите внимание, что результатом вычисления списка в Python является
+он сам. Тем не менее, чтобы запомнить список для последующей обработки,
+ссылка на него должна быть присвоена переменной.</p>
+<p>Поскольку списки считаются последовательно упорядоченными, то они
+поддерживают ряд операций, которые могут быть применены к любой
+Python-последовательности. Эти операции собраны в
+<a class="reference internal" href="#tab-sequence"><em>Таблице 2</em></a> вместе с примерами их использования.</p>
+<table border="1" class="docutils" id="tab-sequence">
+<caption><strong>Таблица 2: Операции для любой последовательности в Python</strong></caption>
+<colgroup>
+<col width="25%" />
+<col width="13%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Имя оператора</strong></th>
+<th class="head"><strong>Оператор</strong></th>
+<th class="head"><strong>Пояснение</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>индексирование</td>
+<td>[ ]</td>
+<td>Доступ к элементу последовательности</td>
+</tr>
+<tr class="row-odd"><td>конкантенация</td>
+<td>+</td>
+<td>Объединение двух последовательностей</td>
+</tr>
+<tr class="row-even"><td>повторение</td>
+<td>*</td>
+<td>Конкатенация повторений заданное количество раз</td>
+</tr>
+<tr class="row-odd"><td>принадлежность элемента</td>
+<td>in</td>
+<td>Запрос о принадлежности элемента данной последовательности</td>
+</tr>
+<tr class="row-even"><td>длина</td>
+<td>len</td>
+<td>Запрос количества элементов в последовательности</td>
+</tr>
+<tr class="row-odd"><td>срез</td>
+<td>[ : ]</td>
+<td>Выделение части последовательности</td>
+</tr>
+</tbody>
+</table>
+<p>Обратите внимание, что индексы элементов списка начинаются с 0. Операция
+среза myList[1:3] возвращает список элементов, начинающийся с элемента
+под индексом 1, но при этом не включает в себя элемент под индексом 3.</p>
+<p>Иногда у вас может возникнуть желание проинициализировать список. Этого
+легко достичь, используя повторения. Например,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">myList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myList</span>
+<span class="go">[0, 0, 0, 0, 0, 0]</span>
+</pre></div>
+</div>
+<p>Одно важное отступление, касающееся оператора повторения: его
+результатом будет последовательность повторений ссылок на объект данных.
+Это хорошо видно в следующем примере:</p>
+
+<div id="cont"></div>
+<div id="intro_3" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="intro_3_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_3_saveb" onclick="saveEditor('intro_3');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_3_loadb" onclick="requestCode('intro_3');">Load</button>
+
+</div>
+<br/>
+<div id="intro_3_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="intro_3_code" class="active_code", prefixcode="undefined" lang="python">
+myList = [1,2,3,4]
+A = [myList]*3
+print(A)
+myList[2]=45
+print(A)
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="intro_3_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="intro_3_suffix" style="display:none">
+</pre><pre id="intro_3_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text">Повторение ссылок (intro_3)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#intro_3_saveb').toggle();
+    $('#intro_3_loadb').toggle();
+}
+if ($("#intro_3_code_div").parents(".admonition").length == 0 && $("#intro_3_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#intro_3_code_div").offset({
+			left: $("#intro_3 .clearfix").offset().left
+		});
+	}
+	$("#intro_3_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#intro_3_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#intro_3_runb").parent().siblings(".ac_output").show();
+			runit('intro_3',this, undefined);
+			$("#intro_3_runb").on("click", function(){
+				runit('intro_3',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#intro_3_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#intro_3_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#intro_3_runb").on("click", function(){
+		console.log("button clicked");
+		runit('intro_3',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>Переменная <tt class="docutils literal"><span class="pre">А</span></tt> содержит коллекцию из трёх ссылок на оригинальный
+список <tt class="docutils literal"><span class="pre">myList</span></tt>. Обратите внимание, что изменение одного элемента в
+<tt class="docutils literal"><span class="pre">myList</span></tt> отражается на всех трёх вхождениях в <tt class="docutils literal"><span class="pre">А</span></tt>.</p>
+<p>Списки поддерживают ряд методов, которые будут использоваться для
+построения структур данных. В <a class="reference internal" href="#tab-listmethods"><em>Таблице&nbsp;3</em></a>
+представлено обобщение методов для работы со списками. Ниже идут
+примеры их применения.</p>
+<table border="1" class="docutils" id="tab-listmethods">
+<caption><strong>Таблица 3: Методы, предусмотренные для списков в Python</strong></caption>
+<colgroup>
+<col width="23%" />
+<col width="25%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Название метода</strong></th>
+<th class="head"><strong>Использование</strong></th>
+<th class="head"><strong>Пояснение</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">append</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.append(item)</span></tt></td>
+<td>Добавить новый элемент в конец списка</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">insert</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.insert(i,item)</span></tt></td>
+<td>Вставить элемент в i-ую позицию списка</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">pop</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.pop()</span></tt></td>
+<td>Удалить из списка и вернуть последний элемент</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">pop</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.pop(i)</span></tt></td>
+<td>Удалить из списка и вернуть i-й элемент</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">sort</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.sort()</span></tt></td>
+<td>Отсортировать список (изменяет оригинал)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">reverse</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.reverse()</span></tt></td>
+<td>Изменить список, чтобы элементы шли в обратном порядке</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">del</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">del</span> <span class="pre">alist[i]</span></tt></td>
+<td>Удалить элемент на i-й позиции</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">index</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.index(item)</span></tt></td>
+<td>Вернуть индекс первого вхождения <tt class="docutils literal"><span class="pre">item</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">count</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.count(item)</span></tt></td>
+<td>Вернуть число вхождений <tt class="docutils literal"><span class="pre">item</span></tt> в список</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">remove</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">alist.remove(item)</span></tt></td>
+<td>Удалить первое вхождения <tt class="docutils literal"><span class="pre">item</span></tt></td>
+</tr>
+</tbody>
+</table>
+
+<div id="cont"></div>
+<div id="intro_5" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="intro_5_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_5_saveb" onclick="saveEditor('intro_5');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_5_loadb" onclick="requestCode('intro_5');">Load</button>
+
+</div>
+<br/>
+<div id="intro_5_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="intro_5_code" class="active_code", prefixcode="undefined" lang="python">
+myList = [1024, 3, True, 6.5]
+myList.append(False)
+print(myList)
+myList.insert(2,4.5)
+print(myList)
+print(myList.pop())
+print(myList)
+print(myList.pop(1))
+print(myList)
+myList.pop(2)
+print(myList)
+myList.sort()
+print(myList)
+myList.reverse()
+print(myList)
+print(myList.count(6.5))
+print(myList.index(4.5))
+myList.remove(6.5)
+print(myList)
+del myList[0]
+print(myList)
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="intro_5_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="intro_5_suffix" style="display:none">
+</pre><pre id="intro_5_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text">Примеры методов для списков (intro_5)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#intro_5_saveb').toggle();
+    $('#intro_5_loadb').toggle();
+}
+if ($("#intro_5_code_div").parents(".admonition").length == 0 && $("#intro_5_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#intro_5_code_div").offset({
+			left: $("#intro_5 .clearfix").offset().left
+		});
+	}
+	$("#intro_5_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#intro_5_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#intro_5_runb").parent().siblings(".ac_output").show();
+			runit('intro_5',this, undefined);
+			$("#intro_5_runb").on("click", function(){
+				runit('intro_5',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#intro_5_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#intro_5_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#intro_5_runb").on("click", function(){
+		console.log("button clicked");
+		runit('intro_5',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>Как вы можете видеть, некоторые методы (например, <tt class="docutils literal"><span class="pre">pop</span></tt>) возвращают
+значение и при этом модифицируют список. Другие (как <tt class="docutils literal"><span class="pre">reverse</span></tt>) просто
+изменяют список. По умолчанию <tt class="docutils literal"><span class="pre">pop</span></tt> применяется к концу списка, но
+может также удалять и возвращать конкретное значение. Для всех этих
+методов индексация по прежнему начинается с нуля. Вы также могли
+отметить знакомую &#8220;dot&#8221;-нотацию, запрашивающую у объекта вызов метода.
+<tt class="docutils literal"><span class="pre">myList.append(False)</span></tt> можно прочитать как &#8220;запросить у объекта
+<tt class="docutils literal"><span class="pre">myList</span></tt> выполнение его метода <tt class="docutils literal"><span class="pre">append</span></tt> и отправить через него
+значение <tt class="docutils literal"><span class="pre">False</span></tt>&#8221;. Даже такие простые объекты данных, как целые
+числа, могут вызывать свои методы подобным образом.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">54</span><span class="p">)</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<span class="go">75</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>В этом фрагменте мы просим объект целочисленного типа <tt class="docutils literal"><span class="pre">54</span></tt> выполнить
+его метод <tt class="docutils literal"><span class="pre">add</span></tt> (в Python называется <tt class="docutils literal"><span class="pre">__add__</span></tt>), передав в него
+<tt class="docutils literal"><span class="pre">21</span></tt>, как число, которое нужно прибавить. Результатом будет сумма
+<tt class="docutils literal"><span class="pre">75</span></tt>. Конечно, обычно мы это пишем как <tt class="docutils literal"><span class="pre">54+21</span></tt>. Подробнее об этих
+методах мы поговорим чуть позже.</p>
+<p>Ещё одной распространённой функцией, часто обсуждаемой в связке со
+списками, является функция <tt class="docutils literal"><span class="pre">range</span></tt>. Она производит объект &#8220;диапазон&#8221;,
+представляющий из себя последовательность значений. Используя функцию
+<tt class="docutils literal"><span class="pre">list</span></tt>, можно представить значение такого объекта в виде списка. Это
+проиллюстрировано ниже:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">range(0, 10)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="go">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">range(5, 10)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="go">[5, 6, 7, 8, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="go">[5, 7, 9]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">[10, 9, 8, 7, 6, 5, 4, 3, 2]</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Объект &#8220;диапазон&#8221; представляет из себя последовательность целых чисел.
+По умолчанию он начинается с нуля. Если вы предоставите больше параметров,
+то он будет начинаться и заканчиваться в конкретных точках и сможет даже
+пропускать некоторые элементы. В нашем первом примере - <tt class="docutils literal"><span class="pre">range(10)</span></tt>
+- последовательность начинается с 0 и продолжается до 9 (не включая 10).
+Во втором примере - <tt class="docutils literal"><span class="pre">range(5,10)</span></tt> - начинается с 5 и заканчивается 9
+(опять же, не включая 10). <tt class="docutils literal"><span class="pre">range(5,10,2)</span></tt> работает аналогично, но
+пропускает каждый второй элемент (10 по прежнему не включается).</p>
+<p><strong>Строки</strong> представляют собой коллекции с последовательным доступом из
+нуля или более букв, чисел и прочих знаков. Мы называем все эти элементы
+<em>символами</em>. Строковый литерал отличается от идентификатора использованием
+кавычек (одинарных или двойных).</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;David&quot;</span>
+<span class="go">&#39;David&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span> <span class="o">=</span> <span class="s">&quot;David&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">&#39;i&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span><span class="o">*</span><span class="mi">2</span>
+<span class="go">&#39;DavidDavid&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">myName</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Поскольку строки - это последовательности, то все описанные выше
+операции для последовательностей будут с ними работать так, как
+ожидается. Дополнительно у строк есть ещё несколько методов, некоторые
+из которых представлены в <a class="reference internal" href="#tab-stringmethods"><em>Таблице&nbsp;4</em></a>. Например,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span>
+<span class="go">&#39;David&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<span class="go">&#39;DAVID&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">&#39;  David   &#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">)</span>
+<span class="go">[&#39;Da&#39;, &#39;id&#39;]</span>
+</pre></div>
+</div>
+<p>Из них очень полезным для обработки данных является метод <tt class="docutils literal"><span class="pre">split</span></tt>.
+Он принимает строку и возвращает список строк, используя расщепляющий
+символ как точку разделения. В нашем примере таковым является <tt class="docutils literal"><span class="pre">v</span></tt>.
+Если разделитель не указан, то <tt class="docutils literal"><span class="pre">split</span></tt> ищет пробельные символы
+(табуляции, переходы на новую строку и пробелы).</p>
+<table border="1" class="docutils" id="tab-stringmethods">
+<caption><strong>Таблица 4: Методы, предусмотренные для строк в Python</strong></caption>
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Название метода</strong></th>
+<th class="head"><strong>Использование</strong></th>
+<th class="head"><strong>Пояснение</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">center</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">astring.center(w)</span></tt></td>
+<td>Возвращает строку, центрированную в поле размера <tt class="docutils literal"><span class="pre">w</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">count</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">astring.count(item)</span></tt></td>
+<td>Возвращает число вхождений <tt class="docutils literal"><span class="pre">item</span></tt> в строку</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">ljust</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">astring.ljust(w)</span></tt></td>
+<td>Возвращает строку с выравниванием по левому краю поля размером <tt class="docutils literal"><span class="pre">w</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">lower</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">astring.lower()</span></tt></td>
+<td>Возвращает строку из символов в нижнем регистре</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">rjust</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">astring.rjust(w)</span></tt></td>
+<td>Возвращает строку с выравниванием по правому краю поля размером <tt class="docutils literal"><span class="pre">w</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">find</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">astring.find(item)</span></tt></td>
+<td>Возвращает индекс первого вхождения <tt class="docutils literal"><span class="pre">item</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">split</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">astring.split(schar)</span></tt></td>
+<td>Разбивает строку на подстроки по символу <tt class="docutils literal"><span class="pre">schar</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Основное различие между списками и строками заключается в том, что
+списки можно изменять, а строки - нет. Это свойство называется
+<strong>мутабельностью</strong>. Списки мутабельны, строки иммутабельны. Например,
+вы легко можете изменить элемент списка, используя индексацию и
+присваивание. Для строк такие операции не допускаются.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">myList</span>
+<span class="go">[1, 3, True, 6.5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myList</span>
+<span class="go">[1024, 3, True, 6.5]</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span>
+<span class="go">&#39;David&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myName</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;X&#39;</span>
+
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;pyshell#84&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">-toplevel-</span>
+    <span class="n">myName</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;X&#39;</span>
+<span class="gr">TypeError</span>: <span class="n">object doesn&#39;t support item assignment</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Кортежи очень похожи на списки тем, что также являются гетерогенными
+последовательностями данных. Различие заключается в иммутабельности
+кортежей подобно строкам. Они не могут быть изменены. Кортежи
+записываются как разделённые запятыми значения, заключённые в круглые
+скобки. Будучи последовательностями, они могут использовать любые
+операции, описанные выше. Например:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">myTuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="mf">4.96</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myTuple</span>
+<span class="go">(2, True, 4.96)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">myTuple</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myTuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myTuple</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="go">(2, True, 4.96, 2, True, 4.96, 2, True, 4.96)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myTuple</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">(2, True)</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Однако, если вы попытаетесь изменить элемент кортежа, то получите
+сообщение об ошибке. Обратите внимание, что такое сообщение содержит
+место и причину возникновения проблемы.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">myTuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="bp">False</span>
+
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;pyshell#137&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">-toplevel-</span>
+    <span class="n">myTuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="bp">False</span>
+<span class="gr">TypeError</span>: <span class="n">object doesn&#39;t support item assignment</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Множеством называется неупорядоченная коллекция из нуля или более
+неизменяемых объектов данных Python. Множества не допускают дубликатов
+и записываются как разделённые запятыми значения, заключённые в фигурные
+скобки. Пустое множество обозначается как <tt class="docutils literal"><span class="pre">set()</span></tt>. Множества
+гетерогенны и могут присваиваться переменным, как показано ниже.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s">&quot;cat&quot;</span><span class="p">,</span><span class="mf">4.5</span><span class="p">,</span><span class="bp">False</span><span class="p">}</span>
+<span class="go">{False, 4.5, 3, 6, &#39;cat&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="s">&quot;cat&quot;</span><span class="p">,</span><span class="mf">4.5</span><span class="p">,</span><span class="bp">False</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span>
+<span class="go">{False, 4.5, 3, 6, &#39;cat&#39;}</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Не смотря на то, что множества не считаются последовательностями, они
+поддерживают некоторые знакомые операции из рассмотренных выше. Обзор
+таких операций представлен в <a class="reference internal" href="#tab-setops"><em>Таблице 5</em></a>, а дальнейший
+код демонстрирует примеры их использования.</p>
+<table border="1" class="docutils" id="tab-setops">
+<caption><strong>Таблица 5: Операции, предусмотренные для множеств в Python</strong></caption>
+<colgroup>
+<col width="20%" />
+<col width="16%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Название оператора</strong></th>
+<th class="head"><strong>Оператор</strong></th>
+<th class="head"><strong>Пояснение</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>membership</td>
+<td>in</td>
+<td>Принадлежность множеству</td>
+</tr>
+<tr class="row-odd"><td>length</td>
+<td>len</td>
+<td>Возвращает количество элементов множества</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">|</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset</span> <span class="pre">|</span> <span class="pre">otherset</span></tt></td>
+<td>Возвращает новое множество, содержащее все элементы обоих множеств</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">&amp;</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset</span> <span class="pre">&amp;</span> <span class="pre">otherset</span></tt></td>
+<td>Возвращает новое множество из элементов, общих для обоих множеств</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">-</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset</span> <span class="pre">-</span> <span class="pre">otherset</span></tt></td>
+<td>Возвращает новое множество из элементов первого множества, не входящих во второе</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">&lt;=</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset</span> <span class="pre">&lt;=</span> <span class="pre">otherset</span></tt></td>
+<td>Спрашивает, все ли элементы первого множества входят во второе</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span>
+<span class="go">{False, 4.5, 3, 6, &#39;cat&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">mySet</span><span class="p">)</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="bp">False</span> <span class="ow">in</span> <span class="n">mySet</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&quot;dog&quot;</span> <span class="ow">in</span> <span class="n">mySet</span>
+<span class="go">False</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Множества поддерживают некоторые операции, которые будут знакомы тем,
+кто работал с ними в математических областях. Обобщение по ним дано в
+<a class="reference internal" href="#tab-setmethods"><em>Таблице 6</em></a>, ниже идут примеры. Обратите внимание,
+что <tt class="docutils literal"><span class="pre">union</span></tt>, <tt class="docutils literal"><span class="pre">intersection</span></tt>, <tt class="docutils literal"><span class="pre">issubset</span></tt> и <tt class="docutils literal"><span class="pre">difference</span></tt> имеют
+специальные операторы, которые можно использовать вместо них.</p>
+<table border="1" class="docutils" id="tab-setmethods">
+<caption><strong>Таблица 6: Методы, предусмотренные для множеств в Python</strong></caption>
+<colgroup>
+<col width="16%" />
+<col width="21%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Название</strong></th>
+<th class="head"><strong>Использование</strong></th>
+<th class="head"><strong>Пояснение</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">union</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset.union(otherset)</span></tt></td>
+<td>Возвращает новое множество, состоящее из всех элементов обоих исходных множеств</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">intersection</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset.intersection(otherset)</span></tt></td>
+<td>Возвращает новое множество, состоящее только из элементов, общих для обоих исходных множеств</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">difference</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset.difference(otherset)</span></tt></td>
+<td>Возвращает новое множество, содержащее все элементы первого множества, не принадлежащие второму</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">issubset</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset.issubset(otherset)</span></tt></td>
+<td>Спрашивает, все ли элементы первого множества входят во второе</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">add</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset.add(item)</span></tt></td>
+<td>Добавляет новый элемент в множество</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">remove</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset.remove(item)</span></tt></td>
+<td>Удаляет элемент из множества</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">pop</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset.pop()</span></tt></td>
+<td>Удаляет произвольный элемент из множества</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">clear</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">aset.clear()</span></tt></td>
+<td>Удаляет все элементы из множества</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span>
+<span class="go">{False, 4.5, 3, 6, &#39;cat&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">yourSet</span> <span class="o">=</span> <span class="p">{</span><span class="mi">99</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">yourSet</span><span class="p">)</span>
+<span class="go">{False, 4.5, 3, 100, 6, &#39;cat&#39;, 99}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">|</span> <span class="n">yourSet</span>
+<span class="go">{False, 4.5, 3, 100, 6, &#39;cat&#39;, 99}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">yourSet</span><span class="p">)</span>
+<span class="go">{3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">&amp;</span> <span class="n">yourSet</span>
+<span class="go">{3}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">yourSet</span><span class="p">)</span>
+<span class="go">{False, 4.5, 6, &#39;cat&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span> <span class="o">-</span> <span class="n">yourSet</span>
+<span class="go">{False, 4.5, 6, &#39;cat&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">}</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">yourSet</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">}</span><span class="o">&lt;=</span><span class="n">yourSet</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;house&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span>
+<span class="go">{False, 4.5, 3, 6, &#39;house&#39;, &#39;cat&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mf">4.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span>
+<span class="go">{False, 3, 6, &#39;house&#39;, &#39;cat&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span>
+<span class="go">{3, 6, &#39;house&#39;, &#39;cat&#39;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mySet</span>
+<span class="go">set()</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Заключительной из рассматриваемых нами коллекций Python будет неупорядоченная
+структура, называемая <strong>словарём</strong>. Словари - это коллекции ассоциированных
+пар элементов, каждая из которых состоит из ключа и значения. Эти пары обычно
+записываются как ключ:значение. Словари выглядят как разделённые запятыми пары
+ключ:значение, заключённые в фигурные скобки. Например,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">capitals</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Iowa&#39;</span><span class="p">:</span><span class="s">&#39;DesMoines&#39;</span><span class="p">,</span><span class="s">&#39;Wisconsin&#39;</span><span class="p">:</span><span class="s">&#39;Madison&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">capitals</span>
+<span class="go">{&#39;Wisconsin&#39;: &#39;Madison&#39;, &#39;Iowa&#39;: &#39;DesMoines&#39;}</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Мы можем манипулировать словарём путём доступа к значению по его ключу или добавляя
+ещё одну пару ключ-значение. Синтаксис доступа выглядит очень похоже на аналогичный
+для последовательностей, за исключением того момента, что вместо индекса элемента,
+мы используем его ключ. Добавление новых элементов тоже похоже.</p>
+
+<div id="cont"></div>
+<div id="intro_7" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="intro_7_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_7_saveb" onclick="saveEditor('intro_7');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="intro_7_loadb" onclick="requestCode('intro_7');">Load</button>
+
+</div>
+<br/>
+<div id="intro_7_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="intro_7_code" class="active_code", prefixcode="undefined" lang="python">
+capitals = {'Iowa':'DesMoines','Wisconsin':'Madison'}
+print(capitals['Iowa'])
+capitals['Utah']='SaltLakeCity'
+print(capitals)
+capitals['California']='Sacramento'
+print(len(capitals))
+for k in capitals:
+   print(capitals[k]," is the capital of ", k)
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="intro_7_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="intro_7_suffix" style="display:none">
+</pre><pre id="intro_7_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text">Использование Словарей (intro_7)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#intro_7_saveb').toggle();
+    $('#intro_7_loadb').toggle();
+}
+if ($("#intro_7_code_div").parents(".admonition").length == 0 && $("#intro_7_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#intro_7_code_div").offset({
+			left: $("#intro_7 .clearfix").offset().left
+		});
+	}
+	$("#intro_7_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#intro_7_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#intro_7_runb").parent().siblings(".ac_output").show();
+			runit('intro_7',this, undefined);
+			$("#intro_7_runb").on("click", function(){
+				runit('intro_7',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#intro_7_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#intro_7_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#intro_7_runb").on("click", function(){
+		console.log("button clicked");
+		runit('intro_7',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>Тут очень важно обратить внимание, что словари не поддерживают какого-то
+определённого порядка для своих ключей. Первая добавленная пара
+(<tt class="docutils literal"><span class="pre">'Utah'</span></tt>: <tt class="docutils literal"><span class="pre">'SaltLakeCity'</span></tt>) будет помещена на первое место
+в словаре, вторая (<tt class="docutils literal"><span class="pre">'California'</span></tt>: <tt class="docutils literal"><span class="pre">'Sacramento'</span></tt>) - на последнее.
+Размещение ключей зависит от идеи &#8220;хеширования&#8221;, которая более детально
+будет объясняться в главе 4. Бонусом мы продемонстрировали, что функция
+для определения длины работает также, как и для предыдущих коллекций.</p>
+<p>Словари имеют и методы, и операторы. Они расписаны в <a class="reference internal" href="#tab-dictopers"><em>Таблице&nbsp;7</em></a>
+и <a class="reference internal" href="#tab-dictmethods"><em>Таблице 8</em></a>, а код ниже показывает их в действии. Методы
+<tt class="docutils literal"><span class="pre">keys</span></tt>, <tt class="docutils literal"><span class="pre">values</span></tt> и <tt class="docutils literal"><span class="pre">items</span></tt> возвращают объекты, содержащие интересующие нас
+значения. Вы можете использовать функцию <tt class="docutils literal"><span class="pre">list</span></tt>, чтобы конвертировать их в списки.
+Также показаны два варианта метода <tt class="docutils literal"><span class="pre">get</span></tt>. Если ключ не представлен в словаре, то
+<tt class="docutils literal"><span class="pre">get</span></tt> вернёт <tt class="docutils literal"><span class="pre">None</span></tt>. Однако, второй (опциональный) параметр может определять
+другое возвращаемое в этом случае значение.</p>
+<table border="1" class="docutils" id="tab-dictopers">
+<caption><strong>Table 7: Operators Provided by Dictionaries in Python</strong></caption>
+<colgroup>
+<col width="17%" />
+<col width="14%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Оператор</strong></th>
+<th class="head"><strong>Использование</strong></th>
+<th class="head"><strong>Пояснение</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">[]</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">myDict[k]</span></tt></td>
+<td>Возвращает значение, ассоциированное с <tt class="docutils literal"><span class="pre">k</span></tt>, или ошибку, если такового не существует</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">in</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">key</span> <span class="pre">in</span> <span class="pre">adict</span></tt></td>
+<td>Возвращает <tt class="docutils literal"><span class="pre">True</span></tt>, если значение есть в словаре, <tt class="docutils literal"><span class="pre">False</span></tt> в противном случае</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">del</span></tt></td>
+<td>del <tt class="docutils literal"><span class="pre">adict[key]</span></tt></td>
+<td>Удаляет запись из словаря</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">phoneext</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;david&#39;</span><span class="p">:</span><span class="mi">1410</span><span class="p">,</span><span class="s">&#39;brad&#39;</span><span class="p">:</span><span class="mi">1137</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phoneext</span>
+<span class="go">{&#39;brad&#39;: 1137, &#39;david&#39;: 1410}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phoneext</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="go">dict_keys([&#39;brad&#39;, &#39;david&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">phoneext</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">[&#39;brad&#39;, &#39;david&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phoneext</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="go">dict_values([1137, 1410])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">phoneext</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="go">[1137, 1410]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phoneext</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">dict_items([(&#39;brad&#39;, 1137), (&#39;david&#39;, 1410)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">phoneext</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="go">[(&#39;brad&#39;, 1137), (&#39;david&#39;, 1410)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phoneext</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;kent&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">phoneext</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;kent&quot;</span><span class="p">,</span><span class="s">&quot;NO ENTRY&quot;</span><span class="p">)</span>
+<span class="go">&#39;NO ENTRY&#39;</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<table border="1" class="docutils" id="tab-dictmethods">
+<caption><strong>Таблица 8: Методы, предусмотренные для словарей в Python</strong></caption>
+<colgroup>
+<col width="18%" />
+<col width="15%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Метод</strong></th>
+<th class="head"><strong>Использование</strong></th>
+<th class="head"><strong>Пояснение</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">keys</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">adict.keys()</span></tt></td>
+<td>Возвращает ключи словаря как объект dict_keys</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">values</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">adict.values()</span></tt></td>
+<td>Возвращает значения словаря как объект dict_values</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">items</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">adict.items()</span></tt></td>
+<td>Возвращает пары ключ-значение как объект dict_items</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">get</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">adict.get(k)</span></tt></td>
+<td>Возвращает значение, ассоциированное с <tt class="docutils literal"><span class="pre">k</span></tt>, или <tt class="docutils literal"><span class="pre">None</span></tt>, если таковое не найдено</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">get</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">adict.get(k,alt)</span></tt></td>
+<td>Возвращает значение, ассоциированное с <tt class="docutils literal"><span class="pre">k</span></tt>, или <tt class="docutils literal"><span class="pre">alt</span></tt>, если такое не найдено</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Данное рабочее пространство предоставлено для вашего удобства. Можете использовать это окно activecode для проб всего, что вам захочется.</p>
+
+<div id="cont"></div>
+<div id="scratch_01_01" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="scratch_01_01_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="scratch_01_01_saveb" onclick="saveEditor('scratch_01_01');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="scratch_01_01_loadb" onclick="requestCode('scratch_01_01');">Load</button>
+
+</div>
+<br/>
+<div id="scratch_01_01_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="scratch_01_01_code" class="active_code", prefixcode="undefined" lang="python">
+
+
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="scratch_01_01_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="scratch_01_01_suffix" style="display:none">
+</pre><pre id="scratch_01_01_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (scratch_01_01)</span> </p>
+
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#scratch_01_01_saveb').toggle();
+    $('#scratch_01_01_loadb').toggle();
+}
+if ($("#scratch_01_01_code_div").parents(".admonition").length == 0 && $("#scratch_01_01_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#scratch_01_01_code_div").offset({
+			left: $("#scratch_01_01 .clearfix").offset().left
+		});
+	}
+	$("#scratch_01_01_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#scratch_01_01_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#scratch_01_01_runb").parent().siblings(".ac_output").show();
+			runit('scratch_01_01',this, undefined);
+			$("#scratch_01_01_runb").on("click", function(){
+				runit('scratch_01_01',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#scratch_01_01_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#scratch_01_01_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#scratch_01_01_runb").on("click", function(){
+		console.log("button clicked");
+		runit('scratch_01_01',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - Обзор основ Python' data-toggle="tooltip">
+    <a href="ReviewofBasicPython.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="ReviewofBasicPython.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Ввод и вывод' data-toggle="tooltip" >
+    <a href="InputandOutput.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="InputandOutput.html" >Next Section - Ввод и вывод</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span> | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013 Brad Miller, David Ranum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'../_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Реализация двоичной кучи &mdash; Problem Solving with Algorithms and Data Structures</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
+    <link rel="next" title="Двоичные деревья поиска" href="BinarySearchTrees.html" />
+    <link rel="prev" title="Операции с двоичной кучей" href="BinaryHeapOperations.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'pythonds';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.build_info = "2.1.5";
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<script>
+var _prum = [['id', '521dfcc4abe53d0749000000'],
+             ['mark', 'firstbyte', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName('script')[0]
+      , p = document.createElement('script');
+    p.async = 'async';
+    p.src = '//rum-static.pingdom.net/prum.min.js';
+    s.parentNode.insertBefore(p, s);
+})();
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Problem Solving with Algorithms and Data Structures</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='/runestone/static/pythonds/genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/pythonds/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Реализация двоичной кучи</a><ul>
+<li><a class="reference internal" href="#id2">Структурное свойство</a></li>
+<li><a class="reference internal" href="#id3">Свойство упорядоченности кучи</a></li>
+<li><a class="reference internal" href="#id4">Операции с кучей</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - Операции с двоичной кучей" data-toggle="tooltip">
+    <a href="BinaryHeapOperations.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Двоичные деревья поиска' data-toggle="tooltip" >
+    <a href="BinarySearchTrees.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="id1">
+<h1>Реализация двоичной кучи<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>Структурное свойство<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Чтобы сделать работу нашей кучи более эффективной, воспользуемся преимуществами логарифмической природы представляющего её двоичного дерева. Для гарантии логарифмической производительности нам необходимо поддерживать дерево сбалансированным. Сбалансированное двоичное дерево имеет примерно одинаковое количество узлов в своих правых и левых поддеревьях. В нашей реализации баланс будет поддерживаться созданием <strong>полного двоичного дерева</strong>. Такое дерево на каждом уровне имеет все свои узлы. Исключением является самый нижний уровень, который заполняется слева направо. Полное двоичное дерево показано на <a class="reference internal" href="#fig-comptree"><em>рисунке 1</em></a>.</p>
+<div class="figure align-center" id="fig-comptree">
+<img alt="image" src="../_images/compTree.png" />
+<p class="caption">Рисунок 1: Полное двоичное дерево</p>
+</div>
+<p>Другим любопытным свойством полного дерева является то, что мы можем представить его, используя обычный список. Нам нет нужды использовать узлы и ссылки или список списков. Поскольку дерево полное, то левым потомком родителя (позиция <span class="math">\(p\)</span>) будет узел, расположенный на позиции <span class="math">\(2p\)</span> в списке. Аналогично, правый потомок родителя лежит на позиции <span class="math">\(2p + 1\)</span>. Чтобы найти родителя любого узла, достаточно просто использовать целочисленное деление. Если задан узел на позиции <span class="math">\(n\)</span>, то его родитель будет находиться на <span class="math">\(n/2\)</span>. <a class="reference internal" href="#fig-heaporder"><em>Рисунок 2</em></a> демонстрирует полное двоичное дерево, а также приводит его списковое представление. Отметьте <span class="math">\(2p\)</span> и <span class="math">\(2p+1\)</span> отношения между родителями и потомками. Списковое представление дерева совместно со свойством полноты структуры позволяет нам эффективно обходить двоичные деревья, используя всего несколько простых математических операций. Мы увидим, что это также влечёт за собой эффективную реализацию нашей двоичной кучи.</p>
+</div>
+<div class="section" id="id3">
+<h2>Свойство упорядоченности кучи<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Способ, который мы используем для хранения элементов в куче, зависит от поддержки ею свойства упорядоченности. <strong>Свойство упорядоченности кучи</strong> заключается в следующем: для каждого узла <span class="math">\(x\)</span> и его родителя <span class="math">\(p\)</span> ключ <span class="math">\(p\)</span> меньше или равен ключу <span class="math">\(x\)</span>. Полное двоичное дерево, показанное на <a class="reference internal" href="#fig-heaporder"><em>рисунке 2</em></a>, также обладает этим свойством.</p>
+<div class="figure align-center" id="fig-heaporder">
+<img alt="image" src="../_images/heapOrder.png" />
+<p class="caption">Рисунок 2: Полное двоичное дерево и его списковое представление.</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>Операции с кучей<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Начнём воплощение нашего двоичного дерева с конструктора. Поскольку оно целиком может быть представлено в виде обычного списка, то всё, что ему нужно делать, - это инициализировать список и атрибут <tt class="docutils literal"><span class="pre">currentSize</span></tt>, через который отслеживается текущий размер кучи. Код конструктора показан в <em class="xref std std-ref">листинге 1</em>. Вы можете заметить, что пустая двоичная куча содержит нуль, как первый элемент <tt class="docutils literal"><span class="pre">heapList</span></tt>. Он не используется, но необходим для целочисленного деления, применяемого в последующих методах.</p>
+<p><strong>Листинг 1</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BinHeap</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Следующим будет метод <tt class="docutils literal"><span class="pre">insert</span></tt>. Простейший и наиболее эффективный способ добавить элемент в список - просто присоединить его к концу списка. Хорошей новостью станет то, что таким образом мы поддержим свойство полноты дерева. Плохой - весьма вероятно, что это нарушит структурное свойство кучи. Однако, существует способ написать метод, позволяющий нам восстановить структуру с помощью сравнения нового элемента с его родителем. Если добавляемый элемент меньше родителя, то мы можем просто поменять их местами. <a class="reference internal" href="#fig-percup"><em>Рисунок 2</em></a> показывает серию перестановок, необходимую для &#8220;просачивания&#8221; нового элемента на его законное место в дереве.</p>
+<div class="figure align-center" id="fig-percup">
+<img alt="image" src="../_images/percUp.png" />
+<p class="caption">Рисунок 2: &#8220;Просачивание&#8221; нового элемента на его правильную позицию.</p>
+</div>
+<p>Обратите внимание, при прохождении элемента вверх, мы восстанавливаем свойство кучи между новым элементом и его родителем. Так же это свойство сохраняется для всех его братьев. Конечно, если элемент достаточно мал, нам всё ещё может понадобиться передвинуть его на уровень выше. Фактически, мы можем перемещать элемент до самого верха дерева. <a class="reference internal" href="#lst-heap2"><em>Листинг 2</em></a> демонстрирует метод <tt class="docutils literal"><span class="pre">percUp</span></tt>, поднимающий новый элемент настолько высоко, насколько это требуется для поддержки свойства кучи. Вот где важен наш лишний элемент в <tt class="docutils literal"><span class="pre">heapList</span></tt>. Заметьте, мы можем рассчитать родителя любого узла с помощью обычного целочисленного деления. Родитель текущего узла может быть найден делением его индекса на два.</p>
+<p>Теперь мы готовы написать метод <tt class="docutils literal"><span class="pre">insert</span></tt> (см. <a class="reference internal" href="#lst-heap3"><em>листинг 3</em></a>). Большую часть его работы уже делает <tt class="docutils literal"><span class="pre">percUp</span></tt>. После того, как в дерево вставлен новый элемент, <tt class="docutils literal"><span class="pre">percUp</span></tt> позиционирует его как положено.</p>
+<p id="lst-heap2"><strong>Листинг 2</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">percUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]:</span>
+         <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p id="lst-heap3"><strong>Листинг 3</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">percUp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>С правильно определённым методом <tt class="docutils literal"><span class="pre">insert</span></tt> мы можем перейти к методу <tt class="docutils literal"><span class="pre">delMin</span></tt>. Так как свойство кучи требует, чтобы корень был наименьшим элементом дерева, найти минимальный элемент очень легко. Сложная часть <tt class="docutils literal"><span class="pre">delMin</span></tt> - восстановить соответствие свойствам структуры и упорядоченности кучи после удаления корневого элемента. Мы будем это делать в два шага. Во-первых, мы восстановим корневой элемент, взяв последний элемент списка и передвинув его на позицию корня. Так мы поддержим структурное свойство кучи. Однако, весьма вероятно, что при этом нарушится её свойство упорядоченности. Поэтому вторым шагом станет спуск кореня на его правильную позицию. На <a class="reference internal" href="#fig-percdown"><em>рисунке 3</em></a> показана серия перестановок, необходимая для перемещения корня на соответствующую ему позицию в куче.</p>
+<div class="figure align-center" id="fig-percdown">
+<img alt="image" src="../_images/percDown.png" />
+<p class="caption">Рисунок 3: &#8220;Просачивание&#8221; корневого узла вниз по дереву.</p>
+</div>
+<p>Чтобы поддержать свойство упорядоченности, нам надо всего лишь поменять местами корень с меньшим, чем он, потомком. После начальной перестановки мы можем повторять процесс для узла и его потомков до тех пор, пока он не переместится на позицию, в которой будет меньше обоих своих детей. Код для просачивания узла вниз по  дереву можно найти в методах <tt class="docutils literal"><span class="pre">percDown</span></tt> и <tt class="docutils literal"><span class="pre">minChild</span></tt> из <a class="reference internal" href="#lst-heap4"><em>листинга 4</em></a>.</p>
+<p id="lst-heap4"><strong>Листинг 4</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">percDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span><span class="p">:</span>
+        <span class="n">mc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">minChild</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">mc</span><span class="p">]:</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">mc</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">mc</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">mc</span>
+
+<span class="k">def</span> <span class="nf">minChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Код для операции <tt class="docutils literal"><span class="pre">delMin</span></tt> находится в <a class="reference internal" href="#lst-heap5"><em>листинге 5</em></a>. Заметьте, вся сложная работа снова отдана вспомогательной функции (в данном случае <tt class="docutils literal"><span class="pre">percDown</span></tt>).</p>
+<p id="lst-heap5"><strong>Листинг 5</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">delMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">retval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">percDown</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">retval</span>
+</pre></div>
+</div>
+<p>Заканчивая дискуссию о двоичных деревьях, рассмотрим метод, позволяющий построить кучу из списка ключей. Первый способ, который мог прийти вам в голову, следующий. Имея список ключей, можно легко построить кучу, вставляя по ключу за раз. Поскольку вы начинаете со списком из одного элемента, то он отсортирован и можно использовать бинарный поиск для вычисления позиции, куда вставлять следующий ключ (это будет стоить примерно <span class="math">\(O(\log{n})\)</span>. Однако, вспомните, что вставка элемента в середину может потребовать <span class="math">\(O(n)\)</span> операций сдвига остатка списка, чтобы освободить место новому ключу. Таким образом, вставка в кучу из <span class="math">\(n\)</span> ключей в общем потребует <span class="math">\(O(n \log{n})\)</span> операций. А если мы начнём со списка целиком, то кучу можно будет построить за <span class="math">\(O(n)\)</span> операций. <a class="reference internal" href="#lst-heap6"><em>Листинг 6</em></a> демонстрирует, как это можно сделать.</p>
+<p id="lst-heap6"><strong>Листинг 6</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">buildHeap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alist</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">currentSize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">heapList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">alist</span><span class="p">[:]</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">percDown</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="fig-buildheap">
+<img alt="image" src="../_images/buildheap.png" />
+<p class="caption">Рисунок 4: Создание кучи из списка [9, 6, 5, 2, 3]</p>
+</div>
+<p><a class="reference internal" href="#fig-buildheap"><em>Рисунок 4</em></a> показывает перестановки, которые делает метод <tt class="docutils literal"><span class="pre">buildHeap</span></tt>, перемещая узлы начального дерева [9, 6, 5, 2, 3] на их правильные позиции. Хотя мы начинаем с середины дерева и работаем в обратном от корня направлении, метод <tt class="docutils literal"><span class="pre">percDown</span></tt> гарантирует, что наибольший элемент всегда спустится вниз по дереву. Поскольку куча - полное двоичное дерево, любой прошедший половину пути узел будет листом и, следовательно, не иметь потомков. Обратите внимание: при <tt class="docutils literal"><span class="pre">i=1</span></tt> мы просачиваемся вниз от корня дерева, т.е. это может потребовать несколько обменов. Как вы можете видеть, в самом правом из двух деревьев на <a class="reference internal" href="#fig-buildheap"><em>рисунке 4</em></a> первая 9 перемещается с корневой позиции, но после того, как она опустится на уровень вниз, <tt class="docutils literal"><span class="pre">percDown</span></tt> гарантирует проверку следующего набора потомков ниже по дереву, чтобы убедиться, что их предок стоит настолько низко, насколько это возможно. В данном случае результатом станет второй обмен с 3. Теперь 9 перемещено на самый нижний уровень дерева, и больше нельзя сделать никаких обменов. Полезно сравнить списковое представление показанной на <a class="reference internal" href="#fig-buildheap"><em>рисунке 4</em></a> серии обменов с представлением в виде дерева.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>  <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Полностью реализация двоичной кучи показана в ActiveCode 2.</p>
+
+<div id="cont"></div>
+<div id="completeheap" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="completeheap_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="completeheap_saveb" onclick="saveEditor('completeheap');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="completeheap_loadb" onclick="requestCode('completeheap');">Load</button>
+
+<span class="ac_sep"></span>
+<button class='btn btn-default' id="completeheap_showb" onclick="$('#completeheap_code_div').toggle();cm_editors['completeheap_code'].refresh();$('#completeheap_saveb').toggle();$('#completeheap_loadb').toggle()">Show/Hide Code</button>
+
+</div>
+<br/>
+<div id="completeheap_code_div" style="display: none" class="ac_code_div">
+<textarea cols="50" rows="12" id="completeheap_code" class="active_code", prefixcode="undefined" lang="python">
+class BinHeap:
+    def __init__(self):
+        self.heapList = [0]
+        self.currentSize = 0
+
+
+    def percUp(self,i):
+        while i // 2 > 0:
+          if self.heapList[i] < self.heapList[i // 2]:
+             tmp = self.heapList[i // 2]
+             self.heapList[i // 2] = self.heapList[i]
+             self.heapList[i] = tmp
+          i = i // 2
+
+    def insert(self,k):
+      self.heapList.append(k)
+      self.currentSize = self.currentSize + 1
+      self.percUp(self.currentSize)
+
+    def percDown(self,i):
+      while (i * 2) <= self.currentSize:
+          mc = self.minChild(i)
+          if self.heapList[i] > self.heapList[mc]:
+              tmp = self.heapList[i]
+              self.heapList[i] = self.heapList[mc]
+              self.heapList[mc] = tmp
+          i = mc
+
+    def minChild(self,i):
+      if i * 2 + 1 > self.currentSize:
+          return i * 2
+      else:
+          if self.heapList[i*2] < self.heapList[i*2+1]:
+              return i * 2
+          else:
+              return i * 2 + 1
+
+    def delMin(self):
+      retval = self.heapList[1]
+      self.heapList[1] = self.heapList[self.currentSize]
+      self.currentSize = self.currentSize - 1
+      self.heapList.pop()
+      self.percDown(1)
+      return retval
+
+    def buildHeap(self,alist):
+      i = len(alist) // 2
+      self.currentSize = len(alist)
+      self.heapList = [0] + alist[:]
+      while (i > 0):
+          self.percDown(i)
+          i = i - 1
+
+bh = BinHeap()
+bh.buildHeap([9,5,6,2,3])
+
+print(bh.delMin())
+print(bh.delMin())
+print(bh.delMin())
+print(bh.delMin())
+print(bh.delMin())
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="completeheap_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="completeheap_suffix" style="display:none">
+</pre><pre id="completeheap_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text">Полный пример двоичной кучи. (completeheap)</span> </p>
+
+<script>
+if ('none' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#completeheap_saveb').toggle();
+    $('#completeheap_loadb').toggle();
+}
+if ($("#completeheap_code_div").parents(".admonition").length == 0 && $("#completeheap_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#completeheap_code_div").offset({
+			left: $("#completeheap .clearfix").offset().left
+		});
+	}
+	$("#completeheap_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#completeheap_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#completeheap_runb").parent().siblings(".ac_output").show();
+			runit('completeheap',this, undefined);
+			$("#completeheap_runb").on("click", function(){
+				runit('completeheap',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#completeheap_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#completeheap_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#completeheap_runb").on("click", function(){
+		console.log("button clicked");
+		runit('completeheap',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>Утверждение, что мы можем построить кучу за <span class="math">\(O(n)\)</span> сначала может показаться немного таинственным, и доказательство его выходит за пределы обсуждения для этой книги. Однако, ключом к пониманию может стать напоминание о <span class="math">\(\log{n}\)</span> факторе, выводимом из высоты дерева. Для большей части работы в <tt class="docutils literal"><span class="pre">buildHeap</span></tt> дерево короче, чем <span class="math">\(\log{n}\)</span>.</p>
+<p>Используя тот факт, что кучу из списка можно создать за <span class="math">\(O(n)\)</span> времени, в конце этой главы вы получите в качестве упражнения задание сконструировать использующий кучу алгоритм, который сортирует список за <span class="math">\(O(n\log{n}))\)</span>.</p>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - Операции с двоичной кучей' data-toggle="tooltip">
+    <a href="BinaryHeapOperations.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="BinaryHeapOperations.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Двоичные деревья поиска' data-toggle="tooltip" >
+    <a href="BinarySearchTrees.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="BinarySearchTrees.html" >Next Section - Двоичные деревья поиска</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span> | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013 Brad Miller, David Ranum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'../_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

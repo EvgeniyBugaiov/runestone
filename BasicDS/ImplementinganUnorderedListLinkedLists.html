@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Реализация неупорядоченного списка: связанные списки &mdash; Problem Solving with Algorithms and Data Structures</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
+    <link rel="next" title="Абстрактный тип данных “упорядоченный список”" href="TheOrderedListAbstractDataType.html" />
+    <link rel="prev" title="Абстрактный тип данных “неупорядоченный список”" href="TheUnorderedListAbstractDataType.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'pythonds';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.build_info = "2.1.5";
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+<script>
+var _prum = [['id', '521dfcc4abe53d0749000000'],
+             ['mark', 'firstbyte', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName('script')[0]
+      , p = document.createElement('script');
+    p.async = 'async';
+    p.src = '//rum-static.pingdom.net/prum.min.js';
+    s.parentNode.insertBefore(p, s);
+})();
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Problem Solving with Algorithms and Data Structures</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHNwYJKoZIhvcNAQcEoIIHKDCCByQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAcrkqh1hn3lYqIpfXxNqe1T82EhXzCJGy1yMAmklpyZshyMkfDGe1Bhx+iwyGeoYRTTyphFmP+9M3NyO0+Q5XdHxgZPx/zYjjBxlZHgEV6jhE8bN2fHkkPf0VHfz0a0QQylQOPlKiOTZV7B37Jpk6yM47oVZ1tG/KNm0NkfmB76DELMAkGBSsOAwIaBQAwgbQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIi0GmFfOlcjuAgZBbYOo9UO+CpMQa+PYqwsUmUnJvXIImeMeNI3KVTUx5Cfk9gNMo3WzPeiB5IqZo9nRAQ0mf1qL2ecLeB5tidM+lgBUhOxfj3/FecpnVFa0263gp4g+PLw8jzhvVRdUon1K3SeO1Rzh23fIRKwnrD6btt73uwtj0sl3tGd8qz+6GIcwPDdRk9VcUffiBJT/ZagKgggOHMIIDgzCCAuygAwIBAgIBADANBgkqhkiG9w0BAQUFADCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wHhcNMDQwMjEzMTAxMzE1WhcNMzUwMjEzMTAxMzE1WjCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMFHTt38RMxLXJyO2SmS+Ndl72T7oKJ4u4uw+6awntALWh03PewmIJuzbALScsTS4sZoS1fKciBGoh11gIfHzylvkdNe/hJl66/RGqrj5rFb08sAABNTzDTiqqNpJeBsYs/c2aiGozptX2RlnBktH+SUNpAajW724Nv2Wvhif6sFAgMBAAGjge4wgeswHQYDVR0OBBYEFJaffLvGbxe9WT9S1wob7BDWZJRrMIG7BgNVHSMEgbMwgbCAFJaffLvGbxe9WT9S1wob7BDWZJRroYGUpIGRMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbYIBADAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBAIFfOlaagFrl71+jq6OKidbWFSE+Q4FqROvdgIONth+8kSK//Y/4ihuE4Ymvzn5ceE3S/iBSQQMjyvb+s2TWbQYDwcp129OPIbD9epdr4tJOUNiSojw7BHwYRiPh58S1xGlFgHFXwrEBb3dgNbMUa+u4qectsMAXpVHnD9wIyfmHMYIBmjCCAZYCAQEwgZQwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tAgEAMAkGBSsOAwIaBQCgXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMzExMDMxMzQxMzFaMCMGCSqGSIb3DQEJBDEWBBRDJF8w+zsMr7FSk+pwinB5f5D4rzANBgkqhkiG9w0BAQEFAASBgHw1LMHpkpaqHIvDGdFE0eG+2mZlmMnUeDCBhQlbc7QMzFQYKTV94NfaebBO4PmNdADe1rq4WidSRZZbE7CzkX9IGENYnBTWY0hb2l0lGdGrJdGeWyV3ekg9WVaFMMumrekds96h3Cx7dGz2kWDzIai2iEXE/qoE+xpkyXAYZNV3-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='/runestone/static/pythonds/genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/pythonds/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Реализация неупорядоченного списка: связанные списки</a><ul>
+<li><a class="reference internal" href="#node">Класс <tt class="docutils literal"><span class="pre">Node</span></tt></a></li>
+<li><a class="reference internal" href="#unordered-list">Класс <tt class="docutils literal"><span class="pre">Unordered</span> <span class="pre">List</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - Абстрактный тип данных &#8220;неупорядоченный список&#8221;" data-toggle="tooltip">
+    <a href="TheUnorderedListAbstractDataType.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Абстрактный тип данных &#8220;упорядоченный список&#8221;' data-toggle="tooltip" >
+    <a href="TheOrderedListAbstractDataType.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="id1">
+<h1>Реализация неупорядоченного списка: связанные списки<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>С целью реализовать неупорядоченный список мы создадим то, что обычно
+известно как <strong>связанный список</strong>. Напомним, нам нужно быть уверенными
+в том, что мы сможем поддерживать взаимное расположение элементов.
+Однако, в поддержке такого позиционирования на сопредельных участках
+памяти нет необходимости. Рассмотрим для примера коллекцию элементов,
+показанную на <a class="reference internal" href="#fig-idea"><em>Рисунке 1</em></a>. Похоже, что эти значения
+были размещены случайным образом. Если мы сможем сохранить в каждом
+элементе некую явную информацию о размещении следующего за ним элемента
+(см. <a class="reference internal" href="#fig-idea"><em>Рисунок 1</em></a>), то соответствующая позиция каждого
+элемента может быть выражена простой ссылкой от одного элемента к другому.</p>
+<div class="figure align-center" id="fig-idea">
+<img alt="../_images/idea.png" src="../_images/idea.png" />
+<p class="caption">Рисунок 1: Элементы не ограничены в своём физическом размещении.</p>
+</div>
+<div class="figure align-center" id="fig-idea2">
+<img alt="../_images/idea2.png" src="../_images/idea2.png" />
+<p class="caption">Рисунок 2: Соответствующие позиции определяются с помощью явных ссылок.</p>
+</div>
+<p>Важно отметить, что положение первого элемента должно быть определено явно.
+Поскольку мы знаем, где он находится, то можем найти местоположение второго
+и так далее. Внешнюю ссылку часто называют <strong>головой</strong> списка. Аналогично,
+последнему элементу нужно знать, что за ним больше ничего нет.</p>
+<div class="section" id="node">
+<h2>Класс <tt class="docutils literal"><span class="pre">Node</span></tt><a class="headerlink" href="#node" title="Permalink to this headline">¶</a></h2>
+<p>Основным строительным блоком в реализации связанного списка является <strong>узел</strong>.
+Каждый такой объект должен обладать как минимум двумя кусочками информации.
+Во-первых, узел должен содержать сам элемент списка. Мы назовём это
+<strong>полем данных</strong> узла. Дополнительно, каждый узел должен хранить ссылку на
+следующий узел. <a class="reference internal" href="#lst-nodeclass"><em>Листинг 1</em></a> демонстрирует реализацию на
+Python. Чтобы создать узел, вы должны предоставить начальное значение данных
+узла. Вычисление оператора присваивания ниже даст объект &#8220;узел&#8221;, содержащий
+значение 93 (см. <a class="reference internal" href="#fig-node"><em>Рисунок 3</em></a>). Следует отметить, что обычно
+мы представляем узел-объект, как это показано на <a class="reference internal" href="#fig-node2"><em>Рисунке 4</em></a>.
+Класс <tt class="docutils literal"><span class="pre">Node</span></tt> также включает обычные методы для доступа и модификации полей
+данных и ссылки на следующий узел.</p>
+<p id="lst-nodeclass"><strong>Listing 1</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">initdata</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">initdata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">getData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">getNext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span>
+
+    <span class="k">def</span> <span class="nf">setData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">newdata</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">newdata</span>
+
+    <span class="k">def</span> <span class="nf">setNext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">newnext</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newnext</span>
+</pre></div>
+</div>
+<p>Мы создаём объект <tt class="docutils literal"><span class="pre">Node</span></tt> обычным способом.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span>
+<span class="go">93</span>
+</pre></div>
+</div>
+<p>Специальное ссылочное значение Python <tt class="docutils literal"><span class="pre">None</span></tt> играет важную роль и в
+классе <tt class="docutils literal"><span class="pre">Node</span></tt>, и в самом связанном списке. Обратите внимание, что
+конструктор первоначально создаёт узел с <tt class="docutils literal"><span class="pre">next</span></tt>, установленным в
+<tt class="docutils literal"><span class="pre">None</span></tt>. Явное присвоение <tt class="docutils literal"><span class="pre">None</span></tt> начальному значению ссылки на
+следующий элемент - это всегда хорошая идея.</p>
+<div class="figure align-center" id="fig-node">
+<img alt="../_images/node.png" src="../_images/node.png" />
+<p class="caption">Рисунок 3: Объект &#8220;Node&#8221;, содержащий значение и ссылку на следующий узел</p>
+</div>
+<div class="figure align-center" id="fig-node2">
+<img alt="../_images/node2.png" src="../_images/node2.png" />
+<p class="caption">Рисунок 4: Типичное представление узла</p>
+</div>
+</div>
+<div class="section" id="unordered-list">
+<h2>Класс <tt class="docutils literal"><span class="pre">Unordered</span> <span class="pre">List</span></tt><a class="headerlink" href="#unordered-list" title="Permalink to this headline">¶</a></h2>
+<p>Как мы предлагали выше, неупорядоченный список будет представлять из себя
+коллекцию узлов, каждый из которых связан со следующим посредством явной
+ссылки. Пока мы знаем, как найти первый узел (содержащий первый элемент),
+каждый последующий будет обнаружен с помощью успешного следования по ссылкам.
+Имея это ввиду, класс <tt class="docutils literal"><span class="pre">UnorderedList</span></tt> должен содержать ссылку на первый
+узел. В <a class="reference internal" href="#lst-listclass"><em>Листинге 2</em></a> показан конструктор этого класса.
+Заметьте, что каждый объект списка будет поддерживать единственную ссылку
+на свою &#8220;голову&#8221;.</p>
+<p id="lst-listclass"><strong>Листинг 2</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UnorderedList</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">None</span>
+</pre></div>
+</div>
+<p>Первоначально мы создадим пустой список. Оператор присваивания:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>создаст представление связанного списка, показанного на
+<a class="reference internal" href="#fig-initlinkedlist"><em>Рисунке 5</em></a>. Как мы уже обсуждали в классе <tt class="docutils literal"><span class="pre">Node</span></tt>,
+специальная ссылка <tt class="docutils literal"><span class="pre">None</span></tt> вновь будет использована в качестве состояния,
+когда голова списка ни на что не ссылается. В конечном счёте, список из данного
+ранее примера будет представлен в виде связанного списка, как это показано на
+<a class="reference internal" href="#fig-linkedlist"><em>Рисунке 6</em></a>. Голова списка ссылается на первый узел,
+содержащий первый элемент списка. В свою очередь, этот узел содержит ссылку на
+следующий узел (следующий элемент) и так далее. Очень важно отметить, что класс
+списка сам по себе не содержит каких-либо объектов-узлов. Он имеет только
+единственную ссылку на первый узел связанной структуры.</p>
+<div class="figure align-center" id="fig-initlinkedlist">
+<img alt="../_images/initlinkedlist.png" src="../_images/initlinkedlist.png" />
+<p class="caption">Рисунок 5: Пустой список</p>
+</div>
+<div class="figure align-center" id="fig-linkedlist">
+<img alt="../_images/linkedlist.png" src="../_images/linkedlist.png" />
+<p class="caption">Рисунок 6: Связанный список целых чисел</p>
+</div>
+<p>Метод <tt class="docutils literal"><span class="pre">isEmpty</span></tt>, показанный в <a class="reference internal" href="#lst-isempty"><em>Листинге 3</em></a>, просто
+проверяет, ссылается ли голова списка на <tt class="docutils literal"><span class="pre">None</span></tt>. Результат булева
+выражения <tt class="docutils literal"><span class="pre">self.head==None</span></tt> будет истинным только если в связанном
+списке нет узлов. Поскольку новый список пуст, то конструктор и проверка
+на пустоту должны согласовываться друг с другом. Это демонстрирует
+преимущества использования ссылки <tt class="docutils literal"><span class="pre">None</span></tt> для определения &#8220;конца&#8221;
+связанной структуры. В Python <tt class="docutils literal"><span class="pre">None</span></tt> можно сравнивать с любой ссылкой.
+Две ссылки равны, если они обе ссылаются на один объект.  В оставшихся
+методах мы будем часто использовать этот факт.</p>
+<p id="lst-isempty"><strong>Листинг 3</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="bp">None</span>
+</pre></div>
+</div>
+<p>Итак, как же нам поместить элементы в наш список? Для этого нужно
+реализовать метод <tt class="docutils literal"><span class="pre">add</span></tt>. Однако, перед этим стоит ответить на
+важный вопрос: где в связанном списке размещать новый элемент?
+Поскольку, он неупорядочен, то в конкретизации местоположения
+нового элемента по отношению к уже существующим нет необходимости.
+Т.е. вставку можно осуществить в любом месте. Принимая это во
+внимание, имеет смысл поместить новое значение в самую
+легкодоступную позицию.</p>
+<p>Напомним, что структура связанного списка предоставляет нам всего
+одну точку входа - голову списка. Все прочие узлы можно достигнуть
+только через доступ к первому узлу по цепочке из ссылок <tt class="docutils literal"><span class="pre">next</span></tt>.
+Это подразумевает, что самое простое место для добавления нового
+узла - это голова, начало списка. Другими словами, мы будем создавать
+новый элемент в качестве первого в списке, а существующие элементы
+нужно будет связать так, чтобы они следовали за ним.</p>
+<p>Связанный список, показанный на <a class="reference internal" href="#fig-linkedlist"><em>Рисунке 6</em></a>,
+был построен с помощь вызова метода <tt class="docutils literal"><span class="pre">add</span></tt> несколько раз.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">77</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">54</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Обратите внимание: поскольку 31 - первый из добавленных в список
+элементов, то он же, в конечном итоге, и последний узел связанного
+списка, так как все прочие элементы добавляются перед ним. Аналогично,
+54 - последний добавленный элемент, и он будет значением первого узла
+связанного списка.</p>
+<p>Метод <tt class="docutils literal"><span class="pre">add</span></tt> показан в <a class="reference internal" href="#lst-add"><em>Листинге 4</em></a>. Каждый элемент
+должен находиться в объекте &#8220;узел&#8221;. Строка 2 создаёт новый узел и
+размещает в его поле данных заданный элемент. Теперь нужно завершить
+процесс, связав новый узел с существующей структурой. Это требует
+двух шагов, показанных на <a class="reference internal" href="#fig-addtohead"><em>Рисунке 7</em></a>.
+Шаг 1 (строка 3) изменяет ссылку <tt class="docutils literal"><span class="pre">next</span></tt> нового узла, чтобы она
+указывала на предыдущий. Теперь, когда остаток соответствующим образом
+присоединён к новому узлу, мы можем изменить голову списка, чтобы она
+тоже ссылалась на новый узел. Этим занимается оператор присваивания в
+строке 4.</p>
+<p>Порядок двух описанных выше шагов очень важен. Что произойдёт, если
+поменять местами строки 3 и 4? Если первым произойдёт изменение головы
+списка, то результат можно увидеть на <a class="reference internal" href="#fig-wrongorder"><em>Рисунке 8</em></a>.
+Поскольку голова - единственная внешняя ссылка на список узлов, то все
+изначальные данные будут потеряны и получить к ним доступ больше не удастся.</p>
+<p id="lst-add"><strong>Листинг 4</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">item</span><span class="p">):</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">temp</span><span class="o">.</span><span class="n">setNext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">temp</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="fig-addtohead">
+<img alt="../_images/addtohead.png" src="../_images/addtohead.png" />
+<p class="caption">Рисунок 7: Добавление нового узла в два шага</p>
+</div>
+<div class="figure align-center" id="fig-wrongorder">
+<img alt="../_images/wrongorder.png" src="../_images/wrongorder.png" />
+<p class="caption">Рисунок 8: Результат обратного порядка двух шагов</p>
+</div>
+<p>Следующими методами, который мы реализуем, будут <tt class="docutils literal"><span class="pre">size</span></tt>, <tt class="docutils literal"><span class="pre">search</span></tt> и
+<tt class="docutils literal"><span class="pre">remove</span></tt>. Все они основаны на технике <strong>обхода связанного списка</strong>.
+Она подразумевает процесс поочерёдного посещения каждого узла. Чтобы
+сделать это, используем внешнюю ссылку в качестве стартовой. Поскольку
+мы посещаем каждый узел, то она будет перемещаться по <tt class="docutils literal"><span class="pre">next</span></tt>-ам элементов списка.</p>
+<p>Для реализации метода <tt class="docutils literal"><span class="pre">size</span></tt> достаточно просто обойти связанный список
+и подсчитать количество встреченных узлов. <a class="reference internal" href="#lst-length"><em>Листинг 5</em></a>
+демонстрирует код Python, выполняющий эту работу. Внешняя ссылка называется
+<tt class="docutils literal"><span class="pre">current</span></tt> и инициализируется головой списка в строке 2. В начале обработки
+мы не видим каких-либо узлов, поэтому счёт равен нулю. Строки 4-6 реализуют
+собственно обход. До тех пор, пока текущая ссылка не похожа на конец списка
+(<tt class="docutils literal"><span class="pre">None</span></tt>), мы перемещаем её на следующий узел с помощью оператора присваивания
+в строке 6. Отметим ещё раз, что возможность сравнивать ссылки с <tt class="docutils literal"><span class="pre">None</span></tt> очень
+полезна. Каждый раз перемещаясь на новый узел, мы прибавляем к <tt class="docutils literal"><span class="pre">count</span></tt> единицу.
+После окончания итераций <tt class="docutils literal"><span class="pre">count</span></tt> возвращается в качестве результата.
+<a class="reference internal" href="#fig-traversal"><em>Рисунок 9</em></a> показывает, как происходит обработка по мере
+продвижения вниз по списку.</p>
+<p id="lst-length"><strong>Листинг 5</strong></p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+</td></tr></table></div>
+<div class="figure align-center" id="fig-traversal">
+<img alt="../_images/traversal.png" src="../_images/traversal.png" />
+<p class="caption">Рисунок 9: Обход связанного списка от головы до конца</p>
+</div>
+<p>Реализация поиска значения в связанном списке для неупорядоченного списка
+также использует технику обхода. В процессе посещения каждого узла мы
+запрашиваем, как его данные соотносятся с тем элементом, который мы ищем.
+Однако, в этом случае нам может и не понадобиться обходить весь список до
+конца. Фактически, если мы добрались до конца списка, то искомого элемента
+он не содержит. А если мы нашли нужное, то нет смысла продолжать обход.</p>
+<p><a class="reference internal" href="#lst-search"><em>Листинг 6</em></a> показывает реализацию метода <tt class="docutils literal"><span class="pre">search</span></tt>.
+Как и в методе <tt class="docutils literal"><span class="pre">size</span></tt> обход начинается с головы списка (строка 2). Мы также
+используем булеву переменную <tt class="docutils literal"><span class="pre">found</span></tt>, чтобы помнить, нашли ли мы искомое.
+Поскольку в начале обхода ещё ничего не найдено, то <tt class="docutils literal"><span class="pre">found</span></tt> устанавливается
+в <tt class="docutils literal"><span class="pre">False</span></tt> (строка 3). Цикл в строке 4 принимает оба описанных выше условия.
+До тех пор, пока есть узлы для посещения и искомый элемент не найден, мы
+продолжаем проверку. Строка 5 спрашивает: не находится ли в этом узле то, что
+нам нужно? Если ответ &#8220;да&#8221;, то <tt class="docutils literal"><span class="pre">found</span></tt> выставляется в <tt class="docutils literal"><span class="pre">True</span></tt>.</p>
+<p id="lst-search"><strong>Листинг 6</strong></p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">item</span><span class="p">):</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">found</span>
+</pre></div>
+</td></tr></table></div>
+<p>В качестве примера рассмотрим вызов метода <tt class="docutils literal"><span class="pre">search</span></tt> для поиска элемента 17.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Поскольку 17 в списке присутствует, то обход будет происходить до тех пор,
+пока не достигнет узла, его содержащего. В этот момент переменная <tt class="docutils literal"><span class="pre">found</span></tt>
+будет установлена в <tt class="docutils literal"><span class="pre">True</span></tt> и условие <tt class="docutils literal"><span class="pre">while</span></tt> нарушится, что приведёт к
+возврату значения, как мы видели выше. Этот процесс можно рассмотреть на
+<a class="reference internal" href="#fig-searchpic"><em>Рисунке 10</em></a>.</p>
+<div class="figure align-center" id="fig-searchpic">
+<img alt="../_images/search.png" src="../_images/search.png" />
+<p class="caption">Рисунок 10: Успешный поиск значения 17</p>
+</div>
+<p>Метод <tt class="docutils literal"><span class="pre">remove</span></tt> логически требует двух стадий. Сначала надо обойти список,
+чтобы найти удаляемый элемент. Как только это случится (напомним, что мы
+предполагаем наличие искомого в списке), последует удаление. Первый шаг
+очень похож на <tt class="docutils literal"><span class="pre">search</span></tt>. Начиная с внешней ссылки, установленной на голову
+списка, мы обходим ссылки до тех пор, пока не найдём искомый элемент.
+Поскольку мы предполагаем его присутствие, то цикл остановится до того,
+как <tt class="docutils literal"><span class="pre">current</span></tt> получит <tt class="docutils literal"><span class="pre">None</span></tt>. Следовательно, в условии можно ограничиться
+одной булевой переменной <tt class="docutils literal"><span class="pre">found</span></tt>.</p>
+<p>Когда <tt class="docutils literal"><span class="pre">found</span></tt> примет значение <tt class="docutils literal"><span class="pre">True</span></tt>, <tt class="docutils literal"><span class="pre">current</span></tt> будет ссылаться на узел,
+содержащий элемент, который нужно удалить. Но как это сделать? Одним из способов
+является замена значения элемента неким маркером, обозначающим отсутствие элемента
+в списке. Проблемой при таком подходе является то, что теперь количество узлов не
+совпадает с количеством элементов. Было бы намного лучше удалять элемент с помощью
+удаления всего узла.</p>
+<p>Для того, чтобы удалить нужный узел, нам нужно изменить ссылку его предшественника
+таким образом, чтобы она ссылалась на узел после <tt class="docutils literal"><span class="pre">current</span></tt>. К несчастью, не
+существует возможности перемещаться по связанному списку в обратном направлении.
+Поскольку <tt class="docutils literal"><span class="pre">current</span></tt> ссылается на узел следующий за тем, в котором мы хотели бы
+провести изменения, то для модификации уже слишком поздно.</p>
+<p>Решением этой дилеммы будет использование двух внешних ссылок в процессе обхода
+списка. <tt class="docutils literal"><span class="pre">current</span></tt> будет вести себя как раньше, отмечая текущее положение обхода.
+Новая ссылка, которую мы назовём <tt class="docutils literal"><span class="pre">previous</span></tt>, будет всегда идти на один узел позади
+<tt class="docutils literal"><span class="pre">current</span></tt>. Таким образом, когда <tt class="docutils literal"><span class="pre">current</span></tt> остановится на удаляемом узле,
+<tt class="docutils literal"><span class="pre">previous</span></tt> будет указывать на место для соответствующей модификации связанного
+списка.</p>
+<p><a class="reference internal" href="#lst-remove"><em>Листинг 7</em></a> демонстрирует метод <tt class="docutils literal"><span class="pre">remove</span></tt> полностью. В строках
+2-3 двум ссылкам присваиваются начальные значения. Обратите внимание, что <tt class="docutils literal"><span class="pre">current</span></tt>
+начинает с головы списка, как в предыдущих примерах. Однако, предполагается, что
+<tt class="docutils literal"><span class="pre">previous</span></tt> всегда на узел позади текущего. По этой причине ей присваивается значение
+<tt class="docutils literal"><span class="pre">None</span></tt>, ведь не существует узла перед головой списка (см. <a class="reference internal" href="#fig-removeinit"><em>Рисунок 11</em></a>).
+Булева переменная <tt class="docutils literal"><span class="pre">found</span></tt> вновь отвечает за контроль итераций.</p>
+<p>В строках 6-7 мы спрашиваем, совпадает ли хранящийся в узле элемент с тем, который
+хотим удалить. Если да, то <tt class="docutils literal"><span class="pre">found</span></tt> устанавливается в <tt class="docutils literal"><span class="pre">True</span></tt>. Если нет, то
+<tt class="docutils literal"><span class="pre">previous</span></tt> и <tt class="docutils literal"><span class="pre">current</span></tt> перемещаются на один узел вперёд. Порядок двух присваиваний
+вновь очень важен. Прежде нужно переместить <tt class="docutils literal"><span class="pre">`previous</span></tt>, затем <tt class="docutils literal"><span class="pre">current</span></tt>.
+Этот процесс часто называют &#8220;червяком&#8221;, так как <tt class="docutils literal"><span class="pre">previous</span></tt> должен догнать <tt class="docutils literal"><span class="pre">current</span></tt>
+до того, как тот вновь уйдёт вперёд. <a class="reference internal" href="#fig-prevcurr"><em>Рисунок 12</em></a> показывает
+перемещения <tt class="docutils literal"><span class="pre">previous</span></tt> и <tt class="docutils literal"><span class="pre">current</span></tt> в процессе спуска по списку в поисках узла,
+содержащего значение 17.</p>
+<p id="lst-remove"><strong>Листинг 7</strong></p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">item</span><span class="p">):</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+    <span class="n">previous</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span> <span class="o">==</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">previous</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">previous</span><span class="o">.</span><span class="n">setNext</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">())</span>
+</pre></div>
+</td></tr></table></div>
+<div class="figure align-center" id="fig-removeinit">
+<img alt="../_images/removeinit.png" src="../_images/removeinit.png" />
+<p class="caption">Рисунок 11: Начальные значения ссылок <tt class="docutils literal"><span class="pre">previous</span></tt> и <tt class="docutils literal"><span class="pre">current</span></tt></p>
+</div>
+<div class="figure align-center" id="fig-prevcurr">
+<img alt="../_images/prevcurr.png" src="../_images/prevcurr.png" />
+<p class="caption">Рисунок 12: <tt class="docutils literal"><span class="pre">previous</span></tt> и <tt class="docutils literal"><span class="pre">current</span></tt>: вниз по списку</p>
+</div>
+<p>После завершения поискового шага метода <tt class="docutils literal"><span class="pre">remove</span></tt> нам нужно удалить узел
+из связанного списка. На <a class="reference internal" href="#fig-removepic1"><em>Рисунок 13</em></a> показана ссылка,
+которая должна быть изменена. Однако, есть особый случай, по которому
+требуется принять отдельное решение. Если удаляемый элемент - первый в списке,
+то <tt class="docutils literal"><span class="pre">current</span></tt> будет ссылаться на первый узел, а <tt class="docutils literal"><span class="pre">previous</span></tt> равен <tt class="docutils literal"><span class="pre">None</span></tt>.
+Ранее мы говорили, что указанием на узел, чья ссылка потребует изменения для
+завершения операции удаления, будет <tt class="docutils literal"><span class="pre">previous</span></tt>. Но в этом случае в модификации
+нуждается голова списка (см. <a class="reference internal" href="#fig-removehead"><em>Рисунок 14</em></a>).</p>
+<div class="figure align-center" id="fig-removepic1">
+<img alt="../_images/remove.png" src="../_images/remove.png" />
+<p class="caption">Рисунок 13: Удаление элемента из середины списка</p>
+</div>
+<div class="figure align-center" id="fig-removehead">
+<img alt="../_images/remove2.png" src="../_images/remove2.png" />
+<p class="caption">Рисунок 14: Удаление первого узла в списке</p>
+</div>
+<p>В строке 12 проверяется, имеем ли мы дело со специальным случаем, описанным
+выше. Если <tt class="docutils literal"><span class="pre">previous</span></tt> не перемещался, то он по-прежнему будет иметь значение
+<tt class="docutils literal"><span class="pre">None</span></tt> при <tt class="docutils literal"><span class="pre">found</span></tt> равном <tt class="docutils literal"><span class="pre">True</span></tt>. В этом случае (строка 13) голова списка
+изменяется так, чтобы ссылаться на узел, следующий за текущим, - эффект удаления
+первого узла из связанного списка. Однако, если <tt class="docutils literal"><span class="pre">previous</span></tt> не <tt class="docutils literal"><span class="pre">None</span></tt>, то
+удаляемый узел находится где-то ниже в связанном списке. В этом случае надо
+следовать основному алгоритму. Строка 15 использует метод <tt class="docutils literal"><span class="pre">setNext</span></tt> для
+<tt class="docutils literal"><span class="pre">previous</span></tt>, чтобы выполнить удаление. Отметьте, что в обоих случаях пункт
+назначения ссылки изменяется с помощью <tt class="docutils literal"><span class="pre">current.getNext()</span></tt>. Часто возникает
+такой вопрос: кроме двух уже рассмотренных случаев, как справиться с ситуацией,
+когда удаляемый элемент находится в последнем узле связанного списка? Мы
+оставляем на вас его рассмотрение.</p>
+<p>Вы можете испытать класс <tt class="docutils literal"><span class="pre">UnorderedList</span></tt> в ActiveCode 1.</p>
+
+<div id="cont"></div>
+<div id="unorderedlistcomplete" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="unorderedlistcomplete_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="unorderedlistcomplete_saveb" onclick="saveEditor('unorderedlistcomplete');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="unorderedlistcomplete_loadb" onclick="requestCode('unorderedlistcomplete');">Load</button>
+
+<span class="ac_sep"></span>
+<button class='btn btn-default' id="unorderedlistcomplete_showb" onclick="$('#unorderedlistcomplete_code_div').toggle();cm_editors['unorderedlistcomplete_code'].refresh();$('#unorderedlistcomplete_saveb').toggle();$('#unorderedlistcomplete_loadb').toggle()">Show/Hide Code</button>
+
+</div>
+<br/>
+<div id="unorderedlistcomplete_code_div" style="display: none" class="ac_code_div">
+<textarea cols="50" rows="12" id="unorderedlistcomplete_code" class="active_code", prefixcode="undefined" lang="python">
+class Node:
+    def __init__(self,initdata):
+        self.data = initdata
+        self.next = None
+
+    def getData(self):
+        return self.data
+
+    def getNext(self):
+        return self.next
+
+    def setData(self,newdata):
+        self.data = newdata
+
+    def setNext(self,newnext):
+        self.next = newnext
+
+
+class UnorderedList:
+
+    def __init__(self):
+        self.head = None
+
+    def isEmpty(self):
+        return self.head == None
+
+    def add(self,item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+
+    def size(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count = count + 1
+            current = current.getNext()
+
+        return count
+
+    def search(self,item):
+        current = self.head
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+
+        return found
+
+    def remove(self,item):
+        current = self.head
+        previous = None
+        found = False
+        while not found:
+            if current.getData() == item:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+
+        if previous == None:
+            self.head = current.getNext()
+        else:
+            previous.setNext(current.getNext())
+
+mylist = UnorderedList()
+
+mylist.add(31)
+mylist.add(77)
+mylist.add(17)
+mylist.add(93)
+mylist.add(26)
+mylist.add(54)
+
+print(mylist.size())
+print(mylist.search(93))
+print(mylist.search(100))
+
+mylist.add(100)
+print(mylist.search(100))
+print(mylist.size())
+
+mylist.remove(54)
+print(mylist.size())
+mylist.remove(93)
+print(mylist.size())
+mylist.remove(31)
+print(mylist.size())
+print(mylist.search(93))
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="unorderedlistcomplete_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="unorderedlistcomplete_suffix" style="display:none">
+</pre><pre id="unorderedlistcomplete_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text">Полная реализация класса UnorderedList (unorderedlistcomplete)</span> </p>
+
+<script>
+if ('none' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#unorderedlistcomplete_saveb').toggle();
+    $('#unorderedlistcomplete_loadb').toggle();
+}
+if ($("#unorderedlistcomplete_code_div").parents(".admonition").length == 0 && $("#unorderedlistcomplete_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#unorderedlistcomplete_code_div").offset({
+			left: $("#unorderedlistcomplete .clearfix").offset().left
+		});
+	}
+	$("#unorderedlistcomplete_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#unorderedlistcomplete_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#unorderedlistcomplete_runb").parent().siblings(".ac_output").show();
+			runit('unorderedlistcomplete',this, undefined);
+			$("#unorderedlistcomplete_runb").on("click", function(){
+				runit('unorderedlistcomplete',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#unorderedlistcomplete_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#unorderedlistcomplete_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#unorderedlistcomplete_runb").on("click", function(){
+		console.log("button clicked");
+		runit('unorderedlistcomplete',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>Оставшиеся методы <tt class="docutils literal"><span class="pre">append</span></tt>, <tt class="docutils literal"><span class="pre">insert</span></tt>, <tt class="docutils literal"><span class="pre">index</span></tt> и <tt class="docutils literal"><span class="pre">pop</span></tt> остаются в качестве
+упражнений. Помните, что каждый из них должен учитывать место изменения: голова
+списка или его остаток. Также <tt class="docutils literal"><span class="pre">insert</span></tt>, <tt class="docutils literal"><span class="pre">index</span></tt> и <tt class="docutils literal"><span class="pre">pop</span></tt> требуют номера
+позиции в списке. Мы исходим из того, что нумерация индексов начинается с нуля.</p>
+<div class="admonition- admonition">
+<p class="first admonition-title">Самопроверка</p>
+<p>Часть I: Реализуйте метод <tt class="docutils literal"><span class="pre">`append`</span></tt> для неупорядоченного списка.
+Какова его временн*а*я сложность?</p>
+
+<div id="cont"></div>
+<div id="self_check_list1" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="self_check_list1_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="self_check_list1_saveb" onclick="saveEditor('self_check_list1');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="self_check_list1_loadb" onclick="requestCode('self_check_list1');">Load</button>
+
+<span class="ac_sep"></span>
+<button class='btn btn-default' id="self_check_list1_showb" onclick="$('#self_check_list1_code_div').toggle();cm_editors['self_check_list1_code'].refresh();$('#self_check_list1_saveb').toggle();$('#self_check_list1_loadb').toggle()">Show/Hide Code</button>
+
+<span class="ac_sep"></span>
+<input type="button" class='btn btn-default ' id="gradeb" name="Show Feedback" value="Show Feedback" onclick="createGradeSummary('self_check_list1')"/>
+
+</div>
+<br/>
+<div id="self_check_list1_code_div" style="display: none" class="ac_code_div">
+<textarea cols="50" rows="12" id="self_check_list1_code" class="active_code", prefixcode="undefined" lang="python">
+class Node:
+    def __init__(self,initdata):
+        self.data = initdata
+        self.next = None
+
+    def getData(self):
+        return self.data
+
+    def getNext(self):
+        return self.next
+
+    def setData(self,newdata):
+        self.data = newdata
+
+    def setNext(self,newnext):
+        self.next = newnext
+
+
+class UnorderedList:
+
+    def __init__(self):
+        self.head = None
+
+    def isEmpty(self):
+        return self.head == None
+
+    def add(self,item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+
+    def size(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count = count + 1
+            current = current.getNext()
+
+        return count
+
+    def search(self,item):
+        current = self.head
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+
+        return found
+
+    def remove(self,item):
+        current = self.head
+        previous = None
+        found = False
+        while not found:
+            if current.getData() == item:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+
+        if previous == None:
+            self.head = current.getNext()
+        else:
+            previous.setNext(current.getNext())
+
+mylist = UnorderedList()
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="self_check_list1_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="self_check_list1_suffix" style="display:none">
+</pre><pre id="self_check_list1_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (self_check_list1)</span> </p>
+
+<script>
+if ('none' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#self_check_list1_saveb').toggle();
+    $('#self_check_list1_loadb').toggle();
+}
+if ($("#self_check_list1_code_div").parents(".admonition").length == 0 && $("#self_check_list1_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#self_check_list1_code_div").offset({
+			left: $("#self_check_list1 .clearfix").offset().left
+		});
+	}
+	$("#self_check_list1_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#self_check_list1_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#self_check_list1_runb").parent().siblings(".ac_output").show();
+			runit('self_check_list1',this, undefined);
+			$("#self_check_list1_runb").on("click", function(){
+				runit('self_check_list1',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#self_check_list1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#self_check_list1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#self_check_list1_runb").on("click", function(){
+		console.log("button clicked");
+		runit('self_check_list1',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>Часть II: Скорее всего, вы создали <tt class="docutils literal"><span class="pre">append</span></tt> метод с <span class="math">\(O(n)\)</span>.
+Если вы добавите в класс <tt class="docutils literal"><span class="pre">UnorderedList</span></tt> некую переменную, то
+сможете сделать его с <span class="math">\(O(1)\)</span>. Будьте осторожны!
+Чтобы сделать это по-настоящему правильно, вам нужно рассмотреть
+несколько специальных случаев, которые могут потребовать
+модификации метода <tt class="docutils literal"><span class="pre">add</span></tt>.</p>
+
+<div id="cont"></div>
+<div id="self_check_list2" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="self_check_list2_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="self_check_list2_saveb" onclick="saveEditor('self_check_list2');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="self_check_list2_loadb" onclick="requestCode('self_check_list2');">Load</button>
+
+<span class="ac_sep"></span>
+<button class='btn btn-default' id="self_check_list2_showb" onclick="$('#self_check_list2_code_div').toggle();cm_editors['self_check_list2_code'].refresh();$('#self_check_list2_saveb').toggle();$('#self_check_list2_loadb').toggle()">Show/Hide Code</button>
+
+<span class="ac_sep"></span>
+<input type="button" class='btn btn-default ' id="gradeb" name="Show Feedback" value="Show Feedback" onclick="createGradeSummary('self_check_list2')"/>
+
+</div>
+<br/>
+<div id="self_check_list2_code_div" style="display: none" class="ac_code_div">
+<textarea cols="50" rows="12" id="self_check_list2_code" class="active_code", prefixcode="undefined" lang="python">
+class Node:
+    def __init__(self,initdata):
+        self.data = initdata
+        self.next = None
+
+    def getData(self):
+        return self.data
+
+    def getNext(self):
+        return self.next
+
+    def setData(self,newdata):
+        self.data = newdata
+
+    def setNext(self,newnext):
+        self.next = newnext
+
+
+class UnorderedList:
+
+    def __init__(self):
+        self.head = None
+
+    def isEmpty(self):
+        return self.head == None
+
+    def add(self,item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+
+    def size(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count = count + 1
+            current = current.getNext()
+
+        return count
+
+    def search(self,item):
+        current = self.head
+        found = False
+        while current != None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+
+        return found
+
+    def remove(self,item):
+        current = self.head
+        previous = None
+        found = False
+        while not found:
+            if current.getData() == item:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+
+        if previous == None:
+            self.head = current.getNext()
+        else:
+            previous.setNext(current.getNext())
+
+mylist = UnorderedList()
+</textarea>
+</div>
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="self_check_list2_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="self_check_list2_suffix" style="display:none">
+</pre><pre id="self_check_list2_pre" class="active_out">
+
+</pre>
+
+</div> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (self_check_list2)</span> </p>
+
+<script>
+if ('none' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#self_check_list2_saveb').toggle();
+    $('#self_check_list2_loadb').toggle();
+}
+if ($("#self_check_list2_code_div").parents(".admonition").length == 0 && $("#self_check_list2_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#self_check_list2_code_div").offset({
+			left: $("#self_check_list2 .clearfix").offset().left
+		});
+	}
+	$("#self_check_list2_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#self_check_list2_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#self_check_list2_runb").parent().siblings(".ac_output").show();
+			runit('self_check_list2',this, undefined);
+			$("#self_check_list2_runb").on("click", function(){
+				runit('self_check_list2',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	console.log("inside new if")
+	$("#self_check_list2_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#self_check_list2_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#self_check_list2_runb").on("click", function(){
+		console.log("button clicked");
+		runit('self_check_list2',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - Абстрактный тип данных &#8220;неупорядоченный список&#8221;' data-toggle="tooltip">
+    <a href="TheUnorderedListAbstractDataType.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="TheUnorderedListAbstractDataType.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Абстрактный тип данных &#8220;упорядоченный список&#8221;' data-toggle="tooltip" >
+    <a href="TheOrderedListAbstractDataType.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="TheOrderedListAbstractDataType.html" >Next Section - Абстрактный тип данных &#8220;упорядоченный список&#8221;</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span> | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013 Brad Miller, David Ranum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'../_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>
