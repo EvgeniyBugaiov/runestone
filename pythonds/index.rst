@@ -142,7 +142,7 @@ By Brad Miller and David Ranum, Luther College
 
 
 
-Trees and Tree Algorithms
+Деревья
 :::::::::::::::::::::::::
 
 .. toctree::
@@ -174,7 +174,7 @@ Trees and Tree Algorithms
 
 
 
-Graphs and Graph Algorithms
+Графы и алгоритмы на графах
 :::::::::::::::::::::::::::
 
 .. toctree::
@@ -210,18 +210,18 @@ Graphs and Graph Algorithms
     Graphs/ProgrammingExercises.rst
 
 
-Acknowledgements
-::::::::::::::::
-
-
-Indices and tables
-::::::::::::::::::
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-.. toctree::
-   :hidden:
-
-   navhelp
+.. Acknowledgements
+.. ::::::::::::::::
+..
+..
+.. Indices and tables
+.. ::::::::::::::::::
+..
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
+..
+.. .. toctree::
+..    :hidden:
+..
+..    navhelp
