@@ -205,7 +205,6 @@
 
 
 
-   Trees/BinaryTreeApplications.rst
    Trees/ParseTree.rst
    Trees/TreeTraversals.rst
 
