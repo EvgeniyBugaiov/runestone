@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Week 2: ends September 14 &mdash; Programs, Information, and People: Interactive Edition</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="top" title="Programs, Information, and People: Interactive Edition" href="../index.html" />
+    <link rel="next" title="Week 1: ends September 7" href="ps1.html" />
+    <link rel="prev" title="Table of Contents" href="../toc.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'pip2';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.build_info = "3.1.1";
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../toc.html">Programs, Information, and People</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div class="gittip">
+                  <iframe style="border:0;"
+                    src="https://www.gittip.com/bnmnetp/widget.html"
+                    width="48pt" height="22pt" class="gittip-button">
+                  </iframe>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../toc.html'>Table of Contents</a></li>
+            
+            <li><a href='/runestone/static/pip2/genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="http://127.0.0.1:8000/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='/runestone/static/pip2/navhelp.html'>Navigation Help</a></li>
+            <li><a href='/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://github.com/bnmnetp/runestone/issues/new'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <!--
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Week 2: ends September 14</a><ul>
+<li><a class="reference internal" href="#reading-response-2">Reading Response 2</a></li>
+<li><a class="reference internal" href="#reading-response-3">Reading Response 3</a></li>
+<li><a class="reference internal" href="#problem-set">Problem Set</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - Table of Contents" data-toggle="tooltip">
+    <a href="../toc.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Week 1: ends September 7' data-toggle="tooltip" >
+    <a href="ps1.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="week-2-ends-september-14">
+<h1>Week 2: ends September 14<a class="headerlink" href="#week-2-ends-september-14" title="Permalink to this headline">¶</a></h1>
+<p>For this week, you have the following activities:</p>
+<ol class="arabic">
+<li><p class="first">Do the mutliple choice questions and exercises in the textbook chapters, including the ones at the bottom of the chapters, below the glossary. Don&#8217;t forget to click Save for each of the exercises, and always access the textbook by clicking on the link from cTools, so that you&#8217;ll be logged in.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Before Tuesday&#8217;s class:</dt>
+<dd><ul class="first last simple">
+<li>Last chance to provide some <a class="reference external" href="/runestone/default/bio">info about you</a> or change the name you want to be called by in class.</li>
+<li>Read <a class="reference internal" href="../PythonTurtle/intro-HelloLittleTurtles.html#turtles-chap"><em>Object Instances and Turtle graphics</em></a>, and do the exercises in that chapter</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Before Thursday&#8217;s class:</dt>
+<dd><ul class="first last simple">
+<li>Read <a class="reference internal" href="../Sequences/intro-Sequences.html#sequences-chap"><em>Sequences</em></a>, and do the exercises in that chapter</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p class="first">Reading responses</p>
+<ul>
+<li><dl class="first docutils">
+<dt>By Monday night:</dt>
+<dd><ul class="first last simple">
+<li>Read from the beginning through the middle of page 7 of <a class="reference external" href="https://ctools.umich.edu/access/content/group/a98a2bac-51e6-472a-a68e-b43f85d1e8d1/SearleChineseRoom.pdf">Minds, Brains, and Programs</a>, by Richard Searle. It&#8217;s in the cTools Resources folder, if that link doesn&#8217;t work.</li>
+<li>Answer <a class="reference internal" href="#reading-response-2"><em>Reading Response 2</em></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>By Wednesday night:</dt>
+<dd><ul class="first last simple">
+<li>Read chapter 2 of The Most Human Human.</li>
+<li>Answer <a class="reference internal" href="#reading-response-3"><em>Reading Response 3</em></a>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p class="first">Save answers to the exercises in Problem Set 2 (by Sunday night):
+<a class="reference internal" href="#problem-set-2"><em>Problem Set 2</em></a></p>
+</li>
+</ol>
+<div class="section" id="reading-response-2">
+<span id="id1"></span><h2>Reading Response 2<a class="headerlink" href="#reading-response-2" title="Permalink to this headline">¶</a></h2>
+<p>What is the connection between the Turing Test and Searle&#8217;s Chinese Room example?</p>
+
+<div id="cont"></div>
+<div id="rr_2_1" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="rr_2_1_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="rr_2_1_saveb" onclick="saveEditor('rr_2_1');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="rr_2_1_loadb" onclick="requestCode('rr_2_1');">Load</button>
+<button class='btn btn-default' id="rr_2_1_vizb" onclick="injectCodelens(this,'rr_2_1');">Show in Codelens</button>
+
+</div>
+<br/>
+<div id="rr_2_1_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="rr_2_1_code" class="active_code" prefixcode="undefined" lang="python">
+# Fill in your answer on the lines between the triple quotes
+s = """
+"""
+</textarea>
+</div>
+
+<div class="ac_output"><pre id="rr_2_1_suffix" style="display:none">
+</pre><pre id="rr_2_1_pre" class="active_out"></pre>
+
+</div> <!-- end output --> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (rr_2_1)</span> </p>
+<div id="rr_2_1_codelens_div" style="display:none"></div>
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#rr_2_1_saveb').toggle();
+    $('#rr_2_1_loadb').toggle();
+}
+if ($("#rr_2_1").attr("lang") !== "html" && $("#rr_2_1_code_div").parents(".admonition").length == 0 && $("#rr_2_1_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#rr_2_1_code_div").offset({
+			left: $("#rr_2_1 .clearfix").offset().left
+		});
+	}
+	$("#rr_2_1_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#rr_2_1_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#rr_2_1_runb").parent().siblings(".ac_output").show();
+			runit('rr_2_1',this, undefined);
+			$("#rr_2_1_runb").on("click", function(){
+				runit('rr_2_1',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	$("#rr_2_1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#rr_2_1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#rr_2_1_runb").on("click", function(){
+		runit('rr_2_1',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<p>What do you think of the &#8220;systems reply&#8221;? Does the room with you in it understand Chinese?</p>
+
+<div id="cont"></div>
+<div id="rr_2_2" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="rr_2_2_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="rr_2_2_saveb" onclick="saveEditor('rr_2_2');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="rr_2_2_loadb" onclick="requestCode('rr_2_2');">Load</button>
+<button class='btn btn-default' id="rr_2_2_vizb" onclick="injectCodelens(this,'rr_2_2');">Show in Codelens</button>
+
+</div>
+<br/>
+<div id="rr_2_2_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="rr_2_2_code" class="active_code" prefixcode="undefined" lang="python">
+# Fill in your answer on the lines between the triple quotes
+s = """
+"""
+</textarea>
+</div>
+
+<div class="ac_output"><pre id="rr_2_2_suffix" style="display:none">
+</pre><pre id="rr_2_2_pre" class="active_out"></pre>
+
+</div> <!-- end output --> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (rr_2_2)</span> </p>
+<div id="rr_2_2_codelens_div" style="display:none"></div>
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#rr_2_2_saveb').toggle();
+    $('#rr_2_2_loadb').toggle();
+}
+if ($("#rr_2_2").attr("lang") !== "html" && $("#rr_2_2_code_div").parents(".admonition").length == 0 && $("#rr_2_2_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#rr_2_2_code_div").offset({
+			left: $("#rr_2_2 .clearfix").offset().left
+		});
+	}
+	$("#rr_2_2_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#rr_2_2_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#rr_2_2_runb").parent().siblings(".ac_output").show();
+			runit('rr_2_2',this, undefined);
+			$("#rr_2_2_runb").on("click", function(){
+				runit('rr_2_2',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	$("#rr_2_2_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#rr_2_2_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#rr_2_2_runb").on("click", function(){
+		runit('rr_2_2',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+</div>
+<div class="section" id="reading-response-3">
+<span id="id2"></span><h2>Reading Response 3<a class="headerlink" href="#reading-response-3" title="Permalink to this headline">¶</a></h2>
+<p>If you had to convince someone you were <em>you</em>, not just any old human, via text only, what would you do? Relate your answer to something in Chapter 2 of The Most Human Human.</p>
+
+<div id="cont"></div>
+<div id="rr_3_1" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="rr_3_1_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="rr_3_1_saveb" onclick="saveEditor('rr_3_1');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="rr_3_1_loadb" onclick="requestCode('rr_3_1');">Load</button>
+<button class='btn btn-default' id="rr_3_1_vizb" onclick="injectCodelens(this,'rr_3_1');">Show in Codelens</button>
+
+</div>
+<br/>
+<div id="rr_3_1_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="rr_3_1_code" class="active_code" prefixcode="undefined" lang="python">
+# Fill in your answer on the lines between the triple quotes
+s = """
+"""
+</textarea>
+</div>
+
+<div class="ac_output"><pre id="rr_3_1_suffix" style="display:none">
+</pre><pre id="rr_3_1_pre" class="active_out"></pre>
+
+</div> <!-- end output --> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (rr_3_1)</span> </p>
+<div id="rr_3_1_codelens_div" style="display:none"></div>
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#rr_3_1_saveb').toggle();
+    $('#rr_3_1_loadb').toggle();
+}
+if ($("#rr_3_1").attr("lang") !== "html" && $("#rr_3_1_code_div").parents(".admonition").length == 0 && $("#rr_3_1_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#rr_3_1_code_div").offset({
+			left: $("#rr_3_1 .clearfix").offset().left
+		});
+	}
+	$("#rr_3_1_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#rr_3_1_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#rr_3_1_runb").parent().siblings(".ac_output").show();
+			runit('rr_3_1',this, undefined);
+			$("#rr_3_1_runb").on("click", function(){
+				runit('rr_3_1',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	$("#rr_3_1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#rr_3_1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#rr_3_1_runb").on("click", function(){
+		runit('rr_3_1',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+</div>
+<div class="section" id="problem-set">
+<span id="problem-set-2"></span><h2>Problem Set<a class="headerlink" href="#problem-set" title="Permalink to this headline">¶</a></h2>
+<p><strong>Due:</strong> <strong>Sunday, September 14th at 5 pm</strong></p>
+<p><strong>Instructions:</strong> Write the code you want to save in the provided boxes, and click <strong>save</strong> for each one. The last code you have saved for each one by the deadline is what will be graded.</p>
+<ol class="arabic simple">
+<li>Assign the variable <tt class="docutils literal"><span class="pre">fl</span></tt> the value of the first element of the string value in <tt class="docutils literal"><span class="pre">original_str</span></tt>. Assign the variable <tt class="docutils literal"><span class="pre">last_l</span></tt> the value of the last element of the string value in <tt class="docutils literal"><span class="pre">original_str</span></tt>.</li>
+</ol>
+
+<div id="cont"></div>
+<div id="ps_2_1" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="ps_2_1_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ps_2_1_saveb" onclick="saveEditor('ps_2_1');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ps_2_1_loadb" onclick="requestCode('ps_2_1');">Load</button>
+<button class='btn btn-default' id="ps_2_1_vizb" onclick="injectCodelens(this,'ps_2_1');">Show in Codelens</button>
+
+</div>
+<br/>
+<div id="ps_2_1_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="ps_2_1_code" class="active_code" prefixcode="undefined" lang="python">
+original_str = "The quick brown rhino jumped over the extremely lazy fox."
+
+# assign variables as specified below this line!
+
+</textarea>
+</div>
+
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="ps_2_1_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="ps_2_1_suffix" style="display:none">
+import test
+print "\n\n---\n"
+test.testEqual(fl,original_str[0])
+test.testEqual(last_l, original_str[-1])</pre><pre id="ps_2_1_pre" class="active_out"></pre>
+
+</div> <!-- end output --> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (ps_2_1)</span> </p>
+<div id="ps_2_1_codelens_div" style="display:none"></div>
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#ps_2_1_saveb').toggle();
+    $('#ps_2_1_loadb').toggle();
+}
+if ($("#ps_2_1").attr("lang") !== "html" && $("#ps_2_1_code_div").parents(".admonition").length == 0 && $("#ps_2_1_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#ps_2_1_code_div").offset({
+			left: $("#ps_2_1 .clearfix").offset().left
+		});
+	}
+	$("#ps_2_1_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#ps_2_1_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#ps_2_1_runb").parent().siblings(".ac_output").show();
+			runit('ps_2_1',this, undefined);
+			$("#ps_2_1_runb").on("click", function(){
+				runit('ps_2_1',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	$("#ps_2_1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#ps_2_1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#ps_2_1_runb").on("click", function(){
+		runit('ps_2_1',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<ol class="arabic simple" start="2">
+<li>See comments for instructions.</li>
+</ol>
+
+<div id="cont"></div>
+<div id="ps_2_2" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="ps_2_2_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ps_2_2_saveb" onclick="saveEditor('ps_2_2');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ps_2_2_loadb" onclick="requestCode('ps_2_2');">Load</button>
+<button class='btn btn-default' id="ps_2_2_vizb" onclick="injectCodelens(this,'ps_2_2');">Show in Codelens</button>
+
+</div>
+<br/>
+<div id="ps_2_2_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="ps_2_2_code" class="active_code" prefixcode="undefined" lang="python">
+sent = """
+He took his vorpal sword in hand:
+Long time the manxome foe he sought
+So rested he by the Tumtum tree,
+And stood awhile in thought.
+- Jabberwocky, Lewis Carroll (1832-1898)"""
+
+short_sent = """
+So much depends
+on
+"""
+
+# How long (how many characters) is the string in the variable sent?
+# Write code to assign the length of the string to a variable called len_of_sent.
+
+
+# How long is the string in the variable short_sent?
+# Write code to assign the length of that string to a variable called short_len.
+
+
+# Print out the value of short_len (and len_of_sent, if you want!) so you can see it.
+
+
+# Write a comment below this line to explain why these values are larger than you might expect. Why is the length of short_sent longer than 15 characters?
+
+
+# Assign the index of the first 'v' in the value of the variable sent TO a variable called index_of_v. (Hint: we saw a method of the string class that can help with this)
+
+</textarea>
+</div>
+
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="ps_2_2_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="ps_2_2_suffix" style="display:none">
+import test
+print "\n\n---\n"
+test.testEqual(len_of_sent,len(sent))
+test.testEqual(short_len,len(short_sent))
+test.testEqual(index_of_v, sent.find('v'))</pre><pre id="ps_2_2_pre" class="active_out"></pre>
+
+</div> <!-- end output --> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (ps_2_2)</span> </p>
+<div id="ps_2_2_codelens_div" style="display:none"></div>
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#ps_2_2_saveb').toggle();
+    $('#ps_2_2_loadb').toggle();
+}
+if ($("#ps_2_2").attr("lang") !== "html" && $("#ps_2_2_code_div").parents(".admonition").length == 0 && $("#ps_2_2_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#ps_2_2_code_div").offset({
+			left: $("#ps_2_2 .clearfix").offset().left
+		});
+	}
+	$("#ps_2_2_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#ps_2_2_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#ps_2_2_runb").parent().siblings(".ac_output").show();
+			runit('ps_2_2',this, undefined);
+			$("#ps_2_2_runb").on("click", function(){
+				runit('ps_2_2',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	$("#ps_2_2_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#ps_2_2_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#ps_2_2_runb").on("click", function(){
+		runit('ps_2_2',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<ol class="arabic simple" start="3">
+<li>See comments for instructions again. (Keep in mind: All ordinal numbers in <em>instructions</em>, like &#8220;third&#8221; or &#8220;fifth&#8221; refer to the way HUMANS count. How do you write code to find the right things?)</li>
+</ol>
+
+<div id="cont"></div>
+<div id="ps_2_3" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="ps_2_3_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ps_2_3_saveb" onclick="saveEditor('ps_2_3');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ps_2_3_loadb" onclick="requestCode('ps_2_3');">Load</button>
+<button class='btn btn-default' id="ps_2_3_vizb" onclick="injectCodelens(this,'ps_2_3');">Show in Codelens</button>
+
+</div>
+<br/>
+<div id="ps_2_3_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="ps_2_3_code" class="active_code" prefixcode="undefined" lang="python">
+num_lst = [4,16,25,9,100,12,13]
+mixed_bag = ["hi", 4,6,8, 92.4, "see ya", "23", 23]
+
+# Assign the value of the third element of num_lst to a variable called third_elem
+
+# Assign the value of the sixth element of num_lst to a variable called elem_sixth
+
+# Assign the length of num_lst to a variable called num_lst_len
+
+# Write a comment explaining the difference between mixed_bag[-1] and mixed_bag[-2]
+# (you may want to print out those values so you can make sure you know what they are!)
+
+# Write code to print out the type of the third element of mixed_bag
+
+# Write code to assign the **type of the fifth element of mixed_bag** to a variable called fifth_type
+
+# Write code to assign the **type of the first element of mixed_bag** to a variable called another_type
+
+</textarea>
+</div>
+
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="ps_2_3_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="ps_2_3_suffix" style="display:none">
+import test
+print "\n\n---\n"
+test.testEqual(third_elem, num_lst[2])
+test.testEqual(elem_sixth, num_lst[5])
+test.testEqual(num_lst_len,len(num_lst))
+test.testEqual(fifth_type,type(mixed_bag[4]))
+test.testEqual(another_type, type(mixed_bag[0]))</pre><pre id="ps_2_3_pre" class="active_out"></pre>
+
+</div> <!-- end output --> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (ps_2_3)</span> </p>
+<div id="ps_2_3_codelens_div" style="display:none"></div>
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#ps_2_3_saveb').toggle();
+    $('#ps_2_3_loadb').toggle();
+}
+if ($("#ps_2_3").attr("lang") !== "html" && $("#ps_2_3_code_div").parents(".admonition").length == 0 && $("#ps_2_3_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#ps_2_3_code_div").offset({
+			left: $("#ps_2_3 .clearfix").offset().left
+		});
+	}
+	$("#ps_2_3_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#ps_2_3_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#ps_2_3_runb").parent().siblings(".ac_output").show();
+			runit('ps_2_3',this, undefined);
+			$("#ps_2_3_runb").on("click", function(){
+				runit('ps_2_3',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	$("#ps_2_3_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#ps_2_3_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#ps_2_3_runb").on("click", function(){
+		runit('ps_2_3',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+<ol class="arabic simple" start="4">
+<li>There is a function we are giving you for this problem set that takes two strings, and returns the length of both of those strings added together, called <tt class="docutils literal"><span class="pre">add_lengths</span></tt>. We are also including the functions from Problem Set 1 called <tt class="docutils literal"><span class="pre">random_digit</span></tt> and <tt class="docutils literal"><span class="pre">square</span></tt> in this problem set.</li>
+</ol>
+<p>Now, take a look at the following code and related questions, in this code window.</p>
+
+<div id="cont"></div>
+<div id="ps_2_4" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="ps_2_4_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ps_2_4_saveb" onclick="saveEditor('ps_2_4');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="ps_2_4_loadb" onclick="requestCode('ps_2_4');">Load</button>
+<button class='btn btn-default' id="ps_2_4_vizb" onclick="injectCodelens(this,'ps_2_4');">Show in Codelens</button>
+
+</div>
+<br/>
+<div id="ps_2_4_code_div" style="display: block" class="ac_code_div">
+<textarea cols="50" rows="12" id="ps_2_4_code" class="active_code" prefixcode="['addl_functions_2']" lang="python">
+new_str = "'Twas brillig"
+
+y = add_lengths("receipt","receive")
+
+x = random_digit()
+
+z = new_str.find('b')
+
+l = new_str.find("'")
+
+# notice that this line of code is made up of a lot of different expressions
+fin_value = square(len(new_str)) + (z - l) + (x * random_digit())
+
+# DO NOT CHANGE ANY CODE ABOVE THIS LINE
+# But below here, putting print statements and running the code may help you!
+
+
+# The following questions are based on that code. All refer to the types of the
+#variables and/or expressions after the above code is run.
+
+#####################
+
+# Write a comment explaining each of the following, after each question.
+# Don't forget to save!
+
+# What is square?
+
+# What type of object does the expression square(len(new_str)) evaluate to?
+
+# What type is z?
+
+# What type is l?
+
+# What type is the expression z-l?
+
+# What type is x?
+
+# What is random_digit? How many inputs does it take?
+
+# What type does the expression (x * random_digit()) evaluate to?
+
+# Given all this information, what type will fin_value hold once all this code is run?
+</textarea>
+</div>
+
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="ps_2_4_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="ps_2_4_suffix" style="display:none">
+</pre><pre id="ps_2_4_pre" class="active_out"></pre>
+
+</div> <!-- end output --> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (ps_2_4)</span> </p>
+<div id="ps_2_4_codelens_div" style="display:none"></div>
+<script>
+if ('block' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#ps_2_4_saveb').toggle();
+    $('#ps_2_4_loadb').toggle();
+}
+if ($("#ps_2_4").attr("lang") !== "html" && $("#ps_2_4_code_div").parents(".admonition").length == 0 && $("#ps_2_4_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#ps_2_4_code_div").offset({
+			left: $("#ps_2_4 .clearfix").offset().left
+		});
+	}
+	$("#ps_2_4_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#ps_2_4_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#ps_2_4_runb").parent().siblings(".ac_output").show();
+			runit('ps_2_4',this, ['addl_functions_2']);
+			$("#ps_2_4_runb").on("click", function(){
+				runit('ps_2_4',this, ['addl_functions_2']);
+			});
+		})
+		
+	});
+}
+else{
+	$("#ps_2_4_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#ps_2_4_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#ps_2_4_runb").on("click", function(){
+		runit('ps_2_4',this, ['addl_functions_2']);
+	});
+}
+</script>
+
+</div>
+
+<ol class="arabic simple" start="5">
+<li>Here&#8217;s another complicated expression, using the Turtle framework we talked about. Arrange these expressions in the order they are executed, like you did in an exercise in Chapter 2 of the textbook.</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="n">ella</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s">&quot;hello class&quot;</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;o&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">ella</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">3</span>
+
+
+<span class="n">ella</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">ella</span><span class="o">.</span><span class="n">speed</span><span class="p">))</span>
+</pre></div>
+</div>
+
+        <div class='parsons alert alert-warning' id="parsons-244">
+        <div class="parsons-text">Q-1: Order the code fragments in the order in which the Python interpreter would evaluate them, when evaluating that last line of code, ``ella.move(square(x*ella.speed))`` (It may help to think about what specifically is happening in the first four lines of code as well.)<br /><br /></div>
+        <div style="clear:left;"></div>
+        <div id="parsons-orig-244" style="display:none;">Look up the variable ella and find that it is an instance of a Turtle object
+Look up the attribute move of the Turtle ella and find that it's a method object
+Look up the function square
+Look up the value of the variable x and find that it is an integer
+Look up the value of the attribute speed of the instance ella and find that it is an integer
+Evaluate the expression x * ella.speed to one integer
+Call the function square on an integer value
+Call the method .move of the Turtle ella on its input integer</div>
+        <div class="sortable-code-container">
+        <div id="parsons-sortableTrash-244" class="sortable-code"></div>
+        <div id="parsons-sortableCode-244" class="sortable-code"></div>
+    	<div style="clear:left;"></div>
+        </div>
+        <div class="parsons-controls">
+        <input type="button" class='btn btn-success' id="checkMe244" value="Check Me"/>
+        <input type="button" class='btn btn-default' id="reset244" value="Reset"/>
+        <div id="parsons-message-244"></div>
+        </div>
+        </div>
+
+    <script>
+        $pjQ(document).ready(function(){
+		
+			$("#parsons-244").not(".sortable-code").not(".parsons-controls").on("click", function(){
+				 $('html, body').animate({
+					scrollTop: ($("#parsons-244").offset().top - 50)
+				}, 700);
+			}).find(".sortable-code, .parsons-controls").click(function(e) {
+				return false;
+				});	
+            var msgBox = $("#parsons-message-244");
+            msgBox.hide();
+	    var displayErrors = function (fb) {
+	        if(fb.errors.length > 0) {
+                    var hash = pp_244.getHash("#ul-parsons-sortableCode-244");
+                    msgBox.fadeIn(500);
+                    msgBox.attr('class','alert alert-danger');
+                    msgBox.html(fb.errors[0]);
+                    logBookEvent({'event':'parsons', 'act':hash, 'div_id':'ps_2_5'});
+
+	        } else {
+                    logBookEvent({'event':'parsons', 'act':'yes', 'div_id':'ps_2_5'});
+                    msgBox.fadeIn(100);
+                    msgBox.attr('class','alert alert-success');
+                    msgBox.html("Perfect!")
+                }
+
+        }
+
+        $(window).load(function() {
+            // set min width and height
+            var sortableul = $("#ul-parsons-sortableCode-244");
+            var trashul = $("#ul-parsons-sortableTrash-244");
+            var sortableHeight = sortableul.height();
+            var sortableWidth = sortableul.width();
+            var trashWidth = trashul.width();
+            var trashHeight = trashul.height();
+            var minHeight = Math.max(trashHeight,sortableHeight);
+            var minWidth = Math.max(trashWidth, sortableWidth);
+            trashul.css("min-height",minHeight + "px");
+            sortableul.css("min-height",minHeight + "px");
+            sortableul.height(minHeight);
+            trashul.css("min-width",minWidth + "px");
+            sortableul.css("min-width",minWidth + "px");
+        });
+ 
+
+        var pp_244 = new ParsonsWidget({
+                'sortableId': 'parsons-sortableCode-244',
+		'trashId': 'parsons-sortableTrash-244',
+                'max_wrong_lines': 1,
+                'solution_label': 'Drop blocks here',
+                'feedback_cb' : displayErrors
+        });
+        pp_244.init($pjQ("#parsons-orig-244").text());
+	pp_244.shuffleLines();
+            
+        if(localStorage.getItem('ps_2_5') && localStorage.getItem('ps_2_5-trash')) {
+            try {
+                var solution = localStorage.getItem('ps_2_5');
+                var trash = localStorage.getItem('ps_2_5-trash');
+                pp_244.createHTMLFromHashes(solution,trash);
+                pp_244.getFeedback();
+            } catch(err) {
+                var text = "An error occured restoring old ps_2_5 state.  Error: ";
+                console.log(text + err.message);
+            }
+
+        }
+            $pjQ("#reset244").click(function(event){
+              event.preventDefault();
+              pp_244.shuffleLines();
+            
+            // set min width and height
+            var sortableul = $("#ul-parsons-sortableCode-244");
+            var trashul = $("#ul-parsons-sortableTrash-244");
+            var sortableHeight = sortableul.height();
+            var sortableWidth = sortableul.width();
+            var trashWidth = trashul.width();
+            var trashHeight = trashul.height();
+            var minHeight = Math.max(trashHeight,sortableHeight);
+            var minWidth = Math.max(trashWidth, sortableWidth);
+            trashul.css("min-height",minHeight + "px");
+            sortableul.css("min-height",minHeight + "px");
+            trashul.css("min-width",minWidth + "px");
+            sortableul.css("min-width",minWidth + "px");
+              msgBox.hide();
+            });
+            
+            $pjQ("#checkMe244").click(function(event){
+              event.preventDefault();
+              var hash = pp_244.getHash("#ul-parsons-sortableCode-244");
+              localStorage.setItem('ps_2_5',hash);
+              hash = pp_244.getHash("#ul-parsons-sortableTrash-244");
+              localStorage.setItem('ps_2_5-trash',hash);
+            
+            pp_244.getFeedback();
+            msgBox.fadeIn(100);
+            
+            });
+            
+        });
+            
+
+    </script>
+
+
+<div id="cont"></div>
+<div id="addl_functions_2" lang="python" class="ac_section alert alert-warning" >
+
+<div class="ac_actions">
+<button class='btn btn-success' id="addl_functions_2_runb">Run</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="addl_functions_2_saveb" onclick="saveEditor('addl_functions_2');">Save</button>
+<button class="ac_opt btn btn-default" style="display: inline-block" id="addl_functions_2_loadb" onclick="requestCode('addl_functions_2');">Load</button>
+<button class='btn btn-default' id="addl_functions_2_vizb" onclick="injectCodelens(this,'addl_functions_2');">Show in Codelens</button>
+
+<span class="ac_sep"></span>
+<button class='btn btn-default' id="addl_functions_2_showb" onclick="$('#addl_functions_2_code_div').toggle();cm_editors['addl_functions_2_code'].refresh();$('#addl_functions_2_saveb').toggle();$('#addl_functions_2_loadb').toggle()">Show/Hide Code</button>
+
+</div>
+<br/>
+<div id="addl_functions_2_code_div" style="display: none" class="ac_code_div">
+<textarea cols="50" rows="12" id="addl_functions_2_code" class="active_code" prefixcode="undefined" lang="python">
+def square(num):
+   return num**2
+
+def greeting(st):
+   #st = str(st) # just in case
+   return "Hello, " + st
+
+def random_digit():
+  import random
+  return random.choice([0,1,2,3,4,5,6,7,8,9])
+
+def add_lengths(str1, str2):
+   return len(str1) + len(str2)
+</textarea>
+</div>
+
+<div class="ac_output">
+<div style="text-align: center">
+<canvas id="addl_functions_2_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
+</div>
+<pre id="addl_functions_2_suffix" style="display:none">
+</pre>
+</div> <!-- end output --> 
+<div class="clearfix"></div>
+<p class="ac_caption"><span class="ac_caption_text"> (addl_functions_2)</span> </p>
+<div id="addl_functions_2_codelens_div" style="display:none"></div>
+<script>
+if ('none' == 'none') {
+    // a hack to preserve the inline-block display style. Toggle() will use display: block
+    // (instead of inline-block) if the previous display style was 'none'
+    $('#addl_functions_2_saveb').toggle();
+    $('#addl_functions_2_loadb').toggle();
+}
+if ($("#addl_functions_2").attr("lang") !== "html" && $("#addl_functions_2_code_div").parents(".admonition").length == 0 && $("#addl_functions_2_code_div").parents("#exercises").length == 0){
+	if ($(window).width() > 975){
+		$("#addl_functions_2_code_div").offset({
+			left: $("#addl_functions_2 .clearfix").offset().left
+		});
+	}
+	$("#addl_functions_2_runb").one("click", function(){
+		$({})
+		.queue(function (next) {
+			if ($(window).width() > 975){
+				$("#addl_functions_2_code_div").animate({
+					left: 40
+				}, 500, next);
+			}
+			else{
+				next();
+			}
+		})
+		.queue(function (next) {
+			$("#addl_functions_2_runb").parent().siblings(".ac_output").show();
+			runit('addl_functions_2',this, undefined);
+			$("#addl_functions_2_runb").on("click", function(){
+				runit('addl_functions_2',this, undefined);
+			});
+		})
+		
+	});
+}
+else{
+	$("#addl_functions_2_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
+	$("#addl_functions_2_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
+	$("#addl_functions_2_runb").on("click", function(){
+		runit('addl_functions_2',this, undefined);
+	});
+}
+</script>
+
+</div>
+
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - Table of Contents' data-toggle="tooltip">
+    <a href="../toc.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="../toc.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Week 1: ends September 7' data-toggle="tooltip" >
+    <a href="ps1.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="ps1.html" >Next Section - Week 1: ends September 7</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span> | <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013 Paul Resnick, Brad Miller, David Ranum, Created using Runestone Interactive.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    $(document).ready(getNumUsers);
+    $(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'../_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

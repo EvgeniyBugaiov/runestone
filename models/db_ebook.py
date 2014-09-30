@@ -1,5 +1,3 @@
-import datetime; now=datetime.datetime.today()
-
 # Files in the model directory are loaded in alphabetical order.  This one needs to be loaded after db.py
 
 db.define_table('useinfo',
@@ -19,6 +17,8 @@ db.define_table('code',
   Field('grade','double'),
   Field('sid','string'),
   Field('timestamp','datetime'),
+  Field('comment','text'),
+  Field('language','text', default='python'),
   migrate='runestone_code.table'
 )
 
@@ -66,3 +66,14 @@ db.define_table('course_instructor',
     migrate='runestone_course_instructor.table'
 )
 
+db.define_table('coach_hints',
+    Field('category','string'),
+    Field('symbol','string'),
+    Field('msg_id','string'),
+    Field('line','integer'),
+    Field('col','integer'),
+    Field('obj','string'),
+    Field('msg','string'),
+    Field('source',db.acerror_log),
+    migrate='runestone_coach_hints.table'
+    )
