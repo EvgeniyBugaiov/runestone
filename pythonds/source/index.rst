@@ -23,7 +23,7 @@ Assignments
 
    assignments.rst
 
-Introduction
+Введение
 ::::::::::::
 
 .. toctree::
@@ -47,7 +47,7 @@ Introduction
     Introduction/DiscussionQuestions.rst
     Introduction/ProgrammingExercises.rst
 
-Analysis
+Анализ
 ::::::::
 
 .. toctree::
@@ -65,7 +65,7 @@ Analysis
     AlgorithmAnalysis/DiscussionQuestions.rst
     AlgorithmAnalysis/ProgrammingExercises.rst
 
-Basic Data Structures
+Основные структуры данных
 :::::::::::::::::::::
 
 .. toctree::
@@ -100,7 +100,7 @@ Basic Data Structures
     BasicDS/ProgrammingExercises.rst
 
 
-Recursion
+Рекурсия
 :::::::::
 
 .. toctree::
@@ -125,7 +125,7 @@ Recursion
     Recursion/pythondsProgrammingExercises.rst
 
 
-Sorting and Searching
+Сортировка и поиск
 :::::::::::::::::::::
 
 .. toctree::
@@ -148,7 +148,7 @@ Sorting and Searching
 
 
 
-Trees and Tree Algorithms
+Деревья
 :::::::::::::::::::::::::
 
 .. toctree::
@@ -179,7 +179,7 @@ Trees and Tree Algorithms
 
 
 
-Graphs and Graph Algorithms
+Графы и алгоритмы на графах
 :::::::::::::::::::::::::::
 
 .. toctree::
