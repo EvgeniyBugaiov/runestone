@@ -7,16 +7,9 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Depth First Search Analysis
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Анализ поиска в глубину
+~~~~~~~~~~~~~~~~~~~~~~~
 
+В общем случае время выполнения поиска в глубину следующее. Оба цикла в ``dfs`` выполняются за :math:`O(V)` (без учёта происходящего в ``dfsvisit``), поскольку они вычисляются по одному разу для каждой вершины графа. Цикл в ``dfsvisit`` вычисляется один раз для каждого ребра из списка смежности текущей вершины. Поскольку ``dfsvisit`` вызывается рекурсивно только в том случае, если вершина окрашена в белый, то цикл для каждого ребра графа выполнится максимум единожды (:math:`O(E)`). Таким образом, общее время выполнения поиска в глубину равно :math:`O(V + E)`.
 
-The general running time for depth first search is as follows. The loops
-in ``dfs`` both run in :math:`O(V)`,
-not counting what happens in ``dfsvisit``, since they are executed once
-for each vertex in the graph. In ``dfsvisit`` the loop is executed once for each edge in the adjacency
-list of the current vertex. Since ``dfsvisit`` is only called
-recursively if the vertex is white, the loop will execute a maximum of
-once for every edge in the graph or :math:`O(E)`. So, the total time
-for depth first search is :math:`O(V + E)`.
 

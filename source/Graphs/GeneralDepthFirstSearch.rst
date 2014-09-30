@@ -7,50 +7,21 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-General Depth First Search
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Поиск в глубину: общий случай
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The knight’s tour is a special case of a depth first search where the
-goal is to create the deepest depth first tree, without any branches.
-The more general depth first search is actually easier. Its goal is to
-search as deeply as possible, connecting as many nodes in the graph as
-possible and branching where necessary.
+Маршрут коня - особый случай поиска в глубину, целью которого является создание максимально высокого дерева без ветвей. Вообще, обычный поиск в глубину прост. Его задача - искать настолько глубоко, на сколько возможно, соединяя максимальное количество узлов графа с ветвлением только по необходимости.
 
-It is even possible that a depth first search will create more than one
-tree. When the depth first search algorithm creates a group of trees we
-call this a **depth first forest**. As with the breadth first search our
-depth first search makes use of predecessor links to construct the tree.
-In addition, the depth first search will make use of two additional
-instance variables in the ``Vertex`` class. The new instance variables
-are the discovery and finish times. The discovery time tracks the number
-of steps in the algorithm before a vertex is first encountered. The
-finish time is the number of steps in the algorithm before a vertex is
-colored black. As we will see after looking at the algorithm, the
-discovery and finish times of the nodes provide some interesting
-properties we can use in later algorithms.
+Весьма вероятно, что поиск в глубину создаст больше, чем одно дерево. В этом случае мы называем их **лесом поиска в глубину**. Как и в поиске в ширину, здесь при создании дерева используется ссылка на предшественника. Также дополнительно требуются две новых поля в классе ``Vertex``: "время" входа и "время" выхода. Первое будет отслеживать, сколько шагов сделал алгоритм до того, как вершина была впервые обнаружена, а второе - количество шагов алгоритма до того, как вершину окрасили в чёрный цвет. В процессе изучения мы увидим, что оба "времени" обладают весьма любопытными свойствами, которые можно использовать в других алгоритмах.
 
-The code for our depth first search is shown in :ref:`Listing 5 <lst_dfsgeneral>`. Since
-the two functions ``dfs`` and its helper ``dfsvisit`` use a variable to
-keep track of the time across calls to ``dfsvisit`` we chose to
-implement the code as methods of a class that inherits from the
-``Graph`` class. This implementation extends the graph class by adding a
-``time`` instance variable and the two methods ``dfs`` and ``dfsvisit``.
-Looking at line 11 you will notice that the ``dfs`` method
-iterates over all of the vertices in the graph calling ``dfsvisit`` on
-the nodes that are white. The reason we iterate over all the nodes,
-rather than simply searching from a chosen starting node, is to make
-sure that all nodes in the graph are considered and that no vertices are
-left out of the depth first forest. It may look unusual to see the
-statement ``for aVertex in self``, but remember that in this case ``self``
-is an instance of the ``DFSGraph`` class, and iterating over all the
-vertices in an instance of a graph is a natural thing to do.
+Код нашего поиска в глубину показан в :ref:`листинге 5 <lst_dfsgeneral>`. Поскольку функции ``dfs`` и её помощница ``dfsvisit`` используют переменную для отслеживания "времени" в процессе вызовов ``dfsvisit``, мы выбрали реализацию кода как методов класса, наследующего классу ``Graph``. Она расширяет класс графа, добавляя атрибут ``time`` и два метода ``dfs`` и ``dfsvisit``. Если вы посмотрите на строку 11, то заметите, что метод ``dfs`` проходит по всем вершинам графа, вызывая ``dfsvisit`` на тех из них, которые открашены в белый. Причина, по которой мы проходим по всем узлам, заключается в том, что требуется выполнить не просто поиск из выбранного стартового узла, но и убедиться, что рассмотрены все вершины графа и ни одна из них не выпала из леса поиска. Оператор ``for aVertex in self`` может необычно смотреться, но вспомните, что в этом случае ``self`` - объект класса ``DFSGraph``. Поэтому проход по всем вершинам графа абсолютно естественнен.
 
 .. highlight:: python
     :linenothreshold: 5
 
 .. _lst_dfsgeneral:
 
-**Listing 5**
+**Листинг 5**
 
 ::
 
@@ -83,156 +54,107 @@ vertices in an instance of a graph is a natural thing to do.
 .. highlight:: python
     :linenothreshold: 500
 
-Although our implementation of ``bfs`` was only interested in
-considering nodes for which there was a path leading back to the start,
-it is possible to create a breadth first forest that represents the
-shortest path between all pairs of nodes in the graph. We leave this as
-an exercise. In our next two algorithms we will see why keeping track of
-the depth first forest is important.
+Хотя нашу реализацию ``bfs`` интересовало рассмотрение только тех узлов, через которые существует путь от стартовой точки, возможно создать лес поиска в ширину, который представлял бы кратчайшие пути между всеми парами узлов в графе. Мы оставляем это задание в качестве упражнения. А из следующих двух алгоритмов станет ясно, отчего так важно отслеживать лес поиска в глубину.
 
-The ``dfsvisit`` method starts with a single vertex called
-``startVertex`` and explores all of the neighboring white vertices as
-deeply as possible. If you look carefully at the code for ``dfsvisit``
-and compare it to breadth first search, what you should notice is that
-the ``dfsvisit`` algorithm is almost identical to ``bfs`` except that on
-the last line of the inner ``for`` loop, ``dfsvisit`` calls itself
-recursively to continue the search at a deeper level, whereas ``bfs``
-adds the node to a queue for later exploration. It is interesting to
-note that where ``bfs`` uses a queue, ``dfsvisit`` uses a stack. You
-don’t see a stack in the code, but it is implicit in the recursive call
-to ``dfsvisit``.
+Метод ``dfsvisit`` начинает работу с единичной вершины ``startVertex`` и исследует всех её соседей, окрашенных в белый, настолько глубоко, насколько это возможно. Если вы внимательно посмотрите на код ``dfsvisit`` и сравните его с поиском в ширину, то заметите, что эти два алгоритма во многом похожи, за исключением последней строки вложенного цикла ``for``. В ней ``dfsvisit`` вызывает сама себя, чтобы продолжить поиск на более глубоком уровне, в то время как ``bfs`` добавляет узел в очередь для дальнейшего исследования. Интересно заметить, что там где ``bfs`` использует очередь, ``dfsvisit`` пользуется стеком. Вы не видите его в коде, но он неявно присутствует в рекурсивном вызове ``dfsvisit``.
 
+Следующая последовательность рисунков иллюстрирует работу алгоритма поиска в глубину для небольшого графа. Пунктирные линии обозначают уже проверенные рёбра, но узлы на другом их конце уже добавлены в дерево поиска. В коде этот тестируется проверкой, что цвет другого узла - не белый.
 
-The following sequence of figures illustrates the depth first search algorithm in
-action for a small graph. In these figures, the dotted lines
-indicate edges that are checked, but the node at the other end of the
-edge has already been added to the depth first tree. In the code this
-test is done by checking that the color of the other node is non-white.
+Поиск начинается с вершины А (:ref:`рисунок 14 <fig_gdfsa>`). Поскольку все узлы в начале поиска окрашены в белый, её алгоритм посещает. Первый шаг при посещении узла - окрасить его в серый (вершина была исследована) и установить "время" входа равным единице. Поскольку А имеет две смежные вершины (B, D), то каждую из них тоже требуется посетить. Мы принимаем произвольное решение заходить в узлы в алфавитном порядке.
 
-The search begins at vertex A of the graph (:ref:`Figure 14 <fig_gdfsa>`). Since all of the vertices
-are white at the beginning of the search the algorithm visits vertex A.
-The first step in visiting a vertex is to set the color to gray, which
-indicates that the vertex is being explored and the discovery time is
-set to 1. Since vertex A has two adjacent vertices (B, D) each of those
-need to be visited as well. We’ll make the arbitrary decision that we
-will visit the adjacent vertices in alphabetical order.
+Следующей посещаем вершину B (:ref:`рисунок 15 <fig_gdfsb>`). Её цвет устанавливается серым, а "время" входа равным 2. Этот узел также имеет два смежных (C, D), поэтому далее мы посещаем узел С - в соответствии с алфавитом.
 
-Vertex B is visited next (:ref:`Figure 15 <fig_gdfsb>`), so its color is set to gray and its discovery
-time is set to 2. Vertex B is also adjacent to two other nodes (C, D) so
-we will follow the alphabetical order and visit node C next.
+Визит в C (:ref:`рисунок 16 <fig_gdfsc>`) приводит нас к концу ветки дерева. После окрашивания её в серый и присвоения "времени" входа 3, алгоритм находит отсутствие у С смежных вершин. Это означает, что мы завершили её исследование, так что можно окрасить С в чёрный и задать ей "время" выхода равным 4. Состояние поиска на данный момент вы можете видеть на :ref:`рисунке 17 <fig_gdfsd>`.
 
-Visiting vertex C (:ref:`Figure 16 <fig_gdfsc>`) brings us to the end of one branch of the tree. After
-coloring the node gray and setting its discovery time to 3, the
-algorithm also determines that there are no adjacent vertices to C. This
-means that we are done exploring node C and so we can color the vertex
-black, and set the finish time to 4. You can see the state of our search
-at this point in :ref:`Figure 17 <fig_gdfsd>`.
+Поскольку С является концом первой ветви, мы возвращаемся в вершину B и продолжаем исследовать смежные с ней узлы. Единственная дополнительная вершина для исследования из В - это D, так что мы посещаем её (:ref:`рисунок 18 <fig_gdfse>`) и продолжаем поиск уже из D. Эта вершина быстро приводит нас в E (:ref:`рисунок 19 <fig_gdfsf>`). Узел Е имеет два смежных - B и F. Обычно мы исследовали их в алфавитном порядке, но сейчас В уже окрашен в серый. Алгоритм распознаёт, что ему не следует туда заходить, чтобы не загнать себя в цикл. Поэтому исследование продолжается для следующей вершины из списка - F (:ref:`рисунок 20 <fig_gdfsg>`).
 
-Since vertex C was the end of one branch we now return to vertex B and
-continue exploring the nodes adjacent to B. The only additional vertex
-to explore from B is D, so we can now visit D (:ref:`Figure 18 <fig_gdfse>`) and continue our search
-from vertex D. Vertex D quickly leads us to vertex E (:ref:`Figure 19 <fig_gdfsf>`). Vertex E has two
-adjacent vertices, B and F. Normally we would explore these adjacent
-vertices alphabetically, but since B is already colored gray the
-algorithm recognizes that it should not visit B since doing so would put
-the algorithm in a loop! So exploration continues with the next vertex
-in the list, namely F (:ref:`Figure 20 <fig_gdfsg>`).
+F имеет единственный смежный узел - С. Но поскольку он уже окрашена в чёрный, то больше исследовать нечего, и алгоритм достигает конца другой ветви. Отсюда вы можете видеть на :ref:`рисунках с 21-го <fig_gdfsh>` по :ref:`25-й <fig_gdfsl>`, как алгоритм возвращается обратно к первому узлу, устанавливает ему "время" выхода и окрашивает его в чёрный.
 
-Vertex F has only one adjacent vertex, C, but since C is colored black
-there is nothing else to explore, and the algorithm has reached the end
-of another branch. From here on, you will see in :ref:`Figure 21 <fig_gdfsh>` through
-:ref:`Figure 25 <fig_gdfsl>`  that the algorithm works its way back to the first node,
-setting finish times and coloring vertices black.
-     
 .. _fig_gdfsa:
 
 .. figure:: Figures/gendfsa.png
    :align: center
 
-   Figure 14: Constructing the Depth First Search Tree-10
+   Рисунок 14: Создание дерева поиска в глубину - 10
    
 .. _fig_gdfsb:
 
 .. figure:: Figures/gendfsb.png
    :align: center
    
-   Figure 15: Constructing the Depth First Search Tree-11
+   Рисунок 15: Создание дерева поиска в глубину - 11
           
 .. _fig_gdfsc:
 
 .. figure:: Figures/gendfsc.png
    :align: center
 
-   Figure 16: Constructing the Depth First Search Tree-12
+   Рисунок 16: Создание дерева поиска в глубину - 12
    
 .. _fig_gdfsd:
 
 .. figure:: Figures/gendfsd.png
    :align: center
 
-   Figure 17: Constructing the Depth First Search Tree-13
+   Рисунок 17: Создание дерева поиска в глубину - 13
    
 .. _fig_gdfse:
 
 .. figure:: Figures/gendfse.png
    :align: center
 
-   Figure 18: Constructing the Depth First Search Tree-14
+   Рисунок 18: Создание дерева поиска в глубину - 14
    
 .. _fig_gdfsf:
 
 .. figure:: Figures/gendfsf.png
    :align: center
 
-   Figure 19: Constructing the Depth First Search Tree-15
+   Рисунок 19: Создание дерева поиска в глубину - 15
 
 .. _fig_gdfsg:
 
 .. figure:: Figures/gendfsg.png
    :align: center
 
-   Figure 20: Constructing the Depth First Search Tree-16
+   Рисунок 20: Создание дерева поиска в глубину - 16
    
 .. _fig_gdfsh:
 
 .. figure:: Figures/gendfsh.png
    :align: center
 
-   Figure 21: Constructing the Depth First Search Tree-17
+   Рисунок 21: Создание дерева поиска в глубину - 17
    
 .. _fig_gdfsi:
 
 .. figure:: Figures/gendfsi.png
    :align: center
 
-   Figure 22: Constructing the Depth First Search Tree-18
+   Рисунок 22: Создание дерева поиска в глубину - 18
    
 .. _fig_gdfsj:
 
 .. figure:: Figures/gendfsj.png
    :align: center
 
-   Figure 23: Constructing the Depth First Search Tree-19
+   Рисунок 23: Создание дерева поиска в глубину - 19
    
 .. _fig_gdfsk:
 
 .. figure:: Figures/gendfsk.png
    :align: center
 
-   Figure 24: Constructing the Depth First Search Tree-20
+   Рисунок 24: Создание дерева поиска в глубину - 20
    
 .. _fig_gdfsl:
 
 .. figure:: Figures/gendfsl.png
    :align: center
 
-   Figure 25: Constructing the Depth First Search Tree-21
+   Рисунок 25: Создание дерева поиска в глубину - 21
 
-The starting and finishing times for each node display a property called
-the **parenthesis property**. This property means that all the children
-of a particular node in the depth first tree have a later discovery time
-and an earlier finish time than their parent. :ref:`Figure 26 <fig_dfstree>` shows
-the tree constructed by the depth first search algorithm.
+"Времена" входа и выхода для каждого узла показывают так называемое **свойство скобок**. Оно означает, что все потомки данного узла в дереве поиска имеют более позднее "время" входа и раннее "время" выхода, чем их предки. :ref:`Рисунок 26 <fig_dfstree>` показывает дерево, сконструированное алгоритмом поиска в глубину.
 
 .. _fig_dfstree:
 
@@ -240,6 +162,4 @@ the tree constructed by the depth first search algorithm.
 .. figure:: Figures/dfstree.png
    :align: center
    
-   Figure 26: The Resulting Depth First Search Tree   
-
-
+   Рисунок 26: Результирующее дерево поиска в глубину

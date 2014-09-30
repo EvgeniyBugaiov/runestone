@@ -7,61 +7,22 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Search Tree Analysis
-~~~~~~~~~~~~~~~~~~~~
+Анализ деревьев поиска
+~~~~~~~~~~~~~~~~~~~~~~~
 
-With the implementation of a binary search tree now complete, we will do
-a quick analysis of the methods we have implemented. Let’s first look at
-the ``put`` method. The limiting factor on its performance is the height
-of the binary tree. Recall from the vocabulary section that the height
-of a tree is the number of edges between the root and the deepest leaf
-node. The height is the limiting factor because when we are searching
-for the appropriate place to insert a node into the tree, we will need
-to do at most one comparison at each level of the tree.
+Имея полную реализацию двоичного дерева поиска, давайте быстро проанализируем написанные для неё методы. Начнём с метода ``put``. Ограничивающим фактором его производительности является высота двоичного дерева. Напомним определение из раздела о терминологии: высота дерева - это количество ветвей между корнем и наиболее глубоко расположенным листом. Она будет ограничивающим фактором, потому что, когда мы ищем подходящее место для вставки узла, на каждом уровне требуется как минимум одно сравнение.
 
-What is the height of a binary tree likely to be? The answer to this
-question depends on how the keys are added to the tree. If the keys are
-added in a random order, the height of the tree is going to be around
-:math:`\log_2{n}` where :math:`n` is the number of nodes in the
-tree. This is because if the keys are randomly distributed, about half
-of them will be less than the root and half will be greater than the
-root. Remember that in a binary tree there is one node at the root, two
-nodes in the next level, and four at the next. The number of nodes at
-any particular level is :math:`2^d` where :math:`d` is the depth of
-the level. The total number of nodes in a perfectly balanced binary tree
-is :math:`2^{h+1}-1`, where :math:`h` represents the height of the
-tree.
+Но какова вероятная высота двоичного дерева? Ответ на этот вопрос зависит от того, как в него добавлялись ключи. Если это происходило в произвольном порядке, то высота будет примерно :math:`\log_2{n}`, где :math:`n` - количество узлов в дереве. Это происходит от того, что при случайном распределении ключей около половины из них окажется меньше корня, а остальные - больше. Вспомните: двоичное дерево имеет один корень, потом уровень с двумя узлами, потом с четыремя и так далее. Количество узлов на каждом конкретном уровне - :math:`2^d`, где :math:`d` - его глубина. Общее число узлов в идеально сбалансированном двоичном дереве равно :math:`2^{h+1}-1`, где :math:`h` представляет собой высоту дерева.
 
-A perfectly balanced tree has the same number of nodes in the left
-subtree as the right subtree. In a balanced binary tree, the worst-case
-performance of ``put`` is :math:`O(\log_2{n})`, where :math:`n` is
-the number of nodes in the tree. Notice that this is the inverse
-relationship to the calculation in the previous paragraph. So
-:math:`\log_2{n}` gives us the height of the tree, and represents the
-maximum number of comparisons that ``put`` will need to do as it
-searches for the proper place to insert a new node.
+Идеально сбалансированное дерево имеет одинаковое количество узлов в левом и правом поддеревьях. Для него производительность ``put`` в наихудшем случае будет :math:`O(\log_2{n})`, где :math:`n` - количество узлов в дереве. Отметьте обратное отношение вычислений по сравнению с предыдущим абзацем. Итак, :math:`\log_2{n}` даст нам высоту дерева и максимальное число сравнений, которое потребуется ``put``, чтобы найти подходящее место для вставки нового узла.
 
-Unfortunately it is possible to construct a search tree that has height
-:math:`n` simply by inserting the keys in sorted order! An example of
-such a tree is shown in :ref:`Figure 6 <fig_skewedtree_analysis>`. In this case the
-performance of the ``put`` method is :math:`O(n)`.
+К сожалению, остаётся возможность сконструировать дерево поиска с высотой, равной :math:`n`. Это случится, если вставлять ключи в сортированном порядке. Пример такого дерева приведён на :ref:`рисунке 6 <fig_skewedtree_analysis>`. В этом случае производительность метода ``put`` равна :math:`O(n)`.
 
 .. _fig_skewedtree_analysis:
 
 .. figure:: Figures/skewedTree.png
    :align: center
 
-   Figure 6: A skewed binary search tree would give poor performance
+   Рисунок 6: Перекошенное двоичное дерево будет иметь низкую производительность.
 
-
-
-Now that you understand that the performance of
-the ``put`` method is limited by the height of the tree, you can
-probably guess that other methods, ``get, in,`` and ``del``, are limited
-as well. Since ``get`` searches the tree to find the key, in the worst
-case the tree is searched all the way to the bottom and no key is found.
-At first glance ``del`` might seem more complicated, since it may need
-to search for the successor before the deletion operation can complete.
-But remember that the worst-case scenario to find the successor is also
-just the height of the tree which means that you would simply double the
-work. Since doubling is a constant factor it does not change worst case
+После того, как вы разобрались, что производительность метода ``put`` ограничена высотой дерева, возможно, вы сумеете догадатьсяоб ограничениях остальных методов - ``get, in,`` и ``del``. Поскольку ``get`` ищет в дереве ключ, то в наихудшем случае искомое окажется в самом низу. На первый взгляд случай ``del`` кажется более сложным, поскольку здесь требуется искать преемника для проведения операции удаления. Но вспомните: наихудший сценарий его поиска - тоже высота дерева, что означает простое дублирование работы. Это константный фактор, так что он не меняет наихудший случай.

@@ -7,28 +7,16 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-An Adjacency List
-~~~~~~~~~~~~~~~~~
+Список смежности
+~~~~~~~~~~~~~~~~
 
-A more space-efficient way to implement a sparsely connected graph is to
-use an adjacency list. In an adjacency list implementation we keep a
-master list of all the vertices in the Graph object and then each vertex
-object in the graph maintains a list of the other vertices that it is
-connected to. In our implementation of the ``Vertex`` class we will use
-a dictionary rather than a list where the dictionary keys are the
-vertices, and the values are the weights. :ref:`Figure 4 <fig_adjlist>`
-illustrates the adjacency list representation for the graph in
-:ref:`Figure 2 <fig_dgsimple>`.
+Более пространственно-экономичным способом реализации разреженного графа является использование списка смежности. В таком представлении мы храним основной список из всех вершин объекта ``Graph``, каждый из элементов которого поддерживает список из связанных с ним вершин. В нашей реализации класса ``Vertex`` вместо списка будет использоваться словарь, где ключами станут вершины, а значениями - веса. :ref:`Рисунок 4 <fig_adjlist>` иллюстрирует представление графа с :ref:`рисунка 2 <fig_dgsimple>` в виде списка смежности.
 
 .. _fig_adjlist:
 
 .. figure:: Figures/adjlist.png
    :align: center
 
-   Figure 4: An Adjacency List Representation of a Graph
+   Рисунок 4: Представление графа в виде списка смежности.
 
-The advantage of the adjacency list implementation is that it allows us
-to compactly represent a sparse graph. The adjacency list also allows us
-to easily find all the links that are directly connected to a particular
-vertex.
-
+Преимуществом такой реализации является то, что она позволяет нам компактно представлять разреженные графы. Также в списке смежности легко найти все ссылки, непосредственно связанные с конкретной вершиной.

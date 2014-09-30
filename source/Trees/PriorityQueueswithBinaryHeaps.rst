@@ -7,32 +7,11 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Priority Queues with Binary Heaps
----------------------------------
+Очереди с приоритетом с двоичной кучей
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In earlier sections you learned about the first-in first-out data
-structure called a queue. One important variation of a queue is called a
-**priority queue**. A priority queue acts like a queue in that you
-dequeue an item by removing it from the front. However, in a priority
-queue the logical order of items inside a queue is determined by their
-priority. The highest priority items are at the front of the queue and
-the lowest priority items are at the back. Thus when you enqueue an item
-on a priority queue, the new item may move all the way to the front. We
-will see that the priority queue is a useful data structure for some of
-the graph algorithms we will study in the next chapter.
+В предыдущих разделах вы узнали о FIFO структуре данных - очереди. Одной из её важных вариаций является **очередь с приоритетом**. Она работает, как обычная очередь с удалением первого от начала элемента, однако здесь внутренний порядок элементов зависит от их приоритета. Те, чей приоритет выше, ставятся в начало очереди, ниже - в конец. Таким образом, когда вы добавляете в неё новый элемент, он может сразу же попасть в самое начало. Мы увидим, что очередь с приоритетом - полезная структура данных для некоторых алгоритмов на графах, которые будем изучать в следующей главе.
 
-You can probably think of a couple of easy ways to implement a priority
-queue using sorting functions and lists. However, inserting into a list
-is :math:`O(n)` and sorting a list is :math:`O(n \log{n})`. We can
-do better. The classic way to implement a priority queue is using a data
-structure called a **binary heap**. A binary heap will allow us both
-enqueue and dequeue items in :math:`O(\log{n})`.
+Возможно, вы можете придумать несколько простых способов реализации очереди с приоритетом с использованием сортировочных функций и списков. Однако, вставка в список имеет :math:`O(n)`, а сортировка - :math:`O(n \log{n})`. Мы можем сделать лучше. Классический способ реализации очереди с приоритетом - использовать структуру данных под названием **двоичная куча**. Она позволит нам ставить в очередь и извлекать из неё элементы за :math:`O(\log{n})`.
 
-The binary heap is interesting to study because when we diagram the heap
-it looks a lot like a tree, but when we implement it we use only a
-single list as an internal representation. The binary heap has two
-common variations: the **min heap**, in which the smallest key is always
-at the front, and the **max heap**, in which the largest key value is
-always at the front. In this section we will implement the min heap. We
-leave a max heap implementation as an exercise.
-
+Изучать двоичную кучу интересно потому, что, когда мы её изображали, она была очень похожа на дерево, но для внутреней реализации использовался обычный список. Двоичная куча имеет два различных варианта: **min heap**, где в начале всегда располагается наименьший ключ, и **max heap**, где самым первым стоит наибольший из ключей. В этом разделе мы воплотим min heap, оставив реализацию max heap в качестве упражнения.

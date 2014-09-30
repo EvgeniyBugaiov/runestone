@@ -7,20 +7,17 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Summary
--------
+Заключение
+----------
 
-In this chapter we have looked at the tree data structure. The tree data
-structure enables us to write many interesting algorithms. In this
-chapter we have looked at algorithms that use trees to do the following:
+В этой главе мы рассмотрели структуру данных "дерево". Она позволяет нам писать много интересных алгоритмов. Вот некоторые из них совместно с областями их применения:
 
--  A binary tree for parsing and evaluating expressions.
+- Двоичное дерево для синтаксического разбора и вычисления выражений.
 
--  A binary tree for implementing the map ADT.
+- Двоичное дерево для реализации АТД ``Map``.
 
--  A balanced binary tree (AVL tree) for implementing the map ADT.
+- Сбалансированное двоичное дерево (АВЛ-дерево) для реализации АТД ``Map``.
 
--  A binary tree to implement a min heap.
+- Двоичное дерево для реализации min heap.
 
--  A min heap used to implement a priority queue.
-
+- Min heap для реализации очереди с приоритетом.

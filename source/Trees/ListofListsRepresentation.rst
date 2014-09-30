@@ -7,28 +7,17 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-List of Lists Representation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Представление дерева в виде списка списков
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In a tree represented by a list of lists, we will begin
-with Python’s list data structure and write the functions defined above.
-Although writing the interface as a set of operations on a list is a bit
-different from the other abstract data types we have implemented, it is
-interesting to do so because it provides us with a simple recursive data
-structure that we can look at and examine directly. In a list of lists
-tree, we will store the value of the root node as the first element of
-the list. The second element of the list will itself be a list that
-represents the left subtree. The third element of the list will be
-another list that represents the right subtree. To illustrate this
-storage technique, let’s look at an example. :ref:`Figure 1 <fig_smalltree>`
-shows a simple tree and the corresponding list implementation.
+Воплощать дерево в виде списка списков мы начнём со структуры данных Python "список" и напишем для неё функции, определённые выше. Также мы создадим интерфейс - набор операций над списком, немного отличный от тех АТД, которые уже были нами реализованы. Это будет интересно и предоставит в наше распоряжение простую рекурсивную структуру данных, которую потом можно будет изучать и тестировать. В дереве, представленном как список списков, на первой позиции мы будем хранить значение корневого узла. Второй элемент сам по себе будет списком и представит левое поддерево. Третий элемент станет правым поддеревом. Чтобы проиллюстрировать такую технику хранения, рассмотрим пример. :ref:`Рисунок 1 <fig_smalltree>` демонстрирует простое дерево и связанную с ним списковую реализацию.
 
 .. _fig_smalltree:
 
 .. figure:: Figures/smalltree.png
    :align: center
            
-   Figure 1: A Small Tree
+   Рисунок 1: Маленькое дерево
 
 ::
 
@@ -40,57 +29,33 @@ shows a simple tree and the corresponding list implementation.
                ['f' [], []],
                [] ]  
              ]           
-                  
 
-
-
-Notice that we can access subtrees of the list using standard list
-indexing. The root of the tree is ``myTree[0]``, the left subtree of the
-root is ``myTree[1]``, and the right subtree is ``myTree[2]``. :ref:`ActiveCode 1 <lst_treelist1>` illustrates creating a simple tree using a
-list. Once the tree is constructed, we can access the root and the left
-and right subtrees. One very nice property of this list of lists
-approach is that the structure of a list representing a subtree adheres
-to the structure defined for a tree; the structure itself is recursive!
-A subtree that has a root value and two empty lists is a leaf node.
-Another nice feature of the list of lists approach is that it
-generalizes to a tree that has many subtrees. In the case where the tree
-is more than a binary tree, another subtree is just another list.
+Обратите внимание, что у нас есть доступ к каждому из поддеревьев с использованием стандартной списковой индексации. Корень дерева - ``myTree[0]``, левое поддерево - ``myTree[1]``, правое - ``myTree[2]``. :ref:`ActiveCode 1 <lst_treelist1>` демонстрирует создание простого дерева с использованием списка. После того, как дерево будет готово, мы сможем получить доступ к его корню, правому и левому поддеревьям. Одно из приятных свойств подхода со списком списков заключается в том, что структура списка, представляющего поддерево, твёрдо придерживается определения дерева - она рекурсивна сама по себе! У поддерева есть корень и два пустых списка в качестве листьев. Другое положительное качество списка списков состоит в том, что он легко расширяется до дерева, имеющего много поддеревьев. Т.е. в случае, когда дерево не является двоичным, новое поддерево - это всего лишь новый подсписок.
 
 .. _lst_treelist1:
 
 .. activecode:: tree_list1
-    :caption: Using Indexing to Access Subtrees
+    :caption: Использование индексации для доступа к поддеревьям.
 
     myTree = ['a', ['b', ['d',[],[]], ['e',[],[]] ], ['c', ['f',[],[]], []] ]
     print(myTree)
     print('left subtree = ', myTree[1])
     print('root = ', myTree[0])
-    print('right subtree = ', myTree[2])
+    print('right subtree = ', myTree[2])  
 
-
-Let’s formalize this definition of the tree data structure by providing
-some functions that make it easy for us to use lists as trees. Note that
-we are not going to define a binary tree class. The functions we will
-write will just help us manipulate a standard list as though we are
-working with a tree.
+Давайте формализируем это определение структуры данных дерева с помощью некоторых функций, которые сделают проще использование списков в качестве деревьев. Обратите внимание, мы не собираемся определять новый класс для двоичного дерева. Функции, которые будут написаны, всего лишь помогут манипулировать стандарным списком, с которым мы работаем, как с деревом.
 
 ::
 
 
     def BinaryTree(r):
-        return [r, [], []]    
+        return [r, [], []]
 
-The ``BinaryTree`` function simply constructs a list with a root node
-and two empty sublists for the children. To add a left subtree to the
-root of a tree, we need to insert a new list into the second position of
-the root list. We must be careful. If the list already has something in
-the second position, we need to keep track of it and push it down the
-tree as the left child of the list we are adding. :ref:`Listing 1 <lst_linsleft>`
-shows the Python code for inserting a left child.
+Функция ``BinaryTree`` просто создаёт список из корневого узла и двух пустых подсписков в качестве его потомков. Чтобы добавить к корню левое поддерево, нам нужно вставить на вторую позицию новый список. Тут следует быть внимательными. Если на второй позиции уже что-то имеется, то этот факт нужно отследить и сдвинуть элемент вниз по дереву, как левого потомка добавляемого списка.
 
 .. _lst_linsleft:
 
-**Listing 1**
+**Листинг 1**
 
 ::
 
@@ -102,16 +67,11 @@ shows the Python code for inserting a left child.
             root.insert(1,[newBranch, [], []])
         return root
 
-Notice that to insert a left child, we first obtain the (possibly empty)
-list that corresponds to the current left child. We then add the new
-left child, installing the old left child as the left child of the new
-one. This allows us to splice a new node into the tree at any position.
-The code for ``insertRight`` is similar to ``insertLeft`` and is shown
-in :ref:`Listing 2 <lst_linsright>`.
+Обратите внимание, что прежде, чем вставлять что-либо, мы получаем (возможно пустой) список, связанный с текущим левым потомком. Когда мы вставляем новое левое поддерево, то старое делаем его левым потомком. Благодаря этому мы можем встраивать новый узел на любую позицию в дереве. Код для ``insertRight`` аналогичен ``insertLeft`` и показан в :ref:`листинге 2 <lst_linsright>`.
 
 .. _lst_linsright:
 
-**Listing 2**
+**Листинг 2**
 
 ::
 
@@ -123,13 +83,11 @@ in :ref:`Listing 2 <lst_linsright>`.
             root.insert(2,[newBranch,[],[]])
         return root
 
-To round out this set of tree-making functions(see :ref:`Listing 3 <lst_treeacc>`), let’s write a couple of
-access functions for getting and setting the root value, as well as
-getting the left or right subtrees.
+Чтобы закончить с набором дерево-создающих функций (см. :ref:`листинг 3 <lst_treeacc>`), давайте напишем несколько функций доступа для установки и получения значений в корне и правого и левого поддеревьев.
 
 .. _lst_treeacc:
 
-**Listing 3**
+**Листинг 3**
 
 ::
 
@@ -146,16 +104,13 @@ getting the left or right subtrees.
     def getRightChild(root):
         return root[2]
 
-:ref:`ActiveCode 2 <lst_bintreetry>` exercises the tree
-functions we have just written. You should try it
-out for yourself. One of the exercises asks you to draw the tree
-structure resulting from this set of calls.
+:ref:`ActiveCode 2 <lst_bintreetry>` использует только что написанные функции для дерева. Попробуйте поработать с ними самостоятельно. Одно из упражнений попросит вас нарисовать структуру дерева, которое станет результатом такого набора вызовов:
 
 .. _lst_bintreetry:
 
 
 .. activecode:: bin_tree
-    :caption: A Python Session to Illustrate Basic Tree Functions
+    :caption: Сессия Python, демонстрирующая основные функции для работы с деревьями.
 
     def BinaryTree(r):
         return [r, [], []]    
@@ -203,7 +158,7 @@ structure resulting from this set of calls.
     print(getRightChild(getRightChild(r)))
     
 
-.. admonition:: Self Check
+.. admonition:: Самопроверка
 
    .. mchoicemf:: mctree_1
       :correct: c
@@ -211,13 +166,13 @@ structure resulting from this set of calls.
       :answer_b: ['a', ['c', [], ['d', ['e', [], []], []]], ['b', [], []]]
       :answer_c: ['a', ['b', [], []], ['c', [], ['d', ['e', [], []], []]]]
       :answer_d: ['a', ['b', [], ['d', ['e', [], []], []]], ['c', [], []]]
-      :feedback_a: Not quite, this tree is missing the 'e' node.
-      :feedback_b: This is close, but if you carefully you will see that the left and right children of the root are swapped.
-      :feedback_c: Very good
-      :feedback_d: This is close, but the left and right child names have been swapped along with the underlying structures.
+      :feedback_a: Не совсем верно, в этом дереве упущен узел 'e'.
+      :feedback_b: Близко, но если вы посмотрите внимательнее, то заметите, что левый и правый потомки корня перепутаны местами.
+      :feedback_c: Очень хорошо.
+      :feedback_d: Близко, но имена левого и правого потомков перепутаны местами вместе со всем содержимым.
       :iscode:
 
-      Given the following statments:
+      Дан следующий код:
 
       .. sourcecode:: python
       
@@ -227,9 +182,9 @@ structure resulting from this set of calls.
           insertRight(getRightChild(x),'d')
           insertLeft(getRightChild(getRightChild(x)),'e')    
 
-      Which of the answers is the correct representation of the tree?
+      Какой из ответов будет правильным представлением дерева?
 
-   Write a function ``buildTree`` that returns a tree using the list of lists functions that looks like this:
+   Напишите функцию ``buildTree``, которая использует функции для списка списков и возвращает дерево, выглядящее примерно так:
 
    .. image:: Figures/tree_ex.png
 
@@ -243,5 +198,4 @@ structure resulting from this set of calls.
       ttree = buildTree()
       testEqual(getRootVal(getRightChild(ttree)),'c')
       testEqual(getRootVal(getRightChild(getLeftChild(ttree))),'d')      
-      testEqual(getRootVal(getRightChild(getRightChild(ttree))),'f')            
-      
+      testEqual(getRootVal(getRightChild(getRightChild(ttree))),'f') 

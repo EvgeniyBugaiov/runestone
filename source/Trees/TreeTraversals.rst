@@ -7,44 +7,21 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Tree Traversals
-~~~~~~~~~~~~~~~
+Обход дерева
+~~~~~~~~~~~~
 
-Now that we have examined the basic functionality of our
-tree data structure, it is time to look at some additional usage
-patterns for trees. These usage patterns can be divided into the three
-ways that we access the nodes of the tree. There are three commonly used
-patterns to visit all the nodes in a tree. The difference between these
-patterns is the order in which each node is visited. We call this
-visitation of the nodes a “traversal.” The three traversals we will look
-at are called **preorder**, **inorder**, and **postorder**. Let’s start
-out by defining these three traversals more carefully, then look at some
-examples where these patterns are useful.
+После того, как мы испытали функционал нашего дерева, пришло время расмотреть некоторые дополнительные модели использования этой структуры. Их можно разделить по трём способам доступа к узлам дерева. Разница между этими моделями - в порядке посещения каждого узла. Мы будем называть посещение узлов словом "обход". Три способа обхода, которые мы рассмотрим, называются **обход в прямом порядке**, **симметричный обход** и **обход в обратном порядке**. Начнём с того, что дадим им более тщательные определения, а затем рассмотрим несколько примеров, где эти модели будут полезны.
 
-preorder
-    In a preorder traversal, we visit the root node first, then
-    recursively do a preorder traversal of the left subtree, followed by
-    a recursive preorder traversal of the right subtree.
+Обход в прямом порядке
+    В этом случае мы сначала посещаем корневой узел, затем рекурсивно обходим в прямом порядке левое поддерево, после чего таким же образом обходим правое.
 
-inorder
-    In an inorder traversal, we recursively do an inorder traversal on
-    the left subtree, visit the root node, and finally do a recursive
-    inorder traversal of the right subtree.
+Симметричный обход
+    Сначала мы симметрично обходим левое поддерево, затем посещаем корневой узел, затем - правое поддерево.
 
-postorder
-    In a postorder traversal, we recursively do a postorder traversal of
-    the left subtree and the right subtree followed by a visit to the
-    root node.
+Обход в обратном порядке
+    Сначала делается рекурсивный обратный обход левого и правого поддеревьев, после чего посещается корневой узел.
 
-Let’s look at some examples that illustrate each of these three kinds of
-traversals. First let’s look at the preorder traversal. As an example of
-a tree to traverse, we will represent this book as a tree. The book is
-the root of the tree, and each chapter is a child of the root. Each
-section within a chapter is a child of the chapter, and each subsection
-is a child of its section, and so on. :ref:`Figure 5 <fig_booktree>` shows a
-limited version of a book with only two chapters. Note that the
-traversal algorithm works for trees with any number of children, but we
-will stick with binary trees for now.
+Рассмотрим несколько примеров, иллюстрирующих каждый из этих типов обхода. Первым будет обход в прямом порядке. В качестве примера дерева возьмём эту книгу. Сама по себе она является корнем, чьи потомки - главы. Каждый раздел главы будет уже её потомком, каждый подраздел - потомком раздела и так далее. :ref:`Рисунок 5 <fig_booktree>` показывает урезанную версию книги (всего две главы). Обратите внимание, что алгоритм обхода будет работать с любым числом потомков, но мы пока сосредоточимся на двоичном дереве.
 
 .. _fig_booktree:
 
@@ -52,39 +29,17 @@ will stick with binary trees for now.
    :align: center
    :alt: image
 
-   Figure 5: Representing a Book as a Tree
+   Рисунок 5: Представление книги в виде дерева
 
-Suppose that you wanted to read this book from front to back. The
-preorder traversal gives you exactly that ordering. Starting at the root
-of the tree (the Book node) we will follow the preorder traversal
-instructions. We recursively call ``preorder`` on the left child, in
-this case Chapter1. We again recursively call ``preorder`` on the left
-child to get to Section 1.1. Since Section 1.1 has no children, we do
-not make any additional recursive calls. When we are finished with
-Section 1.1, we move up the tree to Chapter 1. At this point we still
-need to visit the right subtree of Chapter 1, which is Section 1.2. As
-before we visit the left subtree, which brings us to Section 1.2.1, then
-we visit the node for Section 1.2.2. With Section 1.2 finished, we
-return to Chapter 1. Then we return to the Book node and follow the same
-procedure for Chapter 2.
+Предположим, вы хотите прочитать эту книгу от начала до конца. Обход в прямом порядке даст вам в точности такую последовательность. Начиная с корня дерева (узел Book), последуем инструкциям прямого обхода. Мы рекурсивно вызовем ``preorder`` к левому потомку (Chapter1), а потом к его левому потомку (Section 1.1). Section 1.1 является листом, так что больше рекурсивные вызовы не нужны. Закончив с ней, мы поднимемся по дереву вверх до Chapter 1. Нам по-прежнему надо посетить правое поддрево - Section 1.2. Как и раньше, сначала мы пойдём по его левому потомку (1.2.1), а затем посетим узел Section 1.2.2. Закончив с Section 1.2, мы вернёмся к Chapter 1, потом к Book и проделаем аналогичную процедуру для Chapter 2.
 
-The code for writing tree traversals is surprisingly elegant, largely
-because the traversals are written recursively. :ref:`Listing 2 <lst_preorder1>`
-shows the Python code for a preorder traversal of a binary tree.
+Код для описанного обхода дерева на удивление элегантный - в основном благодаря рекурсии. :ref:`Листинг 2 <lst_preorder1>` демонстрирует код прямого обхода двоичного дерева.
 
-You may wonder, what is the best way to write an algorithm like preorder
-traversal? Should it be a function that simply uses a tree as a data
-structure, or should it be a method of the tree data structure itself?
-:ref:`Listing 2 <lst_preorder1>` shows a version of the preorder traversal
-written as an external function that takes a binary tree as a parameter.
-The external function is particularly elegant because our base case is
-simply to check if the tree exists. If the tree parameter is ``None``,
-then the function returns without taking any action.
-
+Может возникнуть вопрос: в каком виде лучше написать алгоритм вроде обхода в прямом порядке? Должна ли это быть функция, просто использующая дерево как структуру данных, или это будет метод внутри класса "дерево"? В :ref:`листинге 2 <lst_preorder1>` показан вариант с внешней функцией, принимающей двоичное дерево в качестве параметра. В частности, элегантность такой функции заключается в базовом случае - проверке существования дерева. Если её параметр равен ``None``, то она возвращается без выполнения каких-либо действий.
 
 .. _lst_preorder1:
 
-**Listing 2**
+**Листинг 2**
 
 ::
 
@@ -94,18 +49,11 @@ then the function returns without taking any action.
             preorder(tree.getLeftChild())
             preorder(tree.getRightChild())  
 
-
-We can also implement ``preorder`` as a method of the ``BinaryTree``
-class. The code for implementing ``preorder`` as an internal method is
-shown in :ref:`Listing 3 <lst_preorder2>`. Notice what happens when we move the
-code from internal to external. In general, we just replace ``tree``
-with ``self``. However, we also need to modify the base case. The
-internal method must check for the existence of the left and the right
-children *before* making the recursive call to ``preorder``.
+``preorder`` также можно реализовать, как метод класса ``BinaryTree``. Код ``preorder`` в качестве внутреннего метода показан в :ref:`листинге 3 <lst_preorder2>`. Обратите внимание, что происходит, когда мы перемещаем код "снаружи" "внутрь". В общем, мы просто меняем ``tree`` на ``self``. Однако, так же требуется изменить и базовый случай. Внутренний метод проверяет наличие левого и правого потомков *до того*, как делает рекурсивный вызов ``preorder``.
 
 .. _lst_preorder2:
 
-**Listing 3**
+**Листинг 3**
 
 ::
 
@@ -116,25 +64,13 @@ children *before* making the recursive call to ``preorder``.
         if self.rightChild:
             self.right.preorder()
 
+Какой из двух способов реализации ``preorder`` лучше? Ответ: для данного случая ``preorder``, как внешняя функция, будет лучшим решением. Причина в том, что вы очень редко хотите просто обойти дерево. В большинстве случаев вам нужно сделать что-то ещё во время использования одной из моделей обхода. Фактически, уже в следующем примере мы увидим, что модель обхода ``postorder`` очень близка к коду, который мы писали ранее для вычисления дерева синтаксического разбора. Исходя из изложенного, для оставшихся моделей мы будем писать внешние функции.
 
-
-Which of these two ways to implement ``preorder`` is best? The answer is
-that implementing ``preorder`` as an external function is probably
-better in this case. The reason is that you very rarely want to just
-traverse the tree. In most cases you are going to want to accomplish
-something else while using one of the basic traversal patterns. In fact,
-we will see in the next example that the ``postorder`` traversal pattern
-follows very closely with the code we wrote earlier to evaluate a parse
-tree. Therefore we will write the rest of the traversals as external
-functions.
-
-The algorithm for the ``postorder`` traversal, shown in
-:ref:`Listing 4 <lst_postorder1>`, is nearly identical to ``preorder`` except that
-we move the call to print to the end of the function.
+Алгоритм обхода ``postorder`` показан в :ref:`листинге 4 <lst_postorder1>`. Он очень близок к ``preorder``, за исключением того, что мы перемещаем вызов печати в конец функции.
 
 .. _lst_postorder1:
 
-**Listing 4**
+**Листинг 4**
 
 ::
 
@@ -144,19 +80,11 @@ we move the call to print to the end of the function.
             postorder(tree.getRightChild())
             print(tree.getRootVal())
 
-
-
-We have already seen a common use for the postorder traversal, namely
-evaluating a parse tree. Look back at :ref:`Listing 1 <lst_eval>` again. What
-we are doing is evaluating the left subtree, evaluating the right
-subtree, and combining them in the root through the function call to an
-operator. Assume that our binary tree is going to store only expression
-tree data. Let’s rewrite the evaluation function, but model it even more
-closely on the ``postorder`` code in :ref:`Listing 4 <lst_postorder1>` (see :ref:`Listing 5 <lst_postordereval>`).
+Мы уже видели распространённое использование обхода в обратном порядке - вычисление дерева синтаксического разбора. Взгляните на :ref:`листинг 1 <lst_eval>` ещё раз. Что мы делаем, так это вычисляем левое поддерево, потом правое и собираем их в корне через вызов функции оператора. Предположим, наше двоичное дерево будет хранить только данные для математического выражения. Давайте перепишем функцию вычисления более приближённо к коду ``postorder`` из :ref:`листинга 4 <lst_postorder1>` (см. :ref:`листинг 5 <lst_postordereval>`).
 
 .. _lst_postordereval:
 
-**Listing 5**
+**Листинг 5**
 
 .. highlight:: python
     :linenothreshold: 5
@@ -179,22 +107,13 @@ closely on the ``postorder`` code in :ref:`Listing 4 <lst_postorder1>` (see :ref
 .. highlight:: python
     :linenothreshold: 500
 
-Notice that the form in :ref:`Listing 4 <lst_postorder1>` is the same as the form
-in :ref:`Listing 5 <lst_postordereval>`, except that instead of printing the key at
-the end of the function, we return it. This allows us to save the values
-returned from the recursive calls in lines 6 and 7. We
-then use these saved values along with the operator on line 9.
+Обратите внимание, что форма в :ref:`листинге 4 <lst_postorder1>` аналогична форме в :ref:`листинге 5 <lst_postordereval>`, за исключением того, что вместо печати ключей в конце функции, мы их возвращаем. Это позволяет сохранить значения, возвращаемые рекурсивными вызовами в строках 6 и 7. Затем они используются вместе с оператором в строке 9.
 
-The final traversal we will look at in this section is the inorder
-traversal. In the inorder traversal we visit the left subtree, followed
-by the root, and finally the right subtree. :ref:`Listing 6 <lst_inorder1>` shows
-our code for the inorder traversal. Notice that in all three of the
-traversal functions we are simply changing the position of the ``print``
-statement with respect to the two recursive function calls.
+Последним рассмотренным в этом разделе обходом будет симметричный обход. В его ходе мы сначала посещаем левое поддерево, затем корень и потом уже правое поддерево. :ref:`Листинг 6 <lst_inorder1>` показывает этот алгоритм в коде. Заметьте, что во всех трёх моделях обхода мы просто меняем расположение оператора ``print`` по отношению к двум рекурсивным вызовам.
 
 .. _lst_inorder1:
 
-**Listing 6**
+**Листинг 6**
 
 ::
 
@@ -205,19 +124,11 @@ statement with respect to the two recursive function calls.
           print(tree.getRootVal())
           inorder(tree.getRightChild())
 
-
-If we perform a simple inorder traversal of a parse tree we get our
-original expression back, without any parentheses. Let’s modify the
-basic inorder algorithm to allow us to recover the fully parenthesized
-version of the expression. The only modifications we will make to the
-basic template are as follows: print a left parenthesis *before* the
-recursive call to the left subtree, and print a right parenthesis
-*after* the recursive call to the right subtree. The modified code is
-shown in :ref:`Listing 7 <lst_printexp>`.
+Если мы применим простой симметричный обход к дереву синтаксического разбора, то получим оригинальное выражение, правда без скобок. Давайте модифицируем базовый алгоритм симметричного обхода, чтобы он позволял восстановить версию выражения с полной расстановкой скобок. Единственное изменение, которое надо внести в базовый шаблон, - это печатать левую скобку *до* рекурсивного вызова с левым поддеревом и правую скобку *после* рекурсивного вызова с правым поддеревом. Модифицированный код показан в :ref:`листинге 7 <lst_printexp>`.
 
 .. _lst_printexp:
 
-**Listing 7**
+**Листинг 7**
 
 ::
 
@@ -229,9 +140,4 @@ shown in :ref:`Listing 7 <lst_printexp>`.
           sVal = sVal + printexp(tree.getRightChild())+')'
       return sVal
 
-
-
-Notice that the ``printexp`` function as we have implemented it puts
-parentheses around each number. While not incorrect, the parentheses are
-clearly not needed. In the exercises at the end of this chapter you are
-asked to modify the ``printexp`` function to remove this set of
+Обратите внимание, что функция ``printexp`` после реализации помещает скобки вокруг каждого числа. Не то, чтобы это было неправильно, но они здесь просто не нужны. В упражнении в конце этой главы вас попросят изменить ``printexp``, чтобы исправить это.

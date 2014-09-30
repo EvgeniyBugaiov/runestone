@@ -7,37 +7,21 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Programming Exercises
----------------------
+Упражнения для программирования
+-------------------------------
 
-#. Modify the depth first search function to produce a topological sort.
+#. Измените функцию поиска в глубину, чтобы она могла делать топологическую сортировку.
 
-#. Modify the depth first search to produce strongly connected
-   components.
+#. Измените функцию поиска в глубину, чтобы она могла находить сильно связные компоненты.
 
-#. Write the ``transpose`` method for the ``Graph`` class.
+#. Напишите метод ``transpose`` для класса ``Graph``.
 
-#. Using breadth first search write an algorithm that can determine the
-   shortest path from each vertex to every other vertex. This is called
-   the all pairs shortest path problem.
+#. Используя поиск в ширину, напишите алгоритм, умеющий определять кратчайший путь от каждой вершины до всех остальных. Это называется задачей поиска всех кратчайших путей между парами.
 
-#. Using breadth first search revise the maze program from
-   the recursion chapter to find the shortest path out of a maze.
+#. Используя поиск в ширину, пересмотрите программу для лабиринта из главы о рекурсии, чтобы она могла находить из него кратчайший путь.
 
-#. Write a program to solve the following problem: You have two jugs, a
-   4-gallon and a 3-gallon. Neither of the jugs has markings on them.
-   There is a pump that can be used to fill the jugs with water. How can
-   you get exactly two gallons of water in the 4 gallon jug?
+#. Напишите программу для решения следующей задачи. У вас есть две фляги - на 4 и на 3 галлона. Ни один из них не имеет маркировки. Есть колонка, из которой фляги можно наполнить водой. Как получить ровно два галлона в 4-х галлонной фляге?
 
-#. Generalize the problem above so that the parameters to your solution
-   include the sizes of each jug and the final amount of water to be
-   left in the larger jug.
+#. Обобщите задачу выше, чтобы параметры вашего решения включали размеры каждой фляги и итоговый объём воды, который должен остаться в большем сосуде.
 
-#. Write a program that solves the following problem: Three missionaries
-   and three cannibals come to a river and find a boat that holds two
-   people. Everyone must get across the river to continue on the
-   journey. However, if the cannibals ever outnumber the missionaries on
-   either bank, the missionaries will be eaten. Find a series of
-   crossings that will get everyone safely to the other side of the
-   river.
-
+#. Напишите программу для решения следующей задачи. Три миссионера и три каннибала подошли к берегу реки, возле которого привязана лодка, вмещающая только двух человек. Каждому нужно перебраться на другой берег, чтобы продолжить путешествие. Однако, если на каком-нибудь из берегов каннибалов окажется больше, чем миссионеров, то миссионеры будут съедены. Найдите такую последовательность перевозок, чтобы все безопасно оказались на другом берегу реки.

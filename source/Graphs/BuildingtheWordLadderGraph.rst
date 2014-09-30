@@ -7,69 +7,34 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Building the Word Ladder Graph
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Построение графа для "словесной лестницы"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Our first problem is to figure out how to turn a large collection of
-words into a graph. What we would like is to have an edge from one word
-to another if the two words are only different by a single letter. If we
-can create such a graph, then any path from one word to another is a
-solution to the word ladder puzzle. :ref:`Figure 1 <fig_wordladder>` shows a
-small graph of some words that solve the FOOL to SAGE word ladder
-problem. Notice that the graph is an undirected graph and that the edges
-are unweighted.
+Нашей первой задачей станет выяснение, как можно преобразовать в граф большую коллекцию слов. Мы бы хотели иметь ребро от одного слова к другому, если они различаются всего в единственной букве. Если мы сумеем создать такой граф, то любой путь от одного слова к другому станет решением головоломки. :ref:`Рисунок 1 <fig_wordladder>` показывает маленький граф из слов, решающий словесную лестницу от FOOL к SAGE. Обратите внимание, что граф ненаправленный и все его рёбра имеют одинаковый вес.
 
 .. _fig_wordladder:
 
 .. figure:: Figures/wordgraph.png
    :align: center
 
-   Figure 1: A Small Word Ladder Graph
+   Рисунок 1: Маленький граф для "словесной лестницы".
 
-We could use several different approaches to create the graph we need to
-solve this problem. Let’s start with the assumption that we have a list
-of words that are all the same length. As a starting point, we can
-create a vertex in the graph for every word in the list. To figure out
-how to connect the words, we could compare each word in the list with
-every other. When we compare we are looking to see how many letters are
-different. If the two words in question are different by only one
-letter, we can create an edge between them in the graph. For a small set
-of words that approach would work fine; however let’s suppose we have a
-list of 5,110 words. Roughly speaking, comparing one word to every other
-word on the list is an :math:`O(n^2)` algorithm. For 5,110 words,
-:math:`n^2` is more than 26 million comparisons.
+Мы можем использовать несколько подходов для решения задачи по созданию графа. Начнём с предположения, что у нас есть список из слов одинаковой длины. В качестве стартовой точки, из каждого его элемента можно создать вершину графа. Чтобы выяснить связи между ними, можно сравнивать каждое слово в списке со всеми прочими. Мы будем смотреть на количество различающихся букв. Если два слова отличаются всего в одной букве, то между ними будет создано ребро графа. Для небольшого набора слов этот подход сработает очень хорошо. Однако, предположим, что наш список содержит 5 110 слов. Говоря приблизительно, сравнение каждого слова с каждым означает :math:`O(n^2)` алгоритм. Для 5 110 слов это даст больше 26 миллионов сравнений.
 
-We can do much better by using the following approach. Suppose that we
-have a huge number of buckets, each of them with a four-letter word on
-the outside, except that one of the letters in the label has been
-replaced by an underscore. For example, consider
-:ref:`Figure 2 <fig_wordbucket>`, we might have a bucket labeled “pop\_.” As we
-process each word in our list we compare the word with each bucket,
-using the ‘\_’ as a wildcard, so both “pope” and “pops” would match
-“pop\_.” Every time we find a matching bucket, we put our word in that
-bucket. Once we have all the words in the appropriate buckets we know
-that all the words in the bucket must be connected.
+Можно поступить лучше, используя следующий подход. Предположим, у нас есть огромное количество корзин, на каждой из которых написано четырёхбуквенное слово, в котором одна буква заменена подчёркиванием. Для примера рассмотрим :ref:`рисунок 2 <fig_wordbucket>`: у нас есть корзина с меткой “pop\_.” При обработке каждого слова в списке мы сравниваем его с корзинами, используя ‘\_’ для произвольной подстановки. Таким образом, с “pop\_.” можно связать и “pope”, и “pops”. Каждый раз, когда находится связь с корзиной, мы кладём в неё слово. Когда все слова разложены, мы знаем, что всё, лежащее в одной корзине, должно быть связано между собой.
 
 .. _fig_wordbucket:
     
 .. figure:: Figures/wordbuckets.png
    :align: center
 
-   Figure 2: Word Buckets for Words That are Different by One Letter
+   Рисунок 2: Корзины для слов, отличающихся всего в одной букве.
 
-
-In Python, we can implement the scheme we have just described by using a
-dictionary. The labels on the buckets we have just described are the
-keys in our dictionary. The value stored for that key is a list of
-words. Once we have the dictionary built we can create the graph. We
-start our graph by creating a vertex for each word in the graph. Then we
-create edges between all the vertices we find for words found under the
-same key in the dictionary. :ref:`Listing 1 <lst_wordbucket1>` shows the Python
-code required to build the graph.
+В Python описанную схему можно реализовать с помощью словаря. Метки на корзинах будут ключами, а хранимым значением станет список слов. И раз уж у нас построен словарь, то мы можем создать и граф. Начнём с создания вершины для каждого слова, а затем проведём рёбра между всеми вершинами, чьи слова имеют в словаре одинаковый ключ. :ref:`Листинг 1 <lst_wordbucket1>` показывает код на Python, необходимый для построения такого графа.
 
 .. _lst_wordbucket1:
 
-**Listing 1**
+**Листинг 1**
 
 ::
 
@@ -96,11 +61,4 @@ code required to build the graph.
                         g.addEdge(word1,word2)
         return g
 
-Since this is our first real-world graph problem, you might be wondering
-how sparse is the graph? The list of four-letter words we have for this
-problem is 5,110 words long. If we were to use an adjacency matrix, the
-matrix would have 5,110 \* 5,110 = 26,112,100 cells. The graph
-constructed by the ``buildGraph`` function has exactly 53,286 edges, so
-the matrix would have only 0.20% of the cells filled! That is a very
-sparse matrix indeed.
-
+Поскольку это наша первая задача на графы из реального мира, вам может быть любопытно, насколько этот граф разрежен. Имеющийся список четырёхбуквенных слов для неё содержит 5 110 слов. Если бы мы использовали матрицу смежности, то в ней было бы 5 110 \* 5 110 = 26 112 100 ячеек. Граф, построенный функцией ``buildGraph`` имеет ровно 53 286 рёбер, так что матрица была бы заполнена только на 0.2%! Это действительно очень разреженная матрица.

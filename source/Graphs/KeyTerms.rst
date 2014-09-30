@@ -7,18 +7,16 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Key Terms
----------
+Ключевые термины
+----------------
 
-===================================== =================================== ===================================
-acyclic graph                         adjacency list                      adjacency matrix
-adjacent                              breadth first search (BFS)          cycle
-cyclic graph                          DAG                                 depth first forest
-depth first search (DFS)              digraph                             directed acyclic graph (DAG)
-directed graph                        edge cost                           edge
-parenthesis property                  path                                shortest path
-spanning tree                         strongly connected components (SCC) topological sort & uncontrolled flooding
-vertex                                weight
-===================================== =================================== ===================================
-
-
+===================================== =================================== =======================================================
+ацикличный граф                       список смежности                    матрица смежности
+смежный                               поиск в ширину (BFS)                цикл
+цикличный граф                        DAG                                 лес поиска в глубину
+поиск в глубину (DFS)                 диграф                              направленный ацикличный граф (DAG)
+направленный граф                     вес ребра                           ребро
+свойство расстановки скобок           путь                                кратчайший путь
+островное дерево                      сильно связые компоненты (SCC)      топологическая сортировка и неконтролируемое наводнение
+вершина                               вес
+===================================== =================================== =======================================================

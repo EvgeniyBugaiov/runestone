@@ -7,47 +7,27 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Programming Exercises
----------------------
+Упражнения для программирования
+--------------------------------
 
-#. Extend the ``buildParseTree`` function to handle mathematical
-   expressions that do not have spaces between every character.
+#. Расширьте функцию ``buildParseTree``, чтобы она могла работать с математическими выражениями, в которых нет пробелов между каждым символом.
 
-#. Modify the ``buildParseTree`` and ``evaluate`` functions to handle
-   boolean statements (and, or, and not). Remember that “not” is a unary
-   operator, so this will complicate your code somewhat.
+#. Измените функции ``buildParseTree`` и ``evaluate``, чтобы они могли работать с логическими операторами (и, или, не). Помните, "не" - унарный оператор, что некоторым образом усложняет ваш код.
 
-#. Using the ``findSuccessor`` method, write a non-recursive inorder
-   traversal for a binary search tree.
+#. Используя метод ``findSuccessor``, напишите нерекурсивный симметричный обход двоичного дерева поиска.
 
-#. Modify the code for a binary search tree to make it threaded. Write a
-   non-recursive inorder traversal method for the threaded binary search
-   tree. A threaded binary tree maintains a reference from each node to
-   its successor.
+#. Измените код для двоичного дерева поиска, чтобы сделать его потоковым. Напишите нерекурсивный симметричный метод обхода для такого дерева. Потоковое двоичное дерево поддерживает в каждом узле ссылку на его преемника.
 
-#. Modify our implementation of the binary search tree so that it
-   handles duplicate keys properly. That is, if a key is already in the
-   tree then the new payload should replace the old rather than add
-   another node with the same key.
+#. Измените нашу реализацию двоичного дерева поиска, чтобы оно правильно работало с дубликатами ключей. Т.е., если ключ в дереве уже присутствует, то новая полезная нагрузка заменяет старую, вместо того, чтобы добавлять новый узел с тем же ключом.
 
-#. Create a binary heap with a limited heap size. In other words, the
-   heap only keeps track of the ``n`` most important items. If the heap
-   grows in size to more than ``n`` items the least important item is
-   dropped.
+#. Создайте двоичную кучу с ограниченным размером. Другими словами, куча может отслеживать только ``n`` важных элементов. Если её размер становится больше, то наименее приоритетный элемент отбрасывается.
 
-#. Clean up the ``printexp`` function so that it does not include an
-   ‘extra’ set of parentheses around each number.
+#. Почистите функцию ``printexp``, чтобы она не расставляла дополнительные наборы скобок вокруг каждого числа.
 
-#. Using the ``buildHeap`` method, write a sorting function that can
-   sort a list in :math:`O(n\log{n})` time.
+#. Используя метод ``buildHeap``, напишите сортировочную функцию, которая будет работать за время :math:`O(n\log{n})`.
 
-#. Write a function that takes a parse tree for a mathematical
-   expression and calculates the derivative of the expression with
-   respect to some variable.
+#. Напишите функцию, которая принимает дерево синтаксического разбора математического выражения и вычисляет его производную по отношению к некоторой переменной.
 
-#. Implement a binary heap as a max heap.
+#. Реализуйте двоичную кучу как max heap.
 
-#. Using the ``BinaryHeap`` class, implement a new class called
-   ``PriorityQueue``. Your ``PriorityQueue`` class should implement the
-   constructor, plus the ``enqueue`` and ``dequeue`` methods.
-
+#. Используя класс ``BinaryHeap``, реализуйте новый класс ``PriorityQueue``. Он должен содержать конструктор и методы ``enqueue`` и ``dequeue``.

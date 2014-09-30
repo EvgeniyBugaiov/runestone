@@ -7,93 +7,51 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Strongly Connected Components
------------------------------
+Сильно связные компоненты
+---------------------------
 
-For the remainder of this chapter we will turn our attention to some
-extremely large graphs. The graphs we will use to study some additional
-algorithms are the graphs produced by the connections between hosts on
-the Internet and the links between web pages. We will begin with web
-pages.
+В оставшейся части этой главы мы обратим наше внимание на очень большие графы. Чтобы изучить несколько дополнительных алгоритмов, будем использовать графы связей между хостами в интернете и ссылок между веб-страницами.
 
-Search engines like Google and Bing exploit the fact that the pages on
-the web form a very large directed graph. To transform the World Wide
-Web into a graph, we will treat a page as a vertex, and the hyperlinks
-on the page as edges connecting one vertex to another.
-:ref:`Figure 30 <fig_cshome>` shows a very small part of the graph produced by
-following the links from one page to the next, beginning at Luther
-College’s Computer Science home page. Of course, this graph could be
-huge, so we have limited it to web sites that are no more than 10 links
-away from the CS home page.
+Поисковые системы вроде Google и Bing используют в своих интересах тот факт, что страницы в вебе образуют очень большой направленный граф. Чтобы преобразовать в него Всемирную Паутину, мы будем рассматривать страницы, как вершины, а гиперссылки между ними - как соединяющие их рёбра. :ref:`Рисунок 30 <fig_cshome>` демонстрирует очень маленькую часть графа, получившегося из ссылок от одной страницы к другой со стартовой точкой на домашней странице Luther College’s Computer Science. Конечно, этот граф был бы огромным, так что мы ограничили его сайтами, на которых есть не более десяти ссылок с домашней страницы CS.
 
 .. _fig_cshome:
 
 .. figure:: Figures/cshome.png
    :align: center
 
-   Figure 30: The Graph Produced by Links from the Luther Computer Science Home Page      
+   Рисунок 30: Граф из ссылок с домашней страницы Luther Computer Science 
 
+Если вы изучите граф на :ref:`рисунке 30 <fig_cshome>`, то сможете сделать несколько любопытных наблюдений. Во-первых, многие из веб-сайтов графа - прочие сайты Luther College. Во-вторых, в графе присутствует несколько ссылок на колледж в Айове. В-третьих, в графе имеется несколько ссылок на другие гуманитарные колледжи. Из этого можно сделать заключение, что здесь присутствует некая внутренняя структура, объединяющая вместе сайты, в чём-то похожие друг на друга.
 
-
-If you study the graph in :ref:`Figure 30 <fig_cshome>` you might make some
-interesting observations. First you might notice that many of the other
-web sites on the graph are other Luther College web sites. Second, you
-might notice that there are several links to other colleges in Iowa.
-Third, you might notice that there are several links to other liberal
-arts colleges. You might conclude from this that there is some
-underlying structure to the web that clusters together web sites that
-are similar on some level.
-
-One graph algorithm that can help find clusters of highly interconnected
-vertices in a graph is called the strongly connected components
-algorithm (**SCC**). We formally define a **strongly connected
-component**, :math:`C`, of a graph :math:`G`, as the largest subset
-of vertices :math:`C \subset V` such that for every pair of vertices
-:math:`v, w \in C` we have a path from :math:`v` to :math:`w` and
-a path from :math:`w` to :math:`v`. :ref:`Figure 27 <fig_scc1>` shows a simple
-graph with three strongly connected components. The strongly connected
-components are identified by the different shaded areas.
+Один из алгоритмов, помогающих найти кластеры из сильно связных вершин графа, называется алгоритмом поиска сильно связных компонентов (**SCC** - от англ. *strongly connected components*). Формально мы можем определить **сильно связную компоненту**, :math:`C` графа :math:`G`, как наибольшее подмножество вершин :math:`C \subset V` таких, что для каждой пары вершин :math:`v, w \in C` существует путь от :math:`v` до :math:`w` и от :math:`w` до :math:`v`. На :ref:`рисунке 27 <fig_scc1>` показан простой граф с тремя сильно связными компонентами, которые выделены разными затенёнными областями.
 
 .. _fig_scc1:
         
 .. figure:: Figures/scc1.png
    :align: center
 
-   Figure 31: A Directed Graph with Three Strongly Connected Components
+   Рисунок 31: Направленный граф с тремя сильно связными компонентами
 
-
-Once the strongly connected components have been identified we can show
-a simplified view of the graph by combining all the vertices in one
-strongly connected component into a single larger vertex. The simplified
-version of the graph in :ref:`Figure 31 <fig_scc1>` is shown in :ref:`Figure 32 <fig_scc2>`.
+После определения сильно связных компонент, мы можем показать упрощённый вид графа, собрав все вершины каждой из них в одну большую. Упрощённая версия графа с :ref:`рисунка 31 <fig_scc1>` показана на :ref:`рисунке 32 <fig_scc2>`.
 
 .. _fig_scc2:
 
 .. figure:: Figures/scc2.png
    :align: center
 
-   Figure 32: The Reduced Graph
+   Рисунок 32: Упрощённый граф
 
+Вновь мы видим, что, используя поиск в глубину, можем создать очень мощный и эффективный алгоритм. Однако, прежде нужно рассмотреть ещё одно определение. **Транспозиция** графа :math:`G` определяется, как граф :math:`G^T`, у которого все рёбра имеют обратное направление. Т.е., если в оригинальном графе ребро направлено из узла А в узел В, то :math:`G^T` будет содержать ребро из узла В в узел А.
 
-Once again we will see that we can create a very powerful and efficient
-algorithm by making use of a depth first search. Before we tackle the
-main SCC algorithm we must look at one other definition. The
-transposition of a graph :math:`G` is defined as the graph
-:math:`G^T` where all the edges in the graph have been reversed. That
-is, if there is a directed edge from node A to node B in the original
-graph then :math:`G^T` will contain and edge from node B to node A.
-:ref:`Figure 33 <fig_tpa>` and :ref:`Figure 34 <fig_tpb>` show a simple graph and its transposition.
+:ref:`Рисунки 33 <fig_tpa>` и :ref:`34 <fig_tpb>` демонстрируют простой граф и его транспозицию.
 
-
-
-    
 .. _fig_tpa:
 
 
 .. figure:: Figures/transpose1.png
    :align: center
 
-   Figure 33: A Graph :math:`G`
+   Figure 33: Граф :math:`G`
           
 .. _fig_tpb:
 
@@ -101,62 +59,39 @@ graph then :math:`G^T` will contain and edge from node B to node A.
 .. figure:: Figures/transpose2.png
    :align: center
 
-   Figure 34: Its Transpose :math:`G^T`
+   Figure 34: Его транспозиция :math:`G^T`
 
+Посмотрите ещё раз на рисунки. Обратите внимание, что граф на :ref:`рисунке 33 <fig_tpa>` имеет две сильно связные компоненты. А теперь взгляните на :ref:`рисунок 34 <fig_tpb>`. На нём так же изображены две сильно связные компоненты.
 
-Look at the figures again. Notice that the graph in
-:ref:`Figure 33 <fig_tpa>` has two strongly connected components. Now look at 
-:ref:`Figure 34 <fig_tpb>`. Notice that it has the same two strongly connected
-components.
+Теперь мы можем описать алгоритм вычисления SCC в графе.
 
-We can now describe the algorithm to compute the strongly connected
-components for a graph.
+#. Вызвать ``dfs`` для графа :math:`G`, чтобы вычислить "времена" выхода каждой вершины.
 
-#. Call ``dfs`` for the graph :math:`G` to compute the finish times
-   for each vertex.
+#. Вычислить :math:`G^T`.
 
-#. Compute :math:`G^T`.
+#. Вызвать ``dfs`` для графа :math:`G^T`, но в основном цикле DFS исследовать каждую вершину в порядке убывания "времени" выхода.
 
-#. Call ``dfs`` for the graph :math:`G^T` but in the main loop of DFS
-   explore each vertex in decreasing order of finish time.
+#. Каждое дерево из леса, найденного на шаге 3, будет сильно связной компонентой. Для её идентификации осталось вывести id каждого узла всех деревьев в лесу.
 
-#. Each tree in the forest computed in step 3 is a strongly connected
-   component. Output the vertex ids for each vertex in each tree in the
-   forest to identify the component.
+Давайте пошагово проследим описанные выше пункты для графа на :ref:`рисунке 31 <fig_scc1>`. :ref:`Рисунок 35 <fig_sccalga>` показывает "времена" входа и выхода, вычисленные для оригинального графа с помощью алгоритма DFS. На :ref:`рисунке 36 <fig_sccalgb>` показаны они же, но вычисленные для транспозиции графа.
 
-Let's trace the operation of the steps described above on the example
-graph in :ref:`Figure 31 <fig_scc1>`. :ref:`Figure 35 <fig_sccalga>` shows the starting and
-finishing times computed for the original graph by the DFS algorithm.
-:ref:`Figure 36 <fig_sccalgb>` shows the starting and finishing times computed by
-running DFS on the transposed graph.
-
- 
-.. _fig_sccalga:
+ .. _fig_sccalga:
 
 .. figure:: Figures/scc1a.png
    :align: center
    
-   Figure 35: Finishing times for the original graph :math:`G`     
-
-
+   Рисунок 35: "Времена" выхода для графа :math:`G`  
      
 .. _fig_sccalgb:
 
 .. figure:: Figures/scc1b.png
    :align: center
    
-   Figure 36: Finishing times for :math:`G^T`
-    
+   Рисунок 36: "Времена" выхода для :math:`G^T`
 
+Наконец, на :ref:`рисунке 37 <fig_sccforest>` показан лес из трёх деревьев, созданный на третьем шаге SCC алгоритмом. Заметьте, что мы не даём вам код на Python для этого алгоритма, поскольку его написание остаётся в качестве упражнения.
 
-Finally, :ref:`Figure 37 <fig_sccforest>` shows the forest of three trees produced
-in step 3 of the strongly connected component algorithm. You will notice
-that we do not provide you with the Python code for the SCC algorithm,
-we leave writing this program as an exercise.
-
-          
 .. _fig_sccforest:
 
 .. figure:: Figures/sccforest.png
    :align: center
-   

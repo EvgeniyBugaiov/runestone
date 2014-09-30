@@ -7,106 +7,50 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Prim’s Spanning Tree Algorithm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Алгоритм Прима для островного дерева
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For our last graph algorithm let’s consider a problem that online game
-designers and Internet radio providers face. The problem is that they
-want to efficiently transfer a piece of information to anyone and
-everyone who may be listening. This is important in gaming so that all
-the players know the very latest position of every other player. This is
-important for Internet radio so that all the listeners that are tuned in
-are getting all the data they need to reconstruct the song they are
-listening to. :ref:`Figure 9 <fig_bcast1>` illustrates the broadcast problem.
+Для нашего последнего алгоритма на графах давайте рассмотрим задачу, с которой часто сталкиваются разработчики онлайн игр и провайдеры интернет-радио. Проблема в том, что им нужно эффективно передавать части информации для всех и каждого, кто может её услышать. Это важно в играх, поскольку все игроки должны знать последний ход каждого из них. Это важно для интернет-радио, потому что настроенные на него слушатели должны получить все данные, по которым можно было бы воссоздать прослушиваемую песню. Задача о вещании проиллюстрирована :ref:`рисунком 9 <fig_bcast1>`.
 
 .. _fig_bcast1:
 
 .. figure:: Figures/bcast1.png
    :align: center
 
-   Figure 9: The Broadcast Problem 
+   Рисунок 9: Задача о вещании
 
-There are some brute force solutions to this problem, so let’s look at
-them first to help understand the broadcast problem better. This will
-also help you appreciate the solution that we will propose when we are
-done. To begin, the broadcast host has some information that the
-listeners all need to receive. The simplest solution is for the
-broadcasting host to keep a list of all of the listeners and send
-individual messages to each. In :ref:`Figure 9 <fig_bcast1>` we show a small
-network with a broadcaster and some listeners. Using this first
-approach, four copies of every message would be sent. Assuming that the
-least cost path is used, let’s see how many times each router would
-handle the same message.
+Существует несколько способов её решения путём непосредственного перебора. С них мы и начнём, чтобы лучше разобраться в вопросе. Так же это поможет вам оценить решение, которое мы в итоге предложим. Начнём с того, что станция вещания имеет некую информацию, которая должна быть передана всем слушателям. Простейшим решением станет хранить список всех слушателей и отсылать им индивидуальные сообщения. На :ref:`рисунке 9 <fig_bcast1>` показана небольшая сеть с передатчиком и несколько слушателей. Используя первый подход, следует отправлять по четыре копии каждого сообщения. Предполагая, что используется путь с наименьшими затратами, давайте посмотрим, сколько времени каждый маршрутизатор потратит на расылку одинаковых сообщений.
 
-All messages from the broadcaster go through router A, so A sees all
-four copies of every message. Router C sees only one copy of each
-message for its listener. However, routers B and D would see three
-copies of every message since routers B and D are on the cheapest path
-for listeners 1, 2, and 3. When you consider that the broadcast host
-must send hundreds of messages each second for a radio broadcast, that
-is a lot of extra traffic.
+Все сообщения от вещателя идут через маршрутизатор А, поэтому он видит все четыре копии каждого. Маршрутизатор С видит уже по одной из них, однако маршрутизаторы B и D увидят по три копии сообщений, поскольку через них проходит кратчайший путь к слушателям 1, 2 и 3. С учётом того, что для радиовещания станция должен расслылать сотни сообщений каждую секунду, получается огромный объём лишнего трафика. 
 
-A brute force solution is for the broadcast host to send a single copy
-of the broadcast message and let the routers sort things out. In this
-case, the easiest solution is a strategy called **uncontrolled
-flooding**. The flooding strategy works as follows. Each message starts
-with a time to live (``ttl``) value set to some number greater than or
-equal to the number of edges between the broadcast host and its most
-distant listener. Each router gets a copy of the message and passes the
-message on to *all* of its neighboring routers. When the message is
-passed on the ``ttl`` is decreased. Each router continues to send copies
-of the message to all its neighbors until the ``ttl`` value reaches 0.
-It is easy to convince yourself that uncontrolled flooding generates
-many more unnecessary messages than our first strategy.
+Решение методом перебора состоит в том, что станция вещания посылает единственную копию сообщения и позволяет маршрутизаторам дальше разбираться самим. В этом случае простейшим решением станет стратегия под названием **неконтролируемое наводнение**. Работает она так. Каждое сообщение выпускается с временем жизни (``ttl`` - от англ. *time to live*), установленным в некоторую величину, большую или равную количеству рёбер между станцией вещания и наиболее удалённым слушателем. Каждый маршрутизатор получает копию сообщения и рассылает его *всем* своим соседям, уменьшая ``ttl`` на единицу. Так продолжается до тех пор, пока значение ``ttl`` не станет равным нулю. Можно легко убедиться, что неконтролируемое наводнение генерирует намного больше ненужных сообщений, чем наша первая стратегия.
 
-The solution to this problem lies in the construction of a minimum
-weight **spanning tree**. Formally we define the minimum spanning tree
-:math:`T` for a graph :math:`G = (V,E)` as follows. :math:`T` is
-an acyclic subset of :math:`E` that connects all the vertices in
-:math:`V`. The sum of the weights of the edges in T is minimized.
+Решение задачи лежит в создании **островного дерева** с минимальным весом. Формальное определение минимального островного дерева :math:`T` для графа :math:`G = (V,E)` следующее: :math:`T` - это ацикличное подмножество :math:`E`, соединяющее все вершины в :math:`V`. Сумма весов рёбер в :math:`T` - минимальна.
 
-:ref:`Figure 10 <fig_mst1>` shows a simplified version of the broadcast graph and
-highlights the edges that form a minimum spanning tree for the graph.
-Now to solve our broadcast problem, the broadcast host simply sends a
-single copy of the broadcast message into the network. Each router
-forwards the message to any neighbor that is part of the spanning tree,
-excluding the neighbor that just sent it the message. In this example A
-forwards the message to B. B forwards the message to D and C. D forwards
-the message to E, which forwards it to F, which forwards it to G. No
-router sees more than one copy of any message, and all the listeners
-that are interested see a copy of the message.
+:ref:`Рисунок 10 <fig_mst1>` показывает упрощённую версию графа вещания и выделяет рёбра его минимального островного дерева. Теперь, чтобы решить задачу вещания, станция просто направляет единственную копию сообщения в сеть. Каждый из маршрутизаторов пересылает его тому своему соседу, который является частью островного дерева, за исключеннием источника посылки. В нашем примере А перешлёт сообщение В, В - C и D. D отправит сообщение E, который передаст его F, а тот - G. Никто из маршрутизаторов не увидит больше одной копии сообщения, а все слушатели смогут его услышать.
 
 .. _fig_mst1:
 
 .. figure:: Figures/mst1.png
    :align: center
 
-   Figure 10: Minimum Spanning Tree for the Broadcast Graph 
+   Рисунок 10: Минимальное островное дерево графа вещания
 
-The algorithm we will use to solve this problem is called Prim’s
-algorithm. Prim’s algorithm belongs to a family of algorithms called the
-“greedy algorithms” because at each step we will choose the cheapest
-next step. In this case the cheapest next step is to follow the edge
-with the lowest weight. Our last step is to develop Prim’s algorithm.
+Алгоритм, который мы используем для решения этой задачи, называется алгоритмом Прима. Он входит в семейство под названием "жадные алгоритмы", поскольку на каждом шаге выбирается наименее затратный из предлагаемых шагов. В данном случае таковым будет перемещение по ребру с наименьшим весом. Наше последнее задание: реализовать алгоритм Прима.
 
-The basic idea in constructing a spanning tree is as follows:
+Основная идея для создания островного дерева состоит в следующем:
 
 ::
 
-   While T is not yet a spanning tree
-      Find an edge that is safe to add to the tree
-      Add the new edge to T
+   Пока T не островное дерево
+      Найти ребро, которое можно безопасно добавить к дереву
+      Добавить новое ребро в T
 
-The trick is in the step that directs us to “find an edge that is safe.”
-We define a safe edge as any edge that connects a vertex that is in the
-spanning tree to a vertex that is not in the spanning tree. This ensures
-that the tree will always remain a tree and therefore have no cycles.
+Загвоздка состоит в пункте, направляющем нас "найти ребро для безопасного добавления". Определим безопасное ребро как то, которое соединяет вершину из островного дерева с вершиной вне его. Это гарантирует, что дерево всегда останется деревом и не будет иметь циклов.
 
-The Python code to implement Prim’s algorithm is shown in :ref:`Listing 2 <lst_prims>`. Prim’s algorithm is similar to Dijkstra’s algorithm
-in that they both use a priority queue to select the next vertex to add
-to the growing graph.
+Код на Python для реализации алгоритма Прима показан в :ref:`листинге 2 <lst_prims>`. Он похож на алгоритм Дейкстры в том, что оба они используют очередь с приоритетом для выбора следующей вершины, которая будет добавлена в растущий граф.
 
-**Listing 2**
+**Листинг 2**
 
 .. _lst_prims:
 
@@ -131,77 +75,57 @@ to the growing graph.
                   nextVert.setDistance(newCost)
                   pq.decreaseKey(nextVert,newCost)
 
-The following sequence of figures (:ref:`Figure 11 <fig_mst1>` through :ref:`Figure 17 <fig_mst1>`) shows the algorithm in operation on our sample
-tree. We begin with the starting vertex as A. The distances to all the
-other vertices are initialized to infinity. Looking at the neighbors of
-A we can update distances to two of the additional vertices B and C
-because the distances to B and C through A are less than infinite. This
-moves B and C to the front of the priority queue. Update the predecessor
-links for B and C by setting them to point to A. It is important to note
-that we have not formally added B or C to the spanning tree yet. A node
-is not considered to be part of the spanning tree until it is removed
-from the priority queue.
+Следующие рисунки (с :ref:`11 <fig_mst1>` по :ref:`17 <fig_mst1>`) демонстрируют работу алгоритма с простым деревом из примера. Начинаем с вершины А. Для всех прочих вершин расстояние инициализированно бесконечностью. Рассмотрев соседей А, мы обновляем значения пути двух дополнительных вершин В и С, поскольку расстояние до них через А меньше бесконечности. Это перемещает В и С в начало очереди с приоритетом. Обновляем у этих узлов ссылки на предшественника, установив их на А. Важно отметить, что формально мы ещё не добавили В и С в островное дерево. Узел не считается его частью, пока он не удалён из очереди с приоритетом.
 
-Since B has the smallest distance we look at B next. Examining B’s
-neighbors we see that D and E can be updated. Both D and E get new
-distance values and their predecessor links are updated. Moving on to
-the next node in the priority queue we find C. The only node C is
-adjacent to that is still in the priority queue is F, thus we can update
-the distance to F and adjust F’s position in the priority queue.
+Поскольку В имеет наименьшее расстояние, следующим рассматриваем его. Проверка соседей В показывает, что пути D и E можно обновить. Оба этих узла получают новые значения расстояний и обновлённые ссылки на предшественника. Перемещаясь к следующему узлу по очереди с приоритетом, мы обнаруживаем С. Единственный смежный с ним узел, который до сих пор находится в очереди, - это F. Следовательно, мы можем обновить расстояние до него и отрегулировать его позицию в очереди.
 
-Now we examine the vertices adjacent to node D. We find that we can
-update E and reduce the distance to E from 6 to 4. When we do this we
-change the predecessor link on E to point back to D, thus preparing it
-to be grafted into the spanning tree but in a different location. The
-rest of the algorithm proceeds as you would expect, adding each new node
-to the tree.
-    
+Теперь проверяем вершины, смежные с узлом D. Обнаруживаем, что можем обновить Е и уменьшить его расстояние с 6 до 4. Когда мы делаем это, ссылка на предшественника Е устанавливается в D, что подготавливает узел к добавлению в островное дерево (правда, на другую позицию). Оставшаяся часть алгоритма действует так, как от неё ожидается, добавляя в дерево каждый новый узел.
+
 .. _fig_prima:
 
 .. figure:: Figures/prima.png
    :align: center
    
-   Figure 11: Tracing Prim’s Algorithm
+   Рисунок 11: Трассировка алгоритма Прима
 
 .. _fig_primb:
 
 .. figure:: Figures/primb.png
    :align: center
 
-   Figure 12: Tracing Prim’s Algorithm
+   Рисунок 12: Трассировка алгоритма Прима
 
 .. _fig_primc:
 
 .. figure:: Figures/primc.png
    :align: center
 
-   Figure 13: Tracing Prim’s Algorithm
+   Рисунок 13: Трассировка алгоритма Прима
    
 .. _fig_primd:
 
 .. figure:: Figures/primd.png
    :align: center
 
-   Figure 14: Tracing Prim’s Algorithm
+   Рисунок 14: Трассировка алгоритма Прима
    
 .. _fig_prime:
 
 .. figure:: Figures/prime.png
    :align: center
 
-   Figure 15: Tracing Prim’s Algorithm
+   Рисунок 15: Трассировка алгоритма Прима
    
 .. _fig_primf:
 
 .. figure:: Figures/primf.png
    :align: center
    
-   Figure 16: Tracing Prim’s Algorithm
+   Рисунок 16: Трассировка алгоритма Прима
     
 .. _fig_primg:
 
 .. figure:: Figures/primg.png
    :align: center
 
-   Figure 17: Tracing Prim’s Algorithm
-
+   Рисунок 17: Трассировка алгоритма Прима

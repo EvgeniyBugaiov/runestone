@@ -7,24 +7,19 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Summary
--------
+Заключение
+----------
 
-In this chapter we have looked at the graph abstract data type, and some
-implementations of a graph. A graph enables us to solve many problems
-provided we can transform the original problem into something that can
-be represented by a graph. In particular, we have seen that graphs are
-useful to solve problems in the following general areas.
+В этой главе мы рассмотрели абстрактный тип данных для графа и несколько его реализаций. Такая структура данных позволяет решать множество задач, если получается преобразовать оригинальную проблему во что-то, что можно представить в виде графа. В частности, мы увидели, что графы полезны при решении задач из следующих областей:
 
--  Breadth first search for finding the unweighted shortest path.
+- Поиск в ширину для нахождения невзвешенного кратчайшего пути.
 
--  Dijkstra’s algorithm for weighted shortest path.
+- Алгоритм Дейкстры для взвешенного кратчайшего пути.
 
--  Depth first search for graph exploration.
+- Поиск в глубину для исследования графа.
 
--  Strongly connected components for simplifying a graph.
+- Сильно связные компонеты для упрощения графа.
 
--  Topological sort for ordering tasks.
+- Топологическая сортировка для упорядочения заданий.
 
--  Minimum weight spanning trees for broadcasting messages.
-
+- Минимальное взвешенное островное дерево для вещания сообщений.

@@ -7,15 +7,8 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Binary Search Trees
--------------------
+Двоичные деревья поиска
+------------------------
 
-We have already seen two different ways to get key-value pairs in a
-collection. Recall that these collections implement the **map** abstract
-data type. The two implementations of a map ADT we discussed were binary
-search on a list and hash tables. In this section we will study **binary
-search trees** as yet another way to map from a key to a value. In this
-case we are not interested in the exact placement of items in the tree,
-but we are interested in using the binary tree structure to provide for
-efficient searching.
+Мы уже видели два различных способа получить коллекцию из пар ключ-значение. Напомним, что её воплощает абстрактный тип данных **map**. Мы обсуждали две его реализации: с помощью списка и хэш-таблицы. В этом разделе мы изучим **двоичные деревья поиска**, как ещё один способ отображать ключ на значение. В этом случае нам не интересно точное расположение элементов в дереве. Мы заинтересованы в использовании структуры двоичного дерева для эффективного поиска.
 

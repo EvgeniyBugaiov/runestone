@@ -7,34 +7,23 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Graph Abstract Data Type
-----------------------------
+Абстрактный тип данных "граф"
+-----------------------------
 
-The graph abstract data type (ADT) is defined as follows:
+АТД "граф" определяется следующим образом:
 
--  ``Graph()`` creates a new, empty graph.
+-  ``Graph()`` создаёт новый пустой граф.
 
--  ``addVertex(vert)`` adds an instance of ``Vertex`` to the graph.
+-  ``addVertex(vert)`` добавляет в граф объект типа ``Vertex``.
 
--  ``addEdge(fromVert, toVert)`` Adds a new, directed edge to the graph
-   that connects two vertices.
+-  ``addEdge(fromVert, toVert)`` Добавляет в граф новое направленное ребро, соединяющее две вершины.
 
--  ``addEdge(fromVert, toVert, weight)`` Adds a new, weighted, directed
-   edge to the graph that connects two vertices.
+-  ``addEdge(fromVert, toVert, weight)``Добавляет в граф новое взвешенное направленное ребро, соединяющее две вершины.
 
--  ``getVertex(vertKey)`` finds the vertex in the graph named
-   ``vertKey``.
+-  ``getVertex(vertKey)`` находит в графе вершину ``vertKey``.
 
--  ``getVertices()`` returns the list of all vertices in the graph.
+-  ``getVertices()`` возвращает список всех вершин графа.
 
--  ``in`` returns ``True`` for a statement of the form
-   ``vertex in graph``, if the given vertex is in the graph, ``False``
-   otherwise.
+-  ``in`` возвращает ``True`` для оператора формы ``vertex in graph``, если данная вершина в графе имеется, и ``False`` в противном случае.
 
-Beginning with the formal definition for a graph there are several ways
-we can implement the graph ADT in Python. We will see that there are
-trade-offs in using different representations to implement the ADT
-described above. There are two well-known implementations of a graph,
-the **adjacency matrix** and the **adjacency list**. We will explain
-both of these options, and then implement one as a Python class.
-
+Взяв за отправную точку формальное определение, АТД *граф* с помощью Python можно реализовать несколькими способами. Мы увидим, что каждый из них имеет свою цену. Есть две широко известные реализации графа: **матрица смежности** и **список смежности**. Мы объясним их обе, а затем воплотим в классах на Python.

@@ -7,45 +7,26 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Objectives
-----------
+Цели
+----
 
--  To learn what a graph is and how it is used.
+- Изучить, что такое граф и для чего он нужен.
 
--  To implement the **graph** abstract data type using multiple internal
-   representations.
+- Реализовать абстрактный тип данных **граф** несколькими способами.
 
--  To see how graphs can be used to solve a wide variety of problems
+- Посмотреть, как можно использовать графы для решения широкого спектра задач.
 
-In this chapter we will study graphs. Graphs are a more general
-structure than the trees we studied in the last chapter; in fact you can
-think of a tree as a special kind of graph. Graphs can be used to
-represent many interesting things about our world, including systems of
-roads, airline flights from city to city, how the Internet is connected,
-or even the sequence of classes you must take to complete a major in
-computer science. We will see in this chapter that once we have a good
-representation for a problem, we can use some standard graph algorithms
-to solve what otherwise might seem to be a very difficult problem.
+В этой главе мы будем изучать графы. Это более общая структура, чем деревья из прошлой главы. Фактически, вы можете думать о дереве, как об отдельном подвиде графа. Графы можно использовать для представления множества интересных вещей из нашего мира, включая системы дорог, авиаперелёты между городами, коммутации в интернете и даже последовательность предметов, которые вам следует изучить для профилирования по информатике. В этой главе мы увидим, что, имея хорошее представление задачи, можно использовать для её решения стандартные алгоритмы на графах, тогда как без них это оказалось бы чрезвычайно сложным.
 
-While it is relatively easy for humans to look at a road map and
-understand the relationships between different places, a computer has no
-such knowledge. However, we can also think of a road map as a graph.
-When we do so we can have our computer do interesting things for us. If
-you have ever used one of the Internet map sites, you know that a
-computer can find the shortest, quickest, or easiest path from one place
-to another.
+Хотя для человека относительно просто посмотреть на карту дорог и понять взаимоотношения между отдельными местами, компьютер такой способностью не обладает. Однако, о карте дорог тоже можно думать, как о графе. Тогда компьютер может делать для нас весьма любопытные вещи. Если вы когда-нибудь пользовались одним из сайтов с картами, то знаете, что он может найти кратчайший, быстрейший или легчайший маршрут из одного места в другое.
 
-As a student of computer science you may wonder about the courses you
-must take in order to get a major. A graph is good way to represent the
-prerequisites and other interdependencies among courses.
-:ref:`Figure 1 <fig1>` shows another graph. This one represents the courses
-and the order in which they must be taken to complete a major in
-computer science at Luther College.
+Как студенту-информатику, вам может быть любопытно, какие курсы и в каком порядке необходимо пройти, чтобы получить специализацию. Граф - хороший способ представления необходимых условий и других взаимозависимостей между предметами.
+
+На :ref:`рисунке 1 <fig1>` показан граф, представляющий курсы и порядок их прохождения для получения специализации по информатике в Luther College.
 
 .. _fig1:
 
 .. figure:: Figures/CS-Prereqs.png
     :align: center
 
-    Figure 1: Prerequisites for a Computer Science Major
-
+    Figure 1: Необходимые условия для получения специализации по информатике.

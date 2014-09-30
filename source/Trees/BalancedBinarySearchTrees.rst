@@ -7,46 +7,22 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Balanced Binary Search Trees
-----------------------------
+Сбалансированные деревья поиска
+-------------------------------
 
-In the previous section we looked at building a binary search tree. As
-we learned, the performance of the binary search tree can degrade to
-:math:`O(n)` for operations like ``get`` and ``put`` when the tree
-becomes unbalanced. In this section we will look at a special kind of
-binary search tree that automatically makes sure that the tree remains
-balanced at all times. This tree is called an **AVL tree** and is named
-for its inventors: G.M. Adelson-Velskii and E.M. Landis.
+В предыдущем разделе мы рассмотрели построение двоичного дерева поиска. Как уже говорилось, при несбалансированности производительность его операций, подобных ``get`` и ``put``, может деградировать до :math:`O(n)`. В этом разделе мы рассмотрим специальный вид двоичных деревьев, которые автоматически гарантируют неизменную сбалансированность. Их называют **АВЛ-деревья** (от имён изобретателей: Адельсон-Вельского Георгия Максимовича и Ландиса Евгения Михайловича).
 
-An AVL tree implements the Map abstract data type just like a regular
-binary search tree, the only difference is in how the tree performs. To
-implement our AVL tree we need to keep track of a **balance factor** for
-each node in the tree. We do this by looking at the heights of the left
-and right subtrees for each node. More formally, we define the balance
-factor for a node as the difference between the height of the left
-subtree and the height of the right subtree.
+АВЛ-дерево реализует АТД ``Map`` так же, как и обычное двоичное дерево поиска. Единственное отличие состоит в принципе работы дерева. Чтобы воплотить АВЛ-дерево, нам потребуется отслеживать **фактор сбалансированности** для каждого узла дерева. Мы будем делать это, следя за высотой левого и правого поддеревьев каждого из узлов. Более формально фактор сбалансированности для узла равен разнице между высотами его правого и левого поддеревьев.
 
 .. math::
 
    balanceFactor = height(leftSubTree) - height(rightSubTree)
 
-Using the definition for balance factor given above we say that a
-subtree is left-heavy if the balance factor is greater than zero. If the
-balance factor is less than zero then the subtree is right heavy. If the
-balance factor is zero then the tree is perfectly in balance. For
-purposes of implementing an AVL tree, and gaining the benefit of having
-a balanced tree we will define a tree to be in balance if the balance
-factor is -1, 0, or 1. Once the balance factor of a node in a tree is
-outside this range we will need to have a procedure to bring the tree
-back into balance. :ref:`Figure 1 <fig_unbal>` shows an example of an unbalanced,
-right-heavy tree and the balance factors of each node.
-
+Используя это определение, мы будем говрить, что дерево перевешивает влево, если фактор сбалансированности больше нуля, и вправо - если он меньше нуля. Если фактор равен нулю, то дерево сбалансировано идеально. При реализации АВЛ-дерева и использовании выгод от его сбалансированности, будем считать, что дерево сбалансировано, если фактор баланса равен -1, 0 или 1. Если же для какого-либо узла эта величина выходит за данный диапазон, то потребуется процедура возвращения дерева к сбалансированному состоянию. На :ref:`рисунке 1 <fig_unbal>` показан пример несбалансированного, перевешивающего вправо дерева и факторы сбалансированности для каждого из его узлов.
 
 .. _fig_unbal:
 
 .. figure:: Figures/unbalanced.png
    :align: center
 
-   Figure 1: An Unbalanced Right-Heavy Tree with Balance Factors
-   
-
+   Рисунок 1: Несбалансированное, перевешивающее вправо дерево и факторы баланса для его узлов.

@@ -7,13 +7,12 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Discussion Questions
---------------------
+Вопросы для обсуждения
+-----------------------
 
-#. Draw the tree structure resulting from the following set of tree
-   function calls:
+#. Нарисуйте дерево, которое будет результатом следующего перечня вызовов функций:
 
-   ::
+::
 
        >>> r = BinaryTree(3)
        >>> insertLeft(r,4)
@@ -27,59 +26,38 @@ Discussion Questions
        >>> setRootVal(r,9)
        >>> insertLeft(r,11)
        [9, [11, [5, [4, [], []], []], []], [7, [], [6, [], []]]]
-	      
 
-#. Trace the algorithm for creating an expression tree for the
-   expression :math:`(4 * 8) / 6 - 3`.
+#. Сделайте трассировку алгоритма для создания дерева из выражения :math:`(4 * 8) / 6 - 3`.
 
-#. Consider the following list of integers: [1,2,3,4,5,6,7,8,9,10]. Show
-   the binary search tree resulting from inserting the integers in the
-   list.
+#. Рассмотрим следующий список целых чисел: [1,2,3,4,5,6,7,8,9,10]. Покажите двоичное дерево поиска, получающееся в результате вставки чисел в список.
 
-#. Consider the following list of integers: [10,9,8,7,6,5,4,3,2,1]. Show
-   the binary search tree resulting from inserting the integers in the
-   list.
+#. Рассмотрим следующий список целых чисел: [10,9,8,7,6,5,4,3,2,1]. Покажите двоичное дерево поиска, получающееся в результате вставки чисел в список.
 
-#. Generate a random list of integers. Show the binary heap tree
-   resulting from inserting the integers on the list one at a time.
+#. Сгенерируйте список из случайных целых чисел. Покажите двоичное дерево кучи, получающееся в результате их вставки в список по одному.
 
-#. Using the list from the previous question, show the binary heap tree
-   resulting from using the list as a parameter to the ``buildHeap``
-   method. Show both the tree and list form.
+#. Используя список из предыдущего вопроса, покажите двоичное дерево кучи, получающееся в результате использования списка в качестве параметра метода ``buildHeap``. Продемонстрируйте обе формы: в виде списка и в виде дерева.
 
-#. Draw the binary search tree that results from inserting the following
-   keys in the order given: 68,88,61,89,94,50,4,76,66, and 82.
+#. Нарисуйте двоичное дерево поиска, которое будет результатом вставки следующих ключей в заданном порядке: 68,88,61,89,94,50,4,76,66 и 82.
 
-#. Generate a random list of integers. Draw the binary search tree
-   resulting from inserting the integers on the list.
+#. Сгенерируйте список случайных целых чисел. Нарисуйте двоичное дерево поиска, получающееся в результате их вставки в список.
 
-#. Consider the following list of integers: [1,2,3,4,5,6,7,8,9,10]. Show
-   the binary heap resulting from inserting the integers one at a time.
+#. Рассмотрим следующий список: [1,2,3,4,5,6,7,8,9,10]. Покажите двоичную кучу, которая будет результатом вставки чисел по одному за раз.
 
-#. Consider the following list of integers: [10,9,8,7,6,5,4,3,2,1]. Show
-   the binary heap resulting from inserting the integers one at a time.
+#. Рассмотрим следующий список: [10,9,8,7,6,5,4,3,2,1]. Покажите двоичную кучу, которая будет результатом вставки чисел по одному за раз.
 
-#. Consider the two different techniques we used for implementing traversals of a binary
-   tree. Why must we check before the call to ``preorder`` when
-   implementing as a method, whereas we could check inside the call when
-   implementing as a function?
+#. Рассмотрите две различные техники, которые мы использовали для реализации проходов по двоичному дереву. Почему мы делаем проверку перед вызовом ``preorder``, когда реализуем метод, хотя для функции она происходит внутри?
 
-12. Show the function calls needed to build the following binary tree.
-
+#. Покажите функциональные вызовы, необходимые для построения следующего двоичного дерева:
 
 .. figure:: Figures/exerTree.png
         :align: center
 
+#. Выполните соответствующие вращения для заданного дерева, чтобы привести его в сбалансированное состояние.
 
-13. Given the following tree, perform the appropriate rotations to bring it back into balance.
-   
-   
 .. figure:: Figures/rotexer1.png
          :align: center
 
+#. Используя следующий рисунок, как стартовую точку, выведите уравнение, дающее обновление фактора сбалансированности для узла D.
 
-14. Using the following as a starting point, derive the equation that gives the updated balance factor for node D.
-   
 .. figure:: Figures/bfderive.png
          :align: center
-

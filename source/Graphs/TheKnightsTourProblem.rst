@@ -7,30 +7,13 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Knight’s Tour Problem
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Задача о ходе коня
+~~~~~~~~~~~~~~~~~~
 
-Another classic problem that we can use to illustrate a second common
-graph algorithm is called the “knight’s tour.” The knight’s
-tour puzzle is played on a chess board with a single chess piece, the
-knight. The object of the puzzle is to find a sequence of moves that
-allow the knight to visit every square on the board exactly once. One
-such sequence is called a “tour.” The knight’s tour puzzle has
-fascinated chess players, mathematicians and computer scientists alike
-for many years. The upper bound on the number of possible legal tours
-for an eight-by-eight chessboard is known to be
-:math:`1.305 \times 10^{35}`; however, there are even more possible
-dead ends. Clearly this is a problem that requires some real brains,
-some real computing power, or both.
+Чтобы проиллюстрировать второй распространённый алгоритм для графов, мы возьмём другую классическую задачу: "о ходе коня". Она разыгрывается на шахматной доске всего одной фигурой - конём. Целью головоломки является поиск такой последовательности ходов (маршрута), чтобы конь посетил каждую клетку доски ровно один раз. Эта задача очаровывает шахматных игроков, математиков и информатиков уже в течение многих лет. Верхний предел количества возможных маршрутов для шахматной доски 8х8 равен :math:`1.305 \times 10^{35}`. Однако, тупиковых вариантов неизмеримо больше. Очевидно, что задача из тех, которые требуют человеческого разума, компьютерной мощи или и того и другого вместе.
 
-Although researchers have studied many different algorithms to solve the
-knight’s tour problem, a graph search is one of the easiest to
-understand and program. Once again we will solve the problem using two
-main steps:
+Хотя исследователи изучили множество различных алгоритмов для решения этой головоломки, поиск по графу - один из простейших для понимания и программирования. Мы вновь будем искать решение, используя два основных шага:
 
--  Represent the legal moves of a knight on a chessboard as a graph.
+- Представим в виде графа осуществимые ходы коня по доске.
 
--  Use a graph algorithm to find a path of length
-   :math:`rows \times columns - 1` where every vertex on the graph is
-   visited exactly once.
-
+- Используем алгоритм для поиска в графе пути длиной :math:`rows \times columns - 1`, где каждая вершина будет посещена ровно один раз.

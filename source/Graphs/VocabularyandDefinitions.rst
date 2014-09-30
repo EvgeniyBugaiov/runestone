@@ -7,53 +7,29 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Vocabulary and Definitions
+Терминология и определения
 --------------------------
 
-Now that we have looked at some examples of graphs, we will more
-formally define a graph and its components. We already know some of
-these terms from our discussion of trees.
+Теперь, после ознакомления с несколькими примерами, давайте дадим более формальное определение графу и его компонентам. С некоторыми терминами мы уже познакомились при обсуждении деревьев.
 
-Vertex
-    A vertex (also called a “node”) is a fundamental part of a graph. It
-    can have a name, which we will call the “key.” A vertex may also
-    have additional information. We will call this additional
-    information the “payload.”
+Вершина
+	Вершина (иногда её называют "узел") - основная часть графа. Может иметь имя, которое называется "ключ". Также вершина может обладать дополнительной информацией, которую мы будем называть "полезной нагрузкой".
 
-Edge
-    An edge (also called an “arc”) is another fundamental part of a
-    graph. An edge connects two vertices to show that there is a
-    relationship between them. Edges may be one-way or two-way. If the
-    edges in a graph are all one-way, we say that the graph is a
-    **directed graph**, or a **digraph**. The class prerequisites graph
-    shown above is clearly a digraph since you must take some classes
-    before others.
+Ребро
+	Ребро (или "дуга") - другая фундаментальная часть графа. Ребро, соединяющее две вершины, показывает наличие между ними определённых отношений. Рёбра могут быть одно- и двунаправленными. Если все рёбра графа однонаправленные, то мы называем его **направленным графом** или **диграфом** (от англ. *directed graph* - прим. переводчика). Показанный выше граф необходимых курсов - явный диграф, поскольку вы обязаны проходить одни курсы прежде, чем другие.
 
-Weight
-    Edges may be weighted to show that there is a cost to go from one
-    vertex to another. For example in a graph of roads that connect one
-    city to another, the weight on the edge might represent the distance
-    between the two cities.
+Вес
+	Рёбра могут иметь вес, показывающий стоимость перемещения от одной вершины до другой. Например, в графе дорог, связывающих города, вес ребра может отображать расстояние между двумя населёнными пунктами.
 
-With those definitions in hand we can formally define a graph. A graph
-can be represented by :math:`G` where :math:`G =(V,E)`. For the
-graph :math:`G`, :math:`V` is a set of vertices and :math:`E` is a
-set of edges. Each edge is a tuple :math:`(v,w)` where
-:math:`w,v \in V`. We can add a third component to the edge tuple to
-represent a weight. A subgraph :math:`s` is a set of edges :math:`e`
-and vertices :math:`v` such that :math:`e \subset E` and
-:math:`v \subset V`.
+Имея на руках все эти определения, мы можем дать формальное определение графа. Он может быть представлен как :math:`G`, где :math:`G =(V,E)`. Здесь :math:`V` - множество вершин графа, а :math:`E` - множество соединяющих их рёбер. Каждое ребро представляет собой кортеж :math:`(v,w)`, где :math:`w,v \in V`. Сюда можно добавлять третий компонент, отображающий вес ребра. Подграф :math:`s` - это набор рёбер :math:`e` и вершин :math:`v` таких, что :math:`e \subset E` и :math:`v \subset V`.
 
-:ref:`Figure  2 <fig_dgsimple>` shows another example of a simple weighted
-digraph. Formally we can represent this graph as the set of six
-vertices:
+:ref:`Рисунок 2 <fig_dgsimple>` демонстрирует ещё один пример простого диграфа с весами. Формально мы можем представить его, как множество из шести вершин:
 
 .. math::
 
    V = \left\{ V0,V1,V2,V3,V4,V5 \right\}
 
-
-and the set of nine edges:
+и множество из девяти рёбер:
 
 .. math::
 
@@ -66,29 +42,14 @@ and the set of nine edges:
 .. figure:: Figures/digraph.png
    :align: center
 
-   Figure 2: A Simple Example of a Directed Graph
+   Рисунок 2: Простой пример направленного графа.
 
-The example graph in :ref:`Figure 2 <fig_dgsimple>` helps illustrate two other
-key graph terms:
+Пример графа на :ref:`рисунке 2 <fig_dgsimple>` помогает проиллюстрировать два других ключевых темина графа:
 
-Path
-    A path in a graph is a sequence of vertices that are connected by
-    edges. Formally we would define a path as
-    :math:`w_1, w_2, ..., w_n` such that
-    :math:`(w_i, w_{i+1}) \in E` for all :math:`1 \le i \le n-1`.
-    The unweighted path length is the number of edges in the path,
-    specifically :math:`n-1`. The weighted path length is the sum of
-    the weights of all the edges in the path. For example in
-    :ref:`Figure 2 <fig_dgsimple>` the path from :math:`V3` to :math:`V1` is
-    the sequence of vertices :math:`(V3,V4,V0,V1)`. The edges are
-    :math:`\left\{(v3,v4,7),(v4,v0,1),(v0,v1,5) \right\}`.
+Путь
+	Путь в графе - это последовательность вершин, соединённых рёбрами. Формально путь можно определить, как :math:`w_1, w_2, ..., w_n` такой, что :math:`(w_i, w_{i+1}) \in E` для всех :math:`1 \le i \le n-1`.
 
-Cycle
-    A cycle in a directed graph is a path that starts and ends at the
-    same vertex. For example, in :ref:`Figure 2 <fig_dgsimple>` the path
-    :math:`(V5,V2,V3,V5)` is a cycle. A graph with no cycles is called
-    an **acyclic graph**. A directed graph with no cycles is called a
-    **directed acyclic graph** or a **DAG**. We will see that we can
-    solve several important problems if the problem can be represented
-    as a DAG.
+Длиной пути без весов будет количество в нём рёбер: :math:`n-1`. Взвешенный путь в графе будет суммой весов всех входящих в него рёбер. Например, на :ref:`рисунке 2 <fig_dgsimple>` путём из :math:`V3` в :math:`V1` будет последовательность вершин :math:`(V3,V4,V0,V1)`. Рёбрами - :math:`\left\{(v3,v4,7),(v4,v0,1),(v0,v1,5) \right\}`.
 
+Цикл
+	Цикл в направленном графе начинается и заканчивается в одной и той же вершине. Например, на :ref:`рисунке 2 <fig_dgsimple>` циклом будет путь :math:`(V5,V2,V3,V5)`. Граф без циклов называется **ацикличным**. Направленный граф без циклов - это "ациклический направленный граф" или **DAG** (от англ. *directed acyclic graph* - прим. переводчика). Мы увидим, что с его помощью можно решить несколько важных задач.

@@ -7,44 +7,21 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Shortest Path Problems
-----------------------
+Задача поиска кратчайшего пути
+------------------------------
 
-When you surf the web, send an email, or log in to a laboratory computer
-from another location on campus a lot of work is going on behind the
-scenes to get the information on your computer transferred to another
-computer. The in-depth study of how information flows from one computer
-to another over the Internet is the primary topic for a class in
-computer networking. However, we will talk about how the Internet works
-just enough to understand another very important graph algorithm.
+Когда вы бродите по интернету, отправляете е-мейл или подключаетесь к лабораторному компьютеру из другого места в кампусе, за кулисами проделывается большая работа по переносу информации с вашего компьютера на другую машину. Глубокое изучение того, как движутся информационные потоки через интернет, - главная тема предмета "Компьютерные сети". Однако, здесь мы также обсудим работу интернета в объёме, достаточном для понимания другого очень важного алгоритма на графах.
 
 .. _fig_inet:
 
 .. figure:: Figures/Internet.png
    :align: center
 
-   Figure 1: Overview of Connectivity in the Internet     
+   Рисунок 1: Обзор взаимосвязей в интернете
 
+На :ref:`рисунке 1 <fig_inet>` показан высокоуровневый обзор того, как работают коммуникации через интернет. Когда вы используете браузер для запроса веб-страницы с сервера, он должен уйти из вашей локальной сети дальше в интернет через маршрутизатор. Запрос путешествует по интернету и в конце-концов приходит на маршрутизатор локальной сети, в которой находится сервер. Затем требуемая веб-страница возвращается обратно к вашему браузеру тем же самым путём. Внутри облака, помеченного на :ref:`рисунке 1 <fig_inet>` как "Интернет", располагаются дополнительные маршрутизаторы. Их работа заключается в том, чтобы совместно передавать информацию с места на место. Вы сами можете увидеть множество маршрутизаторов, если ваш компьютер поддерживает команду ``traceroute``. Текст ниже показывает её вывод, чем иллюстрирует наличие тринадцати маршрутизаторов между сервером Luther College и почтовым сервером университета Миннесоты.
 
-
-:ref:`Figure 1 <fig_inet>` shows you a high-level overview of how communication
-on the Internet works. When you use your browser to request a web page
-from a server, the request must travel over your local area network and
-out onto the Internet through a router. The request travels over the
-Internet and eventually arrives at a router for the local area network
-where the server is located. The web page you requested then travels
-back through the same routers to get to your browser. Inside the cloud
-labelled “Internet” in :ref:`Figure 1 <fig_inet>` are additional routers. The job
-of all of these routers is to work together to get your information from
-place to place. You can see there are many routers for yourself if your
-computer supports the ``traceroute`` command. The text below shows
-the output of the ``traceroute`` command which illustrates that there
-are 13 routers between the web server at Luther College and the mail
-server at the University of Minnesota.
-
-::
-
-         1  192.203.196.1  
+1  192.203.196.1  
          2  hilda.luther.edu (216.159.75.1)  
          3  ICN-Luther-Ether.icn.state.ia.us (207.165.237.137)
          4  ICN-ISP-1.icn.state.ia.us (209.56.255.1)  
@@ -59,17 +36,9 @@ server at the University of Minnesota.
          13  baldrick.cs.umn.edu (128.101.80.129)(N!)  88.631 ms (N!)
             
 
-         Routers from One Host to the Next over the Internet      
+         Маршрутизаторы на пути через интернет от одного хоста до другого.
 
-
-Each router on the Internet is connected to one or more other routers.
-So if you run the ``traceroute`` command at different times of the day,
-you are likely to see that your information flows through different
-routers at different times. This is because there is a cost associated
-with each connection between a pair of routers that depends on the
-volume of traffic, the time of day, and many other factors. By this time
-it will not surprise you to learn that we can represent the network of
-routers as a graph with weighted edges.
+Каждый маршрутизатор в интернете соединён с одним или более своими коллегами. Поэтому если вы запускаете команду ``traceroute`` несколько раз в день, то весьма вероятно увидите, что каждый раз информация проходит по новому маршруту. Это происходит из-за определённой величины издержек, ассоциируемой с каждой связью между парами маршрутизаторов в зависимости от объёма трафика, времени суток и многих других факторов. В этот раз мы не удивим вас, сказав, что будем представлять сеть маршрутизаторов в виде графа, чьи рёбра имеют определённый вес.
 
 .. _fig_network:
 
@@ -77,16 +46,6 @@ routers as a graph with weighted edges.
 .. figure:: Figures/routeGraph.png
    :align: center
 
-   Figure 2: Connections and Weights between Routers in the Internet
-          
+   Рисунок 2: Связи между маршрутизаторами в интернете и их веса.
 
-
-:ref:`Figure 2 <fig_network>` shows a small example of a weighted graph that
-represents the interconnection of routers in the Internet. The problem
-that we want to solve is to find the path with the smallest total weight
-along which to route any given message. This problem should sound
-familiar because it is similar to the problem we solved using a breadth
-first search, except that here we are concerned with the total weight of
-the path rather than the number of hops in the path. It should be noted
-that if all the weights are equal, the problem is the same.
-
+На :ref:`рисунке 2 <fig_network>` показан небольшой пример взвешенного графа, представляющего взаимосвязи между маршрутизаторами в интернете. Задача, которую мы хотим решить, - это найти путь с наименьшим общим весом, по которому маршрутизатор может передать любое сообщение. Это задание звучит знакомо - нечто подобное мы делали с помощью поиска в ширину. Отличие в том, что здесь мы будем иметь дело с общим весом пути, а не количеством переходов по нему. Следует отметить, что при равенстве всех весов задачи становятся одинаковыми.

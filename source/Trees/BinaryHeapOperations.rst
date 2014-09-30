@@ -7,37 +7,32 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Binary Heap Operations
-~~~~~~~~~~~~~~~~~~~~~~
+Операции с двоичной кучей
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The basic operations we will implement for our binary heap are as
-follows:
+Основные операции, которые мы реализуем для нашей двоичной кучи, следующие:
 
--  ``BinaryHeap()`` creates a new, empty, binary heap.
+-  ``BinaryHeap()`` создаёт новую пустую двоичную кучу.
 
--  ``insert(k)`` adds a new item to the heap.
+-  ``insert(k)`` добавляет в кучу новый элемент.
 
--  ``findMin()`` returns the item with the minimum key value, leaving
-   item in the heap.
+-  ``findMin()`` возвращает элемент с минимальным значением ключа, оставляя его в куче.
 
--  ``delMin()`` returns the item with the minimum key value, removing
-   the item from the heap.
+-  ``delMin()`` возвращает элемент с минимальным значением ключа, удаляя его из кучи.
 
--  ``isEmpty()`` returns true if the heap is empty, false otherwise.
+-  ``isEmpty()`` возвращает истину, если куча пуста, ложь в противном случае.
 
--  ``size()`` returns the number of items in the heap.
+-  ``size()`` возвращает количество элементов в куче.
 
--  ``buildHeap(list)`` builds a new heap from a list of keys.
+-  ``buildHeap(list)`` создаёт новую кучу из списка ключей.
 
-:ref:`ActiveCode 1 <lst_heap1>` demonstrates the use of some of the binary
-heap methods.  Notice that no matter the order that we add items to the heap, the smallest
-is removed each time.  We will now turn our attention to creating an implementation for this idea.
+:ref:`ActiveCode 1 <lst_heap1>` демонстрирует использование некоторых из этих методов. Обратите внимание, что неважно, в каком порядке мы добавляем элементы, - каждый раз удаляется наименьший. Сосредоточимся на воплощении этой задумки.
 
 .. _lst_heap1:
 
 
 .. activecode:: heap1
-    :caption: Using the Binary Heap
+    :caption: Использование двоичной кучи
     
     from pythonds.trees.binheap import BinHeap
     
@@ -54,5 +49,3 @@ is removed each time.  We will now turn our attention to creating an implementat
     print(bh.delMin())
 
     print(bh.delMin())
-
-

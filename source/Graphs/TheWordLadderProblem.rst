@@ -7,17 +7,10 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-The Word Ladder Problem
-~~~~~~~~~~~~~~~~~~~~~~~
+Задача о словесной лестнице
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To begin our study of graph algorithms let’s consider the following
-puzzle called a word ladder. Transform the word “FOOL” into the word
-“SAGE”. In a word ladder puzzle you must make the change occur gradually
-by changing one letter at a time. At each step you must transform one
-word into another word, you are not allowed to transform a word into a
-non-word. The word ladder puzzle was invented in 1878 by Lewis Carroll,
-the author of *Alice in Wonderland*. The following sequence of words
-shows one possible solution to the problem posed above.
+В начале изучения алгоритмов для графов, давайте рассмотрим следующую головоломку, которая называется "словесная лестница". Требуется преобразовать слово “FOOL” в слово “SAGE”. Изменения должны происходить постепенно, по букве за раз. На каждом шаге вы должны трансформировать слово в другое слово, а не в бессмыслицу. "Словесная лестница" была изобретена в 1878 году Льюисом Кэрролом - автором *Алисы в Стране Чудес*. Следующая последовательность слов показывает одно из возможных решений поставленной выше задачи.
 
 ::
 
@@ -27,20 +20,12 @@ shows one possible solution to the problem posed above.
  POLE
  PALE
  SALE
- SAGE        
- 
-There are many variations of the word ladder puzzle. For example you
-might be given a particular number of steps in which to accomplish the
-transformation, or you might need to use a particular word. In this
-section we are interested in figuring out the smallest number of
-transformations needed to turn the starting word into the ending word.
+ SAGE 
 
-Not surprisingly, since this chapter is on graphs, we can solve this
-problem using a graph algorithm. Here is an outline of where we are
-going:
+Существует множество вариантов головоломки "словесная лестница". Например, вы можете задать определённое количество шагов, за которые нужно осуществить преобразование, или потребовать обязательного использования конкретного слова. В этом разделе нам будет интересно выяснить наименьшее количество трансформаций, необходимых для преобразования начального слова в конечный результат.
 
--  Represent the relationships between the words as a graph.
+Поскольку эта глава о графах, то не будет сюрпризом, что мы решим задачу, используя алгоритм для графа. Вот наш план действий:
 
--  Use the graph algorithm known as breadth first search to find an
-   efficient path from the starting word to the ending word.
+- Представить отношения между словами в виде графа.
 
+- Использовать алгоритм для графа, известный как поиск в ширину, чтобы найти эффективный путь от начального до конечного слова.

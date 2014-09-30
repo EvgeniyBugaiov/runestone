@@ -7,26 +7,19 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Search Tree Operations
-~~~~~~~~~~~~~~~~~~~~~~
+Операции для дерева поиска
+--------------------------
 
-Before we look at the implementation, let’s review the interface
-provided by the map ADT. You will notice that this interface is very
-similar to the Python dictionary.
+Перед тем, как рассмотреть реализацию, давайте освежим в памяти интерфейс, предоставляемый АТД ``map``. Вы можете заметить, что он очень похож на словарь Python.
 
--  ``Map()`` Create a new, empty map.
+-  ``Map()`` Создаёт новое пустое отображение.
 
--  ``put(key,val)`` Add a new key-value pair to the map. If the key is
-   already in the map then replace the old value with the new value.
+-  ``put(key,val)`` Добавляет в отображение новую пару ключ-значение. Если ключ уже существует, то заменяет старое значение новым.
 
--  ``get(key)`` Given a key, return the value stored in the map or
-   ``None`` otherwise.
+-  ``get(key)`` По заданному ключу возвращает значение, хранящееся в отображении, или ``None``, если такого ключа не существует.
 
--  ``del`` Delete the key-value pair from the map using a statement of
-   the form ``del map[key]``.
+-  ``del`` Удаляет пару ключ-значение из отображения, используя оператор вида ``del map[key]``.
 
--  ``len()`` Return the number of key-value pairs stored in the map.
+-  ``len()`` Возвращает количество пар ключ-значение, хранящихся в отображении.
 
--  ``in`` Return ``True`` for a statement of the form ``key in map``, if
-   the given key is in the map.
-
+-  ``in`` Возвращает ``True`` для оператора вида ``key in map``, если заданный ключ присутствует в отображении.

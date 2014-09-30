@@ -7,74 +7,32 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Implementing Breadth First Search
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Реализация поиска в ширину
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-With the graph constructed we can now turn our attention to the
-algorithm we will use to find the shortest solution to the word ladder
-problem. The graph algorithm we are going to use is called the “breadth
-first search” algorithm. **Breadth first search** (**BFS**) is one of
-the easiest algorithms for searching a graph. It also serves as a
-prototype for several other important graph algorithms that we will
-study later.
+После создания графа мы можем переключиться на алгоритм, который будем использовать для поиска кратчайшего решения "словесной лестницы". Этот алгоритм для графов называется "поиск в ширину". **Поиск в ширину** (**BFS** - от англ. *breadth first search*) - один из самых лёгких алгоритмов поиска в графе. Так же он служит прототипом некоторых других важных алгоритмов, которые мы изучим позже.
 
-Given a graph :math:`G` and a starting vertex :math:`s`, a breadth
-first search proceeds by exploring edges in the graph to find all the
-vertices in :math:`G` for which there is a path from :math:`s`. The
-remarkable thing about a breadth first search is that it finds *all* the
-vertices that are a distance :math:`k` from :math:`s` before it
-finds *any* vertices that are a distance :math:`k+1`. One good way to
-visualize what the breadth first search algorithm does is to imagine
-that it is building a tree, one level of the tree at a time. A breadth
-first search adds all children of the starting vertex before it begins
-to discover any of the grandchildren.
+Для заданных графа :math:`G` и начальной вершины :math:`s` работа поиска в ширину заключается в исследовании рёбер графа с целью найти все вершины :math:`G`, к которым существет путь из :math:`s`. Замечательной особенностью поиска в ширину является то, что он находит *все* вершины на расстоянии :math:`k` от :math:`s` до того, как начинает искать *любую* из вершин на расстоянии :math:`k+1`. Одним из хороших способов визуализации поиска в ширину будет представление о том, что он строит дерево, по одному уровню за раз. Алгоритм добавляет всех детей начальной вершины до того, как обнаруживает любого из её внуков.
 
-To keep track of its progress, BFS colors each of the vertices white,
-gray, or black. All the vertices are initialized to white when they are
-constructed. A white vertex is an undiscovered vertex. When a vertex is
-initially discovered it is colored gray, and when BFS has completely
-explored a vertex it is colored black. This means that once a vertex is
-colored black, it has no white vertices adjacent to it. A gray node, on
-the other hand, may have some white vertices adjacent to it, indicating
-that there are still additional vertices to explore.
+Чтобы отслеживать своё продвижение, BFS окрашивает каждую вершину в белый, серый или чёрный цвета. Все вершины при создании инициализируются белым. Когда вершина обнаруживается в превый раз, то ей задаётся серый цвет. Когда же BFS её полностью исследует, вершина окрашивается в чёрный. Это означает, что не существует смежных с ней белых вершин. С другой стороны, серый узел может иметь несколько связанных с ним белых вершин, показывая, что у нас ещё есть пространство для исследования.
 
-The breadth first search algorithm shown in :ref:`Listing 2 <lst_wordbucket2>` below uses the
-adjacency list graph representation we developed earlier. In addition it uses a ``Queue``,
-a crucial point as we will see, to decide which vertex to explore next.
+Алгоритм поиска в ширину показан ниже в :ref:`листинге 2 <lst_wordbucket2>`. Он использует представление графа в виде списка смежности, разработанное нами ранее. Дополнительно используется ``Queue`` - ключевой момент, как мы увидим, - чтобы решить, какую вершину исследовать следующей.
 
-In addition the BFS algorithm uses an extended version of the ``Vertex``
-class. This new vertex class adds three new instance variables:
-distance, predecessor, and color. Each of these instance variables also
-has the appropriate getter and setter methods. The code for this
-expanded Vertex class is included in the ``pythonds`` package, but we
-will not show it to you here as there is nothing new to learn by seeing
-the additional instance variables.
+Так же алгоритм BFS использует расширенную версию класса ``Vertex``. В неё добавлены три поля класса: расстояние, предшественник и цвет. Каждое из них также имеет соответствующие методы установки и считывания значения. Код расширенного класса ``Vertex`` включён в пакет ``pythonds``, но мы покажем его здесь, чтобы было ясно, что там нет ничего нового для изучения, кроме дополнительных атрибутов.
 
-BFS begins at the starting vertex ``s`` and colors ``start`` gray to
-show that it is currently being explored. Two other values, the distance
-and the predecessor, are initialized to 0 and ``None`` respectively for
-the starting vertex. Finally, ``start`` is placed on a ``Queue``. The
-next step is to begin to systematically explore vertices at the front of
-the queue. We explore each new node at the front of the queue by
-iterating over its adjacency list. As each node on the adjacency list is
-examined its color is checked. If it is white, the vertex is unexplored,
-and four things happen:
+BFS начинается с вершины ``s`` и окрашивает ``start`` в серый, показывая, что она изучается в настоящий момент. Два других значения - расстояние и предшественник - инициализируются 0 и ``None`` соответственно. Наконец, ``start`` помещается в ``Queue``. Следующим шагом будет систематическое исследование вершин в начале очереди. Мы исследуем каждый новый узел, находящийся на этой позиции, путём перебора его списка смежности. Каждый из узлов списка будет проверен на цвет. Если он белый, то вершина неисследована, и произойдут следующие четыре вещи:
 
-#. The new, unexplored vertex ``nbr``, is colored gray.
+#. Новая неисследованная вершина ``nbr`` окрашивается в серый.
 
-#. The predecessor of ``nbr`` is set to the current node ``currentVert``
+#. Предшественником ``nbr`` устанавливается текущий узел ``currentVert``.
 
-#. The distance to ``nbr`` is set to the distance to ``currentVert + 1``
+#. Расстояние ``nbr`` устанавливается равным расстоянию ``currentVert + 1``.
 
-#. ``nbr`` is added to the end of a queue. Adding ``nbr`` to the end of
-   the queue effectively schedules this node for further exploration,
-   but not until all the other vertices on the adjacency list of
-   ``currentVert`` have been explored.
-   
-   
+#. ``nbr`` добавляется в конец очереди. Это эффективно планирует дальнейшее исследование этого узла, но не прежде, чем будут исследованы остальные вершины из списка смежности ``currentVert``.
+
 .. _lst_wordbucket2:
 
-**Listing 2**
+**Листинг 2**
 
 ::
 
@@ -96,51 +54,32 @@ and four things happen:
             vertQueue.enqueue(nbr)
         currentVert.setColor('black')
 
-Let’s look at how the ``bfs`` function would construct the breadth first
-tree corresponding to the graph in :ref:`Figure 1 <fig_wordladder>`. Starting
-from fool we take all nodes that are adjacent to fool and add them to
-the tree. The adjacent nodes include pool, foil, foul, and cool. Each of
-these nodes are added to the queue of new nodes to expand.
-:ref:`Figure 3 <fig_bfs1>` shows the state of the in-progress tree along with the
-queue after this step.
+Теперь давайте посмотрим, как функция ``bfs`` конструирует дерево поиска в ширину относительно графа на :ref:`рисунке 1 <fig_wordladder>`. Начиная с "FOOL" мы берём все смежные с ним узлы и вставляем их в дерево. Такими узлами являются "POOL", "FOIL", "FOUL" и "COOL". Так же каждый из них добавляется в очередь. :ref:`Рисунок 3 <fig_bfs1>` показывает состояние дерева вместе с очередью после этого шага.
 
 .. _fig_bfs1:
 
 .. figure:: Figures/bfs1.png
    :align: center
 
-   Figure 3: The First Step in the Breadth First Search
+   Рисунок 3: Первый шаг поиска в ширину.
 
-In the next step ``bfs`` removes the next node (pool) from the front of
-the queue and repeats the process for all of its adjacent nodes.
-However, when ``bfs`` examines the node cool, it finds that the color of
-cool has already been changed to gray. This indicates that there is a
-shorter path to cool and that cool is already on the queue for further
-expansion. The only new node added to the queue while examining pool is
-poll. The new state of the tree and queue is shown in :ref:`Figure 4 <fig_bfs2>`.
+На следующем шаге ``bfs`` из начала очереди удаляется очередной узел ("POOL"), и процесс повторяется для всех смежных с ним узлов. Однако, когда ``bfs`` проверяет узел "COOL", она обнаруживает, что цвет этого узла уже был изменён на серый. Это говорит о том, что существует более короткий путь в "COOL" и что этот узел уже находится в очереди для дальнейшего рассмотрения. Единственным добавленным в очередь узлом при исследовании "COOL" стал "POLL". Новое состояние очереди и дерева показано на :ref:`рисунке 4 <fig_bfs2>`. 
 
 .. _fig_bfs2:
 
 .. figure:: Figures/bfs2.png
    :align: center
 
-   Figure 4: The Second Step in the Breadth First Search
+   Рисунок 4: Второй шаг поиска в ширину.
 
-
-
-The next vertex on the queue is foil. The only new node that foil can
-add to the tree is fail. As ``bfs`` continues to process the queue,
-neither of the next two nodes add anything new to the queue or the tree.
-:ref:`Figure 5 <fig_bfs3>` shows the tree and the queue after expanding all the
-vertices on the second level of the tree.
-
+Следующая вершина в очереди - "FOIL". Единственным узлом, который она вставит в дерево, станет "FAIL". После того, как ``bfs`` продолжит обрабатывать очередь, ни один из следующих двух узлов ничего нового не добавит. :ref:`Рисунок 5 <fig_bfs3>` показывает очередь и дерево после исследования всех вершин второго уровня.
 
 .. _fig_bfs3:
 
 .. figure:: Figures/bfs3.png
    :align: center
    
-   Figure 5: Breadth First Search Tree After Completing One Level
+   Рисунок 5: Поиск в ширину после заполнения первого уровня.
 
 
 .. _fig_bfsDone:
@@ -148,23 +87,13 @@ vertices on the second level of the tree.
 .. figure:: Figures/bfsDone.png
    :align: center
 
-   FIgure 6: Final Breadth First Search Tree      
+   Рисунок 6: Итоговое дерево поиска в ширину
 
-
-You should continue to work through the algorithm on your own so that
-you are comfortable with how it works. :ref:`Figure 6 <fig_bfsDone>` shows the
-final breadth first search tree after all the vertices in
-:ref:`Figure 3 <fig_wordladder>` have been expanded. The amazing thing about the
-breadth first search solution is that we have not only solved the
-FOOL–SAGE problem we started out with, but we have solved many other
-problems along the way. We can start at any vertex in the breadth first
-search tree and follow the predecessor arrows back to the root to find
-the shortest word ladder from any word back to fool. The function below (:ref:`Listing 3 <lst_wordbucket3>`) shows how to follow the predecessor links to
-print out the word ladder.
+Вы можете продолжить работать по алгоритму самостоятельно, пока не почувствуете уверенное знание того, как он работает. :ref:`Рисунок 6 <fig_bfsDone>` показывает итоговое дерево поиска в ширину после того, как все вершины из :ref:`рисунка 3 <fig_wordladder>` будут исследованы. Потрясающим моментом решения с помощью поиска в ширину является то, что мы решили не просто задачу "FOOL–SAGE", с которой начинали, но и множество других. Мы можем начать с любой вершины дерева поиска в ширину и, пройдя по стрелкам предшественников в обратном направлении (к корню), найти кратчайшую словесную лестницу от любого слова до  "FOOL". Функция ниже (:ref:`листинг 3 <lst_wordbucket3>`) показывает, как пройти по ссылкам на предшественника, чтобы напечатать словесную лестницу.
 
 .. _lst_wordbucket3:
 
-**Listing 3**
+**Листинг 3**
 
 ::
 
@@ -176,4 +105,3 @@ print out the word ladder.
         print(x.getId())
 
     traverse(g.getVertex('sage'))
-

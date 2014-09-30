@@ -7,28 +7,11 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Breadth First Search Analysis
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Анализ поиска в ширину
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Before we continue with other graph algorithms let us analyze the run
-time performance of the breadth first search algorithm. The first thing
-to observe is that the while loop is executed,
-at most, one time for each vertex in the graph :math:`|V|`. You can
-see that this is true because a vertex must be white before it can be
-examined and added to the queue. This gives us :math:`O(V)` for the
-while loop. The for loop, which is nested inside the while is executed at most once for each edge in the graph,
-:math:`|E|`. The reason is that every vertex is dequeued at most once
-and we examine an edge from node :math:`u` to node :math:`v` only
-when node :math:`u` is dequeued. This gives us :math:`O(E)` for the
-for loop. combining the two loops gives us :math:`O(V + E)`.
+Прежде, чем перейти к другим алгоритмам для графов, давайте проанализируем временн*у*ю производительность поиска в ширину. В первую очередь нужно заметить, что для каждой вершины из :math:`|V|` происходит как минимум одно вычисление цикла ``while``. Вы можете убедиться, что это так, поскольку вершина должна быть окрашена в белый перед тем, как быть проверенной и добавленной в очередь. Это даёт нам :math:`O(V)` для цикла ``while``. Вложенный цикл ``for`` вычисляется минимум один раз для каждого ребра из :math:`|E|`. Причина этого в том, что каждая вершина минимум единожды извлекается из очереди, и мы проверяем ребро из :math:`u` в :math:`v` только когда :math:`u` побывало в очереди. Это даёт :math:`O(E)` для каждого цикла ``for``. Комбинируя два цикла вместе, получим :math:`O(V + E)`.
 
-Of course doing the breadth first search is only part of the task.
-Following the links from the starting node to the goal node is the other
-part of the task. The worst case for this would be if the graph was a
-single long chain. In this case traversing through all of the vertices
-would be :math:`O(V)`. The normal case is going to be some fraction of
-:math:`|V|` but we would still write :math:`O(V)`.
+Конечно, поиск в ширину - всего лишь часть задания. Проследовать по ссылкам от стартового узла до целевого является его второй частью. Наихудшим случаем будет граф в виде обычной длинной цепочки. Тогда проход по всем вершинам даст :math:`O(V)`. Обычно же берётся некая часть :math:`|V|`, но мы по-прежнему запишем :math:`O(V)`.
 
-Finally, at least for this problem, there is the time required to build
-the initial graph. We leave the analysis of the ``buildGraph`` function
-as an exercise for you.
+Наконец для данной задачи потребуется время на постороение начального графа. Мы оставляем анализ функции ``buildGraph`` в качестве упражнения для вас.

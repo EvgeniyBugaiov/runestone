@@ -7,20 +7,21 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Key Terms
----------
+Ключевые термины
+-----------------
 
-============= ===================== ==================== 
-     AVL tree           binary heap   binary search tree 
-  binary tree      child / children complete binary tree 
-         edge   heap order property               height 
-  ``inorder``             leaf node                level 
-          map          min/max heap                 node 
-       parent                  path        ``postorder`` 
- ``preorder``        priority queue                 root 
-     rotation               sibling            successor 
-      subtree                  tree 
-============= ===================== ==================== 
+=============== =============================== ====================== 
+     АВЛ-дерево                   двоичная куча двоичное дерево поиска 
+двоичное дерево               потомок / потомки полное двоичное дерево 
+          ветвь   свойство упорядоченности кучи                 высота 
+    ``inorder``                            лист                уровень 
+    отображение                    min/max heap                   узел 
+       родитель                            путь          ``postorder`` 
+   ``preorder``           очередь с приоритетом                 корень 
+       поворот                      узлы-братья               преемник 
+     поддерево                           дерево 
+============== ================================ ====================== 
 
 .. _tree_discuss:
+
 

@@ -7,35 +7,23 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Building the Knight’s Tour Graph
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Построение графа для задачи о ходе коня
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To represent the knight’s tour problem as a graph we will use the
-following two ideas: Each square on the chessboard can be represented as
-a node in the graph. Each legal move by the knight can be represented as
-an edge in the graph. :ref:`Figure 1 <fig_knightmoves>` illustrates the legal
-moves by a knight and the corresponding edges in a graph.
- 
+Чтобы представить задачу о ходе коня в виде графа, воспользуемся следующими двумя соображениями: каждая клетка на доске будет узлом, а каждый возможный ход фигуры - ребром. :ref:`Рисунок 1 <fig_knightmoves>` иллюстрирует соответствие доступные ходов коня рёбрам графа.
+
 .. _fig_knightmoves:
 
 .. figure:: Figures/knightmoves.png
    :align: center
 
-   Figure 1: Legal Moves for a Knight on Square 12, and the Corresponding Graph     
+   Рисунок 1: Доступные ходы коня, стоящего на клетке 12, и соответствующий им граф
 
-To build the full graph for an n-by-n board we can use the Python
-function shown in :ref:`Listing 1 <lst_knighttour1>`. The ``knightGraph`` function
-makes one pass over the entire board. At each square on the board the
-``knightGraph`` function calls a helper, ``genLegalMoves``, to create a
-list of legal moves for that position on the board. All legal moves are
-then converted into edges in the graph. Another helper function
-``posToNodeId`` converts a location on the board in terms of a row and a
-column into a linear vertex number similar to the vertex numbers shown
-in :ref:`Figure 1 <fig_knightmoves>`.
+Чтобы построить полный граф для доски :math:`n \times n`, мы используем код на Python, показанный в :ref:`листинге 1 <lst_knighttour1>`. Функция ``knightGraph`` совершает один проход через всю доску. В каждой из клеток она вызывает вспомогательную функцию ``genLegalMoves``, чтобы создать список возможных ходов для этой позиции. Все они конвертируются в рёбра графа. Другая вспомогательная функция ``posToNodeId`` преобразует положение фигуры на доске в терминах столбца и строки в линейный номер вершины, аналогичный номерам, показанным на :ref:`рисунке 1 <fig_knightmoves>`. 
 
 .. _lst_knighttour1:
 
-**Listing 1**
+**Листинг 1**
 
 ::
 
@@ -52,14 +40,11 @@ in :ref:`Figure 1 <fig_knightmoves>`.
                    ktGraph.addEdge(nodeId,nid)
         return ktGraph
 
-The ``genLegalMoves`` function (:ref:`Listing 2 <lst_knighttour2>`) takes the position of the knight on the
-board and generates each of the eight possible moves. The ``legalCoord``
-helper function (:ref:`Listing 2 <lst_knighttour2>`) makes sure that a particular move that is generated is
-still on the board.
+Функция ``genLegalMoves`` (:ref:`листинг 2 <lst_knighttour2>`) принимает позицию коня на доске и генерирует восемь доступных ходов. Вспомогательная функция ``legalCoord`` (:ref:`листинг 2 <lst_knighttour2>`) проверяет, что данный сгенерированный ход всё ещё лежит на доске.
 
 .. _lst_knighttour2:
 
-**Listing 2**
+**Листинг 2**
 
 ::
 
@@ -82,21 +67,11 @@ still on the board.
         else:
             return False
 
-:ref:`Figure 2 <fig_bigknight>` shows the complete graph of possible moves on an
-eight-by-eight board. There are exactly 336 edges in the graph. Notice
-that the vertices corresponding to the edges of the board have fewer
-connections (legal moves) than the vertices in the middle of the board.
-Once again we can see how sparse the graph is. If the graph was fully
-connected there would be 4,096 edges. Since there are only 336 edges,
-the adjacency matrix would be only 8.2 percent full.
+На :ref:`рисунке 2 <fig_bigknight>` показан полный граф возможных ходов для доски :math:`8 \times 8`. Это ровно 336 рёбер. Обратите внимание, что вершины, связанные с клетками на краю доски, имеют меньше связей (возможных ходов), чем вершины из середины. Мы снова видим, насколько граф разрежен. Если бы он был полностью связан, то имел бы 4 096 рёбер. Но поскольку в нём их всего лишь 336, то матрица смежности будет заполнена всего на 8.2%
 
 .. _fig_bigknight:
 
 .. figure:: Figures/bigknight.png
    :align: center
 
-   Figure 2: All Legal Moves for a Knight on an :math:`8 \times 8` Chessboard
-          
-
-
-
+   Рисунок 2: Все возможные ходы коня на доске :math:`8 \times 8`

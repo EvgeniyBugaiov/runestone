@@ -7,18 +7,17 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Discussion Questions
---------------------
+Вопросы для обсуждения
+----------------------
 
-#. Draw the graph corresponding to the following adjacency matrix.
+#. Нарисуйте граф, соответствующий следующей матрице смежности.
 
 .. figure:: Figures/adjMatEX.png
    :align: center
 
+#. Нарисуйте граф, соответствующий следующему списку рёбер.
 
-#. Draw the graph corresponding to the following list of edges.
-
-   .. table:: 
+.. table:: 
 
            +--------+------+--------+
            | from   | to   | cost   |
@@ -42,30 +41,22 @@ Discussion Questions
            | 5      | 6    | 13     |
            +--------+------+--------+
 
-#. Ignoring the weights, perform a breadth first search on the graph
-   from the previous question.
+#. Игнорируя веса, выполните поиск в ширину для графа из предыдущего вопроса.
 
-#. What is the Big-O running time of the ``buildGraph`` function?
+#. Каково время выполнения функции ``buildGraph`` в терминах "большого О"?
 
-#. Derive the Big-O running time for the topological sort algorithm.
+#. Выведите время выполнения в терминах "большого О" для алгоритма топологической сортировки.
 
-#. Derive the Big-O running time for the strongly connected components
-   algorithm.
+#. Выведите время выполнения в терминах "большого О" для алгоритма поиска сильно связных компонетов.
 
-#. Show each step in applying Dijkstra’s algorithm to the graph shown above.
+#. Покажите каждый шаг выполнения алгоритма Дейкстры для графа, показанного выше.
 
-#. Using Prim’s algorithm, find the minimum weight spanning tree for the
-   graph shown above.
+#. Используя алгоритм Прима, найдите минимальное взвешенное островное дерево для графа, показанного выше.
 
-#. Draw a dependency graph illustrating the steps needed to send an
-   email. Perform a topological sort on your graph.
+#. Нарисуйте граф зависимостей, иллюстрирующий отправку е-мейла. Выполните топологическую сортировку для вашего графа.
 
-#. Derive an expression for the base of the exponent used in expressing
-   the running time of the knights tour.
+#. Выведите выражение для базы экспоненты, используемой в выражении времени выполнения задачи о ходе коня.
 
-#. Explain why the general DFS algorithm is not suitable for solving the
-   knights tour problem.
+#. Объясните, почему общий DFS алгоритм не подходит для решения задачи о ходе коня.
 
-#. What is the Big-O running time for Prim’s minimum spanning tree
-   algorithm?
-
+#. Каково время выполнения алгоритма Прима в терминах нотации "большое О"?

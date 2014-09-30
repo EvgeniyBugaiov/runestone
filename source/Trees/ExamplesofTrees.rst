@@ -7,31 +7,12 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Examples of Trees
+Примеры деревьев
 -----------------
 
-Now that we have studied linear data structures like
-stacks and queues and have some experience with recursion, we will look
-at a common data structure called the **tree**. Trees are used in many
-areas of computer science, including operating systems, graphics,
-database systems, and computer networking. Tree data structures have
-many things in common with their botanical cousins. A tree data
-structure has a root, branches, and leaves. The difference between a
-tree in nature and a tree in computer science is that a tree data
-structure has its root at the top and its leaves on the bottom.
+Теперь, после изучения стека и очереди, а также приобретения опыта работы с рекурсией, мы рассмотрим распространённую структуру данных под названием **дерево**. Деревья используются во многих областях информатики, включая операционные системы, графику, базы данных и компьютерные сети. Эта структура данных имеет много общего со своими растительными тёзками. У неё есть корень, ветви и листья. Разница же между деревьями в природе и в информатике заключается в том, что у последних корень расположен на самом верху, а листья - в самом низу.
 
-Before we begin our study of tree data structures, let’s look at a few
-common examples. Our first example of a tree is a classification tree
-from biology. :ref:`Figure 1 <fig_biotree>` shows an example of the biological
-classification of some animals. From this simple example, we can learn
-about several properties of trees. The first property this example
-demonstrates is that trees are hierarchical. By hierarchical, we mean
-that trees are structured in layers with the more general things near
-the top and the more specific things near the bottom. The top of the
-hierarchy is the Kingdom, the next layer of the tree (the “children” of
-the layer above) is the Phylum, then the Class, and so on. However, no
-matter how deep we go in the classification tree, all the organisms are
-still animals.
+Перед тем, как начать изучение этой структуры данных, давайте рассмотрим несколько рапространённых примеров деревьев. Первый из них - классификационное дерево из биологии. :ref:`Рисунок 1 <fig_biotree>` демонстрирует пример биологической классификации некоторых видов животных. Из этого простого примера можно извлечь несколько свойств деревьев. Первое, что показывает рисунок, - это иерахичность дерева. Под этим подразумевается структурирование по уровням. Те из них, что содержат более общую информацию, раполагаются ближе к верху, а чем более специализированы данные, тем они ниже. Верх в иерархии занимают царства, уровнем ниже ("дети" более предыдущего уровня) находятся типы, затем классы и так далее. Однако, неважно, как глубоко мы спускаемся по классификационному дереву, - все представленные на нём организмы принадлежат жиковтному миру.
 
 .. _fig_biotree:
 
@@ -40,38 +21,18 @@ still animals.
    :align: center
    :alt: image
 
+   Рисунок 1: Таксономия некоторых широко рапространённых животных, показанная в виде дерева.
 
-   Figure 1: Taxonomy of Some Common Animals Shown as a Tree
+Обратите внимание, что вы можете начать от верхушки дерева и пройти по кружкам и стрелочкам до самого низа. На каждом уровне мы можем задать себе вопрос и проследовать по пути, содержащему ответ на него. Например, можно спросить: "Это животное принадлежит хордовым или членистоногим?" Если первое - то идём в этом направлении и снова спрашиваем: "Это хордовое относится к млекопитающим?" Если нет, то мы зашли в тупик (правда, только в этом упрощённом примере). На уровне "млекопитающие" вопрос звучит как "Это млекопитающее - примат или плотоядное?" Так мы можем двигаться, пока не дойдём до самого низа дерева, где получим конкретное название животного.
 
-Notice that you can start at the top of the tree and follow a path made
-of circles and arrows all the way to the bottom. At each level of the
-tree we might ask ourselves a question and then follow the path that
-agrees with our answer. For example we might ask, “Is this animal a
-Chordate or an Arthropod?” If the answer is “Chordate” then we follow
-that path and ask, “Is this Chordate a Mammal?” If not, we are stuck
-(but only in this simplified example). When we are at the Mammal level
-we ask, “Is this Mammal a Primate or a Carnivore?” We can keep following
-paths until we get to the very bottom of the tree where we have the
-common name.
+Вторым свойством деревьев является то, что все потомки одного узла независимы от потомков другого. Например, род Felis имеет детей Domestica и Leo. У рода Musca тоже есть потомок по имени Domestica, но это совершенно другой узел, и он независим от ребёнка Felis. Это означает, что мы можем изменять узел, являющийся потомком Musca, не затрагивая детей узла Felis.
 
-A second property of trees is that all of the children of one node are
-independent of the children of another node. For example, the Genus
-Felis has the children Domestica and Leo. The Genus Musca also has a
-child named Domestica, but it is a different node and is independent of
-the Domestica child of Felis. This means that we can change the node
-that is the child of Musca without affecting the child of Felis.
-
-A third property is that each leaf node is unique. We can specify a path
-from the root of the tree to a leaf that uniquely identifies each
-species in the animal kingdom; for example, Animalia
+Третье свойство заключается в том, что каждый лист уникален. Мы можем проложить путь от корня к листу, и он будет однозначно идентифицировать каждое существо из царства животных. Например, Animalia
 :math:`\rightarrow` Chordate :math:`\rightarrow` Mammal
 :math:`\rightarrow` Carnivora :math:`\rightarrow` Felidae
 :math:`\rightarrow` Felis :math:`\rightarrow` Domestica.
 
-Another example of a tree structure that you probably use every day is a
-file system. In a file system, directories, or folders, are structured
-as a tree. :ref:`Figure 2 <fig_filetree>` illustrates a small part of a Unix file
-system hierarchy.
+Другой пример дерева, который вы вполне вероятно используете ежедневно, это файловая система. В ней директории (папки) структурированы в виде дерева. :ref:`Рисунок 2 <fig_filetree>` иллюстрирует небольшую часть из иерархии файловой системы Unix.
 
 .. _fig_filetree:
 
@@ -80,25 +41,13 @@ system hierarchy.
    :align: center
    :alt: image
 
-   Figure 2: A Small Part of the Unix File System Hierarchy
+   Рисунок 2: Маленькая часть иерархии файловой системы Unix.
 
-The file system tree has much in common with the biological
-classification tree. You can follow a path from the root to any
-directory. That path will uniquely identify that subdirectory (and all
-the files in it). Another important property of trees, derived from
-their hierarchical nature, is that you can move entire sections of a
-tree (called a **subtree**) to a different position in the tree without
-affecting the lower levels of the hierarchy. For example, we could take
-the entire subtree staring with /etc/, detach etc/ from the root and
-reattach it under usr/. This would change the unique pathname to httpd
-from /etc/httpd to /usr/etc/httpd, but would not affect the contents or
-any children of the httpd directory.
+   Дерево файловой системы имеет много общего с деревом биологической классификации. Вы можете проложить путь от корня в любую директорию. Он будет уникально идентифицировать данную поддиректорию (и все файлы в ней). Другое важное свойство деревьев, следующее из их иерархической природы, это то, что вы можете перемещать целые секции (**поддеревья**) на различные позиции, не затрагивая при этом нижние уровни. Например, мы можем взять поддерево, начинающеся с /etc/, отцепить etc/ от корня и прикрепить к usr/. Это изменит уникальный путь для httpd с /etc/httpd на /usr/etc/httpd, но не повлияет на содержимое или любого из потомков директории httpd.
 
-A final example of a tree is a web page. The following is an example of
-a simple web page written using HTML. :ref:`Figure 3 <fig_html>` shows the tree
-that corresponds to each of the HTML tags used to create the page.
+   Последний пример дерева - это обычная веб-страница. Рассмотрим следующую страничку, написанную на HTML. :ref:`Рисунок 3 <fig_html>` демонстрирует дерево, связывающее все HTML теги, использованные при её создании.
 
-::
+   ::
 
     <html xmlns="http://www.w3.org/1999/xhtml" 
 	  xml:lang="en" lang="en">
@@ -124,13 +73,6 @@ that corresponds to each of the HTML tags used to create the page.
    :align: center
    :alt: image
 
-   Figure 3: A Tree Corresponding to the Markup Elements of a Web Page
+   Figure 3: Дерево, связывающее элементы разметки веб-страницы.
 
-
-The HTML source code and the tree accompanying the source illustrate
-another hierarchy. Notice that each level of the tree corresponds to a
-level of nesting inside the HTML tags. The first tag in the source is
-``<html>`` and the last is ``</html>`` All the rest of the tags in the
-page are inside the pair. If you check, you will see that this nesting
-property is true at all levels of the tree.
-
+Исходный HTML-код и связанное с ним дерево иллюстрируют другой вид иерархии. Обратите внимание, что каждый уровень дерева связан с уровнем вложенных HTML-тэгов. Первый тэг в исходнике - ``<html>``, последний - ``</html>``. Все оставшиеся тэги лежат внутри этой пары. Если вы проверите, то убедитесь, что это свойство вложенности истинно для всех уровней дерева.

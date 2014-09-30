@@ -7,28 +7,16 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Implementation
-~~~~~~~~~~~~~~
+Реализация
+~~~~~~~~~~
 
-Using dictionaries, it is easy to implement the adjacency list in
-Python. In our implementation of the Graph abstract data type we will
-create two classes (see :ref:`Listing 1 <lst_vertex>` and :ref:`Listing 2 <lst_graph>`), ``Graph``, which holds the master list of vertices,
-and ``Vertex``, which will represent each vertex in the graph.
+Реализовать список смежности на Python с помощью словарей очень легко. Для АТД графа мы создадим два класса (см. :ref:`листинг 1 <lst_vertex>` и :ref:`листинг 2 <lst_graph>`): ``Graph``, содержащий основной список вершин, и ``Vertex`` - представление каждой вершины в графе.
 
-Each ``Vertex`` uses a dictionary to keep track of the vertices to which
-it is connected, and the weight of each edge. This dictionary is called
-``connectedTo``. The listing below shows the code for the ``Vertex``
-class. The constructor simply initializes the ``id``, which will
-typically be a string, and the ``connectedTo`` dictionary. The
-``addNeighbor`` method is used add a connection from this vertex to
-another. The ``getConnections`` method returns all of the vertices in
-the adjacency list, as represented by the ``connectedTo`` instance
-variable. The ``getWeight`` method returns the weight of the edge from
-this vertex to the vertex passed as a parameter.
+Каждый ``Vertex`` будет использовать словарь для отслеживания смежных вершин и весов рёбер. Называться он будет ``connectedTo``. Листинг ниже показывает код для класса ``Vertex``. Конструктор просто инициализирует ``id`` (обычную строку) и словарь ``connectedTo``. Метод ``addNeighbor`` используется для добавления связи данной вершины с другой. Метод ``getConnections`` возвращает все вершины из списка смежности, которые представлены в ``connectedTo``. Метод ``getWeight`` возвращает вес ребра из этой вершины к передаваемой ему в качестве параметра.
 
 .. _lst_vertex:
 
-**Listing 1**
+**Листинг 1**
 
 ::
 
@@ -52,20 +40,11 @@ this vertex to the vertex passed as a parameter.
         def getWeight(self,nbr):
             return self.connectedTo[nbr]
 
-The ``Graph`` class, shown in the next listing, contains a dictionary
-that maps vertex names to vertex objects. In :ref:`Figure 4 <fig_adjlist>` this
-dictionary object is represented by the shaded gray box. ``Graph`` also
-provides methods for adding vertices to a graph and connecting one
-vertex to another. The ``getVertices`` method returns the names of all
-of the vertices in the graph. In addition, we have implemented the
-``__iter__`` method to make it easy to iterate over all the vertex
-objects in a particular graph. Together, the two methods allow you to
-iterate over the vertices in a graph by name, or by the objects
-themselves.
+Класс ``Graph``, показанный в следующем листинге, содержит словарь, отображающий имена вершин на их объекты. На :ref:`рисунке 4 <fig_adjlist>` этот словарь показан затенённым серым прямоугольником. Также ``Graph`` предоставляет методы для добавления вершин в граф и связывания их друг с другом. Дополнительно мы имеем реализацию метода ``__iter__``, облегчающего итерации по объектам вершин в конкретном графе. Вместе два метода позволяют делать итерации по именам вершин в графе или непосредственно по объектам.
 
 .. _lst_graph:
 
-**Listing 2**
+**Листинг 2**
 
 ::
 
@@ -102,14 +81,7 @@ themselves.
         def __iter__(self):
             return iter(self.vertList.values())
 
-Using the ``Graph`` and ``Vertex`` classes just defined, the following
-Python session creates the graph in :ref:`Figure 2 <fig_dgsimple>`. First we
-create six vertices numbered 0 through 5. Then we display the vertex
-dictionary. Notice that for each key 0 through 5 we have created an
-instance of a ``Vertex``. Next, we add the edges that connect the
-vertices together. Finally, a nested loop verifies that each edge in the
-graph is properly stored. You should check the output of the edge list
-at the end of this session against :ref:`Figure 2 <fig_dgsimple>`.
+Следующая сессия Python создаёт граф с :ref:`рисунка 2 <fig_dgsimple>`, используя свежеопределённые классы ``Graph`` и ``Vertex``. Сначала мы создаём шесть вершин, пронумерованных от 0 до 5. Затем печатаем словарь вершин. Обратите внимание, что для каждого ключа от 0 до 5 создаётся сущность класса ``Vertex``. Далее мы добавляем рёбра, связывающие вершины вместе. Наконец, вложенный цикл удостоверяется, что каждое ребро в графе сохранено правильно. Вы можете сравнить вывод списка рёбер в конце сессии с :ref:`рисунком 2 <fig_dgsimple>`.
 
 ::
 

@@ -7,6 +7,6 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Breadth First Search
---------------------
+Поиск в ширину
+--------------
 

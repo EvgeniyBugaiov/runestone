@@ -7,52 +7,18 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Implementing Knight’s Tour
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Решение задачи о ходе коня
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The search algorithm we will use to solve the knight’s tour problem is
-called **depth first search** (**DFS**).  Whereas the
-breadth first search algorithm discussed in the previous section builds
-a search tree one level at a time, a depth first search creates a search
-tree by exploring one branch of the tree as deeply as possible. In this
-section we will look at two algorithms that implement a depth first
-search. The first algorithm we will look at directly solves the knight’s
-tour problem by explicitly forbidding a node to be visited more than
-once. The second implementation is more general, but allows nodes to be
-visited more than once as the tree is constructed. The second version is
-used in subsequent sections to develop additional graph algorithms.
+Алгоритм, который мы используем для решения задачи о ходе коня, называется **поиск в глубину** (**DFS** - от англ. *depth first search*). В отличие от алгоритма поиска в ширину, обсуждавшегося в предыдущем разделе и строящего один уровень дерева поиска за раз, поиск в глубину создаёт дерево поиска исследуя одну из ветвей настолько глубоко, насколько это возможно. В этом разделе мы рассмотрим два алгоритма для реализации DFS. Первый будет непосредственно решать задачу о ходе коня, явно запрещая посещать исследованный узел более, чем один раз. Второй - более общий случай, позволяющий в процессе конструирования дерева посещать узлы больше одного раза. Он будет использоваться в следующих разделах при разработке дополнительных алгоритмов для графов.
 
-The depth first exploration of the graph is exactly what we need in
-order to find a path that has exactly 63 edges. We will see that when
-the depth first search algorithm finds a dead end (a place in the graph
-where there are no more moves possible) it backs up the tree to the next
-deepest vertex that allows it to make a legal move.
+Исследование графа в глубину - в точности то, что нам необходимо для поиска пути ровно в 63 ребра. Мы увидим, что когда алгоритм заходит в тупик (место на графе, откуда больше нет возможных ходов), он возвращается вверх по дереву на следующую по глубине вершину, что позволяет сделать допустимый ход.
 
-The ``knightTour`` function takes four parameters: ``n``, the current
-depth in the search tree; ``path``, a list of vertices visited up to
-this point; ``u``, the vertex in the graph we wish to explore; and
-``limit`` the number of nodes in the path. The ``knightTour`` function
-is recursive. When the ``knightTour`` function is called, it first
-checks the base case condition. If we have a path that contains 64
-vertices, we return from ``knightTour`` with a status of ``True``,
-indicating that we have found a successful tour. If the path is not long
-enough we continue to explore one level deeper by choosing a new vertex
-to explore and calling ``knightTour`` recursively for that vertex.
+Функция ``knightTour`` принимает четыре параметра: ``n`` - текущую глубину дерева, ``path`` - список посещённых вершин, ``u`` - вершину, которую мы бы хотели исследовать, и ``limit`` - количество узлов в графе. Эта функция рекурсивная. Когда она вызыввается, то прежде всего проверяет базовое условие. Если путь содержит 64 вершины, то мы возвращаем ``knightTour`` со статусом ``True``, показывающим, что поиск маршрута успешно завершён. В противном случае исследование продолжается на уровне ниже, для чего выбирается новая вершина и вызвавается ``knightTour``.
 
-DFS also uses colors to keep track of which vertices in the graph have
-been visited. Unvisited vertices are colored white, and visited vertices
-are colored gray. If all neighbors of a particular vertex have been
-explored and we have not yet reached our goal length of 64 vertices, we
-have reached a dead end. When we reach a dead end we must backtrack.
-Backtracking happens when we return from ``knightTour`` with a status of
-``False``. In the breadth first search we used a queue to keep track of
-which vertex to visit next. Since depth first search is recursive, we
-are implicitly using a stack to help us with our backtracking. When we
-return from a call to ``knightTour`` with a status of ``False``, in line 11, 
-we remain inside the ``while`` loop and look at the next
-vertex in ``nbrList``.
+DFS тоже использует окрашивание для отслеживания, какие вершины графа были посещены. Непосещённые узлы имеют белый цвет, посещённые - серый. Если все соседи данной вершины уже исследованы, но цель в 64 узла нами не достигнута, то мы зашли в тупик. Следовательно, необходимо вернуться назад. Бэктрекинг происходит в том случае, когда ``knightTour`` возвращает ``False``. В поиске в ширину для отслеживания вершины, которую нужно посетить следующей, мы использовали очередь. Поскольку поиск в глубину рекурсивен, для помощи с бэктрекингом неявно используется стек. Когда вызов ``knightTour`` возвращает ``False`` (строка 11), мы попрежнему находимся внутри цикла ``while`` и рассматриваем следующую вершину из ``nbrList``.
 
-**Listing 3**
+**Листинг 3**
 
 ::
 
@@ -75,32 +41,9 @@ vertex in ``nbrList``.
                 done = True
             return done
 
+Давайте рассмотрим в действии простой пример работы ``knightTour``. Для отслеживания шагов поиска вы можете обратиться к приведённым ниже рисункам. Будем полагать, что вызов метода ``getConnections`` в строке 6 происходит в алфавитном порядке. Начнём с вызова ``knightTour(0,path,A,6)``.
 
-Let's look at a simple example of ``knightTour`` in action. You
-can refer to the figures below to follow the steps of the search. For
-this example we will assume that the call to the ``getConnections``
-method on line 6 orders the nodes in
-alphabetical order. We begin by calling ``knightTour(0,path,A,6)``
-
-``knightTour`` starts with node A :ref:`Figure 3 <fig_kta>`. The nodes adjacent to A are B and D.
-Since B is before D alphabetically, DFS selects B to expand next as
-shown in :ref:`Figure 4 <fig_ktb>`. Exploring B happens when ``knightTour`` is
-called recursively. B is adjacent to C and D, so ``knightTour`` elects
-to explore C next. However, as you can see in :ref:`Figure 5 <fig_ktc>` node C is
-a dead end with no adjacent white nodes. At this point we change the
-color of node C back to white. The call to ``knightTour`` returns a
-value of ``False``. The return from the recursive call effectively
-backtracks the search to vertex B (see :ref:`Figure 6 <fig_ktd>`). The next
-vertex on the list to explore is vertex D, so ``knightTour`` makes a
-recursive call moving to node D (see :ref:`Figure 7 <fig_kte>`). From vertex D on,
-``knightTour`` can continue to make recursive calls until we
-get to node C again (see :ref:`Figure 8 <fig_ktf>`, :ref:`Figure 9 <fig_ktg>`, and  :ref:`Figure 10 <fig_kth>`).  However, this time when we get to node C the
-test ``n < limit`` fails so we know that we have exhausted all the
-nodes in the graph. At this point we can return ``True`` to indicate
-that we have made a successful tour of the graph. When we return the
-list, ``path`` has the values ``[A,B,D,E,F,C]``, which is the the order
-we need to traverse the graph to visit each node exactly once.
-
+``knightTour`` начинает работу с узла А (:ref:`рисунок 3 <fig_kta>`). А имеет смежные вершины B и D. Поскольку в алфавите B идёт перед D, то DFS выбирает её для дальнейшего исследования, как показано на :ref:`рисунке 4 <fig_ktb>`. Для этого рекурсивно вызывается ``knightTour``. В смежна с C и D, поэтому следующим ``knightTour`` выбирает исследование С. Однако, как вы можете видеть из :ref:`рисунка 5 <fig_ktc>`, вершина С - тупик без смежных белых узлов. В этот момент мы меняем цвет С обратно на белый, и  вызов ``knightTour`` возвращает ``False``. Возврат из рекурсивного вызова эффективно откатывает поиск к вершине В (см. :ref:`рисунок 6 <fig_ktd>`). Следующая вершина в списке исследования - узел D, так что ``knightTour`` делает рекурсивный вызов для D (см. :ref:`рисунок 7 <fig_kte>`). Из неё ``knightTour`` может продолжить делать рекурсивные вызовы до тех пор, пока вновь не дойдёт до узла С (см. :ref:`рисунок 8 <fig_ktf>`, :ref:`рисунок 9 <fig_ktg>` и :ref:`рисунок 10 <fig_kth>`). Однако в этот раз проверка ``n < limit`` даёт отрицательный результат, поэтому мы знаем, что узлы графа закончились. Теперь можно вернуть ``True``, показывая, что маршрут по графу успешно проложен. Когда мы вернём список, ``path`` будет иметь значение ``[A,B,D,E,F,C]`` - порядок, в котором нужно обойти граф, чтобы посетить каждую вершину всего один раз.
 
 .. _fig_kta:
 
@@ -108,7 +51,7 @@ we need to traverse the graph to visit each node exactly once.
 .. figure:: Figures/ktdfsa.png
    :align: center
 
-   Figure 3: Start with node A
+   Рисунок 3: Начинаем с узла A
 
 
 .. _fig_ktb:
@@ -117,7 +60,7 @@ we need to traverse the graph to visit each node exactly once.
 .. figure:: Figures/ktdfsb.png
    :align: center
            
-   Figure 4: Explore B
+   Рисунок 4: Исследуем B
 
      
 .. _fig_ktc:
@@ -126,7 +69,7 @@ we need to traverse the graph to visit each node exactly once.
 .. figure:: Figures/ktdfsc.png
    :align: center
 
-   Figure 5: Node C is a dead end
+   Рисунок 5: Узел C - тупик
 
 
 .. _fig_ktd:
@@ -135,7 +78,7 @@ we need to traverse the graph to visit each node exactly once.
 .. figure:: Figures/ktdfsd.png
    :align: center
            
-   Figure 6: Backtrack to B    
+   Рисунок 6: Возврат в B    
 
   
 .. _fig_kte:
@@ -144,7 +87,7 @@ we need to traverse the graph to visit each node exactly once.
 .. figure:: Figures/ktdfse.png
    :align: center
    
-   Figure 7: Explore D
+   Рисунок 7: Исследуем D
    
    
 .. _fig_ktf:
@@ -152,14 +95,14 @@ we need to traverse the graph to visit each node exactly once.
 .. figure:: Figures/ktdfsf.png
    :align: center
 
-   Figure 8: Explore E
+   Рисунок 8: Исследуем E
    
 .. _fig_ktg:
 
 .. figure:: Figures/ktdfsg.png
    :align: center
    
-   Figure 9: Explore F
+   Рисунок 9: Исследуем F
    
          
 .. _fig_kth:
@@ -167,22 +110,13 @@ we need to traverse the graph to visit each node exactly once.
 .. figure:: Figures/ktdfsh.png
    :align: center
 
-   Figure 10: Finish
-         
+   Рисунок 10: Конец
 
-
-:ref:`Figure 11 <fig_tour>` shows you what a complete tour around an
-eight-by-eight board looks like. There are many possible tours; some are
-symmetric. With some modification you can make circular tours that start
-and end at the same square.
+На :ref:`рисунке 11 <fig_tour>` показано, как целиком выглядит маршрут по доске 8х8. Таких маршрутов может быть много; некоторые из них будут симметричными. Добавив несколько изменений, вы можете получить замкнутые маршруты, начинающиеся и заканчивающиеся в одной клетке.
 
 .. _fig_tour:
 
 .. figure:: Figures/completeTour.png
    :align: center
 
-   Figure 11: A Complete Tour of the Board
-       
-
-
-
+   Рисунок 11: Маршрут по доске целиком

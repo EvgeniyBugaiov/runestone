@@ -7,233 +7,143 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-AVL Tree Implementation
-~~~~~~~~~~~~~~~~~~~~~~~
+Реализация АВЛ-дерева
+~~~~~~~~~~~~~~~~~~~~~
 
+Теперь, когда мы показали, что поддержка баланса АВЛ-дерева даёт огромное улучшение производительности, давайте посмотрим, как можно расширить процедуру вставки в дерево нового ключа. Поскольку все ключи вставляются, как листья, и мы знаем, что фактор сбалансированности нового листа равен нулю, то к свежевставленному узлу никаких дополнительных требваний не предъявляется. Однако, если добавлен новый лист, то надо обновить фактор сбалансированности его родителя. То, как вставленный узел на него повлияет, зависит от того, является ли он левым или правым потомком. Если лист - правый потомок, то фактор баланса уменьшится на единицу, если левый - то увеличится на один. Это отношение может быть рекурсивно применено к деду нового узла и, вполне возможно, к каждому из его предков вплоть до корня дерева. Поскольку это рекурсивная процедура, то давайте рассмотрим два базовых случая для обновления фактора сбалансированности:
 
-Now that we have demonstrated that keeping an AVL tree in balance is
-going to be a big performance improvement, let us look at how we will
-augment the procedure to insert a new key into the tree. Since all new
-keys are inserted into the tree as leaf nodes and we know that the
-balance factor for a new leaf is zero, there are no new requirements for
-the node that was just inserted. But once the new leaf is added we must
-update the balance factor of its parent. How this new leaf affects the
-parent’s balance factor depends on whether the leaf node is a left child
-or a right child. If the new node is a right child the balance factor of
-the parent will be reduced by one. If the new node is a left child then
-the balance factor of the parent will be increased by one. This relation
-can be applied recursively to the grandparent of the new node, and
-possibly to every ancestor all the way up to the root of the tree. Since
-this is a recursive procedure let us examine the two base cases for
-updating balance factors:
+- Рекурсивный вызов достиг корня дерева.
 
--  The recursive call has reached the root of the tree.
+- Фактор баланса родителя скорректировался до нуля. Докажите самостоятельно, что если поддерево имеет фактор сбалансированности, равный нулю, то баланс его узла-предка не изменяется.
 
--  The balance factor of the parent has been adjusted to zero. You
-   should convince yourself that once a subtree has a balance factor of
-   zero, then the balance of its ancestor nodes does not change.
+Мы будем воплощать АВЛ-дерево как подкласс ``BinarySearchTree``. Для начала перегрузим метод ``_put`` и напишем новую вспомогательную функцию ``updateBalance``. Эти методы показаны в :ref:`листинге 1 <lst_updbal>`. Как вы можете видеть, определение ``_put`` в точности такое, как и для простого двоичного дерева, за исключением дополнительных вызовов ``updateBalance`` в строках 7 и 13.
 
-We will implement the AVL tree as a subclass of ``BinarySearchTree``. To
-begin, we will override the ``_put`` method and write a new
-``updateBalance`` helper method. These methods are shown in
-:ref:`Listing 1 <lst_updbal>`. You will notice that the definition for ``_put`` is
-exactly the same as in simple binary search trees except for the additions of
-the calls to ``updateBalance`` on lines 7 and 13.
-
-
-**Listing 1**
+**Листинг 1**
 
 .. _lst_updbal:
 
 .. code-block:: python
     
     def _put(self,key,val,currentNode):
-    	if key < currentNode.key:
-    	    if currentNode.hasLeftChild():
-    		    self._put(key,val,currentNode.leftChild)
-    	    else:
-    		    currentNode.leftChild = TreeNode(key,val,parent=currentNode)
-    		    self.updateBalance(currentNode.leftChild)
-    	else:
-    	    if currentNode.hasRightChild():
-    		    self._put(key,val,currentNode.rightChild)
-    	    else:
-    		    currentNode.rightChild = TreeNode(key,val,parent=currentNode)
-    		    self.updateBalance(currentNode.rightChild)		
+      if key < currentNode.key:
+          if currentNode.hasLeftChild():
+            self._put(key,val,currentNode.leftChild)
+          else:
+            currentNode.leftChild = TreeNode(key,val,parent=currentNode)
+            self.updateBalance(currentNode.leftChild)
+      else:
+          if currentNode.hasRightChild():
+            self._put(key,val,currentNode.rightChild)
+          else:
+            currentNode.rightChild = TreeNode(key,val,parent=currentNode)
+            self.updateBalance(currentNode.rightChild)    
 
     def updateBalance(self,node):
-    	if node.balanceFactor > 1 or node.balanceFactor < -1:
-    	    self.rebalance(node)    
-    	    return
-    	if node.parent != None:
-    	    if node.isLeftChild():
-    		    node.parent.balanceFactor += 1
-    	    elif node.isRightChild():
-    		    node.parent.balanceFactor -= 1
+      if node.balanceFactor > 1 or node.balanceFactor < -1:
+          self.rebalance(node)    
+          return
+      if node.parent != None:
+          if node.isLeftChild():
+            node.parent.balanceFactor += 1
+          elif node.isRightChild():
+            node.parent.balanceFactor -= 1
 
-    	    if node.parent.balanceFactor != 0:
-    		    self.updateBalance(node.parent)
-    		    
-    		    
+          if node.parent.balanceFactor != 0:
+            self.updateBalance(node.parent)
 
-The new ``updateBalance`` method is where most of the work is done. This
-implements the recursive procedure we just described. The
-``updateBalance`` method first checks to see if the current node is out
-of balance enough to require rebalancing (line 16). If that
-is the case then the rebalancing is done and no further updating to
-parents is required. If the current node does not require rebalancing
-then the balance factor of the parent is adjusted. If the balance factor
-of the parent is non-zero then the algorithm continues to work its way
-up the tree toward the root by recursively calling ``updateBalance`` on
-the parent.
+Большая часть работы совершается в новом методе ``updateBalance``. В нём реализована рекурсивная процедура, описанная выше. Сначала метод проверяет, потерял ли узел баланс настолько, что требуется новая балансировака. Если без этого можно обойтись, то фактор баланса родителя просто корректируется. В случае, когда его значение отлично от нуля, алгоритм продолжает работу вверх по дереву, рекурсивно вызывая ``updateBalance`` для родителя текущего узла.
 
-When a rebalancing of the tree is necessary, how do we do it? Efficient
-rebalancing is the key to making the AVL Tree work well without
-sacrificing performance. In order to bring an AVL Tree back into balance
-we will perform one or more **rotations** on the tree.
+Но как мы будем делать балансировку, если она нужна? Эффективное восстановление баланса - ключ, позволяющий АВЛ-дереву хорошо работать без ущерба для производительности. Чтобы вернуть дерево в состояние баланса, мы сделаем одно или несколько **вращений** дерева.
 
-To understand what a rotation is let us look at a very simple example.
-Consider the tree in the left half of :ref:`Figure 3 <fig_unbalsimple>`. This tree
-is out of balance with a balance factor of -2. To bring this tree into
-balance we will use a left rotation around the subtree rooted at node A.
+Чтобы понять, что это такое, рассмотрим очень простой пример. Посмотрите на левую половину дерева на :ref:`рисунке 3 <fig_unbalsimple>`. Она разбалансирована (фактор баланса -2), и чтобы это исправить, мы повернём влево поддерево с корнем в узле А.
 
 .. _fig_unbalsimple:
 
 .. figure:: Figures/simpleunbalanced.png
    :align: center
 
-   Figure 3: Transforming an Unbalanced Tree Using a Left Rotation
-   
+   Рисунок 3: Трансформация разбалансированного дерева с помощью левого поворота.
 
-To perform a left rotation we essentially do the following:
+По существу, для выполнения левого вращения нам надо сделать следующее:
 
--  Promote the right child (B) to be the root of the subtree.
+- Продвинуть правого потомка (В), чтобы он стал корнем поддерева.
 
--  Move the old root (A) to be the left child of the new root.
+- Переместить старый корень (А) на место левого потомка нового корня поддерева.
 
--  If new root (B) already had a left child then make it the right child
-   of the new left child (A). Note: Since the new root (B) was the right
-   child of A the right child of A is guaranteed to be empty at this
-   point. This allows us to add a new node as the right child without
-   any further consideration.
+- Если новый корень (В) уже имеет левого потомка, то сделать последний правым потомком узла А. Отметьте: поскольку новый корень (В) был правым сыном А, то это место теперь гарантированно пусто. Это позволяет добавлять вправо новый узел без дальнейших рассуждений.
 
-While this procedure is fairly easy in concept, the details of the code
-are a bit tricky since we need to move things around in just the right
-order so that all properties of a Binary Search Tree are preserved.
-Furthermore we need to make sure to update all of the parent pointers
-appropriately.
+Хотя концепция процедуры достаточно проста, отдельные части кода будут несколько каверзными, поскольку нам придётся перемещать узлы в правильном порядке, сохранив все свойства двоичного дерева поиска. Более того, мы должны убедиться, что правильно обновили все родительские указатели.
 
-Let's look at a slightly more complicated tree to illustrate the right
-rotation. The left side of :ref:`Figure 4 <fig_rightrot1>` shows a tree that is
-left-heavy and with a balance factor of 2 at the root. To perform a
-right rotation we essentially do the following:
+Рассмотрим чуть более сложное дерево, иллюстрируюшее правое вращение. Левая часть :ref:`рисунка 4 <fig_rightrot1>` показывает дерево, перевешивающее влево с фактором сбалансированности корня равным 2. Чтобы выполнить правое вращение, нам надо сделать следующее:
 
--  Promote the left child (C) to be the root of the subtree.
+- Продвинуть левого потомка (С), чтобы он стал корнем поддерева.
 
--  Move the old root (E) to be the right child of the new root.
+- Передвинуть старый корень (Е) на место правого потомка нового корня.
 
--  If the new root(C) already had a right child (D) then make it the
-   left child of the new right child (E). Note: Since the new root (C)
-   was the left child of E, the left child of E is guaranteed to be
-   empty at this point. This allows us to add a new node as the left
-   child without any further consideration.
+- Если новый корень (С) уже имеет правого потомка (D), то сделать последний левым потомком Е. Замечание: поскольку новый корень (С) был левым потомком Е, то это место гарантированно остаётся пустым. Это позволяет нам добавлять к новому узлу левого потомка, не вдаваясь в дальнейшие рассуждения.
 
 .. _fig_rightrot1:
 
 .. figure:: Figures/rightrotate1.png
   :align: center
 
-  Figure 4: Transforming an Unbalanced Tree Using a Right Rotation
+  Рисунок 4: Преобразование разбалансированного дерева с помощью поворота вправо
 
-Now that you have seen the rotations and have the basic idea of how a
-rotation works let us look at the code. :ref:`Listing 2 <lst_bothrotations>` shows the
-code for both the right and the left rotations. In line 2
-we create a temporary variable to keep track of the new root of the
-subtree. As we said before the new root is the right child of the
-previous root. Now that a reference to the right child has been stored
-in this temporary variable we replace the right child of the old root
-with the left child of the new.
+После того, как вы познакомились с идеей вращения и принципами его работы, давайте посмотрим на код. :ref:`Листинг 2 <lst_bothrotations>` содержит код и для левого, и для правого вращений. В строке 2 мы создаём временную переменную, которая будет отслеживать новый корень поддерева. Как мы уже говорили, им становится правый потомок предыдущего корня. Теперь, когда ссылка на правого потомка сохранена во временной переменной, мы можем заменить правого потомка старого корня левым потомком нового.
 
-The next step is to adjust the parent pointers of the two nodes. If
-``newRoot`` has a left child then the new parent of the left child
-becomes the old root. The parent of the new root is set to the parent of
-the old root. If the old root was the root of the entire tree then we
-must set the root of the tree to point to this new root. Otherwise, if
-the old root is a left child then we change the parent of the left child
-to point to the new root; otherwise we change the parent of the right
-child to point to the new root. (lines 10-13).
-Finally we set the parent of the old root to be the new root. This is a
-lot of complicated bookkeeping, so we encourage you to trace through
-this function while looking at :ref:`Figure 3 <fig_unbalsimple>`. The
-``rotateRight`` method is symmetrical to ``rotateLeft`` so we will leave
-it to you to study the code for ``rotateRight``.
+Следующим шагом будет корректировка родительских указателей двух узлов. Если у ``newRoot`` есть левый потомок, то его новым родителем станет старый корень. Родителем нового корня устанавливается родитель старого. Если старый корень был корнем всего дерева, то нам необходимо установить указатель на него на новый корень. В противном случае (старый корень - левый потомок) мы меняем указатель родителя левого потомка таким образом, чтобы он указывал на новый корень. Если старый корень - правый потомок, то на новый корень должен указывать указатель правого потомка (строки 10-13).
+
+Наконец, мы устанавливаем родителем старого корня новый корень. Это не самая простая бухгалтерия, так что мы рекомендуем вам пошагово пройти эту функцию с помощью :ref:`рисунка 3 <fig_unbalsimple>`. Метод ``rotateRight`` симметричен ``rotateLeft``, так что его мы оставлем вам на самостоятельное изучение.
 
 .. _lst_bothrotations:
 
-**Listing 2**
+**Листинг 2**
 
 .. code-block:: python
 
     def rotateLeft(self,rotRoot):
-    	newRoot = rotRoot.rightChild
-    	rotRoot.rightChild = newRoot.leftChild
-    	if newRoot.leftChild != None:
-    	    newRoot.leftChild.parent = rotRoot
-    	newRoot.parent = rotRoot.parent
-    	if rotRoot.isRoot():
-    	    self.root = newRoot
-    	else:
-    	    if rotRoot.isLeftChild():
-    		    rotRoot.parent.leftChild = newRoot
-    	    else:
-    	    	rotRoot.parent.rightChild = newRoot
-    	newRoot.leftChild = rotRoot
-    	rotRoot.parent = newRoot
-    	rotRoot.balanceFactor = rotRoot.balanceFactor + 1 - min(newRoot.balanceFactor, 0)
-    	newRoot.balanceFactor = newRoot.balanceFactor + 1 + max(rotRoot.balanceFactor, 0)
-			      
-			      
+      newRoot = rotRoot.rightChild
+      rotRoot.rightChild = newRoot.leftChild
+      if newRoot.leftChild != None:
+          newRoot.leftChild.parent = rotRoot
+      newRoot.parent = rotRoot.parent
+      if rotRoot.isRoot():
+          self.root = newRoot
+      else:
+          if rotRoot.isLeftChild():
+            rotRoot.parent.leftChild = newRoot
+          else:
+            rotRoot.parent.rightChild = newRoot
+      newRoot.leftChild = rotRoot
+      rotRoot.parent = newRoot
+      rotRoot.balanceFactor = rotRoot.balanceFactor + 1 - min(newRoot.balanceFactor, 0)
+      newRoot.balanceFactor = newRoot.balanceFactor + 1 + max(rotRoot.balanceFactor, 0)
+            
+            
 .. highlight:: python
   :linenothreshold: 500
 
-Finally, lines 16-17 require some explanation. In
-these two lines we update the balance factors of the old and the new
-root. Since all the other moves are moving entire subtrees around the
-balance factors of all other nodes are unaffected by the rotation. But
-how can we update the balance factors without completely recalculating
-the heights of the new subtrees? The following derivation should
-convince you that these lines are correct.
+Строки 16-17 требуют некоторых пояснений. В них мы обновляем факторы сбалансированности старого и нового корней. Поскольку все остальные перемещения затрагивают поддеревья целиком, то на факторы баланса остальных узлов поворот влияния не оказывает. Но как можно обновить факторы сбалансированности без полного пересчёта высот новых поддеревьев? Следующее доказательство убедит вас в корректности этих строк.
 
 .. _fig_bfderive:
 
 .. figure:: Figures/bfderive.png
    :align: center
 
-   Figure 5: A Left Rotation
+   Рисунок 5: Поворот влево
 
-
-:ref:`Figure 5 <fig_bfderive>` shows a left rotation. B and D are the pivotal
-nodes and A, C, E are their subtrees. Let :math:`h_x` denote the
-height of a particular subtree rooted at node :math:`x`. By definition
-we know the following:
+:ref:`Рисунок 5 <fig_bfderive>` показывает левое вращение. В и D - опорные узлы, A, C и E - их поддеревья. Пусть :math:`h_x` обозначает высоту конкретного дерева с корнем в узле :math:`x`. По определению мы знаем:
 
 .. math::
 
   newBal(B) = h_A - h_C \\
   oldBal(B) = h_A - h_D
 
+Но мы также знаем, что старая высота D тоже может быть задана :math:`1 + max(h_C,h_E)`. Следовательно, высота D не превышает максимальной из высот его потомков. Вспомните: :math:`h_c` и :math:`h_E` не меняются. Таким образом, их можно заменить во втором уравнении, что даст нам
 
-But we know that the old height of D can also be given by :math:`1 +
-max(h_C,h_E)`, that is, the height of D is one more than the maximum
-height of its two children. Remember that :math:`h_c` and
-:math:`h_E` hav not changed. So, let us substitute that in to the
-second equation, which gives us 
+:math:`oldBal(B) = h_A - (1 + max(h_C,h_E))` ,
 
-:math:`oldBal(B) = h_A - (1 + max(h_C,h_E))` 
-
-and then subtract the two equations. The following steps
-do the subtraction and use some algebra to simplify the equation for
-:math:`newBal(B)`.
+а затем вычесть одно уравнение из другого. На следующих этапах производится вычитание и используется немного простой алгебры, чтобы упростить выражение для :math:`newBal(B)`.
 
 .. math::
 
@@ -242,99 +152,65 @@ do the subtraction and use some algebra to simplify the equation for
    newBal(B) - oldBal(B) = h_A  - h_A + 1 + max(h_C,h_E) - h_C  \\
    newBal(B) - oldBal(B) =  1 + max(h_C,h_E) - h_C 
 
-
-Next we will move :math:`oldBal(B)` to the right hand side of the
-equation and make use of the fact that
-:math:`max(a,b)-c = max(a-c, b-c)`.
+Далее мы перенесём :math:`oldBal(B)` в правую часть уравнения и воспользуемся тем, что :math:`max(a,b)-c = max(a-c, b-c)`.
 
 .. math::
 
    newBal(B) = oldBal(B) + 1 + max(h_C - h_C ,h_E - h_C) \\
 
-
-But, :math:`h_E - h_C` is the same as :math:`-oldBal(D)`. So we can
-use another identity that says :math:`max(-a,-b) = -min(a,b)`. So we
-can finish our derivation of :math:`newBal(B)` with the following
-steps:
+Но :math:`h_E - h_C` - это то же самое, что :math:`-oldBal(D)`. Поэтому мы можем использовать другую замену, говорящую :math:`max(-a,-b) = -min(a,b)`. Таким образом, наше доказательство для :math:`newBal(B)` заканчивается следующими шагами:
 
 .. math::
 
    newBal(B) = oldBal(B) + 1 + max(0 , -oldBal(D)) \\
    newBal(B) = oldBal(B) + 1 - min(0 , oldBal(D)) \\
 
-
-Now we have all of the parts in terms that we readily know. If we
-remember that B is ``rotRoot`` and D is ``newRoot`` then we can see this
-corresponds exactly to the statement on line 16, or:
+Теперь у нас есть все части в известных терминах. Если вы помните, В - это ``rotRoot``, а D - ``newRoot``. Так что эти соотношения в точности повторяет присваивание в строке 16:
 
 ::
 
     rotRoot.balanceFactor = rotRoot.balanceFactor + 1 - min(0,newRoot.balanceFactor)
 
-A similar derivation gives us the equation for the updated node D, as
-well as the balance factors after a right rotation. We leave these as
-exercises for you.
+Аналогичное доказательство даст нам выражение для обновления узла D и факторов сбалансированности после правого поворота. Мы оставляем его вам в качестве упражнения.
 
-Now you might think that we are done. We know how to do our left and
-right rotations, and we know when we should do a left or right rotation,
-but take a look at :ref:`Figure 6 <fig_hardrotate>`. Since node A has a balance
-factor of -2 we should do a left rotation. But, what happens when we do
-the left rotation around A?
+Теперь вы могли бы подумать, что мы закончили. Мы знаем, как и когда делать правое и левое вращения, но взгляните на :ref:`рисунок 6 <fig_hardrotate>`. Поскольку узел А имеет фактор сбалансированности равным -2, нам следует выполнить поворот влево. Но что произойдёт, когда мы сделаем левое вращение вокруг А?
 
 .. _fig_hardrotate:
 
 .. figure:: Figures/hardunbalanced.png
    :align: center
 
-   Figure 6: An Unbalanced Tree that is More Difficult to Balance
+   Рисунок 6: Разбалансированное дерево, которое сложнее отбалансировать
 
-
-:ref:`Figure 7 <fig_badrotate>` shows us that after the left rotation we are now
-out of balance the other way. If we do a right rotation to correct the
-situation we are right back where we started.
+:ref:`Рисунок 7 <fig_badrotate>` показывает, что после левого вращения дисбаланс сохраняется, хоть и по-другому. Если мы сделаем поворот вправо для коррекции ситуации, то вернёмся к тому, откуда начали.
 
 .. _fig_badrotate:
 
 .. figure:: Figures/badrotate.png
    :align: center
 
-   Figure 7: After a Left Rotation the Tree is Out of Balance in the Other Direction
+   Рисунок 7: После левого поворота дерево осталось несбалансированным, но в другом направлении
 
+Для корректировки этой проблемы нам нужно использовать следующий набор правил:
 
-To correct this problem we must use the following set of rules:
+- Если поддерево требует поворота влево для восстановления баланса, прежде следует проверить фактор сбалансированности его правого потомка. Если он перевешивает влево - повернуть его вправо, после чего сделать первоначальное левое вращение.
 
--  If a subtree needs a left rotation to bring it into balance, first
-   check the balance factor of the right child. If the right child is
-   left heavy then do a right rotation on right child, followed by the
-   original left rotation.
+- Если поддереву требуется поворот вправо для восстановления баланса, то сначала надо проверить фактор сбалансированности его левого потомка. Если он перевешивает вправо, то сначала повернуть его влево, а после выполнить первоначальное правое вращение.
 
--  If a subtree needs a right rotation to bring it into balance, first
-   check the balance factor of the left child. If the left child is
-   right heavy then do a left rotation on the left child, followed by
-   the original right rotation.
-
-:ref:`Figure 8 <fig_rotatelr>` shows how these rules solve the dilemma we
-encountered in :ref:`Figure 6 <fig_hardrotate>` and :ref:`Figure 7 <fig_badrotate>`. Starting
-with a right rotation around node C puts the tree in a position where
-the left rotation around A brings the entire subtree back into balance.
+:ref:`Рисунок 8 <fig_rotatelr>` демонстрирует эти правила при решении дилеммы, с которой мы столкнулись на рисунках :ref:`6 <fig_hardrotate>` и :ref:`7 <fig_badrotate>`. Начав с правого поворота вокруг узла С, дерево устанавливается в положение, при котором левый поворот вокруг узла А вернёт его в состояние баланса.
 
 .. _fig_rotatelr:
 
 .. figure:: Figures/rotatelr.png
    :align: center
 
-   Figure 8: A Right Rotation Followed by a Left Rotation
+   Рисунок 8: Правый поворот с последующим левым вращением
 
-
-The code that implements these rules can be found in our ``rebalance``
-method, which is shown in :ref:`Listing 3 <lst_rebalance>`. Rule number 1 from
-above is implemented by the ``if`` statement starting on line 2.
-Rule number 2 is implemented by the ``elif`` statement starting on
-line 8.
+Код, воплощающий эти правила, можно найти в методе ``rebalance`` из :ref:`листинга 3 <lst_rebalance>`. Правило №1, изложенное выше, реализовано в виде оператора ``if``, начинающегося на строке 2. Правило №2 воплощено в ``elif``, стартующем со строки 8.
 
 .. _lst_rebalance:
 
-**Listing 3**
+**Листинг 3**
 
 .. highlight:: python
   :linenothreshold: 5
@@ -343,40 +219,24 @@ line 8.
 
     def rebalance(self,node):
       if node.balanceFactor < 0:
-	     if node.rightChild.balanceFactor > 0:
-	        self.rotateRight(node.rightChild)
-	        self.rotateLeft(node)
-	     else:
-	        self.rotateLeft(node)
+       if node.rightChild.balanceFactor > 0:
+          self.rotateRight(node.rightChild)
+          self.rotateLeft(node)
+       else:
+          self.rotateLeft(node)
       elif node.balanceFactor > 0:
-	     if node.leftChild.balanceFactor < 0:
-	        self.rotateLeft(node.leftChild)
-	        self.rotateRight(node)
-	     else:
-	        self.rotateRight(node)
+       if node.leftChild.balanceFactor < 0:
+          self.rotateLeft(node.leftChild)
+          self.rotateRight(node)
+       else:
+          self.rotateRight(node)
 
 
 .. highlight:: python
    :linenothreshold: 500
 
-The :ref:`discussion questions <tree_discuss>` provide you the opportunity to rebalance a tree
-that requires a left rotation followed by a right. In addition the
-discussion questions provide you with the opportunity to rebalance some
-trees that are a little more complex than the tree in
-:ref:`Figure 8 <fig_rotatelr>`.
+:ref:`Вопросы для обсуждения <tree_discuss>` предоставят вам возможность отбалансировать дерево, требующее левого, а затем правого поворота. Дополнительно вы сможете отбалансировать несколько более сложных деревьев, чем представленное на `рисунке 8 <fig_rotatelr>`.
 
-By keeping the tree in balance at all times, we can ensure that the
-``get`` method will run in order :math:`O(log_2(n))` time. But the
-question is at what cost to our ``put`` method? Let us break this down
-into the operations performed by ``put``. Since a new node is inserted
-as a leaf, updating the balance factors of all the parents will require
-a maximum of :math:`log_2(n)` operations, one for each level of the
-tree. If a subtree is found to be out of balance a maximum of two
-rotations are required to bring the tree back into balance. But, each of
-the rotations works in :math:`O(1)` time, so even our ``put``
-operation remains :math:`O(log_2(n))`.
+Постоянно поддерживая баланс дерева, мы будем обеспечивать выполнение метода ``get`` за время :math:`O(log_2(n))`. Но вопрос в том, какова "стоимость" этого метода? Давайте разобьём его на операции, выполняемые ``put``. Поскольку новый узел вставляется, как лист, обновление факторов сбалансированности всех его родителей потребует максимум :math:`log_2(n)` операций для каждого уровня дерева. Если обнаруживается, что поддерево разбалансировано, то требуется максимум два поворота, чтобы вернуть его в состояние баланса. Каждое из вращений срабатывает за время :math:`O(1)`, так что операция ``put`` остаётся :math:`O(log_2(n))`.
 
-At this point we have implemented a functional AVL-Tree, unless you need
-the ability to delete a node. We leave the deletion of the node and
-subsequent updating and rebalancing as an exercise for you.
-
+К этому моменту у нас есть реализованный функционал АВЛ-дерева, но вы также нуждаетесь в возможности удалить узел. Мы оставляем удаление узлов с последующим обновлением и балансировкой в качестве упражнения.

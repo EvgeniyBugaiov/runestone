@@ -7,101 +7,34 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Knight’s Tour Analysis
-~~~~~~~~~~~~~~~~~~~~~~
+Анализ задачи о ходе коня
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There is one last interesting topic regarding the knight’s tour problem,
-then we will move on to the general version of the depth first search.
-The topic is performance. In particular, ``knightTour`` is very
-sensitive to the method you use to select the next vertex to visit. For
-example, on a five-by-five board you can produce a path in about 1.5
-seconds on a reasonably fast computer. But what happens if you try an
-eight-by-eight board? In this case, depending on the speed of your
-computer, you may have to wait up to a half hour to get the results! The
-reason for this is that the knight’s tour problem as we have implemented
-it so far is an exponential algorithm of size :math:`O(k^N)`, where N
-is the number of squares on the chess board, and k is a small constant.
-:ref:`Figure 12 <fig_8array>` can help us visualize why this is so. The root of
-the tree represents the starting point of the search. From there the
-algorithm generates and checks each of the possible moves the knight can
-make. As we have noted before the number of moves possible depends on
-the position of the knight on the board. In the corners there are only
-two legal moves, on the squares adjacent to the corners there are three
-and in the middle of the board there are eight. :ref:`Figure 13 <fig_numMoves>`
-shows the number of moves possible for each position on a board. At the
-next level of the tree there are once again between 2 and 8 possible
-next moves from the position we are currently exploring. The number of
-possible positions to examine corresponds to the number of nodes in the
-search tree.
+Это последняя тема, посвящённая задаче о ходе коня; далее мы перейдём к общей версии поиска в глубину. Здесь же поговорим о производительности. В частности, ``knightTour`` очень чувствителен к способу, которым вы выбираете следующую вершину для посещения. Например, для доски пять на пять на достаточно быстром компьютере вы можете проложить путь за время около 1,5 секунд. Но что произойдёт, если взять доску восемь на восемь? В этом случае (в зависимости от скорости компьютера) вы можете до получаса прождать получение результата! Причина этого в том, что наша реализация задачи - экспоненциальный алгоритм размером :math:`O(k^N)`, где N - число клеток на доске, а k - какая-то малая константа. :ref:`Рисунок 12 <fig_8array>` поможет визуализировать причину, по которой так происходит. Корень дерева представляет начальную точку поиска. Из неё алгоритм генерирует и проверяет каждый из возможных ходов, которые может сделать конь. Как мы заметили ранее, число их может зависеть от позиции фигуры на доске. В углах у неё есть только два возможных хода, в клетках, смежных с угловыми, - три, а в середине доски - восемь. Количество возможных ходов для каждой позиции на доске показано на :ref:`рисунке 13 <fig_numMoves>`. На следующем уровне дерева из исследуемого положения вновь существует от двух до восьми возможных ходов. Число позиций для исследования связано с количеством узлов в дереве поиска.
 
 .. _fig_8array:  
 
 .. figure:: Figures/8arrayTree.png
    :align: center
 
-   Figure 12: A Search Tree for the Knight’s Tour 
+   Рисунок 12: Дерево поиска для задачи о ходе коня 
 
 .. _fig_numMoves:
 
 .. figure:: Figures/moveCount.png
    :align: center
 
-   Figure 13: Number of Possible Moves for Each Square      
+   Рисунок 13: Количество возможных ходов для каждой клетки
 
+Мы уже видели, что количество узлов в двоичном дереве высотой N равно :math:`2^{N+1}-1`. Для дерева, чьи вершины могут иметь до восьми потомков вместо двух, число узлов намного больше. Поскольку фактор ветвления - переменная для каждого узла, количество узлов можно оценить, используя средний фактор ветвления. Важно отметить, что этот алгоритм экспоненциальный: :math:`k^{N+1}-1`, где :math:`k` - средний фактор ветвления для доски. Давайте посмотрим, насколько быстро он растёт. Для доски 5х5 дерево будет в 25 уровней глубиной или N = 24, если считать превый уровень нулевым. Средний фактор ветвления равен :math:`k = 3.8`. Таким образом, количество узлов в дереве поиска будет :math:`3.8^{25}-1` или :math:`3.12 \times 10^{14}`. Для доски 6х6 :math:`k = 4.4`, число узлов - :math:`1.5\times 10^{23}`. Для обычной же доски 8х8 :math:`k = 5.25`, а количество узлов :math:`1.3 \times 10^{46}`. Конечно, поскольку существует несколько решений задачи, мы не будем исследовать каждый конкретный узел, но дробная часть выражения для количества узлов, которые нам необходимо изучить, - всего лишь постоянный множитель, что не меняет экспоненциальный характер проблемы. Мы оставляем вам в качестве упражнения попытку выразить :math:`k` в виде функции от размера доски.
 
+К счастью, есть способ ускорить случай 8х8, чтобы он работал примерно одну секунду. В приведённом ниже листинге можно найти код, ускоряющий ``knightTour``. Эта функция (см. :ref:`листинг 4 <lst_avail>`) называется ``orderbyAvail`` и будет использоваться вместо вызова ``u.getConnections`` из кода выше. Решающая строка в функции ``orderByAvail`` - десятая. Она гарантирует, что выбранная для дальнейшего продвижения вершина имеет наименьшее количество доступных ходов. Вы можете подумать, что на самом деле это контрпродуктивно: почему бы не выбрать узел, из которого можно совершить максимальное количество ходов? Такой подход легко опробовать, запустив программу и вставив строку ``resList.reverse()`` сразу после сортировки.
 
-We have already seen that the number of nodes in a binary tree of height
-N is :math:`2^{N+1}-1`. For a tree with nodes that may have up to
-eight children instead of two the number of nodes is much larger.
-Because the branching factor of each node is variable, we could estimate
-the number of nodes using an average branching factor. The important
-thing to note is that this algorithm is exponential:
-:math:`k^{N+1}-1`, where :math:`k` is the average branching factor
-for the board. Let’s look at how rapidly this grows! For a board that is
-5x5 the tree will be 25 levels deep, or N = 24 counting the first level
-as level 0. The average branching factor is :math:`k = 3.8` So the
-number of nodes in the search tree is :math:`3.8^{25}-1` or
-:math:`3.12 \times 10^{14}`. For a 6x6 board, :math:`k = 4.4`, there
-are :math:`1.5
-\times 10^{23}` nodes, and for a regular 8x8 chess board,
-:math:`k = 5.25`, there are :math:`1.3 \times 10^{46}`. Of course,
-since there are multiple solutions to the problem we won’t have to
-explore every single node, but the fractional part of the nodes we do
-have to explore is just a constant multiplier which does not change the
-exponential nature of the problem. We will leave it as an exercise for
-you to see if you can express :math:`k` as a function of the board
-size.
-
-Luckily there is a way to speed up the eight-by-eight case so that it
-runs in under one second. In the listing below we show the code that
-speeds up the ``knightTour``. This function (see :ref:`Listing 4 <lst_avail>`), called ``orderbyAvail``
-will be used in place of the call to ``u.getConnections`` in the code previously
-shown above. The critical line in the
-``orderByAvail`` function is line 10. This line ensures that we
-select the vertex to go next that has the fewest available moves. You
-might think this is really counter productive; why not select the node
-that has the most available moves? You can try that approach easily by
-running the program yourself and inserting the line
-``resList.reverse()`` right after the sort.
-
-The problem with using the vertex with the most available moves as your
-next vertex on the path is that it tends to have the knight visit the
-middle squares early on in the tour. When this happens it is easy for
-the knight to get stranded on one side of the board where it cannot
-reach unvisited squares on the other side of the board. On the other
-hand, visiting the squares with the fewest available moves first pushes
-the knight to visit the squares around the edges of the board first.
-This ensures that the knight will visit the hard-to-reach corners early
-and can use the middle squares to hop across the board only when
-necessary. Utilizing this kind of knowledge to speed up an algorithm is
-called a heuristic. Humans use heuristics every day to help make
-decisions, heuristic searches are often used in the field of artificial
-intelligence. This particular heuristic is called Warnsdorff’s
-algorithm, named after H. C. Warnsdorff who published his idea in 1823.
+Проблема с использованием вершины с наибольшим числом доступных ходов в качестве следующей на пути состоит в том, что конь будет пытаться пройти срединные клетки в самом начале. Когда так происходит, фигура может легко попасть в тупик у одной стороны доски, откуда не будет иметь возможность дойти до непосещённых клеток на другом её краю. С другой стороны, посещение клетки с наименьшим количеством возможных ходов подталкивает фигуру к первоочередному обходу клеток вдоль края доски. Это гарантирует, что конь посетит труднодостижимые углы раньше и сможет использовать средние клетки только при необходимости перепрыгнуть на другую сторону. Применение информации такого рода для ускорения алгоритма называется эвристикой. Люди используют эвристики каждый день для помощи в принятии решений, эвристический поиск часто применяется в области искуственного интеллекта. Данная эвристика называется алгоритмом Вансдорфа - по имени Г. Вансдорфа, опубликовавшего эту идею в 1823 году.
 
 .. _lst_avail:
 
-**Listing 4**
+**Листинг 4**
 
 .. highlight:: python
     :linenothreshold: 5
@@ -123,6 +56,3 @@ algorithm, named after H. C. Warnsdorff who published his idea in 1823.
 
 .. highlight:: python
     :linenothreshold: 500
-    
-
-

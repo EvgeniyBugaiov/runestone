@@ -7,33 +7,18 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Dijkstra’s Algorithm
-~~~~~~~~~~~~~~~~~~~~
+Алгоритм Дейкстры
+~~~~~~~~~~~~~~~~~
 
-The algorithm we are going to use to determine the shortest path is
-called “Dijkstra’s algorithm.” Dijkstra’s algorithm is an iterative
-algorithm that provides us with the shortest path from one particular
-starting node to all other nodes in the graph. Again this is similar to
-the results of a breadth first search.
+Для поиска кратчайшего пути мы собираемся использовать так называемый "алгоритм Дейкстры". Он является итеративным и возвращает кратчайшее расстояние от конкретного стартового узла до всех прочих узлов графа - результат, снова похожий на поиск в ширину.
 
-To keep track of the total cost from the start node to each destination
-we will make use of the ``dist`` instance variable in the Vertex class.
-The ``dist`` instance variable will contain the current total weight of
-the smallest weight path from the start to the vertex in question. The
-algorithm iterates once for every vertex in the graph; however, the
-order that we iterate over the vertices is controlled by a priority
-queue. The value that is used to determine the order of the objects in
-the priority queue is ``dist``. When a vertex is first created ``dist``
-is set to a very large number. Theoretically you would set ``dist`` to
-infinity, but in practice we just set it to a number that is larger than
-any real distance we would have in the problem we are trying to solve.
+Чтобы отслеживать общие затраты на продвижение от начального узла до каждого конечного пункта, мы используем поле ``dist`` класса ``Vertex``. Оно будет содержать текущий общий вес кратчайшего пути от старта до запрашиваемой вершины. Алгоритм повторяется для каждого узла в графе, однако, последовательность итераций задаётся очередью с приоритетом. Значение, используемое для определения порядка объектов в ней, - ``dist``. Когда вершина только создаётся, ``dist`` устанавливается в очень большую величину. Теоретически ею должна быть бесконечность, но на практике мы просто выбираем число, большее любого реального расстояния, которое будет использоваться при решении задачи.
 
-The code for Dijkstra’s algorithm is shown in :ref:`Listing 1 <lst_shortpath>`. When the algorithm finishes the distances are set
-correctly as are the predecessor links for each vertex in the graph.
+Код алгоритма Дейкстры показан в :ref:`листинге 1 <lst_shortpath>`. Результатом его работы станут правильно установленные расстояния, а также ссылки на предшественника для каждой вершины графа.
 
 .. _lst_shortpath:
 
-**Listing 1**
+**Листинг 1**
 
 ::
 
@@ -52,115 +37,56 @@ correctly as are the predecessor links for each vertex in the graph.
                     nextVert.setPred(currentVert)
                     pq.decreaseKey(nextVert,newDist)
 
+Алгоритм Дейкстры использует очередь с приоритетом. Вы можете помнить, что она основывается на куче, которую мы реализовали в главе, посвящённой деревьям. Однако, между тем простым вариантом и реализацией для алгоритма Дейкстры есть несколько отличий. Во-первых, класс ``PriorityQueue`` сохраняет кортежи пар ключ-значение. Это очень важно для алгоритма Дейкстры, поскольку ключи в очереди с приоритетом должны быть связаны с ключами вершин графа. Во-вторых, значение используется для определения приоритета, а следовательно - для определения позиции ключа в очереди. В этой реализации мы используем растояние до вершины как приоритет, покольку (как увидим дальше) для исследования мы всегда будем стремиться найти узел с наименьшим расстоянием. Следующее отличие - в дополнительном методе ``decreaseKey``. Как вы можете видеть, он используется, когда нужно уменьшить расстояние до вершины, уже находящейся в очереди, т.е. переместить её ближе к началу.
 
-Dijkstra’s algorithm uses a priority queue. You may recall that a
-priority queue is based on the heap that we implemented in the Tree Chapter. 
-There are a couple of differences between that
-simple implementation and the implementation we
-use for Dijkstra’s algorithm. First, the ``PriorityQueue`` class stores
-tuples of key, value pairs. This is important for Dijkstra’s algorithm
-as the key in the priority queue must match the key of the vertex in the
-graph. Secondly the value is used for deciding the priority, and thus
-the position of the key in the priority queue. In this implementation we
-use the distance to the vertex as the priority because as we will see
-when we are exploring the next vertex, we always want to explore the
-vertex that has the smallest distance. The second difference is the
-addition of the ``decreaseKey`` method. As you can see, this method is used when the distance to a vertex that
-is already in the queue is reduced, and thus moves that vertex toward
-the front of the queue.
+Давайте пройдём по алгоритму Дейкстры для одного из узлов, используя в качестве путеводителя нижеследующие рисунки. Начнём с вершины :math:`u`. С нею смежны три узла: :math:`v, w` и :math:`x`. Поскольку начальные расстояния для них инициализированы ``sys.maxint``, то расстояниями пути к ним от стартового узла станут их непосредственные веса. Вместе с обновлением издержек мы устанавливаем предшественником каждого узел :math:`u` и добавляем их в очередь. Расстояние будет использоваться как ключ приоритета. Состояние алгоритма на этот момент показано на :ref:`рисунке 3 <fig_dija>`.
 
+На следующей итерации цикла ``while`` мы проверяем вершины, смежные с :math:`x`. Она выбрана следующей, поскольку имеет наименьшее значение ``dist`` и, следовательно, оказалась наверху очереди с приоритетом. Для :math:`x` мы рассматриваем её соседей :math:`u, v, w` и :math:`y`. Для каждого из них расчитываем путь через :math:`x` и смотрим, у кого он будет меньше существующей величины ``dist``. Очевидно, что это вариант :math:`y`, поскольку его расстояние - ``sys.maxint``, а не :math:`u` или :math:`v`, поскольку их значения 0 и 2 соответственно. Как бы то ни было, теперь мы знаем, что расстояние до :math:`w` будет наименьшим, если идти к ней через :math:`x`, а не непосредственно от :math:`u` к :math:`w`. Таким образом, мы обновляем расстояние :math:`w` и изменяем её предшественника с :math:`u` на :math:`x`. См. :ref:`рисунок 4 <fig_dijb>`, где показано состояние всех вершин на данный момент.
 
+Следующим шагом станет рассмотрение соседей :math:`v` (см. :ref:`рисунок 5 <fig_dijc>`). Результаты этого шага не изменят граф, так что мы переходим к узлу :math:`y`. Для него (см. :ref:`рисунок 6 <fig_dijd>`) мы находим, что дешевле пройти через :math:`w` и :math:`z`, в связи с чем регулируем соответствующие расстояния и ссылки на предшественников. Наконец, проверяем узлы :math:`w` и :math:`z` (см. :ref:`рисунок 7 <fig_dije>` и :ref:`рисунок 8 <fig_dijf>`). Однако, никаких дополнительных изменений это не вносит, очередь с приоритетом пуста и алгоритм Дейкстры заканчивает свою работу.
 
-Let’s walk through an application of Dijkstra’s algorithm one vertex at
-a time using the following sequence of figures as our guide. We begin with the vertex
-:math:`u`. The three vertices adjacent to :math:`u` are
-:math:`v,w,` and :math:`x`. Since the initial distances to
-:math:`v,w,` and :math:`x` are all initialized to ``sys.maxint``,
-the new costs to get to them through the start node are all their direct
-costs. So we update the costs to each of these three nodes. We also set
-the predecessor for each node to :math:`u` and we add each node to the
-priority queue. We use the distance as the key for the priority queue.
-The state of the algorithm is shown in :ref:`Figure 3 <fig_dija>`.
-
-In the next iteration of the ``while`` loop we examine the vertices that
-are adjacent to :math:`x`. The vertex :math:`x` is next because it
-has the lowest overall cost and therefore bubbled its way to the
-beginning of the priority queue. At :math:`x` we look at its neighbors
-:math:`u,v,w` and :math:`y`. For each neighboring vertex we check to
-see if the distance to that vertex through :math:`x` is smaller than
-the previously known distance. Obviously this is the case for
-:math:`y` since its distance was ``sys.maxint``. It is not the case
-for :math:`u` or :math:`v` since their distances are 0 and 2
-respectively. However, we now learn that the distance to :math:`w` is
-smaller if we go through :math:`x` than from :math:`u` directly to
-:math:`w`. Since that is the case we update :math:`w` with a new
-distance and change the predecessor for :math:`w` from :math:`u` to
-:math:`x`. See :ref:`Figure 4 <fig_dijb>` for the state of all the vertices.
-
-The next step is to look at the vertices neighboring :math:`v` (see :ref:`Figure 5 <fig_dijc>`). This
-step results in no changes to the graph, so we move on to node
-:math:`y`. At node :math:`y` (see :ref:`Figure 6 <fig_dijd>`) we discover that it is cheaper to get
-to both :math:`w` and :math:`z`, so we adjust the distances and
-predecessor links accordingly. Finally we check nodes :math:`w` and
-:math:`z` (see see :ref:`Figure 6 <fig_dije>` and see :ref:`Figure 8 <fig_dijf>`). However, no additional changes are found and so the
-priority queue is empty and Dijkstra’s algorithm exits.
-
-   
 .. _fig_dija:
 
 .. figure:: Figures/dijkstraa.png
    :align: center
 
-   Figure 3: Tracing Dijkstra’s Algorithm      
+   Рисунок 3: Трассировка алгоритма Дейкстры      
    
 .. _fig_dijb:
 
 .. figure:: Figures/dijkstrab.png
    :align: center
 
-   Figure 4: Tracing Dijkstra’s Algorithm     
+   Рисунок 4: Трассировка алгоритма Дейкстры      
    
 .. _fig_dijc:
 
 .. figure:: Figures/dijkstrac.png
    :align: center
 
-   Figure 5: Tracing Dijkstra’s Algorithm      
+   Рисунок 5: Трассировка алгоритма Дейкстры       
    
 .. _fig_dijd:
 
 .. figure:: Figures/dijkstrad.png
    :align: center
 
-   Figure 6: Tracing Dijkstra’s Algorithm      
+   Рисунок 6: Трассировка алгоритма Дейкстры      
    
 .. _fig_dije:
 
 .. figure:: Figures/dijkstrae.png
    :align: center
 
-   Figure 7: Tracing Dijkstra’s Algorithm      
+   Рисунок 7: Трассировка алгоритма Дейкстры       
    
 .. _fig_dijf:
 
 .. figure:: Figures/dijkstraf.png
    :align: center
 
-   Figure 8: Tracing Dijkstra’s Algorithm      
+   Рисунок 8: Трассировка алгоритма Дейкстры 
 
+Важно отметить, что алгоритм Дейкстры работает только в том случае, когда веса рёбер положительны. Вы можете самостоятельно проверить, что если хотя бы у одного из них будет отрицательный вес, то алгоритм никогда не завершится.
 
-
-It is important to note that Dijkstra’s algorithm works only when the
-weights are all positive. You should convince yourself that if you
-introduced a negative weight on one of the edges to the graph that the algorithm would never exit.
-
-We will note that to route messages through the Internet, other
-algorithms are used for finding the shortest path. One of the problems
-with using Dijkstra’s algorithm on the Internet is that you must have a
-complete representation of the graph in order for the algorithm to run.
-The implication of this is that every router has a complete map of all
-the routers in the Internet. In practice this is not the case and other
-variations of the algorithm allow each router to discover the graph as
-they go. One such algorithm that you may want to read about is called
-the “distance vector” routing algorithm.
-
+Отметим, что для прокладывания маршрута сообщения через интернет используются и другие алгоритмы поиска кратчайшего пути. Одной из проблем с алгоритмом Дейкстры для Всемирной паутины является необходимость иметь полное представление графа. Только в этом случае он может быть запущен. Следствием этого будет то, что каждый маршрутизатор должен обладать полной картой всех маршрутизаторов в интернете. На практике такое не встречается, поэтому существуют дргие варианты алгоритма, позволяющие маршрутизатору открывать граф по ходу дела. Одни из таких алгоритмов, о котором вы, возможно, захотите почитать, называется "дистанционно-векторный алгоритм маршрутизации".

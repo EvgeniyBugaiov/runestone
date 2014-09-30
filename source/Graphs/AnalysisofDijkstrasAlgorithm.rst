@@ -7,19 +7,7 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Analysis of Dijkstra’s Algorithm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Анализ алгоритма Дейкстры
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-Finally, let us look at the running time of Dijkstra’s algorithm. We
-first note that building the priority queue takes :math:`O(V)` time
-since we initially add every vertex in the graph to the priority queue.
-Once the queue is constructed the ``while`` loop 
-is executed once for every vertex since vertices are all added at the
-beginning and only removed after that. Within that loop each call to
-``delMin``, takes :math:`O(\log V)` time. Taken together that part of
-the loop and the calls to delMin take :math:`O(V \log(V))`. The
-``for`` loop is executed once for each edge in the
-graph, and within the ``for`` loop the call to ``decreaseKey`` takes
-time :math:`O(E\log(V)).` So the combined running time is :math:`O((V+E) \log(V)).`
-
+Наконец, давайте посмотрим на время выполнения алгоритма Дейкстры. Для начал отметим, что создание очереди с приоритетом занимает :math:`O(V)` времени, поскольку первоначально мы добавляем в неё каждую вершину из графа. После того, как очередь сформирована, запускается цикл ``while``. Он вычисляется один раз для каждого узла, так как все они добавлены с самого начала, а после только удаляются. Внутри цикла каждый вызов ``delMin`` занимает :math:`O(\log V)` времени. Вместе цикл и вызов ``delMin`` дают :math:`O(V \log(V))`. Цикл ``for`` вычисляется единожды для каждого ребра графа, а внутри него происходит вызов ``decreaseKey``. Вместе на это уходит :math:`O(E\log(V))` времени. Таким образом, общее время выполнения получается равным :math:`O((V+E) \log(V)).`
