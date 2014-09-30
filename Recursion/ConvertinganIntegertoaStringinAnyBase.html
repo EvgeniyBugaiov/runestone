@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/pytutor.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
@@ -37,14 +37,16 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/poll.js"></script>
-    <script type="text/javascript" src="../_static/js/d3.v2.min.js"></script>
-    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery.ba-bbq.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
-    <script type="text/javascript" src="../_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
     <script type="text/javascript" src="../_static/javascript.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
@@ -72,9 +74,8 @@
     <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
     <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
-    <link rel="next" title="Фрейм стека: реализация рекурсии" href="StackFramesImplementingRecursion.html" />
-    <link rel="prev" title="Три закона рекурсии" href="TheThreeLawsofRecursion.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -86,7 +87,7 @@
   eBookConfig.course = 'pythonds';
   eBookConfig.logLevel = 10;
   eBookConfig.loginRequired = false
-  eBookConfig.build_info = "2.1.5";
+  eBookConfig.build_info = "3.1.1";
   eBookConfig.isLoggedIn = false;
 </script>
 
@@ -99,19 +100,6 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-<script>
-var _prum = [['id', '521dfcc4abe53d0749000000'],
-             ['mark', 'firstbyte', (new Date()).getTime()]];
-(function() {
-    var s = document.getElementsByTagName('script')[0]
-      , p = document.createElement('script');
-    p.async = 'async';
-    p.src = '//rum-static.pingdom.net/prum.min.js';
-    s.parentNode.insertBefore(p, s);
-})();
 </script>
 
 
@@ -228,7 +216,13 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
             <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
             <li class="divider"></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
@@ -273,18 +267,6 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Три закона рекурсии" data-toggle="tooltip">
-    <a href="TheThreeLawsofRecursion.html" >
-      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
-    </a>
-  </li>
-  
-  <li id="relations-next" title='Next Chapter - Фрейм стека: реализация рекурсии' data-toggle="tooltip" >
-    <a href="StackFramesImplementingRecursion.html" >
-      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
-    </a>
-  </li>
-  <li class="divider-vertical"></li>
 
 <script type="text/javascript">
   opts = {'placement':'bottom',
@@ -334,11 +316,12 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 <button class='btn btn-success' id="lst_rectostr_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="lst_rectostr_saveb" onclick="saveEditor('lst_rectostr');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="lst_rectostr_loadb" onclick="requestCode('lst_rectostr');">Load</button>
+<button class='btn btn-default' id="lst_rectostr_vizb" onclick="injectCodelens(this,'lst_rectostr');">Show in Codelens</button>
 
 </div>
 <br/>
 <div id="lst_rectostr_code_div" style="display: block" class="ac_code_div">
-<textarea cols="50" rows="12" id="lst_rectostr_code" class="active_code", prefixcode="undefined" lang="python">
+<textarea cols="50" rows="12" id="lst_rectostr_code" class="active_code" prefixcode="undefined" lang="python">
 def toStr(n,base):
    convertString = "0123456789ABCDEF"
    if n < base:
@@ -349,19 +332,18 @@ def toStr(n,base):
 print(toStr(1453,16))
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="lst_rectostr_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="lst_rectostr_suffix" style="display:none">
-</pre><pre id="lst_rectostr_pre" class="active_out">
+</pre><pre id="lst_rectostr_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text">Рекурсивное конвертирование целого числа в строку (lst_rectostr)</span> </p>
-
+<div id="lst_rectostr_codelens_div" style="display:none"></div>
 <script>
 if ('block' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -369,7 +351,7 @@ if ('block' == 'none') {
     $('#lst_rectostr_saveb').toggle();
     $('#lst_rectostr_loadb').toggle();
 }
-if ($("#lst_rectostr_code_div").parents(".admonition").length == 0 && $("#lst_rectostr_code_div").parents("#exercises").length == 0){
+if ($("#lst_rectostr").attr("lang") !== "html" && $("#lst_rectostr_code_div").parents(".admonition").length == 0 && $("#lst_rectostr_code_div").parents("#exercises").length == 0){
 	if ($(window).width() > 975){
 		$("#lst_rectostr_code_div").offset({
 			left: $("#lst_rectostr .clearfix").offset().left
@@ -398,11 +380,9 @@ if ($("#lst_rectostr_code_div").parents(".admonition").length == 0 && $("#lst_re
 	});
 }
 else{
-	console.log("inside new if")
 	$("#lst_rectostr_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
 	$("#lst_rectostr_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
 	$("#lst_rectostr_runb").on("click", function(){
-		console.log("button clicked");
 		runit('lst_rectostr',this, undefined);
 	});
 }
@@ -426,6 +406,8 @@ else{
 <button class='btn btn-success' id="recursion_sc_1_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="recursion_sc_1_saveb" onclick="saveEditor('recursion_sc_1');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="recursion_sc_1_loadb" onclick="requestCode('recursion_sc_1');">Load</button>
+<button class='btn btn-default' id="recursion_sc_1_vizb" onclick="injectCodelens(this,'recursion_sc_1');">Show in Codelens</button>
+<button class='ac_opt btn btn-default' id="recursion_sc_1_coach_b" onclick="injectCodeCoach('recursion_sc_1');">Code Coach</button>
 
 <span class="ac_sep"></span>
 <button class='btn btn-default' id="recursion_sc_1_showb" onclick="$('#recursion_sc_1_code_div').toggle();cm_editors['recursion_sc_1_code'].refresh();$('#recursion_sc_1_saveb').toggle();$('#recursion_sc_1_loadb').toggle()">Show/Hide Code</button>
@@ -436,7 +418,7 @@ else{
 </div>
 <br/>
 <div id="recursion_sc_1_code_div" style="display: none" class="ac_code_div">
-<textarea cols="50" rows="12" id="recursion_sc_1_code" class="active_code", prefixcode="undefined" lang="python">
+<textarea cols="50" rows="12" id="recursion_sc_1_code" class="active_code" prefixcode="undefined" lang="python">
 from test import testEqual
 def reverse(s):
     return s
@@ -447,19 +429,18 @@ testEqual(reverse("follow"),"wollof")
 testEqual(reverse(""),"")
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="recursion_sc_1_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="recursion_sc_1_suffix" style="display:none">
-</pre><pre id="recursion_sc_1_pre" class="active_out">
+</pre><pre id="recursion_sc_1_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text"> (recursion_sc_1)</span> </p>
-
+<div id="recursion_sc_1_codelens_div" style="display:none"></div><div id="recursion_sc_1_coach_div" style="display:none;"></div>
 <script>
 if ('none' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -467,7 +448,7 @@ if ('none' == 'none') {
     $('#recursion_sc_1_saveb').toggle();
     $('#recursion_sc_1_loadb').toggle();
 }
-if ($("#recursion_sc_1_code_div").parents(".admonition").length == 0 && $("#recursion_sc_1_code_div").parents("#exercises").length == 0){
+if ($("#recursion_sc_1").attr("lang") !== "html" && $("#recursion_sc_1_code_div").parents(".admonition").length == 0 && $("#recursion_sc_1_code_div").parents("#exercises").length == 0){
 	if ($(window).width() > 975){
 		$("#recursion_sc_1_code_div").offset({
 			left: $("#recursion_sc_1 .clearfix").offset().left
@@ -496,11 +477,9 @@ if ($("#recursion_sc_1_code_div").parents(".admonition").length == 0 && $("#recu
 	});
 }
 else{
-	console.log("inside new if")
 	$("#recursion_sc_1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
 	$("#recursion_sc_1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
 	$("#recursion_sc_1_runb").on("click", function(){
-		console.log("button clicked");
 		runit('recursion_sc_1',this, undefined);
 	});
 }
@@ -526,6 +505,8 @@ else{
 <button class='btn btn-success' id="recursion_sc_2_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="recursion_sc_2_saveb" onclick="saveEditor('recursion_sc_2');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="recursion_sc_2_loadb" onclick="requestCode('recursion_sc_2');">Load</button>
+<button class='btn btn-default' id="recursion_sc_2_vizb" onclick="injectCodelens(this,'recursion_sc_2');">Show in Codelens</button>
+<button class='ac_opt btn btn-default' id="recursion_sc_2_coach_b" onclick="injectCodeCoach('recursion_sc_2');">Code Coach</button>
 
 <span class="ac_sep"></span>
 <button class='btn btn-default' id="recursion_sc_2_showb" onclick="$('#recursion_sc_2_code_div').toggle();cm_editors['recursion_sc_2_code'].refresh();$('#recursion_sc_2_saveb').toggle();$('#recursion_sc_2_loadb').toggle()">Show/Hide Code</button>
@@ -536,7 +517,7 @@ else{
 </div>
 <br/>
 <div id="recursion_sc_2_code_div" style="display: none" class="ac_code_div">
-<textarea cols="50" rows="12" id="recursion_sc_2_code" class="active_code", prefixcode="undefined" lang="python">
+<textarea cols="50" rows="12" id="recursion_sc_2_code" class="active_code" prefixcode="undefined" lang="python">
 from test import testEqual
 def removeWhite(s):
     return s
@@ -552,19 +533,18 @@ testEqual(isPal(removeWhite("hannah")),True)
 testEqual(isPal(removeWhite("madam i'm adam")),True)
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="recursion_sc_2_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="recursion_sc_2_suffix" style="display:none">
-</pre><pre id="recursion_sc_2_pre" class="active_out">
+</pre><pre id="recursion_sc_2_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text"> (recursion_sc_2)</span> </p>
-
+<div id="recursion_sc_2_codelens_div" style="display:none"></div><div id="recursion_sc_2_coach_div" style="display:none;"></div>
 <script>
 if ('none' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -572,7 +552,7 @@ if ('none' == 'none') {
     $('#recursion_sc_2_saveb').toggle();
     $('#recursion_sc_2_loadb').toggle();
 }
-if ($("#recursion_sc_2_code_div").parents(".admonition").length == 0 && $("#recursion_sc_2_code_div").parents("#exercises").length == 0){
+if ($("#recursion_sc_2").attr("lang") !== "html" && $("#recursion_sc_2_code_div").parents(".admonition").length == 0 && $("#recursion_sc_2_code_div").parents("#exercises").length == 0){
 	if ($(window).width() > 975){
 		$("#recursion_sc_2_code_div").offset({
 			left: $("#recursion_sc_2 .clearfix").offset().left
@@ -601,11 +581,9 @@ if ($("#recursion_sc_2_code_div").parents(".admonition").length == 0 && $("#recu
 	});
 }
 else{
-	console.log("inside new if")
 	$("#recursion_sc_2_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
 	$("#recursion_sc_2_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
 	$("#recursion_sc_2_runb").on("click", function(){
-		console.log("button clicked");
 		runit('recursion_sc_2',this, undefined);
 	});
 }
@@ -619,19 +597,6 @@ else{
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Три закона рекурсии' data-toggle="tooltip">
-    <a href="TheThreeLawsofRecursion.html" >
-      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
-    </a>
-  </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="TheThreeLawsofRecursion.html" ></a>
-  
-  <li id="relations-next" class="navLink" title='Next Section - Фрейм стека: реализация рекурсии' data-toggle="tooltip" >
-    <a href="StackFramesImplementingRecursion.html" >
-      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
-    </a>
-  </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="StackFramesImplementingRecursion.html" >Next Section - Фрейм стека: реализация рекурсии</a>
 
 <script type="text/javascript">
 
@@ -648,7 +613,7 @@ else{
       
     </p>
     <p>
-        &copy; Copyright 2013 Brad Miller, David Ranum.
+        &copy; Copyright 2014 Brad Miller, David Ranum.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
     </p>
   </div>

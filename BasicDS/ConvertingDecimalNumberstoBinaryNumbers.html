@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/pytutor.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
@@ -37,14 +37,16 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/poll.js"></script>
-    <script type="text/javascript" src="../_static/js/d3.v2.min.js"></script>
-    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery.ba-bbq.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
-    <script type="text/javascript" src="../_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
     <script type="text/javascript" src="../_static/javascript.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
@@ -72,6 +74,7 @@
     <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
     <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
     <link rel="next" title="Инфиксные, префиксные и постфиксные выражения" href="InfixPrefixandPostfixExpressions.html" />
     <link rel="prev" title="Сбалансированные символы (общий случай)" href="BalancedSymbols(AGeneralCase).html" />
@@ -86,7 +89,7 @@
   eBookConfig.course = 'pythonds';
   eBookConfig.logLevel = 10;
   eBookConfig.loginRequired = false
-  eBookConfig.build_info = "2.1.5";
+  eBookConfig.build_info = "3.1.1";
   eBookConfig.isLoggedIn = false;
 </script>
 
@@ -99,19 +102,6 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-<script>
-var _prum = [['id', '521dfcc4abe53d0749000000'],
-             ['mark', 'firstbyte', (new Date()).getTime()]];
-(function() {
-    var s = document.getElementsByTagName('script')[0]
-      , p = document.createElement('script');
-    p.async = 'async';
-    p.src = '//rum-static.pingdom.net/prum.min.js';
-    s.parentNode.insertBefore(p, s);
-})();
 </script>
 
 
@@ -228,7 +218,13 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
             <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
             <li class="divider"></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
@@ -359,11 +355,12 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 <button class='btn btn-success' id="divby2_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="divby2_saveb" onclick="saveEditor('divby2');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="divby2_loadb" onclick="requestCode('divby2');">Load</button>
+<button class='btn btn-default' id="divby2_vizb" onclick="injectCodelens(this,'divby2');">Show in Codelens</button>
 
 </div>
 <br/>
 <div id="divby2_code_div" style="display: block" class="ac_code_div">
-<textarea cols="50" rows="12" id="divby2_code" class="active_code", prefixcode="undefined" lang="python">
+<textarea cols="50" rows="12" id="divby2_code" class="active_code" prefixcode="undefined" lang="python">
 from pythonds.basic.stack import Stack
 
 def divideBy2(decNumber):
@@ -383,19 +380,18 @@ def divideBy2(decNumber):
 print(divideBy2(42))
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="divby2_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="divby2_suffix" style="display:none">
-</pre><pre id="divby2_pre" class="active_out">
+</pre><pre id="divby2_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text">Преобразование числа из десятичного в бинарное (divby2)</span> </p>
-
+<div id="divby2_codelens_div" style="display:none"></div>
 <script>
 if ('block' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -403,7 +399,7 @@ if ('block' == 'none') {
     $('#divby2_saveb').toggle();
     $('#divby2_loadb').toggle();
 }
-if ($("#divby2_code_div").parents(".admonition").length == 0 && $("#divby2_code_div").parents("#exercises").length == 0){
+if ($("#divby2").attr("lang") !== "html" && $("#divby2_code_div").parents(".admonition").length == 0 && $("#divby2_code_div").parents("#exercises").length == 0){
 	if ($(window).width() > 975){
 		$("#divby2_code_div").offset({
 			left: $("#divby2 .clearfix").offset().left
@@ -432,11 +428,9 @@ if ($("#divby2_code_div").parents(".admonition").length == 0 && $("#divby2_code_
 	});
 }
 else{
-	console.log("inside new if")
 	$("#divby2_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
 	$("#divby2_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
 	$("#divby2_runb").on("click", function(){
-		console.log("button clicked");
 		runit('divby2',this, undefined);
 	});
 }
@@ -474,11 +468,12 @@ else{
 <button class='btn btn-success' id="baseconvert_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="baseconvert_saveb" onclick="saveEditor('baseconvert');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="baseconvert_loadb" onclick="requestCode('baseconvert');">Load</button>
+<button class='btn btn-default' id="baseconvert_vizb" onclick="injectCodelens(this,'baseconvert');">Show in Codelens</button>
 
 </div>
 <br/>
 <div id="baseconvert_code_div" style="display: block" class="ac_code_div">
-<textarea cols="50" rows="12" id="baseconvert_code" class="active_code", prefixcode="undefined" lang="python">
+<textarea cols="50" rows="12" id="baseconvert_code" class="active_code" prefixcode="undefined" lang="python">
 from pythonds.basic.stack import Stack
 
 def baseConverter(decNumber,base):
@@ -501,19 +496,18 @@ print(baseConverter(25,2))
 print(baseConverter(25,16))
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="baseconvert_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="baseconvert_suffix" style="display:none">
-</pre><pre id="baseconvert_pre" class="active_out">
+</pre><pre id="baseconvert_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text">Преобразование числа из десятичного в число по любому основанию (baseconvert)</span> </p>
-
+<div id="baseconvert_codelens_div" style="display:none"></div>
 <script>
 if ('block' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -521,7 +515,7 @@ if ('block' == 'none') {
     $('#baseconvert_saveb').toggle();
     $('#baseconvert_loadb').toggle();
 }
-if ($("#baseconvert_code_div").parents(".admonition").length == 0 && $("#baseconvert_code_div").parents("#exercises").length == 0){
+if ($("#baseconvert").attr("lang") !== "html" && $("#baseconvert_code_div").parents(".admonition").length == 0 && $("#baseconvert_code_div").parents("#exercises").length == 0){
 	if ($(window).width() > 975){
 		$("#baseconvert_code_div").offset({
 			left: $("#baseconvert .clearfix").offset().left
@@ -550,11 +544,9 @@ if ($("#baseconvert_code_div").parents(".admonition").length == 0 && $("#basecon
 	});
 }
 else{
-	console.log("inside new if")
 	$("#baseconvert_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
 	$("#baseconvert_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
 	$("#baseconvert_runb").on("click", function(){
-		console.log("button clicked");
 		runit('baseconvert',this, undefined);
 	});
 }
@@ -671,7 +663,7 @@ else{
       
     </p>
     <p>
-        &copy; Copyright 2013 Brad Miller, David Ranum.
+        &copy; Copyright 2014 Brad Miller, David Ranum.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
     </p>
   </div>

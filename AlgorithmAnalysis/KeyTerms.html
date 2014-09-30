@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/pytutor.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
@@ -37,14 +37,16 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/poll.js"></script>
-    <script type="text/javascript" src="../_static/js/d3.v2.min.js"></script>
-    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery.ba-bbq.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
-    <script type="text/javascript" src="../_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
     <script type="text/javascript" src="../_static/javascript.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
@@ -72,6 +74,7 @@
     <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
     <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
     <link rel="next" title="Вопросы для обсуждения" href="DiscussionQuestions.html" />
     <link rel="prev" title="Заключение" href="Summary.html" />
@@ -86,7 +89,7 @@
   eBookConfig.course = 'pythonds';
   eBookConfig.logLevel = 10;
   eBookConfig.loginRequired = false
-  eBookConfig.build_info = "2.1.5";
+  eBookConfig.build_info = "3.1.1";
   eBookConfig.isLoggedIn = false;
 </script>
 
@@ -99,19 +102,6 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-<script>
-var _prum = [['id', '521dfcc4abe53d0749000000'],
-             ['mark', 'firstbyte', (new Date()).getTime()]];
-(function() {
-    var s = document.getElementsByTagName('script')[0]
-      , p = document.createElement('script');
-    p.async = 'async';
-    p.src = '//rum-static.pingdom.net/prum.min.js';
-    s.parentNode.insertBefore(p, s);
-})();
 </script>
 
 
@@ -228,7 +218,13 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
             <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
             <li class="divider"></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
@@ -371,7 +367,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
       
     </p>
     <p>
-        &copy; Copyright 2013 Brad Miller, David Ranum.
+        &copy; Copyright 2014 Brad Miller, David Ranum.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
     </p>
   </div>

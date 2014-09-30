@@ -16,9 +16,15 @@
 
 By Brad Miller and David Ranum, Luther College
 
+Assignments
+:::::::::::
 
-Введение
-::::::::
+.. toctree::
+
+   assignments.rst
+
+Introduction
+::::::::::::
 
 .. toctree::
     :maxdepth: 2
@@ -41,8 +47,8 @@ By Brad Miller and David Ranum, Luther College
     Introduction/DiscussionQuestions.rst
     Introduction/ProgrammingExercises.rst
 
-Анализ
-::::::
+Analysis
+::::::::
 
 .. toctree::
     :maxdepth: 2
@@ -59,8 +65,8 @@ By Brad Miller and David Ranum, Luther College
     AlgorithmAnalysis/DiscussionQuestions.rst
     AlgorithmAnalysis/ProgrammingExercises.rst
 
-Основные структуры данных
-:::::::::::::::::::::::::
+Basic Data Structures
+:::::::::::::::::::::
 
 .. toctree::
     :maxdepth: 2
@@ -94,7 +100,7 @@ By Brad Miller and David Ranum, Luther College
     BasicDS/ProgrammingExercises.rst
 
 
-Рекурсия
+Recursion
 :::::::::
 
 .. toctree::
@@ -102,12 +108,12 @@ By Brad Miller and David Ranum, Luther College
 
     Recursion/Objectives.rst
     Recursion/WhatIsRecursion.rst
-    Recursion/CalculatingtheSumofaListofNumbers.rst
+    Recursion/pythondsCalculatingtheSumofaListofNumbers.rst
     Recursion/TheThreeLawsofRecursion.rst
-    Recursion/ConvertinganIntegertoaStringinAnyBase.rst
+    Recursion/pythondsConvertinganIntegertoaStringinAnyBase.rst
     Recursion/StackFramesImplementingRecursion.rst
-    Recursion/intro-VisualizingRecursion.rst
-    Recursion/SierpinskiTriangle.rst
+    Recursion/pythondsintro-VisualizingRecursion.rst
+    Recursion/pythondsSierpinskiTriangle.rst
     Recursion/ComplexRecursiveProblems.rst
     Recursion/TowerofHanoi.rst
     Recursion/ExploringaMaze.rst
@@ -116,10 +122,10 @@ By Brad Miller and David Ranum, Luther College
     Recursion/KeyTerms.rst
     Recursion/DiscussionQuestions.rst
     Recursion/Glossary.rst
-    Recursion/ProgrammingExercises.rst
+    Recursion/pythondsProgrammingExercises.rst
 
 
-Поиск и сортировка
+Sorting and Searching
 :::::::::::::::::::::
 
 .. toctree::
@@ -142,7 +148,7 @@ By Brad Miller and David Ranum, Luther College
 
 
 
-Деревья
+Trees and Tree Algorithms
 :::::::::::::::::::::::::
 
 .. toctree::
@@ -153,7 +159,6 @@ By Brad Miller and David Ranum, Luther College
     Trees/VocabularyandDefinitions.rst
     Trees/ListofListsRepresentation.rst
     Trees/NodesandReferences.rst
-    Trees/BinaryTreeApplications.rst
     Trees/ParseTree.rst
     Trees/TreeTraversals.rst
     Trees/PriorityQueueswithBinaryHeaps.rst
@@ -174,7 +179,7 @@ By Brad Miller and David Ranum, Luther College
 
 
 
-Графы и алгоритмы на графах
+Graphs and Graph Algorithms
 :::::::::::::::::::::::::::
 
 .. toctree::
@@ -186,12 +191,10 @@ By Brad Miller and David Ranum, Luther College
     Graphs/AnAdjacencyMatrix.rst
     Graphs/AnAdjacencyList.rst
     Graphs/Implementation.rst
-    Graphs/BreadthFirstSearch.rst
     Graphs/TheWordLadderProblem.rst
     Graphs/BuildingtheWordLadderGraph.rst
     Graphs/ImplementingBreadthFirstSearch.rst
     Graphs/BreadthFirstSearchAnalysis.rst
-    Graphs/DepthFirstSearch.rst
     Graphs/TheKnightsTourProblem.rst
     Graphs/BuildingtheKnightsTourGraph.rst
     Graphs/ImplementingKnightsTour.rst
@@ -210,18 +213,18 @@ By Brad Miller and David Ranum, Luther College
     Graphs/ProgrammingExercises.rst
 
 
-.. Acknowledgements
-.. ::::::::::::::::
-..
-..
-.. Indices and tables
-.. ::::::::::::::::::
-..
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
-..
-.. .. toctree::
-..    :hidden:
-..
-..    navhelp
+Acknowledgements
+::::::::::::::::
+
+
+Indices and tables
+::::::::::::::::::
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
+.. toctree::
+   :hidden:
+
+   navhelp

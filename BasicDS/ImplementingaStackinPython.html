@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="../_static/video.css" type="text/css" />
     <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/pytutor.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
@@ -37,14 +37,16 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/poll.js"></script>
-    <script type="text/javascript" src="../_static/js/d3.v2.min.js"></script>
-    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery.ba-bbq.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
-    <script type="text/javascript" src="../_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
     <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="../_static/bookfuncs.js"></script>
     <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
     <script type="text/javascript" src="../_static/python.js"></script>
     <script type="text/javascript" src="../_static/javascript.js"></script>
     <script type="text/javascript" src="../_static/activecode.js"></script>
@@ -72,6 +74,7 @@
     <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
     <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
     <link rel="next" title="Простые сбалансированные скобки" href="SimpleBalancedParentheses.html" />
     <link rel="prev" title="Абстрактный тип данных “стек”" href="TheStackAbstractDataType.html" />
@@ -86,7 +89,7 @@
   eBookConfig.course = 'pythonds';
   eBookConfig.logLevel = 10;
   eBookConfig.loginRequired = false
-  eBookConfig.build_info = "2.1.5";
+  eBookConfig.build_info = "3.1.1";
   eBookConfig.isLoggedIn = false;
 </script>
 
@@ -99,19 +102,6 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-<script>
-var _prum = [['id', '521dfcc4abe53d0749000000'],
-             ['mark', 'firstbyte', (new Date()).getTime()]];
-(function() {
-    var s = document.getElementsByTagName('script')[0]
-      , p = document.createElement('script');
-    p.async = 'async';
-    p.src = '//rum-static.pingdom.net/prum.min.js';
-    s.parentNode.insertBefore(p, s);
-})();
 </script>
 
 
@@ -228,7 +218,13 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
             <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
             <li class="divider"></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
@@ -339,11 +335,12 @@ Python. Мы будем использовать список.</p>
 <button class='btn btn-success' id="stack_1ac_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="stack_1ac_saveb" onclick="saveEditor('stack_1ac');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="stack_1ac_loadb" onclick="requestCode('stack_1ac');">Load</button>
+<button class='btn btn-default' id="stack_1ac_vizb" onclick="injectCodelens(this,'stack_1ac');">Show in Codelens</button>
 
 </div>
 <br/>
 <div id="stack_1ac_code_div" style="display: block" class="ac_code_div">
-<textarea cols="50" rows="12" id="stack_1ac_code" class="active_code", prefixcode="undefined" lang="python">
+<textarea cols="50" rows="12" id="stack_1ac_code" class="active_code" prefixcode="undefined" lang="python">
 class Stack:
      def __init__(self):
          self.items = []
@@ -364,19 +361,18 @@ class Stack:
          return len(self.items)
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="stack_1ac_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="stack_1ac_suffix" style="display:none">
-</pre><pre id="stack_1ac_pre" class="active_out">
+</pre><pre id="stack_1ac_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text">Реализация класса Stack с использованием списков Python (stack_1ac)</span> </p>
-
+<div id="stack_1ac_codelens_div" style="display:none"></div>
 <script>
 if ('block' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -384,7 +380,7 @@ if ('block' == 'none') {
     $('#stack_1ac_saveb').toggle();
     $('#stack_1ac_loadb').toggle();
 }
-if ($("#stack_1ac_code_div").parents(".admonition").length == 0 && $("#stack_1ac_code_div").parents("#exercises").length == 0){
+if ($("#stack_1ac").attr("lang") !== "html" && $("#stack_1ac_code_div").parents(".admonition").length == 0 && $("#stack_1ac_code_div").parents("#exercises").length == 0){
 	if ($(window).width() > 975){
 		$("#stack_1ac_code_div").offset({
 			left: $("#stack_1ac .clearfix").offset().left
@@ -413,11 +409,9 @@ if ($("#stack_1ac_code_div").parents(".admonition").length == 0 && $("#stack_1ac
 	});
 }
 else{
-	console.log("inside new if")
 	$("#stack_1ac_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
 	$("#stack_1ac_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
 	$("#stack_1ac_runb").on("click", function(){
-		console.log("button clicked");
 		runit('stack_1ac',this, undefined);
 	});
 }
@@ -437,11 +431,14 @@ else{
 <button class='btn btn-success' id="stack_ex_1_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="stack_ex_1_saveb" onclick="saveEditor('stack_ex_1');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="stack_ex_1_loadb" onclick="requestCode('stack_ex_1');">Load</button>
+<button class='btn btn-default' id="stack_ex_1_vizb" onclick="injectCodelens(this,'stack_ex_1');">Show in Codelens</button>
 
 </div>
 <br/>
 <div id="stack_ex_1_code_div" style="display: block" class="ac_code_div">
-<textarea cols="50" rows="12" id="stack_ex_1_code" class="active_code", prefixcode="['stack_1ac']" lang="python">
+<textarea cols="50" rows="12" id="stack_ex_1_code" class="active_code" prefixcode="['stack_1ac']" lang="python">
+from pythonds.basic.stack import Stack
+
 s=Stack()
 
 print(s.isEmpty())
@@ -457,19 +454,18 @@ print(s.pop())
 print(s.size())
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="stack_ex_1_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="stack_ex_1_suffix" style="display:none">
-</pre><pre id="stack_ex_1_pre" class="active_out">
+</pre><pre id="stack_ex_1_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text"> (stack_ex_1)</span> </p>
-
+<div id="stack_ex_1_codelens_div" style="display:none"></div>
 <script>
 if ('block' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -477,7 +473,7 @@ if ('block' == 'none') {
     $('#stack_ex_1_saveb').toggle();
     $('#stack_ex_1_loadb').toggle();
 }
-if ($("#stack_ex_1_code_div").parents(".admonition").length == 0 && $("#stack_ex_1_code_div").parents("#exercises").length == 0){
+if ($("#stack_ex_1").attr("lang") !== "html" && $("#stack_ex_1_code_div").parents(".admonition").length == 0 && $("#stack_ex_1_code_div").parents("#exercises").length == 0){
 	if ($(window).width() > 975){
 		$("#stack_ex_1_code_div").offset({
 			left: $("#stack_ex_1 .clearfix").offset().left
@@ -497,28 +493,26 @@ if ($("#stack_ex_1_code_div").parents(".admonition").length == 0 && $("#stack_ex
 		})
 		.queue(function (next) {
 			$("#stack_ex_1_runb").parent().siblings(".ac_output").show();
-			runit('stack_ex_1',this, undefined);
+			runit('stack_ex_1',this, ['stack_1ac']);
 			$("#stack_ex_1_runb").on("click", function(){
-				runit('stack_ex_1',this, undefined);
+				runit('stack_ex_1',this, ['stack_1ac']);
 			});
 		})
 		
 	});
 }
 else{
-	console.log("inside new if")
 	$("#stack_ex_1_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
 	$("#stack_ex_1_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
 	$("#stack_ex_1_runb").on("click", function(){
-		console.log("button clicked");
-		runit('stack_ex_1',this, undefined);
+		runit('stack_ex_1',this, ['stack_1ac']);
 	});
 }
 </script>
 
 </div>
 
-<p>&lt;p&gt;Важно отметить, что мы можем выбрать реализацию стека через список, где
+<p>Важно отметить, что мы можем выбрать реализацию стека через список, где
 вершиной считается первый, а не последний элемент. В этом случае предыдущие
 методы <tt class="docutils literal"><span class="pre">append</span></tt> и <tt class="docutils literal"><span class="pre">pop</span></tt> работать не будут. Мы должны будем явно использовать
 <tt class="docutils literal"><span class="pre">pop</span></tt> и <tt class="docutils literal"><span class="pre">insert</span></tt> для позиции с индексом 0 (первый элемент в списке).
@@ -649,6 +643,8 @@ n, являются O(n). Очевидно, что даже если реали�
 <button class='btn btn-success' id="stack_stringrev_runb">Run</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="stack_stringrev_saveb" onclick="saveEditor('stack_stringrev');">Save</button>
 <button class="ac_opt btn btn-default" style="display: inline-block" id="stack_stringrev_loadb" onclick="requestCode('stack_stringrev');">Load</button>
+<button class='btn btn-default' id="stack_stringrev_vizb" onclick="injectCodelens(this,'stack_stringrev');">Show in Codelens</button>
+<button class='ac_opt btn btn-default' id="stack_stringrev_coach_b" onclick="injectCodeCoach('stack_stringrev');">Code Coach</button>
 
 <span class="ac_sep"></span>
 <button class='btn btn-default' id="stack_stringrev_showb" onclick="$('#stack_stringrev_code_div').toggle();cm_editors['stack_stringrev_code'].refresh();$('#stack_stringrev_saveb').toggle();$('#stack_stringrev_loadb').toggle()">Show/Hide Code</button>
@@ -659,7 +655,7 @@ n, являются O(n). Очевидно, что даже если реали�
 </div>
 <br/>
 <div id="stack_stringrev_code_div" style="display: none" class="ac_code_div">
-<textarea cols="50" rows="12" id="stack_stringrev_code" class="active_code", prefixcode="undefined" lang="python">
+<textarea cols="50" rows="12" id="stack_stringrev_code" class="active_code" prefixcode="undefined" lang="python">
 from test import testEqual
 from pythonds.basic.stack import Stack
 
@@ -671,19 +667,18 @@ testEqual(revstring('x'),'x')
 testEqual(revstring('1234567890'),'0987654321')
 </textarea>
 </div>
+
 <div class="ac_output">
 <div style="text-align: center">
 <canvas id="stack_stringrev_canvas" class="ac-canvas" height="400" width="400" style="border-style: solid; display: none; text-align: center"></canvas>
 </div>
 <pre id="stack_stringrev_suffix" style="display:none">
-</pre><pre id="stack_stringrev_pre" class="active_out">
+</pre><pre id="stack_stringrev_pre" class="active_out"></pre>
 
-</pre>
-
-</div> 
+</div> <!-- end output --> 
 <div class="clearfix"></div>
 <p class="ac_caption"><span class="ac_caption_text"> (stack_stringrev)</span> </p>
-
+<div id="stack_stringrev_codelens_div" style="display:none"></div><div id="stack_stringrev_coach_div" style="display:none;"></div>
 <script>
 if ('none' == 'none') {
     // a hack to preserve the inline-block display style. Toggle() will use display: block
@@ -691,7 +686,7 @@ if ('none' == 'none') {
     $('#stack_stringrev_saveb').toggle();
     $('#stack_stringrev_loadb').toggle();
 }
-if ($("#stack_stringrev_code_div").parents(".admonition").length == 0 && $("#stack_stringrev_code_div").parents("#exercises").length == 0){
+if ($("#stack_stringrev").attr("lang") !== "html" && $("#stack_stringrev_code_div").parents(".admonition").length == 0 && $("#stack_stringrev_code_div").parents("#exercises").length == 0){
 	if ($(window).width() > 975){
 		$("#stack_stringrev_code_div").offset({
 			left: $("#stack_stringrev .clearfix").offset().left
@@ -720,11 +715,9 @@ if ($("#stack_stringrev_code_div").parents(".admonition").length == 0 && $("#sta
 	});
 }
 else{
-	console.log("inside new if")
 	$("#stack_stringrev_code_div").css({float : "none", marginLeft : "auto", marginRight : "auto"});
 	$("#stack_stringrev_runb").parent().siblings(".ac_output").show().css({float : "none", right : "0px"});
 	$("#stack_stringrev_runb").on("click", function(){
-		console.log("button clicked");
 		runit('stack_stringrev',this, undefined);
 	});
 }
@@ -790,7 +783,7 @@ else{
       
     </p>
     <p>
-        &copy; Copyright 2013 Brad Miller, David Ranum.
+        &copy; Copyright 2014 Brad Miller, David Ranum.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
     </p>
   </div>

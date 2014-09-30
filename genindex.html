@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="_static/video.css" type="text/css" />
     <link rel="stylesheet" href="_static/poll.css" type="text/css" />
     <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
-    <link rel="stylesheet" href="_static/css/pytutor.css" type="text/css" />
-    <link rel="stylesheet" href="_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="_static/modal-basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
     <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
     <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
@@ -38,14 +38,16 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/poll.js"></script>
-    <script type="text/javascript" src="_static/js/d3.v2.min.js"></script>
-    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery.ba-bbq.min.js"></script>
-    <script type="text/javascript" src="_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
-    <script type="text/javascript" src="_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/pytutor.js"></script>
     <script type="text/javascript" src="_static/jquery.highlight.js"></script>
     <script type="text/javascript" src="_static/bookfuncs.js"></script>
     <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
     <script type="text/javascript" src="_static/python.js"></script>
     <script type="text/javascript" src="_static/javascript.js"></script>
     <script type="text/javascript" src="_static/activecode.js"></script>
@@ -73,6 +75,7 @@
     <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
     <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
     <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="index.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -85,7 +88,7 @@
   eBookConfig.course = 'pythonds';
   eBookConfig.logLevel = 10;
   eBookConfig.loginRequired = false
-  eBookConfig.build_info = "2.1.5";
+  eBookConfig.build_info = "3.1.1";
   eBookConfig.isLoggedIn = false;
 </script>
 
@@ -98,19 +101,6 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-<script>
-var _prum = [['id', '521dfcc4abe53d0749000000'],
-             ['mark', 'firstbyte', (new Date()).getTime()]];
-(function() {
-    var s = document.getElementsByTagName('script')[0]
-      , p = document.createElement('script');
-    p.async = 'async';
-    p.src = '//rum-static.pingdom.net/prum.min.js';
-    s.parentNode.insertBefore(p, s);
-})();
 </script>
 
 
@@ -227,7 +217,13 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
           <ul class="dropdown-menu user-menu">
             <li><span class='loggedinuser'></span></li>
             <li class="divider"></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li>
+			<li class="divider"></li>
             <li><a href='http://127.0.0.1:8000/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='http://127.0.0.1:8000/runestone/assignments/index'>Progress Page</a></li>
             <li class="divider"></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
             <li><a href="http://127.0.0.1:8000/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
@@ -301,117 +297,22 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#A"><strong>A</strong></a>
- | <a href="#B"><strong>B</strong></a>
- | <a href="#C"><strong>C</strong></a>
+ <a href="#B"><strong>B</strong></a>
  | <a href="#D"><strong>D</strong></a>
- | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#I"><strong>I</strong></a>
- | <a href="#J"><strong>J</strong></a>
  | <a href="#K"><strong>K</strong></a>
- | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
- | <a href="#N"><strong>N</strong></a>
- | <a href="#O"><strong>O</strong></a>
- | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
- | <a href="#W"><strong>W</strong></a>
  | <a href="#Symbols"><strong>Symbols</strong></a>
  
 </div>
-<h2 id="A">A</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Strings/StringsareImmutable.html#index-0">abecedarian series</a>
-  </dt>
-
-      
-  <dt><a href="Lists/ObjectsandReferences.html#index-0">aliases</a>, <a href="Lists/Glossary.html#term-aliases"><strong>[1]</strong></a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt>
-    assignment
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Lists/TuplesandMutability.html#index-0">tuple</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-attribute"><strong>attribute</strong></a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="Recursion/RecursiveData.html#index-0">base case</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Debugging/HowtoAvoidDebugging.html#index-0">boundary conditions</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="C">C</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Strings/intro-Strings.html#index-0">character</a>
-  </dt>
-
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-class"><strong>class</strong></a>
-  </dt>
-
-      
-  <dt><a href="Lists/Aliasing.html#index-0">clone</a>, <a href="Lists/Glossary.html#term-clone"><strong>[1]</strong></a>
-  </dt>
-
-      
-  <dt><a href="Strings/Glossary.html#term-collection-data-type"><strong>collection data type</strong></a>
-  </dt>
-
-      
-  <dt><a href="Strings/TheSliceOperator.html#index-0">comparison of strings</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Strings/intro-Strings.html#index-0">compound data type</a>, <a href="ClassesBasics/ObjectsRevisited.html#index-0">[1]</a>
-  </dt>
-
-      
-  <dt><a href="Strings/Loopingandcounting.html#index-0">computation pattern</a>
-  </dt>
-
-      
-  <dt><a href="Strings/ACollectionDataType.html#index-0">concatenation</a>, <a href="Strings/StringsareImmutable.html#index-0">[1]</a>
-  </dt>
-
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-constructor"><strong>constructor</strong></a>
-  </dt>
-
-      
-  <dt><a href="Strings/TurtlesandStringsandLSystems.html#index-0">counting pattern</a>
   </dt>
 
   </dl></td>
@@ -430,22 +331,8 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
   </dt>
 
       </dl></dd>
-      
-  <dt><a href="Debugging/HowtoAvoidDebugging.html#index-0">debugging</a>
-  </dt>
-
-      
-  <dt><a href="ClassesDiggingDeeper/Glossary.html#term-deep-copy"><strong>deep copy</strong></a>
-  </dt>
-
-      
-  <dt><a href="ClassesDiggingDeeper/ObjectsareMutable.html#index-0">deep equality</a>, <a href="ClassesDiggingDeeper/Glossary.html#term-deep-equality"><strong>[1]</strong></a>
-  </dt>
-
-      
-  <dt><a href="Strings/Glossary.html#term-default-value"><strong>default value</strong></a>, <a href="Strings/Afindfunction.html#index-0">[1]</a>
-  </dt>
-
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt>
     definition
@@ -458,75 +345,11 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 
       </dl></dd>
   </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/ListsareMutable.html#index-0">del statement</a>
-  </dt>
-
-      
-  <dt><a href="Lists/Glossary.html#term-delimiter"><strong>delimiter</strong></a>
-  </dt>
-
-      
-  <dt><a href="Strings/Optionalparameters.html#index-0">dir function</a>
-  </dt>
-
-      
-  <dt><a href="Strings/Optionalparameters.html#index-0">docstring</a>
-  </dt>
-
-      
-  <dt><a href="Strings/Glossary.html#term-dot-notation"><strong>dot notation</strong></a>, <a href="Strings/Optionalparameters.html#index-0">[1]</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="E">E</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/Glossary.html#term-element"><strong>element</strong></a>
-  </dt>
-
-      
-  <dt><a href="Lists/AppendversusConcatenate.html#index-0">enumerate</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="ClassesDiggingDeeper/ObjectsareMutable.html#index-0">equality</a>
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="ClassesDiggingDeeper/ObjectsareMutable.html#index-0">deep</a>
-  </dt>
-
-        
-  <dt><a href="ClassesDiggingDeeper/ObjectsareMutable.html#index-0">shallow</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt><a href="Strings/Loopingandcounting.html#index-0">eureka traversal</a>
-  </dt>
-
-  </dl></td>
 </tr></table>
 
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/AppendversusConcatenate.html#index-0">for loop</a>, <a href="Lists/AppendversusConcatenate.html#index-1">[1]</a>, <a href="Strings/StringsareImmutable.html#index-0">[2]</a>
-  </dt>
-
-      
-  <dt><a href="Strings/Summary.html#term-for-loop-traversal-for"><strong>for loop traversal (for)</strong></a>
-  </dt>
-
       
   <dt><a href="Recursion/intro-Recursion.html#index-1">fractal</a>
   </dt>
@@ -546,88 +369,19 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 
       </dl></dd>
   </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt>
-    function
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Strings/StringMethods.html#index-0">len</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt><a href="Strings/Optionalparameters.html#index-0">function type</a>
-  </dt>
-
-  </dl></td>
 </tr></table>
 
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="Strings/StringComparison.html#index-0">immutable</a>, <a href="Strings/Glossary.html#term-immutable"><strong>[1]</strong></a>, <a href="Recursion/intro-Recursion.html#index-0">[2]</a>, <a href="Lists/ListSlices.html#index-0">[3]</a>
+  <dt><a href="Recursion/intro-Recursion.html#index-0">immutable</a>
   </dt>
 
-      
-  <dt><a href="Strings/Summary.html#term-in-and-not-in-operator-in-not-in"><strong>in and not in operator (in, not in)</strong></a>
-  </dt>
-
-      
-  <dt><a href="Strings/TraversalandthewhileLoop.html#index-0">in operator</a>
-  </dt>
-
-      
-  <dt><a href="Strings/intro-Strings.html#index-0">index</a>, <a href="Strings/Glossary.html#term-index"><strong>[1]</strong></a>, <a href="Lists/Glossary.html#term-index"><strong>[2]</strong></a>, <a href="Lists/ListValues.html#index-0">[3]</a>
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Strings/StringMethods.html#index-0">negative</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt><a href="Strings/Summary.html#term-indexing"><strong>indexing ([])</strong></a>
-  </dt>
-
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="Recursion/RecursiveData.html#index-0">infinite recursion</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-initializer-method"><strong>initializer method</strong></a>
-  </dt>
-
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-instance"><strong>instance</strong></a>
-  </dt>
-
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-instantiate"><strong>instantiate</strong></a>
-  </dt>
-
-      
-  <dt><a href="Lists/ListDeletion.html#index-0">is operator</a>
-  </dt>
-
-      
-  <dt><a href="Lists/ListSlices.html#index-0">item assignment</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="J">J</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/NestedLists.html#index-1">join</a>
   </dt>
 
   </dl></td>
@@ -643,164 +397,11 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
   </dl></td>
 </tr></table>
 
-<h2 id="L">L</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Strings/StringMethods.html#index-0">len function</a>
-  </dt>
-
-      
-  <dt><a href="Strings/Summary.html#term-length-function-len"><strong>length function (len)</strong></a>
-  </dt>
-
-      
-  <dt><a href="Lists/Glossary.html#term-list"><strong>list</strong></a>
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Lists/RepetitionandReferences.html#index-0">append</a>
-  </dt>
-
-        
-  <dt><a href="Lists/intro-Lists.html#index-0">nested</a>, <a href="Lists/ListComprehensions.html#index-0">[1]</a>
-  </dt>
-
-      </dl></dd>
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/ListValues.html#index-0">list index</a>
-  </dt>
-
-      
-  <dt><a href="Lists/Glossary.html#term-list-traversal"><strong>list traversal</strong></a>, <a href="Lists/ListValues.html#index-0">[1]</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="Strings/StringsareImmutable.html#index-1">Make Way for Ducklings</a>
-  </dt>
-
-      
-  <dt><a href="Lists/NestedLists.html#index-0">matrix</a>
-  </dt>
-
-      
-  <dt><a href="Strings/StringsareImmutable.html#index-1">McCloskey, Robert</a>
-  </dt>
-
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-method"><strong>method</strong></a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/Glossary.html#term-modifier"><strong>modifier</strong></a>, <a href="Lists/UsingListsasParameters.html#index-0">[1]</a>
-  </dt>
-
-      
-  <dt><a href="Strings/Optionalparameters.html#index-0">module</a>
-  </dt>
-
-      
-  <dt><a href="Strings/StringComparison.html#index-0">mutable</a>, <a href="Recursion/intro-Recursion.html#index-0">[1]</a>, <a href="Lists/ListSlices.html#index-0">[2]</a>
-  </dt>
-
-      
-  <dt><a href="Lists/Glossary.html#term-mutable-data-type"><strong>mutable data type</strong></a>, <a href="ClassesDiggingDeeper/Fractions.html#index-0">[1]</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="N">N</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Strings/StringMethods.html#index-0">negative index</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/intro-Lists.html#index-0">nested list</a>, <a href="Lists/ListComprehensions.html#index-0">[1]</a>, <a href="Lists/Glossary.html#term-nested-list"><strong>[2]</strong></a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="O">O</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-object"><strong>object</strong></a>, <a href="Lists/Glossary.html#term-object"><strong>[1]</strong></a>
-  </dt>
-
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-object-oriented-language"><strong>object-oriented language</strong></a>
-  </dt>
-
-      
-  <dt><a href="ClassesBasics/Glossary.html#term-object-oriented-programming"><strong>object-oriented programming</strong></a>, <a href="ClassesBasics/intro-ClassesandObjectstheBasics.html#index-0">[1]</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/ListDeletion.html#index-0">objects and values</a>
-  </dt>
-
-      
-  <dt>
-    operator
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Strings/TraversalandthewhileLoop.html#index-0">in</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt><a href="Strings/Glossary.html#term-optional-parameter"><strong>optional parameter</strong></a>, <a href="Strings/Afindfunction.html#index-0">[1]</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="P">P</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/Listsandforloops.html#index-0">parameter</a>
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Strings/Afindfunction.html#index-0">optional</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt><a href="Lists/Glossary.html#term-pattern"><strong>pattern</strong></a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Strings/Loopingandcounting.html#index-0">pattern of computation</a>
-  </dt>
-
-      
-  <dt><a href="Lists/Glossary.html#term-pure-function"><strong>pure function</strong></a>
+  <dt><a href="Recursion/intro-Recursion.html#index-0">mutable</a>
   </dt>
 
   </dl></td>
@@ -809,10 +410,6 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="ClassesDiggingDeeper/intro-ClassesandObjectsDiggingalittledeeper.html#index-0">rectangle</a>
-  </dt>
-
       
   <dt><a href="Recursion/RecursiveData.html#index-0">recursion</a>
   </dt>
@@ -837,83 +434,6 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
   <dt><a href="Recursion/DrawingFractals.html#index-0">recursive definition</a>
   </dt>
 
-      
-  <dt><a href="Strings/StringComparison.html#index-0">runtime error</a>, <a href="Strings/StringMethods.html#index-0">[1]</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Lists/Glossary.html#term-sequence"><strong>sequence</strong></a>
-  </dt>
-
-      
-  <dt><a href="ClassesDiggingDeeper/Glossary.html#term-shallow-copy"><strong>shallow copy</strong></a>
-  </dt>
-
-      
-  <dt><a href="ClassesDiggingDeeper/ObjectsareMutable.html#index-0">shallow equality</a>, <a href="ClassesDiggingDeeper/Glossary.html#term-shallow-equality"><strong>[1]</strong></a>
-  </dt>
-
-      
-  <dt><a href="Lists/Glossary.html#term-side-effect"><strong>side effect</strong></a>, <a href="Lists/UsingListsasParameters.html#index-0">[1]</a>
-  </dt>
-
-      
-  <dt><a href="Strings/Glossary.html#term-slice"><strong>slice</strong></a>
-  </dt>
-
-      
-  <dt><a href="Strings/Summary.html#term-slicing"><strong>slicing ([:])</strong></a>
-  </dt>
-
-      
-  <dt><a href="Lists/NestedLists.html#index-1">split</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt>
-    statement
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Lists/ListsareMutable.html#index-0">del</a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt><a href="Strings/TheSliceOperator.html#index-0">string comparison</a>
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Strings/Summary.html#term-string-comparison"><strong>(&gt;, &lt;, &gt;=, &lt;=, ==, !=)</strong></a>
-  </dt>
-
-      </dl></dd>
-      
-  <dt><a href="Strings/Optionalparameters.html#index-0">string module</a>
-  </dt>
-
-      
-  <dt><a href="Strings/ACollectionDataType.html#index-0">string operations</a>
-  </dt>
-
-      
-  <dt><a href="Lists/NestedLists.html#index-1">strings and lists</a>
-  </dt>
-
-      
-  <dt><a href="Strings/intro-Strings.html#index-0">subscript operator</a>
-  </dt>
-
   </dl></td>
 </tr></table>
 
@@ -921,41 +441,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="Debugging/HowtoAvoidDebugging.html#index-0">testing</a>
-  </dt>
-
-      
-  <dt><a href="Strings/Loopingandcounting.html#index-0">traversal</a>, <a href="Strings/StringsareImmutable.html#index-0">[1]</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Strings/Glossary.html#term-traverse"><strong>traverse</strong></a>
-  </dt>
-
-      
   <dt><a href="Recursion/intro-Recursion.html#index-0">tuple</a>
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="Lists/TuplesandMutability.html#index-0">assignment</a>
-  </dt>
-
-        
-  <dt><a href="Lists/TupleAssignment.html#index-0">return value</a>
-  </dt>
-
-      </dl></dd>
-  </dl></td>
-</tr></table>
-
-<h2 id="W">W</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="Strings/Glossary.html#term-whitespace"><strong>whitespace</strong></a>
   </dt>
 
   </dl></td>
@@ -1009,7 +495,7 @@ var _prum = [['id', '521dfcc4abe53d0749000000'],
       
     </p>
     <p>
-        &copy; Copyright 2013 Brad Miller, David Ranum.
+        &copy; Copyright 2014 Brad Miller, David Ranum.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
     </p>
   </div>

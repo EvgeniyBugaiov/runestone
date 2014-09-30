@@ -48,7 +48,7 @@ div.section {
 	padding-left:0;
 	padding-right:0;
 }
- .container  .section >*:not(.section){
+ .container  .section >*:not(.section) {
 	max-width: 500pt;
 	margin-left: auto;
 	margin-right: auto;
@@ -130,6 +130,27 @@ div.section {
     margin: 0 0 1em 0;
     background-color: #fff;
 	clear:both;
+}
+
+.CodeMirror-scroll {
+    /* this allows CM elements to be resized to (almost) any 
+     * height while still relying on max-height (which keeps 
+     * the CM editors to no more than the size needed 
+     * unless resized) */
+    max-height: 9999px;
+}
+
+.ac_section .CodeMirror pre {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  border-width: 0; margin: 0; padding: 0; background: transparent;
+  font-family:  Monaco, Courier New, monospace;
+  font-size: inherit;
+  padding: 0; margin: 0;
+  white-space: pre;
+  word-wrap: normal;
 }
 
 button.btn, btn.btn-sm,
@@ -468,9 +489,11 @@ div.flash {
 }
 
 .activehtml  {
-    width: 500px;
+    width: 100%;
     height: 400px;
+    background-color: #fff;
 }
+
 .container  .section>div.sidebar {
 	margin: 0 0 0.5em 1em;
 	width: auto;
@@ -503,4 +526,12 @@ iframe[seamless] {
 	.container  .section>div.sidebar {
 		margin: 0 18em 0.5em 1em;
 	}
+}
+
+
+div.ExecutionVisualizer table.visualizer {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
 }
