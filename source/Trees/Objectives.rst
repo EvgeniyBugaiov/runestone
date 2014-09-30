@@ -7,18 +7,18 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Objectives
+Цели
 ----------
 
--  To understand what a tree data structure is and how it is used.
+-  Понять, что такое дерево и как эту структуру данных можно использовать.
 
--  To see how trees can be used to implement a map data structure.
+-  Рассмотреть, как можно использовать деревья при реализации отображения (*map*).
 
--  To implement trees using a list.
+-  Сделать реализацию дерева с использованием списков.
 
--  To implement trees using classes and references.
+-  Сделать реализацию дерева с использованием классов и ссылок.
 
--  To implement trees as a recursive data structure.
+-  Сделать реализацию дерева как рекурсивной структуры данных.
 
--  To implement a priority queue using a heap.
+-  Сделать реализацию очереди с приоритетом, используя кучу.
 
