@@ -16,7 +16,7 @@
 
 By Brad Miller and David Ranum, Luther College
 
-Assignments
+Содержание
 :::::::::::
 
 .. toctree::
@@ -148,7 +148,7 @@ Assignments
 
 
 
-Деревья
+Деревья и алгоритмы для них
 :::::::::::::::::::::::::
 
 .. toctree::
@@ -213,11 +213,11 @@ Assignments
     Graphs/ProgrammingExercises.rst
 
 
-Acknowledgements
+Благодарности
 ::::::::::::::::
 
 
-Indices and tables
+Таблицы и указатель
 ::::::::::::::::::
 
 * :ref:`genindex`
