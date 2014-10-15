@@ -14,7 +14,7 @@
 .. image:: _static/PythonDScover.jpg
     :alt: PythonDS Cover
 
-By Brad Miller and David Ranum, Luther College
+Авторы: Брэд Миллер и Дэвид Рэнум, Luther College, перевод `AveNat <https://github.com/avenat>`_
 
 Assignments
 :::::::::::

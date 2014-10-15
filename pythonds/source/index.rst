@@ -14,9 +14,9 @@
 .. image:: _static/PythonDScover.jpg
     :alt: PythonDS Cover
 
-By Brad Miller and David Ranum, Luther College
+Авторы: Брэд Миллер и Дэвид Рэнум, Luther College, перевод `AveNat <https://github.com/avenat>`_
 
-Содержание
+Assignments
 :::::::::::
 
 .. toctree::
@@ -148,7 +148,7 @@ By Brad Miller and David Ranum, Luther College
 
 
 
-Деревья и алгоритмы для них
+Деревья
 :::::::::::::::::::::::::
 
 .. toctree::
@@ -213,11 +213,11 @@ By Brad Miller and David Ranum, Luther College
     Graphs/ProgrammingExercises.rst
 
 
-Благодарности
+Acknowledgements
 ::::::::::::::::
 
 
-Таблицы и указатель
+Indices and tables
 ::::::::::::::::::
 
 * :ref:`genindex`
