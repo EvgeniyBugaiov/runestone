@@ -24,7 +24,7 @@ Assignments
    assignments.rst
 
 Введение
-::::::::::::
+::::::::
 
 .. toctree::
     :maxdepth: 2
@@ -48,7 +48,7 @@ Assignments
     Introduction/ProgrammingExercises.rst
 
 Анализ
-::::::::
+::::::
 
 .. toctree::
     :maxdepth: 2
@@ -66,7 +66,7 @@ Assignments
     AlgorithmAnalysis/ProgrammingExercises.rst
 
 Основные структуры данных
-:::::::::::::::::::::
+:::::::::::::::::::::::::
 
 .. toctree::
     :maxdepth: 2
@@ -108,12 +108,12 @@ Assignments
 
     Recursion/Objectives.rst
     Recursion/WhatIsRecursion.rst
-    Recursion/pythondsCalculatingtheSumofaListofNumbers.rst
+    Recursion/CalculatingtheSumofaListofNumbers.rst
     Recursion/TheThreeLawsofRecursion.rst
-    Recursion/pythondsConvertinganIntegertoaStringinAnyBase.rst
+    Recursion/ConvertinganIntegertoaStringinAnyBase.rst
     Recursion/StackFramesImplementingRecursion.rst
-    Recursion/pythondsintro-VisualizingRecursion.rst
-    Recursion/pythondsSierpinskiTriangle.rst
+    Recursion/intro-VisualizingRecursion.rst
+    Recursion/SierpinskiTriangle.rst
     Recursion/ComplexRecursiveProblems.rst
     Recursion/TowerofHanoi.rst
     Recursion/ExploringaMaze.rst
@@ -122,11 +122,11 @@ Assignments
     Recursion/KeyTerms.rst
     Recursion/DiscussionQuestions.rst
     Recursion/Glossary.rst
-    Recursion/pythondsProgrammingExercises.rst
+    Recursion/ProgrammingExercises.rst
 
 
 Сортировка и поиск
-:::::::::::::::::::::
+::::::::::::::::::
 
 .. toctree::
     :maxdepth: 2
@@ -149,7 +149,7 @@ Assignments
 
 
 Деревья
-:::::::::::::::::::::::::
+:::::::
 
 .. toctree::
     :maxdepth: 2

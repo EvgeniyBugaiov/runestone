@@ -8,7 +8,7 @@
     License".
 
 Конвертирование десятичных чисел в двоичные
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------
 
 Изучая информатику, вы, вероятно, так или иначе сталкивались с идеей двоичных
 чисел. Такое представление важно в информатике, поскольку все значения,
@@ -69,7 +69,7 @@
    :caption: Преобразование числа из десятичного в двоичное
 
    from pythonds.basic.stack import Stack
-   
+
    def divideBy2(decNumber):
        remstack = Stack()
 
@@ -123,7 +123,7 @@
     :caption: Преобразование числа из десятичного в число по любому основанию
 
     from pythonds.basic.stack import Stack
-    
+
     def baseConverter(decNumber,base):
         digits = "0123456789ABCDEF"
 
@@ -182,4 +182,3 @@
 
     http://media.interactivepython.org/pythondsVideos/Stack2.mov
     http://media.interactivepython.org/pythondsVideos/Stack2.webm
-
