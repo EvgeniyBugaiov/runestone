@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Визуализация рекурсии &mdash; Problem Solving with Algorithms and Data Structures</title>
+    <title>Введение: визуализация рекурсии &mdash; Problem Solving with Algorithms and Data Structures</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -76,6 +76,8 @@
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
+    <link rel="next" title="Треугольник Серпинского" href="SierpinskiTriangle.html" />
+    <link rel="prev" title="Фрейм стека: реализация рекурсии" href="StackFramesImplementingRecursion.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -259,7 +261,7 @@
           <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"><ul>
-<li><a class="reference internal" href="#">Визуализация рекурсии</a></li>
+<li><a class="reference internal" href="#">Введение: визуализация рекурсии</a></li>
 </ul>
 </ul>
 </li>
@@ -267,6 +269,18 @@
         
         
           
+  <li id="relations-prev" title="Previous Chapter - Фрейм стека: реализация рекурсии" data-toggle="tooltip">
+    <a href="StackFramesImplementingRecursion.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Треугольник Серпинского' data-toggle="tooltip" >
+    <a href="SierpinskiTriangle.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
 
 <script type="text/javascript">
   opts = {'placement':'bottom',
@@ -293,10 +307,10 @@
 <div class="container" id="main-content">
   
   <div class="section" id="id1">
-<h1>Визуализация рекурсии<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>В предыдущих разделах мы рассматривали задачи, которые могут быть легко решены с помощью рекурсии. Однако, найти ментальную модель или способ визуализации того, что происходит с рекурсивной функцией, по-прежнему непросто. Это делает рекурсию трудной для понимания. Поэтому в данном разделе мы рассмотрим несколько примеров использования рекурсии для рисования неких любопытных изображений. В процессе &#8220;прорисовки&#8221; этих картинок вы получите новое понимание рекурсивных процессов, что может быть полезным для закрепления вашего понимания рекурсии в целом.</p>
+<h1>Введение: визуализация рекурсии<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>В предыдущих разделах мы рассматривали задачи, которые могут быть легко решены с помощью рекурсии. Однако, найти ментальную модель или способ визуализации того, что происходит с рекурсивной функцией, по-прежнему непросто. Это делает рекурсию трудной для понимания. Поэтому в данной части мы рассмотрим несколько примеров использования рекурсии для рисования неких любопытных изображений. В процессе &#8220;прорисовки&#8221; этих картинок вы получите новое понимание рекурсивных процессов, что может быть полезным для закрепления вашего понимания рекурсии в целом.</p>
 <p>Для наших иллюстраций мы воспользуемся графическим модулем Python под названием <tt class="docutils literal"><span class="pre">turtle</span></tt>. Он входит в стандартный набор модулей для всех версий Python и очень прост в применении. Метафора, объясняющее его название (<em>turtle</em> (англ.) - черепаха) крайне проста: вы можете создать черепаху, которая умеет двигаться вперёд-назад, поворачивать направо-налево и т.п. У неё есть хвост, который она может поднимать или опускать. Когда черепаший хвост опущен и она движется, то он рисует линию. Чтобы увеличить художественную ценность черепахи, вы можете менять толщину хвоста и цвет чернил, в которые он был окрашен.</p>
-<p>Вот простой пример, показывающий основы &#8220;черепашьего рисования&#8221;. Мы используем модуль <tt class="docutils literal"><span class="pre">turtle</span></tt>, чтобы рекурсивно нарисовать спираль. <a class="reference internal" href="#lst-turt1"><em>ActiveCode 1</em></a> показывает, как это делается. После подключения модуля <tt class="docutils literal"><span class="pre">turtle</span></tt> создаётся черепаху, вместе с которой появляется и окно для рисования. Потом мы определяем функцию <tt class="docutils literal"><span class="pre">drawSpiral</span></tt>. Её базовым случаем будет момент, когда длина линии, которую мы хотим нарисовать (параметр <tt class="docutils literal"><span class="pre">len</span></tt>), станет меньшей или равной нулю. Если же она больше нуля, то мы даём черепахе задание пройти <tt class="docutils literal"><span class="pre">len</span></tt> единиц, а затем повернуть на 90 градусов. Рекурсивным шагом будет вызов <tt class="docutils literal"><span class="pre">drawSpiral</span></tt> с уменьшенной длиной. В конце <a class="reference internal" href="#lst-turt1"><em>ActiveCode 1</em></a> вы увидитевызов функции <tt class="docutils literal"><span class="pre">myWin.exitonclick()</span></tt>. Она управляет маленьким оконным методом, который переводит черепаху в режим ожидания до тех пор, пока вы не кликните внутри окна. После этого программа очистит полотно и закроется.</p>
+<p>Вот простой пример, показывающий основы &#8220;черепашьего рисования&#8221;. Мы используем модуль <tt class="docutils literal"><span class="pre">turtle</span></tt>, чтобы рекурсивно нарисовать спираль. <a class="reference internal" href="#lst-turt1"><em>ActiveCode 1</em></a> показывает, как это делается. После подключения модуля <tt class="docutils literal"><span class="pre">turtle</span></tt> создаётся черепаха, вместе с которой появляется и окно для рисования. Потом мы определяем функцию <tt class="docutils literal"><span class="pre">drawSpiral</span></tt>. Её базовым случаем будет момент, когда длина линии, которую мы хотим нарисовать (параметр <tt class="docutils literal"><span class="pre">len</span></tt>), станет меньшей или равной нулю. Если же она больше нуля, то мы даём черепахе задание пройти <tt class="docutils literal"><span class="pre">len</span></tt> единиц, а затем повернуть на 90 градусов. Рекурсивным шагом будет вызов <tt class="docutils literal"><span class="pre">drawSpiral</span></tt> с уменьшенной длиной. В конце <a class="reference internal" href="#lst-turt1"><em>ActiveCode 1</em></a> вы увидитевызов функции <tt class="docutils literal"><span class="pre">myWin.exitonclick()</span></tt>. Она управляет маленьким оконным методом, который переводит черепаху в режим ожидания до тех пор, пока вы не кликните внутри окна. После этого программа очистит полотно и закроется.</p>
 
 <div id="cont"></div>
 <div id="lst_turt1" lang="python" class="ac_section alert alert-warning" >
@@ -386,7 +400,7 @@ else{
 
 <p>Вот и всё о &#8220;черепашьей графике&#8221;, что вам нужно знать для рисования некоторых довольно впечатляющих картинок. В нашей следующей программе мы собираемся изобразить фрактальное дерево. Фракталы - это одна из ветвей математики, и они имеют с рекурсией много общего. Определение фрактала заключается в том, что вне зависимости от приближения он всегда содержит некоторую основную фигуру. Примерами из живой природы могут послужить береговые линии континентов, снежинки, горы и даже деревья или кустарники. Фрактальная природа этих объектов позволяет программистам генерировать очень реалистично выглядящие пейзажи для компьютерных изображений. Да и мы в следующем примере будем генерировать фрактальное дерево.</p>
 <p>Чтобы понять, как всё это работает, полезно подумать над тем, как можно описать дерево, используя терминологию фракталов. Вспомните, что мы говорили выше: фрактал - это то, что выглядит одинаково на всех уровнях увеличения. Транслируя эту мысль на деревья и кустарники, можно сказать, что даже самая маленькая веточка имеет ту же форму и характеристики, что и целое дерево. Т.е. можно сказать, что <em>дерево</em> - это ствол от которого вправо и влево отходят меньшие <em>деревья</em>. Если вы подумете об этом определении, то поймёте, что его можно рекурсивно применить и для меньших правого и левого деревьев.</p>
-<p>Давайте переведём эти мысли в код на Python. <a class="reference internal" href="#lst-fractree"><em>Листинг 1</em></a> демонстрирует, как мы можем использовать нашу черепаху для генерации фрактального дерева. Давайте посмотрим на код поближе. Вы можете видеть, что в строках 5 и 7 делаются рекурсивные вызовы. В строке 5 сразу после него черепаха поворачивает вправо на 20 градусов - это правое дерево. Затем в строке 7 вновь делается рекурсивный вызов, но в этот раз с поворотом влево на 40 градусов. Выбор такого числа связан с необходимостью скомпенсировать уже сделанный поворот на 20 градусов, а затем повернуть ещё на 20 влево с целью нарисовать левое дерево. Также обратите внимание, что при каждом рекурсивном вызове <tt class="docutils literal"><span class="pre">tree</span></tt> мы вычитаем из параметра <tt class="docutils literal"><span class="pre">branchLen</span></tt> некую величину. Это делается для того, чтобы рекурсивные деревья становились всё меньше и меньше. Вы также можете разобраться, что первоначальный оператор <tt class="docutils literal"><span class="pre">if</span></tt> в строке 2 проверяет базовый случай: <tt class="docutils literal"><span class="pre">branchLen</span></tt> стала слишком маленькой.</p>
+<p>Давайте переведём эти мысли в код на Python. <a class="reference internal" href="#lst-fractree"><em>Листинг 1</em></a> демонстрирует, как можно использовать нашу черепаху для генерации фрактального дерева. Посмотрим на код поближе. Хорошо видно, что рекурсивные вызовы делаются в строках 5 и 7. В строке 5 сразу после него черепаха поворачивает вправо на 20 градусов - это правое дерево. Затем в строке 7 вновь делается рекурсивный вызов, но в этот раз с поворотом влево на 40 градусов. Выбор этого числа связан с необходимостью скомпенсировать уже сделанный поворот на 20 градусов, а затем повернуть ещё на 20 влево с целью нарисовать левое дерево. Также обратите внимание, что при каждом рекурсивном вызове <tt class="docutils literal"><span class="pre">tree</span></tt> мы вычитаем из параметра <tt class="docutils literal"><span class="pre">branchLen</span></tt> некую величину. Это делается для того, чтобы рекурсивные деревья становились всё меньше и меньше. Вы также можете разобраться, что первоначальный оператор <tt class="docutils literal"><span class="pre">if</span></tt> в строке 2 проверяет базовый случай: <tt class="docutils literal"><span class="pre">branchLen</span></tt> стала слишком маленькой.</p>
 <p id="lst-fractree"><strong>Листинг 1</strong></p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -506,7 +520,7 @@ else{
 
 </div>
 
-<p>Обратите внимание, что каждая точка разветвления соотносится с рекурсивным вызовом и как дерево прорисовывается вправо до самой короткой веточки. Вы можете это увидеть на <a class="reference internal" href="#fig-tree1"><em>рисунке 1</em></a>. А теперь обратите внимание, как программа работает в обратном направлении - к стволу, - когда нарисована вся правая часть. Вы можете увидеть правую половину дерева на <a class="reference internal" href="#fig-tree2"><em>рисунке 2</em></a>. Затем рисуется левая сторона дерева, но не от самой левой её части. Вместо этого вновь прорисовывается правая сторона левого дерева, и так до тех пор, пока не будет создана самая маленькая левая ветвь.</p>
+<p>Обратите внимание, как каждая точка разветвления соотносится с рекурсивным вызовом и как дерево прорисовывается вправо до самой короткой веточки. Вы можете это увидеть на <a class="reference internal" href="#fig-tree1"><em>рисунке 1</em></a>. А теперь посмотрите, как программа работает в обратном направлении - к стволу, - когда нарисована вся правая часть. Вы можете увидеть правую половину дерева на <a class="reference internal" href="#fig-tree2"><em>рисунке 2</em></a>. Затем рисуется левая сторона дерева, но не от самой левой её части. Вместо этого вновь прорисовывается правая сторона левого дерева, и так до тех пор, пока не будет создана самая маленькая левая ветвь.</p>
 <div class="figure align-center" id="fig-tree1">
 <img alt="../_images/tree1.png" src="../_images/tree1.png" />
 <p class="caption">Рисунок 1: Начало фрактального дерева.</p>
@@ -523,7 +537,7 @@ else{
 <li>Измените толщину ветвей, чтобы при уменьшении <tt class="docutils literal"><span class="pre">branchLen</span></tt> линии становились тоньше.</li>
 <li>Измените цвет ветвей таким образом, чтобы самые корокие ветви окрашивались как листья.</li>
 <li>Измените угол поворота черепахи, чтобы каждая ветвь поворачивалась произвольным образом в некотором диапазоне. Например, выбирайте угол между 15-ю и 45-ю градусами. Поэкспрериментируйте в поисках лучшего вида.</li>
-<li>Измените рекурсивную часть <tt class="docutils literal"><span class="pre">branchLen</span></tt>, чтобы вместо вычитания постоянной величины кажый раз вычиталось произвольное значение из некоторого диапазона.</li>
+<li>Измените рекурсивную часть <tt class="docutils literal"><span class="pre">branchLen</span></tt>, чтобы каждый раз вычиталось произвольное значение из некоторого диапазона вместо некой постоянной величины.</li>
 </ul>
 
 <div id="cont"></div>
@@ -614,6 +628,19 @@ else{
 
   
       
+  <li id="relations-prev" class="navLink" title='Previous Section - Фрейм стека: реализация рекурсии' data-toggle="tooltip">
+    <a href="StackFramesImplementingRecursion.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="StackFramesImplementingRecursion.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Треугольник Серпинского' data-toggle="tooltip" >
+    <a href="SierpinskiTriangle.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="SierpinskiTriangle.html" >Next Section - Треугольник Серпинского</a>
 
 <script type="text/javascript">
 
@@ -631,7 +658,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

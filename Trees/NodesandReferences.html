@@ -308,7 +308,7 @@
   
   <div class="section" id="id1">
 <h1>Узлы и ссылки<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>Наш второй способ представления деревьев будет использовать узлы и ссылки. Для этого случая мы определим класс, чьими атрибутами станут корневое значение, левое и правое поддеревья. Поскольку такое представление ближе к объектно-ориентированной парадигме программирования, мы будем развивать его до конца данной главы.</p>
+<p>Наш второй способ представления деревьев будет использовать узлы и ссылки. Для этого случая мы определим класс, чьими атрибутами станут корневое значение и левое и правое поддеревья. Поскольку такое представление ближе к объектно-ориентированной парадигме программирования, то будем развивать его до конца данной главы.</p>
 <p>Используя узлы и ссылки, о дереве можно думать, как о структуре, пример которой приведён на <a class="reference internal" href="#fig-treerec"><em>рисунке 2</em></a>.</p>
 <div class="figure align-center" id="fig-treerec">
 <img alt="image" src="../_images/treerecs.png" />
@@ -323,8 +323,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">=</span> <span class="bp">None</span>
 </pre></div>
 </div>
-<p>Обратите внимание, что в <a class="reference internal" href="#lst-nar"><em>листинге 4</em></a> конструктор ожидает получить некий вид объекта, чтобы сохранить его в корне. Подобно тому, как вы можете хранить в списке любой объект, коренем дерева может быть любая ссылка. В наших ранних примерах в качестве корневого значения сохранялось имя узла. Используя узлы и ссылки для представления дерева (как это показано на <a class="reference internal" href="#fig-treerec"><em>рисунке 2</em></a>), нам нужно создать шесть сущностей класса <a href="#id2"><span class="problematic" id="id3">``</span></a>BinaryTree <a href="#id4"><span class="problematic" id="id5">``</span></a>.</p>
-<p>Далее давайте рассмотрим функцию, которую требуется написать для строительства дерева за пределы корневого значения. Чтобы добавить левого потомка в дерево, мы создадим новый объект двоичного дерева и установим в его атрибут корня <tt class="docutils literal"><span class="pre">left``ссылку</span> <span class="pre">новый</span> <span class="pre">объект.</span> <span class="pre">Код</span> <span class="pre">для</span> <span class="pre">``insertLeft</span></tt> показан в <a class="reference internal" href="#lst-insl"><em>листинге 5</em></a>.</p>
+<p>Обратите внимание, что в <a class="reference internal" href="#lst-nar"><em>листинге 4</em></a> конструктор ожидает получить объект некоего вида, чтобы сохранить его в корне. Подобно тому, как вы можете хранить в списке любой объект, коренем дерева может быть любая ссылка. В наших ранних примерах в качестве корневого значения сохранялось имя узла. Используя узлы и ссылки для представления дерева (как это показано на <a class="reference internal" href="#fig-treerec"><em>рисунке 2</em></a>), нам нужно создать шесть сущностей класса <a href="#id2"><span class="problematic" id="id3">``</span></a>BinaryTree <a href="#id4"><span class="problematic" id="id5">``</span></a>.</p>
+<p>Далее давайте рассмотрим функцию, которую требуется написать для строительства дерева за пределы корневого значения. Чтобы добавить левого потомка в дерево, мы создадим новый объект двоичного дерева и поместим в его атрибут корня <tt class="docutils literal"><span class="pre">left</span></tt> ссылку на новый объект. Код для <tt class="docutils literal"><span class="pre">insertLeft</span></tt> показан в <a class="reference internal" href="#lst-insl"><em>листинге 5</em></a>.</p>
 <p id="lst-insl"><strong>Листинг 5</strong></p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -342,7 +342,7 @@
 </pre></div>
 </td></tr></table></div>
 <p>Нам необходимо рассмотреть два случая вставки. Первый - для узла, у которого нет левого потомка. В этом варианте узел просто вставляется в дерево. Второй вариант характеризуется узлом, имеющим левого потомка. Тогда нам надо вставить новый узел и спустить имеющегося потомка на один уровень ниже. Этот случай управляется оператором <tt class="docutils literal"><span class="pre">else</span></tt> в строке 4 <a class="reference internal" href="#lst-insl"><em>листинга 5</em></a>.</p>
-<p>Код для <tt class="docutils literal"><span class="pre">insertRight</span></tt> должен содержать симметричный набор случаев. Здесь также может не существовать правого потомка, либо есть необходимость вставить узел между корнем и существующим правым потомком. Код операции вставки показан в <a class="reference internal" href="#lst-insr"><em>листинге 6</em></a>.</p>
+<p>Код для <tt class="docutils literal"><span class="pre">insertRight</span></tt> должен содержать симметричный набор случаев. Здесь также может либо отсутствовать правый потомок, либо существовать необходимость вставить узел между корнем и имеющимся правым потомком. Код операции вставки показан в <a class="reference internal" href="#lst-insr"><em>листинге 6</em></a>.</p>
 <p id="lst-insr"><strong>Листинг 6</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">insertRight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">newNode</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rightChild</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
@@ -621,7 +621,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

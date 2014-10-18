@@ -76,6 +76,8 @@
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
+    <link rel="next" title="Сложные рекурсивные задачи" href="ComplexRecursiveProblems.html" />
+    <link rel="prev" title="Введение: визуализация рекурсии" href="intro-VisualizingRecursion.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -267,6 +269,18 @@
         
         
           
+  <li id="relations-prev" title="Previous Chapter - Введение: визуализация рекурсии" data-toggle="tooltip">
+    <a href="intro-VisualizingRecursion.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Сложные рекурсивные задачи' data-toggle="tooltip" >
+    <a href="ComplexRecursiveProblems.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
 
 <script type="text/javascript">
   opts = {'placement':'bottom',
@@ -299,7 +313,7 @@
 <img alt="../_images/sierpinski.png" src="../_images/sierpinski.png" />
 </div>
 <p>Рисунок 3: Треугольник Серпинского.</p>
-<p>Поскольку мы можем повторять этот алгоритм до бесконечности, что сделать базовым случаем? Им станет произвольное число - сколько раз мы хотим разделить треугольник на части. Иногда это число называют &#8220;степенью&#8221; фрактала. Каждый раз, когда делается рекурсивный вызов, мы вычитаем из степени единицу, пока она не станет равной нулю. Тогда мы останавливаем рекурсию. Код, генерирующий треугольник Серпинского на <a class="reference internal" href="#fig-sierpinski"><em>рисунке 3</em></a>, показан в <a class="reference internal" href="#lst-st"><em>ActiveCode 4</em></a>.</p>
+<p>Поскольку мы можем повторять этот алгоритм до бесконечности, что сделать базовым случаем? Им станет произвольное число - сколько раз мы хотим разделить треугольник на части. Иногда это число называют &#8220;степенью&#8221; фрактала. Каждый раз при рекурсивном вызове мы вычитаем из степени единицу, пока она не станет равной нулю. Тогда мы останавливаем рекурсию. Код, генерирующий треугольник Серпинского с <a class="reference internal" href="#fig-sierpinski"><em>рисунка 3</em></a>, показан в <a class="reference internal" href="#lst-st"><em>ActiveCode 4</em></a>.</p>
 
 <div id="cont"></div>
 <div id="lst_st" lang="python" class="ac_section alert alert-warning" >
@@ -416,9 +430,9 @@ else{
 
 </div>
 
-<p>Программа из <a class="reference internal" href="#lst-st"><em>ActiveCode 4</em></a> следует изложенным выше идеям. Первое, что делает <tt class="docutils literal"><span class="pre">sierpinski</span></tt>, - это прорисовывает внешний треугольника. Затем идут три рекурсивных вызова, по одному для каждого из новых угловых треугольников, полученных после соединения средних точек сторон. Мы снова используем стандартный модуль Python <tt class="docutils literal"><span class="pre">turtle</span></tt>. Вы можете изучить в подробностях все его методы, воспользовавшись командой <tt class="docutils literal"><span class="pre">help('turtle')</span></tt> в командной строке Python.</p>
-<p>Посмотрите на код и подумайте, в каком порядке будут прорисовываться треугольники. Поскольку точный порядок углов определяется спецификацией начального набора, давайте предположим, что углы идут в следующем порядке: нижний левый, верхний, нижний правый. Поскольку функция <tt class="docutils literal"><span class="pre">sierpinski</span></tt> вызывает сама себя, вычисление будет идти к наименьшему возможному треугольнику в левом нижнем углу, а затем уже будут заполняться остальные треугольники в обратном порядке. Потом заполнятся треугольники в верхнем углу - к наименьшему и самому верхнему. Наконец, будут заполнен правый нижний угол, опять же по направлению к наименьшему нижнему правому.</p>
-<p>Иногда полезно думать о рекурсивных алгоритмах в терминах диаграммы вызовов функции. <a class="reference internal" href="#fig-stcalltree"><em>Рисунок 4</em></a> показывает, что рекурсивные вызовы всегда начинаются слева. Ативная функция выделена чёрным, неактивные вызовы - серым. Чем ниже вы спускаетесь по <a class="reference internal" href="#fig-stcalltree"><em>рисунку 4</em></a>, тем меньше треугольники. Функция заканчивает рисунок одного уровня за один раз; закончив с нижней левой частью, она перемещается к нижней середине и так далее.</p>
+<p>Программа из <a class="reference internal" href="#lst-st"><em>ActiveCode 4</em></a> следует изложенным выше идеям. Первое, что делает <tt class="docutils literal"><span class="pre">sierpinski</span></tt>, - это прорисовывает внешний треугольник. Затем идут три рекурсивных вызова, по одному для каждого из новых угловых треугольников, полученных после соединения средних точек сторон. Мы снова используем стандартный модуль Python <tt class="docutils literal"><span class="pre">turtle</span></tt>. Вы можете изучить в подробностях все его методы, воспользовавшись командой <tt class="docutils literal"><span class="pre">help('turtle')</span></tt> в командной строке Python.</p>
+<p>Посмотрите на код и подумайте, в каком порядке будут прорисовываться треугольники. Поскольку точный порядок углов определяется спецификацией начального набора, давайте предположим, что углы идут в следующем порядке: нижний левый, верхний, нижний правый. Так как функция <tt class="docutils literal"><span class="pre">sierpinski</span></tt> вызывает сама себя, вычисление будет идти к наименьшему возможному треугольнику в левом нижнем углу, а затем уже будут заполняться остальные треугольники в обратном порядке. Потом заполнятся треугольники в верхнем углу - к наименьшему и самому верхнему. Наконец, будут заполнен правый нижний угол, опять же по направлению к наименьшему нижнему правому.</p>
+<p>Иногда полезно думать о рекурсивных алгоритмах в терминах диаграммы вызовов функции. <a class="reference internal" href="#fig-stcalltree"><em>Рисунок 4</em></a> показывает, что рекурсивные вызовы всегда начинаются слева. Активная функция выделена чёрным, неактивные вызовы - серым. Чем ниже вы спускаетесь по <a class="reference internal" href="#fig-stcalltree"><em>рисунку 4</em></a>, тем меньше треугольники. Функция заканчивает рисунок одного уровня за один раз; закончив с нижней левой частью, она перемещается к нижней середине и так далее.</p>
 <div class="figure align-center" id="fig-stcalltree">
 <img alt="../_images/stCallTree.png" src="../_images/stCallTree.png" />
 </div>
@@ -429,6 +443,19 @@ else{
 
   
       
+  <li id="relations-prev" class="navLink" title='Previous Section - Введение: визуализация рекурсии' data-toggle="tooltip">
+    <a href="intro-VisualizingRecursion.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="intro-VisualizingRecursion.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Сложные рекурсивные задачи' data-toggle="tooltip" >
+    <a href="ComplexRecursiveProblems.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="ComplexRecursiveProblems.html" >Next Section - Сложные рекурсивные задачи</a>
 
 <script type="text/javascript">
 
@@ -446,7 +473,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

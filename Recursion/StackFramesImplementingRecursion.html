@@ -76,8 +76,8 @@
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
-    <link rel="next" title="Сложные рекурсивные задачи" href="ComplexRecursiveProblems.html" />
-    <link rel="prev" title="Три закона рекурсии" href="TheThreeLawsofRecursion.html" />
+    <link rel="next" title="Введение: визуализация рекурсии" href="intro-VisualizingRecursion.html" />
+    <link rel="prev" title="Конвертирование целого числа в строку по любому основанию" href="ConvertinganIntegertoaStringinAnyBase.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -269,14 +269,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Три закона рекурсии" data-toggle="tooltip">
-    <a href="TheThreeLawsofRecursion.html" >
+  <li id="relations-prev" title="Previous Chapter - Конвертирование целого числа в строку по любому основанию" data-toggle="tooltip">
+    <a href="ConvertinganIntegertoaStringinAnyBase.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - Сложные рекурсивные задачи' data-toggle="tooltip" >
-    <a href="ComplexRecursiveProblems.html" >
+  <li id="relations-next" title='Next Chapter - Введение: визуализация рекурсии' data-toggle="tooltip" >
+    <a href="intro-VisualizingRecursion.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -308,7 +308,7 @@
   
   <div class="section" id="id1">
 <h1>Фрейм стека: реализация рекурсии<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>Предположим, что вместо того, чтобы объединять результаты рекурсивных вызовов <tt class="docutils literal"><span class="pre">toStr</span></tt> со строкой из <tt class="docutils literal"><span class="pre">convertString</span></tt>, мы изменим наш алгоритм таким образом, чтобы он складывал строки в стек перед тем, как сделать рекурсивный вызов. Код такого алгоритма показан в <a class="reference internal" href="#lst-recstack"><em>ActiveCode 6</em></a>.</p>
+<p>Предположим, что вместо объединения результатов рекурсивных вызовов <tt class="docutils literal"><span class="pre">toStr</span></tt> со строкой из <tt class="docutils literal"><span class="pre">convertString</span></tt>, мы изменим наш алгоритм таким образом, чтобы он складывал строки в стек перед тем, как сделать рекурсивный вызов. Код такого алгоритма показан в <a class="reference internal" href="#lst-recstack"><em>ActiveCode 6</em></a>.</p>
 
 <div id="cont"></div>
 <div id="lst_recstack" lang="python" class="ac_section alert alert-warning" >
@@ -401,15 +401,17 @@ else{
 
 </div>
 
-<p>Каждый раз, когда вызывается <tt class="docutils literal"><span class="pre">toStr</span></tt>, в стек помещается символ. Возвращаясь к предыдущему примеру, мы можем увидеть, что после четвёртого вызова <tt class="docutils literal"><span class="pre">toStr</span></tt> стек будет выглядеть, как показано на <a class="reference internal" href="#fig-recstack"><em>рисунке 5</em></a>. Обратите внимание, что теперь мы можем просто вытолкнуть символы из стека и объединить их в итоговый результат <tt class="docutils literal"><span class="pre">&quot;1010&quot;</span></tt>.</p>
+<p>Каждый раз, когда вызывается <tt class="docutils literal"><span class="pre">toStr</span></tt>, в стек помещается символ. Возвращаясь к предыдущему примеру, мы можем увидеть, что после четвёртого вызова <tt class="docutils literal"><span class="pre">toStr</span></tt> стек будет выглядеть, как показано на <a class="reference internal" href="#fig-recstack"><em>рисунке 5</em></a>. Обратите внимание: теперь мы можем просто вытолкнуть символы из стека и объединить их в итоговый результат <tt class="docutils literal"><span class="pre">&quot;1010&quot;</span></tt>.</p>
 <blockquote>
 <div></div></blockquote>
 <div class="figure align-center" id="fig-recstack">
 <img alt="../_images/recstack.png" src="../_images/recstack.png" />
+<p class="caption">Рисунок 5: Строки, помещённые в стек во время преобразования.</p>
 </div>
-<p>Предыдущий пример даёт нам некоторое представление о том, как в Python реализованы рекурсивные вызовы. Когда в Python вызывается функция, для управления её локальными переменными выделяется <strong>фрейм стека</strong>. Возвращаемое значение к моменту окончания работы функции будет лежать на вершине стека, доступное для вызывающей части программы. <em>Рисунок 6</em> иллюстрирует стек после оператора <tt class="docutils literal"><span class="pre">return</span></tt> в строке 4.</p>
+<p>Предыдущий пример даёт нам некоторое представление о том, как в Python реализованы рекурсивные вызовы. При вызове функции для управления её локальными переменными выделяется <strong>фрейм стека</strong>. Возвращаемое значение к моменту окончания работы функции будет лежать на вершине стека, доступное для вызывающей части программы. <a class="reference internal" href="#fig-callstack"><em>Рисунок 6</em></a> иллюстрирует стек после оператора <tt class="docutils literal"><span class="pre">return</span></tt> в строке 4.</p>
 <div class="figure align-center" id="fig-callstack">
 <img alt="../_images/newcallstack.png" src="../_images/newcallstack.png" />
+<p class="caption">Рисунок 6: Стек вызовов, сгенерированный <tt class="docutils literal"><span class="pre">toStr(10,</span> <span class="pre">2)</span></tt>.</p>
 </div>
 <p>Обратите внимание, что вызов <tt class="docutils literal"><span class="pre">toStr(2//2,</span> <span class="pre">2)</span></tt> оставляет возвращаемое значение <tt class="docutils literal"><span class="pre">&quot;1&quot;</span></tt> в стеке. Затем оно подставляется вместо функции <tt class="docutils literal"><span class="pre">toStr(1,</span> <span class="pre">2)</span></tt> в выражение <tt class="docutils literal"><span class="pre">&quot;1&quot;</span> <span class="pre">+</span> <span class="pre">convertString[2%2]</span></tt>, которое оставляет на вершине стека <tt class="docutils literal"><span class="pre">&quot;10&quot;</span></tt>. Таким образом, стек вызовов Python работает так же, как и стек, который мы явно использовали в <a class="reference internal" href="#lst-recstack"><em>листинге 4</em></a>. В нашем суммирующем список примере вы можете думать о возвращаемом значении в стеке, как об аккумулирующей переменной.</p>
 <p>Также фрейм стека предоставляет область видимости для переменных, используемых функцией. Несмотря на то, что мы вновь и вновь вызываем одну и ту же функцию, каждый вызов создаёт новую область видимости для её локальных переменных.</p>
@@ -419,19 +421,19 @@ else{
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Три закона рекурсии' data-toggle="tooltip">
-    <a href="TheThreeLawsofRecursion.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - Конвертирование целого числа в строку по любому основанию' data-toggle="tooltip">
+    <a href="ConvertinganIntegertoaStringinAnyBase.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="TheThreeLawsofRecursion.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="ConvertinganIntegertoaStringinAnyBase.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - Сложные рекурсивные задачи' data-toggle="tooltip" >
-    <a href="ComplexRecursiveProblems.html" >
+  <li id="relations-next" class="navLink" title='Next Section - Введение: визуализация рекурсии' data-toggle="tooltip" >
+    <a href="intro-VisualizingRecursion.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="ComplexRecursiveProblems.html" >Next Section - Сложные рекурсивные задачи</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="intro-VisualizingRecursion.html" >Next Section - Введение: визуализация рекурсии</a>
 
 <script type="text/javascript">
 
@@ -449,7 +451,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

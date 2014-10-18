@@ -76,8 +76,8 @@
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
-    <link rel="next" title="Фрейм стека: реализация рекурсии" href="StackFramesImplementingRecursion.html" />
-    <link rel="prev" title="Что такое рекурсия?" href="WhatIsRecursion.html" />
+    <link rel="next" title="Конвертирование целого числа в строку по любому основанию" href="ConvertinganIntegertoaStringinAnyBase.html" />
+    <link rel="prev" title="Вычисление суммы списка чисел" href="CalculatingtheSumofaListofNumbers.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -269,14 +269,14 @@
         
         
           
-  <li id="relations-prev" title="Previous Chapter - Что такое рекурсия?" data-toggle="tooltip">
-    <a href="WhatIsRecursion.html" >
+  <li id="relations-prev" title="Previous Chapter - Вычисление суммы списка чисел" data-toggle="tooltip">
+    <a href="CalculatingtheSumofaListofNumbers.html" >
       <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
     </a>
   </li>
   
-  <li id="relations-next" title='Next Chapter - Фрейм стека: реализация рекурсии' data-toggle="tooltip" >
-    <a href="StackFramesImplementingRecursion.html" >
+  <li id="relations-next" title='Next Chapter - Конвертирование целого числа в строку по любому основанию' data-toggle="tooltip" >
+    <a href="ConvertinganIntegertoaStringinAnyBase.html" >
       <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
     </a>
   </li>
@@ -314,9 +314,9 @@
 <li>Рекурсивный алгоритм должен изменять своё состояние и двигаться по направлению к базовому случаю.</li>
 <li>Рекурсивный алгоритм должен вызывать сам себя.</li>
 </ol>
-<p>Давайте рассмотрим каждый из этих законов более подробно и найдём их применение в алгоритме <tt class="docutils literal"><span class="pre">listsum</span></tt>. Первый - базовый случай - это условие, которое позволяет алгоритму остановить рекурсию. Он представляет собой задачу настолько малую, что её можно решить без применения каких-то дополнительных средств. В алгоритме <tt class="docutils literal"><span class="pre">listsum</span></tt> базовый случай - это список длиной 1.</p>
-<p>Чтобы соблюсти второй закон, мы должны организовать изменения состояния таким образом, чтобы алгоритм двигался по направлению к базовому случаю. Изменение состояния означает модификацию каких-то данных, используемых алгоритмом. Обычно объём данных, представленных в задаче, уменьшается каким-либо образом. В алгоритме <tt class="docutils literal"><span class="pre">listsum</span></tt> наша первоначальная структура данных - это список, так что следует сфокусировать усилия по изменению состояние на списке. Поскольку базовый случай - это список единичной длины, естественным прогрессом в его сторону будет сокращение списка. Это в точности то, что происходит в строке 5 <a class="reference internal" href="CalculatingtheSumofaListofNumbers.html#lst-recsum"><em>ActiveCode 2</em></a>, когда мы вызываем <tt class="docutils literal"><span class="pre">listsum</span></tt> с более коротким списком.</p>
-<p>Последний закон заключается в том, что алгоритм должен вызывать сам себя. Собственно, в этом и заключается определение рекурсии. Рекурсия - смущающая концепция для многих новичков-программистов. Как начинающий программист вы учили, что функции хороши тем, что позволяют взять большую задачу и разбить её на более мелкие части. Их можно решить, написав функцию для каждой. Когда же мы говорим о рекурсии, то может показаться, что мы собираемся зациклиться. У нас есть задача, решаемая с помощью функции, но для этого ей необходимо вызывать саму себя! Однако, логически здесь ничего не замкнуто: логика рекурсии в элегантном выражении решения задачи с помощью разбиения её на более мелкие и лёгкие подзадачи.</p>
+<p>Давайте рассмотрим каждый из этих законов более подробно и найдём примеры их применения в алгоритме <tt class="docutils literal"><span class="pre">listsum</span></tt>. Первый - базовый случай - это условие, которое позволяет алгоритму остановить рекурсию. Он представляет собой задачу настолько малую, что её можно решить без применения каких-либо дополнительных средств. Для алгоритма <tt class="docutils literal"><span class="pre">listsum</span></tt> базовый случай - это список длиной 1.</p>
+<p>Чтобы соблюсти второй закон, мы должны организовать изменения состояния таким образом, чтобы алгоритм двигался по направлению к базовому случаю. Изменение состояния означает модификацию каких-то данных, используемых алгоритмом. Обычно объём данных, представленных в задаче, уменьшается каким-либо образом. В алгоритме <tt class="docutils literal"><span class="pre">listsum</span></tt> наша первоначальная структура данных - это список, так что следует сфокусировать усилия по изменению состояние именно на нём. Поскольку базовый случай - список единичной длины, естественным прогрессом в его сторону станет сокращение списка. Это в точности то, что происходит в строке 5 <a class="reference internal" href="CalculatingtheSumofaListofNumbers.html#lst-recsum"><em>ActiveCode 2</em></a>, когда мы вызываем <tt class="docutils literal"><span class="pre">listsum</span></tt> с более коротким списком.</p>
+<p>Последний закон заключается в том, что алгоритм должен вызывать сам себя. Собственно, в этом и состоит определение рекурсии. Рекурсия - смущающая концепция для многих новичков-программистов. Как начинающий программист вы учили, что функции хороши тем, что позволяют взять большую задачу и разбить её на более мелкие части. Их можно решить, написав функцию для каждой. Когда же мы говорим о рекурсии, то может показаться, что мы собираемся зациклиться. У нас есть задача, решаемая с помощью функции, но для этого ей необходимо вызывать саму себя! Однако, логически здесь ничего не замкнуто: логика рекурсии в элегантном выражении решения задачи с помощью разбиения её на более мелкие и лёгкие подзадачи.</p>
 <p>В конце этой части мы рассмотрим много примеров рекурсии. В каждом случае мы сфокусируемся на разработке решения задачи с помощью использования трёх законов рекурсии.</p>
 <div class="admonition- admonition">
 <p class="first admonition-title">Самопроверка</p>
@@ -339,7 +339,7 @@
             <script>
             $(document).ready(function(){checkRadio('question_recsimp_1');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('question_recsimp_1','c',['В списке всего пять чисел. Количество рекурсивных вызовов не может превышать размер списка.', 'Первоначальный вызов ``listsum`` не считается рекурсивным.', 'первый рекурсивный вызов работает со списком [4,6,8,10], второй \u002D с [6,8,10] и так далее до [10].', 'Недостаточно вызовов, чтобы охватить все числа в списке.'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('question_recsimp_1','c',['В списке всего пять чисел. Количество рекурсивных вызовов не может превышать размер списка.', 'Первоначальный вызов ``listsum`` не считается рекурсивным.', 'первый рекурсивный вызов работает со списком [4,6,8,10], второй - с [6,8,10] и так далее до [10].', 'Недостаточно вызовов, чтобы охватить все числа в списке.'])">Check Me</button>
             <button class='btn btn-default' id="question_recsimp_1_bcomp" disabled name="compare" onclick="compareAnswers('question_recsimp_1');">Compare Me</button>
             </form><br />
             <div id="question_recsimp_1_feedback">
@@ -376,19 +376,19 @@
 
   
       
-  <li id="relations-prev" class="navLink" title='Previous Section - Что такое рекурсия?' data-toggle="tooltip">
-    <a href="WhatIsRecursion.html" >
+  <li id="relations-prev" class="navLink" title='Previous Section - Вычисление суммы списка чисел' data-toggle="tooltip">
+    <a href="CalculatingtheSumofaListofNumbers.html" >
       <i class='prevNav glyphicon glyphicon-chevron-left'></i>
     </a>
   </li>
-  <a class="navLinkBg" id="navLinkBgLeft"  href="WhatIsRecursion.html" ></a>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="CalculatingtheSumofaListofNumbers.html" ></a>
   
-  <li id="relations-next" class="navLink" title='Next Section - Фрейм стека: реализация рекурсии' data-toggle="tooltip" >
-    <a href="StackFramesImplementingRecursion.html" >
+  <li id="relations-next" class="navLink" title='Next Section - Конвертирование целого числа в строку по любому основанию' data-toggle="tooltip" >
+    <a href="ConvertinganIntegertoaStringinAnyBase.html" >
       <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
     </a>
   </li>
-  <a class="navLinkBg navLink" id="navLinkBgRight" href="StackFramesImplementingRecursion.html" >Next Section - Фрейм стека: реализация рекурсии</a>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="ConvertinganIntegertoaStringinAnyBase.html" >Next Section - Конвертирование целого числа в строку по любому основанию</a>
 
 <script type="text/javascript">
 
@@ -406,7 +406,7 @@
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

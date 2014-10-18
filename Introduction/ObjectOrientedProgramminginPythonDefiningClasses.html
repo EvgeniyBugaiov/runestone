@@ -312,25 +312,25 @@
   
   <div class="section" id="python">
 <h1>Объектно-ориентированное программирование в Python: определение классов<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
-<p>Мы уже говорили ранее, что Python является объектно-ориентированным
+<p>Ранее уже говорилось, что Python является объектно-ориентированным
 языком. До сих пор мы использовали только несколько встроенных классов
-для демонстрации данных и управляющих структур. Одной из наиболее мощных
-черт объектно-ориентированного языка программирования является его
-способность предоставить программисту (решателю задачи) возможность
+для демонстрации типов данных и управляющих структур. Одной из наиболее мощных
+черт объектно-ориентированного языка является его
+способность предоставить программисту возможность
 создавать новые классы, моделирующие данные, необходимые для решения
-проблемы.</p>
+задачи.</p>
 <p>Не забывайте: мы используем абстрактные типы данных, чтобы предоставить
 логическое описание того, как выглядят объекты данных (их состояние) и
-что они могут делать (их методы). Создавая класс, реализующий абстрактный
-тип данных, программист пользуется преимуществами абстракции процесса и в
-то же время предоставляет детали, необходимые при конкретном использовании
-абстракции в программе. Всякий раз, когда мы хотим реализовать абстрактный
+что они могут делать (их методы). Создавая класс, воплощающий АТД,
+программист пользуется преимуществами абстракции процесса и в
+то же время предоставляет детали, необходимые для конкретного использования
+её в программе. Всякий раз, когда мы хотим реализовать абстрактный
 тип данных, мы делаем это через новый класс.</p>
 <div class="section" id="fraction">
 <h2>Класс <tt class="docutils literal"><span class="pre">Fraction</span></tt><a class="headerlink" href="#fraction" title="Permalink to this headline">¶</a></h2>
 <p>Очень распространённым примером для демонстрации деталей реализации
-пользовательского класса является разработка класса, реализующего
-абстрактный тип данных <tt class="docutils literal"><span class="pre">Fraction</span></tt>. Мы уже видели, что Python
+пользовательского класса является разработка класса, воплощающего
+АТД <tt class="docutils literal"><span class="pre">Fraction</span></tt>. Мы уже видели, что Python
 предоставляет в наше пользование несколько числовых классов. Однако,
 бывают моменты, когда более подходящим является создание объекта
 данных лишь &#8220;выглядящего как&#8221; дробь.</p>
@@ -340,29 +340,28 @@
 имеют отрицательный числитель). Также для любой дроби можно создать
 приближение с плавающей запятой. В этом случае мы хотели бы представлять
 дробь как точное значение.</p>
-<p>Операции для типа <tt class="docutils literal"><span class="pre">Fraction</span></tt> будут позволять объектам данных
-<tt class="docutils literal"><span class="pre">Fraction</span></tt> вести себя подобно любым другим числовым значениям. Мы
-должны быть готовы складывать, вычитать, умножать и делить дроби. Мы
-также хотим иметь возможность показывать дроби в их стандартной
-&#8220;слэш&#8221;-форме (например, <span class="math">\(\frac {3}{5}\)</span>). Так же все методы дробей
+<p>Операции для типа <tt class="docutils literal"><span class="pre">Fraction</span></tt> будут позволять его объектам данных
+вести себя подобно любым другим числовым значениям. Мы
+должны быть готовы складывать, вычитать, умножать и делить дроби. Также необходима
+возможность показывать дроби в их стандартной
+&#8220;слэш&#8221;-форме (например, <span class="math">\(\frac {3}{5}\)</span>). Все методы дробей
 должны возвращать результат в своей сокращённой форме таким образом,
-чтобы вне зависимости от вида вычислений мы в конце всегда имели бы
-наиболее общепринятую форму.</p>
+чтобы, вне зависимости от вида вычислений, в конце мы всегда имели наиболее общепринятую форму.</p>
 <p>В Python мы определяем новый класс предоставлением его имени и набора
 определений методов, которые синтаксически подобны определениям функций.
 В этом примере</p>
 <div class="highlight-python"><div class="highlight"><pre>class Fraction:
 
-   #the methods go here
+   #методы писать тут
 </pre></div>
 </div>
-<p>нам дан каркас для определения методов. Первым методом, который должны
-предоставлять все классы, является конструктор. Он определяет способ
+<p>нам дан каркас для определения методов. Первым из них (его должны
+предоставлять все классы) является конструктор. Он определяет способ
 создания объекта данных. Чтобы создать объект <tt class="docutils literal"><span class="pre">Fraction</span></tt>, нам нужно
-предоставить два кусочка данных - числитель и знаменатель. В Python
+предоставить два элемента данных - числитель и знаменатель. В Python
 метод конструктора всегда называется <tt class="docutils literal"><span class="pre">__init__</span></tt> (по два подчёркивания
-до и после <tt class="docutils literal"><span class="pre">init</span></tt>). Он демонстрируется в <a class="reference internal" href="#lst-pyconstructor"><em>Листинге 2</em></a>:</p>
-<p id="lst-pyconstructor"><strong>Listing 2</strong></p>
+до и после <tt class="docutils literal"><span class="pre">init</span></tt>). Он демонстрируется в <a class="reference internal" href="#lst-pyconstructor"><em>листинге 2</em></a>:</p>
+<p id="lst-pyconstructor"><strong>Листинг 2</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Fraction</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">top</span><span class="p">,</span><span class="n">bottom</span><span class="p">):</span>
@@ -373,10 +372,10 @@
 </div>
 <p>Обратите внимание, что список формальных параметров содержит три элемента
 (<tt class="docutils literal"><span class="pre">self</span></tt>, <tt class="docutils literal"><span class="pre">top</span></tt>, <tt class="docutils literal"><span class="pre">bottom</span></tt>). <tt class="docutils literal"><span class="pre">self</span></tt> - это специальный параметр,
-который всегда используется как обратная ссылка на сам объект. Он всегда
+который используется, как обратная ссылка на сам объект. Он всегда
 должен быть первым формальным параметром, однако, при вызове конструктора
-в него никогда не передаётся актуальное значение. Как уже было описано ранее,
-дробям необходимы две части данных состояния - числитель и знаменатель.
+в него никогда не передаётся актуальное значение. Как было написано ранее,
+дробям нужны данные для двух частей - числителя и знаменателя.
 Нотация <tt class="docutils literal"><span class="pre">self.num</span></tt> конструктора определяет, что объект <tt class="docutils literal"><span class="pre">fraction</span></tt> имеет
 внутренний объект данных, именуемый <tt class="docutils literal"><span class="pre">num</span></tt>, как часть своего состояния.
 Аналогично, <tt class="docutils literal"><span class="pre">self.den</span></tt> создаёт знаменатель. Значения этих двух формальных
@@ -405,16 +404,16 @@
 </pre></div>
 </div>
 <p>Объект <tt class="docutils literal"><span class="pre">fraction</span></tt>, <tt class="docutils literal"><span class="pre">myf</span></tt> не знает, как ему отвечать на запрос о печати.
-Функция <tt class="docutils literal"><span class="pre">print</span></tt> требует, чтобы объект конвертировал себя самоё в строку,
+Функция <tt class="docutils literal"><span class="pre">print</span></tt> требует, чтобы объект конвертировал самого себя в строку,
 которая будет записана на выходе. Единственный выбор, который имеет
 <tt class="docutils literal"><span class="pre">myf</span></tt>, - это показать актуальную ссылку, хранящуюся в переменной
-(непосредственный адрес). Это не то, чего мы хотим.</p>
+(непосредственный адрес). Это явно не то, что мы хотим.</p>
 <p>Существует два пути решения этой проблемы. Первый - определить метод под
-названием <tt class="docutils literal"><span class="pre">show</span></tt>, который позволит объекту <tt class="docutils literal"><span class="pre">Fraction</span></tt> печать самоё себя
-как строку. Мы можем реализовать этот метод, как показано в
-<a class="reference internal" href="#lst-showmethod"><em>Листинге 3</em></a>. Если мы будем создавать объект
-<tt class="docutils literal"><span class="pre">Fraction</span></tt> как и раньше, то мы сможем попросить его показать себя - другими
-словами, напечатать себя в подходящем формате. К сожалению, в общем случае это
+названием <tt class="docutils literal"><span class="pre">show</span></tt>, который позволит объекту <tt class="docutils literal"><span class="pre">Fraction</span></tt> печать самого себя
+как строку. Мы можем реализовать его, как показано в
+<a class="reference internal" href="#lst-showmethod"><em>листинге 3</em></a>. Если создавать объект
+<tt class="docutils literal"><span class="pre">Fraction</span></tt> как и раньше, то можно попросить его показать себя (другими
+словами, напечатать себя) в подходящем формате. К сожалению, в общем случае это
 не будет работать. Для того, чтобы организовать печать должным образом, нам
 необходимо сообщить классу <tt class="docutils literal"><span class="pre">Fraction</span></tt>, как ему конвертировать себя в строку.
 Это то, что необходимо функции <tt class="docutils literal"><span class="pre">print</span></tt> для нормальной работы.</p>
@@ -433,13 +432,13 @@
 </div>
 <p>В Python у всех классов имеется набор стандартных методов, которые
 предоставляются по умолчанию, но могут не работать должным образом. Один из
-них, <tt class="docutils literal"><span class="pre">__str__</span></tt>, - это метод преобразования объекта в строку. Реализация по
+них, <tt class="docutils literal"><span class="pre">__str__</span></tt>, - метод преобразования объекта в строку. Реализация по
 умолчанию для этого метода, как мы уже могли видеть, возвращает строку адреса
-экземпляра класса. Что нам необходимо сделать, так это предоставить &#8220;лучшую&#8221;
-реализацию для него. Мы будем говорить, что эта реализация <strong>перегружает</strong>
+экземпляра класса. Что нам необходимо сделать, так это предоставить для него &#8220;лучшую&#8221;
+реализацию. Мы будем говорить, что она <strong>перегружает</strong>
 предыдущую (или переопределяет поведение метода).</p>
-<p>Чтобы сделать это, мы просто определим метод с именем <tt class="docutils literal"><span class="pre">__str__</span></tt> и зададим для
-него новую реализацию, как показано в <a class="reference internal" href="#lst-str"><em>Листинге 4</em></a>. Это определение
+<p>Для этого просто определим метод с именем <tt class="docutils literal"><span class="pre">__str__</span></tt> и зададим ему новую реализацию,
+как показано в <a class="reference internal" href="#lst-str"><em>листинге 4</em></a>. Это определение
 не нуждается ни в какой дополнительной информации, кроме специального параметра
 <tt class="docutils literal"><span class="pre">self</span></tt>. В свою очередь, метод будет создавать строковое представление конвертированием
 каждого кусочка внутренних данных состояния в строку и конкатенацией этих строк с
@@ -480,22 +479,22 @@
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>Если вы внимательнее посмотрите на сообщение об ошибке, то заметите,
-что загвоздка в том, что оператор &#8220;+&#8221; не понимает операндов <tt class="docutils literal"><span class="pre">Fraction</span></tt>.</p>
+<p>Если вы внимательнее посмотрите на сообщение об ошибке, то заметите -
+загвоздка в том, что оператор &#8220;+&#8221; не понимает операндов <tt class="docutils literal"><span class="pre">Fraction</span></tt>.</p>
 <p>Мы можем исправить это, предоставив классу <tt class="docutils literal"><span class="pre">Fraction</span></tt> метод, перегружающий
-сложение. В Python такой метод называется <tt class="docutils literal"><span class="pre">__add__</span></tt> и принимает два параметра.
-Первый <tt class="docutils literal"><span class="pre">self</span></tt> необходим всегда, второй представляет из себя второй операнд
+сложение. В Python он называется <tt class="docutils literal"><span class="pre">__add__</span></tt> и принимает два параметра.
+Первый - <tt class="docutils literal"><span class="pre">self</span></tt>- необходим всегда, второй представляет из себя второй операнд
 выражения. Например,</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">f1</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>будет запрашивать у <tt class="docutils literal"><span class="pre">Fraсtion</span></tt> объект <tt class="docutils literal"><span class="pre">f1</span></tt> прибавить к <tt class="docutils literal"><span class="pre">Fraction</span></tt> объект
+<p>будет запрашивать у <tt class="docutils literal"><span class="pre">Fraсtion</span></tt> объекта <tt class="docutils literal"><span class="pre">f1</span></tt> прибавить к нему <tt class="docutils literal"><span class="pre">Fraction</span></tt> объект
 <tt class="docutils literal"><span class="pre">f2</span></tt>. Это может быть записано и в стандартной нотации <tt class="docutils literal"><span class="pre">f1</span> <span class="pre">+</span> <span class="pre">f2</span></tt>.</p>
 <p>Для того, чтобы сложить две дроби, их нужно привести к общему знаменателю.
 Простейший способ увериться, что у них одинаковый знаменатель, - это использовать
 в его качестве произведение знаменателей дробей. Т.е.
 <span class="math">\(\frac {a}{b} + \frac {c}{d} = \frac {ad}{bd} + \frac {cb}{bd} = \frac{ad+cb}{bd}\)</span>
-Реализация показана в <a class="reference internal" href="#lst-addmethod"><em>Листинге 5</em></a>. Функция сложения
+Реализация показана в <a class="reference internal" href="#lst-addmethod"><em>листинге 5</em></a>. Функция сложения
 возвращает новый объект <tt class="docutils literal"><span class="pre">Fraction</span></tt> с числителем и знаменателем суммарной дроби.
 Мы можем использовать этот метод при написании стандартных арифметических выражений
 с дробями, присваивая результату суммарную дробь и выводя её на экран.</p>
@@ -519,7 +518,7 @@
 <p>Метод сложения работает, как мы того и хотели, но одну вещь можно было
 бы улучшить. Заметьте, что <tt class="docutils literal"><span class="pre">6/8</span></tt> - это правильный результат вычисления
 <tt class="docutils literal"><span class="pre">(1/4</span> <span class="pre">+</span> <span class="pre">1/2)</span></tt>, но это не сокращённая форма. Лучшим представлением будет
-<tt class="docutils literal"><span class="pre">3/4</span></tt>. Для того, чтобы быть уверенными, что наш результат всегда имеет
+<tt class="docutils literal"><span class="pre">3/4</span></tt>. Для того, чтобы быть уверенными, что результат всегда имеет
 сокращённый вид, нам понадобится вспомогательная функция, умеющая сокращать
 дроби. В ней нужно будет находить наибольший общий делитель, или НОД. Затем
 мы сможем разделить числитель и знаменатель на НОД, а результат и будет
@@ -530,7 +529,7 @@
 будет <tt class="docutils literal"><span class="pre">n</span></tt>, если <tt class="docutils literal"><span class="pre">m</span></tt> делится на <tt class="docutils literal"><span class="pre">n</span></tt> нацело. Однако, если этого не
 происходит, то ответом будет НОД <tt class="docutils literal"><span class="pre">n</span></tt> и остатка деления <tt class="docutils literal"><span class="pre">m</span></tt> на <tt class="docutils literal"><span class="pre">n</span></tt>.
 Мы просто предоставим здесь итеративную реализацию этого алгоритма
-(см <a class="reference internal" href="#lst-gcd"><em>ActiveCode 11</em></a>). Обратите внимание, что она работает
+(см. <a class="reference internal" href="#lst-gcd"><em>ActiveCode 11</em></a>). Обратите внимание, что она работает
 только при положительном знаменателе. Это допустимо для нашего класса дробей,
 поскольку мы говорили, что отрицательные дроби будут представляться
 отрицательным числителем.</p>
@@ -618,11 +617,11 @@ else{
 
 </div>
 
-<p>Теперь мы можем использовать эту функцию для сокращения любой дроби.
+<p>Теперь можно использовать эту функцию для сокращения любой дроби.
 Чтобы представить дробь в сокращённом виде, мы будем делить числитель
 и знаменатель на их наибольший общий делитель. Итак, для дроби <span class="math">\(6/8\)</span>
-НОД будет равен 2. Разделив верх и низ на 2, мы получим новую дробь <span class="math">\(3/4\)</span>
-(см <a class="reference internal" href="#lst-newaddmethod"><em>Листинг 6</em></a>).</p>
+НОД равен 2. Разделив верх и низ на 2, мы получим новую дробь <span class="math">\(3/4\)</span>
+(см. <a class="reference internal" href="#lst-newaddmethod"><em>листинг 6</em></a>).</p>
 <p id="lst-newaddmethod"><strong>Листинг 6</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">otherfraction</span><span class="p">):</span>
     <span class="n">newnum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="o">*</span><span class="n">otherfraction</span><span class="o">.</span><span class="n">den</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">den</span><span class="o">*</span><span class="n">otherfraction</span><span class="o">.</span><span class="n">num</span>
@@ -650,18 +649,18 @@ else{
 <tt class="docutils literal"><span class="pre">Fraction</span> <span class="pre">f1</span></tt> и <tt class="docutils literal"><span class="pre">f2</span></tt>. <tt class="docutils literal"><span class="pre">f1</span> <span class="pre">==</span> <span class="pre">f2</span></tt> будет истиной, если они ссылаются
 на один и тот же объект. Два разных объекта с одинаковыми числителями и
 знаменателями в этой реализации равны не будут. Это называется
-<strong>поверхностным равенством</strong> (см. <a class="reference internal" href="#fig-fraction3"><em>Рисунок 7</em></a>)</p>
+<strong>поверхностным равенством</strong> (см. <a class="reference internal" href="#fig-fraction3"><em>рисунок 7</em></a>)</p>
 <div class="figure align-center" id="fig-fraction3">
 <img alt="../_images/fraction3.png" src="../_images/fraction3.png" />
 <p class="caption">Рисунок 7: Поверхностное равенство vs глубокое равенство</p>
 </div>
-<p>Мы можем создать <strong>глубокое равенство</strong> (см. <a class="reference internal" href="#fig-fraction3"><em>Рисунок 7</em></a>) -
+<p>Мы можем создать <strong>глубокое равенство</strong> (см. <a class="reference internal" href="#fig-fraction3"><em>рисунок 7</em></a>) -
 по одинаковому значению, а не по одинаковой ссылке - перегрузив метод <tt class="docutils literal"><span class="pre">__eq__</span></tt>.
 Это ещё один стандартный метод, доступный в любом классе. Он сравнивает два объекта
 и возвращает <tt class="docutils literal"><span class="pre">True</span></tt>, если их значения равны, или <tt class="docutils literal"><span class="pre">False</span></tt> в противном случае.</p>
 <p>В классе <tt class="docutils literal"><span class="pre">Fraction</span></tt> мы можем реализовать метод <tt class="docutils literal"><span class="pre">__eq__</span></tt>, вновь представив обе
 дроби в виде с одинаковым знаменателем и затем сравнив их числители
-(см. <a class="reference internal" href="#lst-cmpmethod"><em>Листинг 7</em></a>). Здесь также важно отметить другие операторы
+(см. <a class="reference internal" href="#lst-cmpmethod"><em>листинг 7</em></a>). Здесь также важно отметить другие операторы
 отношений, которые могут быть перегружены. Например, метод <tt class="docutils literal"><span class="pre">__le__</span></tt> предоставляет
 функционал &#8220;меньше или равно&#8221;.</p>
 <p id="lst-cmpmethod"><strong>Листинг 7</strong></p>
@@ -673,8 +672,8 @@ else{
 </pre></div>
 </div>
 <p>Полностью класс <tt class="docutils literal"><span class="pre">Fraction</span></tt>, реализованный на данный момент, показан в
-<a class="reference internal" href="#lst-fractioncode"><em>ActiveCode 12</em></a>. Мы оставляем читателям реализацию
-оставшейся арифметики и методов отношений в качестве упражнений.</p>
+<a class="reference internal" href="#lst-fractioncode"><em>ActiveCode 12</em></a>. Мы оставляем читателям
+оставшуюся арифметику и методы отношений в качестве упражнений.</p>
 
 <div id="cont"></div>
 <div id="fraction_class" lang="python" class="ac_section alert alert-warning" >
@@ -738,7 +737,7 @@ print(x == y)
 
 </div> <!-- end output --> 
 <div class="clearfix"></div>
-<p class="ac_caption"><span class="ac_caption_text">The Fraction Class (fraction_class)</span> </p>
+<p class="ac_caption"><span class="ac_caption_text">Класс ``Fraction`` (fraction_class)</span> </p>
 <div id="fraction_class_codelens_div" style="display:none"></div>
 <script>
 if ('block' == 'none') {
@@ -928,7 +927,7 @@ else{
 потребности. В дополнение, организовывая данные в иерархической манере, мы лучше
 понимаем существующие между ними взаимоотношения. Мы можем создавать более эффективное
 абстрактное представление.</p>
-<p>Чтобы глубже исследовать эту идею, мы сделаем <strong>симуляцию</strong> - приложение, симулирующее
+<p>Чтобы глубже исследовать эту идею, мы напишем <strong>симуляцию</strong> - приложение, симулирующее
 цифровые цепи. Её основными строительными блоками будут логические элементы. Эти электронные
 переключатели представляют собой соотношения булевой алгебры между их входом и выходом. В
 общем случае вентили имеют единственную линию выхода. Значение на ней зависит от значений,
@@ -947,7 +946,7 @@ else{
 <img alt="../_images/truthtable.png" src="../_images/truthtable.png" />
 <p class="caption">Рисунок 9: Три типа логических элементов</p>
 </div>
-<p>Комбинируя эти вентили в различные структуры и применяя к получившемуся наборы
+<p>Комбинируя эти вентили в различные структуры и применяя к полученному наборы
 входных комбинаций, мы можем строить цепи, обладающие различными логическими
 функциями. <a class="reference internal" href="#fig-circuit1"><em>Рисунок 10</em></a> демонстрирует цепь, состоящую из
 двух вентилей &#8220;И&#8221;, одного вентиля &#8220;ИЛИ&#8221; и одного вентиля &#8220;НЕ&#8221;. Выходы элементов
@@ -982,7 +981,7 @@ else{
 входах. Для генерации выходного значения логическим элементам необходимо
 конкретное знание логики их работы. Это подразумевает вызов метода,
 совершающего логические вычисления. Полностью класс показан
-в <a class="reference internal" href="#lst-logicgateclass"><em>Листинге 8</em></a></p>
+в <a class="reference internal" href="#lst-logicgateclass"><em>листинге 8</em></a></p>
 <p id="lst-logicgateclass"><strong>Листинг 8</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LogicGate</span><span class="p">:</span>
 
@@ -1006,12 +1005,12 @@ else{
 существующий код. Параметр <tt class="docutils literal"><span class="pre">self</span></tt> является ссылкой на актуальный
 вентиль, вызывающий метод. Любые вновь добавленные в иерархию логические
 элементы просто будут нуждаться в собственной реализации функции
-<tt class="docutils literal"><span class="pre">performGateLogic</span></tt>, которая будет использована в нужный момент. После
-этого вентили будут предоставлять своё выходное значение. Эта возможность
+<tt class="docutils literal"><span class="pre">performGateLogic</span></tt>, которая станет использоваться в нужный момент. После
+этого вентили должны предоставить своё выходное значение. Эта возможность
 расширять существующую иерархию и обеспечивать необходимые для её нового
 класса функции чрезвычайно важна для повторного использования существующего кода.</p>
 <p>Мы разделили логические элементы, основываясь на количестве их входных линий.
-У вентиля &#8220;И&#8221; их две, вентиля &#8220;ИЛИ&#8221; тоже две, а у вентиля &#8220;НЕ&#8221; - одна. Класс
+У вентиля &#8220;И&#8221; их две, как и у вентиля &#8220;ИЛИ&#8221;, а у вентиля &#8220;НЕ&#8221; - одна. Класс
 <tt class="docutils literal"><span class="pre">BinaryGate</span></tt> будет субклассом <tt class="docutils literal"><span class="pre">LogicGate</span></tt> и включит в себя элементы с двумя
 входными линиями. Класс <tt class="docutils literal"><span class="pre">UnaryGate</span></tt> также будет субклассом <tt class="docutils literal"><span class="pre">LogicGate</span></tt>, но
 входная линия у его элементов будет одна. В конструировании компьютерных цепей
@@ -1045,10 +1044,10 @@ else{
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">&quot;Enter Pin input for gate &quot;</span><span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">getLabel</span><span class="p">()</span><span class="o">+</span><span class="s">&quot;--&gt;&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="#lst-logicgateclass"><em>Листинг 9</em></a> и <a class="reference internal" href="#lst-logicgateclass"><em>Листинг 10</em></a>
+<p><a class="reference internal" href="#lst-logicgateclass"><em>Листинг 9</em></a> и <a class="reference internal" href="#lst-logicgateclass"><em>листинг 10</em></a>
 реализуют эти два класса. Конструкторы их обоих начинаются с явного вызова
 конструктора родительского класса с использованием функции <tt class="docutils literal"><span class="pre">super</span></tt>. Когда
-мы создаём экземпляр класса <tt class="docutils literal"><span class="pre">BinaryGate</span></tt>, мы прежде всего хотим
+мы создаём экземпляр класса <tt class="docutils literal"><span class="pre">BinaryGate</span></tt>, то прежде всего хотим
 инициализировать любые элементы данных, которые наследуются от <tt class="docutils literal"><span class="pre">LogicGate</span></tt>.
 В данном случае это метка вентиля. Затем конструктор добавляет два входа
 (<tt class="docutils literal"><span class="pre">pinA</span></tt> и <tt class="docutils literal"><span class="pre">pinB</span></tt>). Это очень распространённая схема, которую вам следует
@@ -1056,7 +1055,7 @@ else{
 сначала нужно вызвать конструктор родительского класса, и только потом
 переключаться на собственные, отличные от предка, данные.</p>
 <p>Единственным, что добавится к поведению класса <tt class="docutils literal"><span class="pre">BinaryGate</span></tt> будет возможность
-получать значения от двух входных линий. Поскольку эти значения берутся откуда-то
+получать значения от двух входных линий. Поскольку они берутся откуда-то
 извне, то с помощью оператора ввода мы можем просто попросить пользователя
 предоставить их. То же самое происходит в реализации класса <tt class="docutils literal"><span class="pre">UnaryGate</span></tt>, за
 исключением того момента, что он имеет всего один вход.</p>
@@ -1089,10 +1088,10 @@ else{
 выше. Это то место, где мы можем предоставить метод <tt class="docutils literal"><span class="pre">performGateLogic</span></tt>.
 Для вентиля &#8220;И&#8221; он сначала должен получить два входных значения и вернуть 1,
 если оба они равны единице. Полностью данный класс показан в
-<a class="reference internal" href="#lst-andgateclass"><em>Листинге 11</em></a>.</p>
-<p>Мы можем продемонстрировать работу класса <tt class="docutils literal"><span class="pre">AndGate`</span></tt>, создав его сущность
-и попросив её вычислить её выходное значение. Следующий код показывает <tt class="docutils literal"><span class="pre">AndGate</span></tt>
-объект <tt class="docutils literal"><span class="pre">g1</span></tt>, который имеет внутреннюю метку <tt class="docutils literal"><span class="pre">&quot;G1&quot;</span></tt>. Когда мы вызываем
+<a class="reference internal" href="#lst-andgateclass"><em>листинге 11</em></a>.</p>
+<p>Мы можем продемонстрировать работу класса <tt class="docutils literal"><span class="pre">AndGate`</span></tt>, создав его экземпляр
+и попросив его вычислить своё выходное значение. Следующий код показывает <tt class="docutils literal"><span class="pre">AndGate</span></tt>-объект
+<tt class="docutils literal"><span class="pre">g1</span></tt>, который имеет внутреннюю метку <tt class="docutils literal"><span class="pre">&quot;G1&quot;</span></tt>. Когда мы вызываем
 метод <tt class="docutils literal"><span class="pre">getOutput</span></tt>, объект сначала должен вызвать свой метод <tt class="docutils literal"><span class="pre">performGateLogic</span></tt>,
 который, в свою очередь, запрашивает значения из двух входных линий. После того,
 как требуемые данные получены, показывается правильное выходное значение.</p>
@@ -1106,7 +1105,7 @@ else{
 <p>Такая же работа должна быть проведена для элементов &#8220;ИЛИ&#8221; и &#8220;НЕ&#8221;. Класс
 <tt class="docutils literal"><span class="pre">OrGate</span></tt> также будет субклассом <tt class="docutils literal"><span class="pre">BinaryGate</span></tt>, а класс <tt class="docutils literal"><span class="pre">NotGate</span></tt>
 расширит <tt class="docutils literal"><span class="pre">UnaryGate</span></tt>. Оба они будут нуждаться в собственной реализации
-функции <tt class="docutils literal"><span class="pre">performGateLogic</span></tt> со специфическим поведением.&lt;/p&gt;</p>
+функции <tt class="docutils literal"><span class="pre">performGateLogic</span></tt> со специфическим поведением.</p>
 <p>Мы можем использовать единичный логический элемент, сконструировав в начале
 экземпляр одного из классов вентилей и затем запросив его выходное значение
 (что, в свою очередь, потребует предоставления входных данных). Например,</p>
@@ -1131,25 +1130,25 @@ else{
 <tt class="docutils literal"><span class="pre">Connector</span></tt>.</p>
 <p>Класс <tt class="docutils literal"><span class="pre">Connector</span></tt> не будет принадлежать иерархии логических элементов.
 Однако, он будет использовать её, поскольку каждый соединитель имеет два
-вентиля - по одному на каждый конец (см. <a class="reference internal" href="#fig-connector"><em>Рисунок 12</em></a>).
+вентиля - по одному на каждый конец (см. <a class="reference internal" href="#fig-connector"><em>рисунок 12</em></a>).
 Отношения такого рода очень важны в объектно-ориентированном программировании.
 Они называются <strong>отношениями &#8220;HAS-A&#8221;</strong>. Напомним, что ранее мы использовали
 словосочетание &#8220;IS-A отношение&#8221;, чтобы показать, как дочерний класс относится
 к родительскому. Например, <tt class="docutils literal"><span class="pre">UnaryGate</span></tt> является (IS-A) <tt class="docutils literal"><span class="pre">LogicGate</span></tt>.</p>
 <div class="figure align-center" id="fig-connector">
 <img alt="../_images/connector.png" src="../_images/connector.png" />
-<p class="caption">Рисунок 12: Connector соединяет выход одного вентиля со входом другого.</p>
+<p class="caption">Рисунок 12: <tt class="docutils literal"><span class="pre">Connector</span></tt> соединяет выход одного вентиля со входом другого.</p>
 </div>
-<p>Теперь, для класса <tt class="docutils literal"><span class="pre">Connector</span></tt>, мы скажем, что он имеет <tt class="docutils literal"><span class="pre">LogicGate&lt;</span></tt>,
+<p>Теперь для класса <tt class="docutils literal"><span class="pre">Connector</span></tt> мы скажем, что он имеет <tt class="docutils literal"><span class="pre">LogicGate</span></tt>,
 подразумевая, что соединители имеют внутри экземпляры <tt class="docutils literal"><span class="pre">LogicGate</span></tt>, но не
 являются частью иерархии. При конструировании классов очень важно различать
 те из них, которые имеют отношения &#8220;IS-A&#8221; (что требует наследования), и те,
 которые обладают отношениями &#8220;HAS-A&#8221; (без наследования).</p>
 <p><a class="reference internal" href="#lst-connectorclass"><em>Листинг 12</em></a> демонстрирует класс <tt class="docutils literal"><span class="pre">Connector</span></tt>.
 Два экземпляра вентилей внутри каждого объекта соединителя будут обозначаться
-как <tt class="docutils literal"><span class="pre">fromgate</span></tt> и <tt class="docutils literal"><span class="pre">topgate</span></tt>, различая таким образом, что данные будут &#8220;течь&#8221;
+как <tt class="docutils literal"><span class="pre">fromgate</span></tt> и <tt class="docutils literal"><span class="pre">togate</span></tt>, различая таким образом, что данные будут &#8220;течь&#8221;
 от выхода одного вентиля ко входу другого. Вызов <tt class="docutils literal"><span class="pre">setNextPin</span></tt> очень важен при
-создании соединителей (см. <a class="reference internal" href="#lst-setpin"><em>Листинг 13</em></a>). Нам необходимо добавить
+создании соединителей (см. <a class="reference internal" href="#lst-setpin"><em>листинг 13</em></a>). Нам необходимо добавить
 этот метод к нашим классам для вентилей таким образом, чтобы каждый <tt class="docutils literal"><span class="pre">togate</span></tt> мог
 выбрать подходящую входную линию для соединения.</p>
 <p id="lst-connectorclass"><strong>Листинг 12</strong></p>
@@ -1173,7 +1172,7 @@ else{
 то по умолчанию мы будем выбирать <tt class="docutils literal"><span class="pre">pinA</span></tt>. Если он уже подсоединён к
 чему-либо, то выберем <tt class="docutils literal"><span class="pre">pinB</span></tt>. Подсоединиться к вентилю, не имеющему
 доступных входов, невозможно.</p>
-<p id="lst-setpin"><strong>Listing 13</strong></p>
+<p id="lst-setpin"><strong>Листинг 13</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">setNextPin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">source</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pinA</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pinA</span> <span class="o">=</span> <span class="n">source</span>
@@ -1186,7 +1185,7 @@ else{
 </div>
 <p>Теперь можно получать входные данные двумя способами: извне, как раньше,
 и с выхода вентиля, присоединённого ко входу данного. Это требование меняет
-методы <tt class="docutils literal"><span class="pre">getPinA</span></tt> и <tt class="docutils literal"><span class="pre">getPinB</span></tt> (см. <a class="reference internal" href="#lst-newgetpin"><em>Листинг 14</em></a>).
+методы <tt class="docutils literal"><span class="pre">getPinA</span></tt> и <tt class="docutils literal"><span class="pre">getPinB</span></tt> (см. <a class="reference internal" href="#lst-newgetpin"><em>листинг 14</em></a>).
 Если входная линия ни к чему не подсоединена (<tt class="docutils literal"><span class="pre">None</span></tt>), то, как и раньше,
 будет задаваться вопрос пользователю. Однако, если она связана, то
 подключение осуществится, затребовав значение выхода <tt class="docutils literal"><span class="pre">fromgate</span></tt>. В свою
@@ -1700,7 +1699,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

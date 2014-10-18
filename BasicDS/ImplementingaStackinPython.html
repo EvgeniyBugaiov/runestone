@@ -308,10 +308,10 @@
   
   <div class="section" id="python">
 <h1>Реализация стека на Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
-<p>Теперь, когда у нас есть чёткое определение стека, как абстрактного типа
-данных, обратим своё внимание на использование Python для реализации стека.
+<p>Теперь, когда у нас есть чёткое определение АТД стека,
+обратим своё внимание на использование Python для его реализации.
 Напомним, что когда мы даём физическую реализацию абстрактного типа данных,
-то ссылаемся на реализацию структуры данных.</p>
+то подразумеваем реализацию структуры данных.</p>
 <p>Как мы уже говорили в главе 1, в Python (как и в любом объектно-ориентированном
 языке) реализация выбранного абстрактного типа данных (например, стека) - это
 создание нового класса. Стековые операции воплотятся в его методах. Далее,
@@ -422,7 +422,7 @@ else{
 <p>Помните, что с нажатием кнопки <tt class="docutils literal"><span class="pre">run</span></tt> не произойдёт ничего, кроме объявления
 класса. Мы должны создать объект <tt class="docutils literal"><span class="pre">Stack</span></tt>, а затем его использовать.
 <a class="reference internal" href="#lst-stackcode1"><em>ActiveCode 2</em></a> демонстрирует класс <tt class="docutils literal"><span class="pre">Stack</span></tt> в действии,
-которое мы представили последовательностью операций из <a class="reference internal" href="TheStackAbstractDataType.html#tbl-stackops"><em>Таблицы 1</em></a></p>
+которое мы представили последовательностью операций из <a class="reference internal" href="TheStackAbstractDataType.html#tbl-stackops"><em>таблицы 1</em></a></p>
 
 <div id="cont"></div>
 <div id="stack_ex_1" lang="python" class="ac_section alert alert-warning" >
@@ -561,13 +561,13 @@ $(window).resize(function() {
 что первая реализация будет выполнять добавление и выталкивание за постоянное
 время, независимо от количества элементов в стеке. Производительность второго
 варианта страдает, поскольку и <tt class="docutils literal"><span class="pre">insert(0)</span></tt>, и <tt class="docutils literal"><span class="pre">pop(0)</span></tt> для стека, размером
-n, являются O(n). Очевидно, что даже если реализации логически эквивалентны,
+n, являются O(n). Очевидно, что даже если в реализации логически эквивалентны,
 то при тестировании они будут иметь очень разные затраты по времени.</p>
 <div class="admonition- admonition">
 <p class="first admonition-title">Самопроверка</p>
 
             <div id="stack_1" class="alert alert-warning">
-            <p>Q-10: Дана следующая последовательность стековых операций. Что будет на вершине стека, когда последовательность завершится?</p>
+            <p>Q-10: Дана следующая последовательность стековых операций. Что будет на вершине стека, когда она завершится?</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">m</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">)</span>
@@ -587,13 +587,13 @@ n, являются O(n). Очевидно, что даже если реали�
             <label for= "stack_1_opt_c">  c) 'z'</label><br />
             
             <input type="radio" name="group1" value="d" id="stack_1_opt_d" />
-            <label for= "stack_1_opt_d">  d) The stack is empty</label><br />
+            <label for= "stack_1_opt_d">  d) Стек пуст</label><br />
             
 
             <script>
             $(document).ready(function(){checkRadio('stack_1');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('stack_1','c',['Remember that a stack is built from the bottom up.', 'Remember that a stack is built from the bottom up.', 'Good job.', 'Remember that a stack is built from the bottom up.'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('stack_1','c',['Помните, что стек строится снизу вверх.', 'Помните, что стек строится снизу вверх.', 'Хорошая работа!', 'Помните, что стек строится снизу вверх.'])">Check Me</button>
             <button class='btn btn-default' id="stack_1_bcomp" disabled name="compare" onclick="compareAnswers('stack_1');">Compare Me</button>
             </form><br />
             <div id="stack_1_feedback">
@@ -616,10 +616,10 @@ n, являются O(n). Очевидно, что даже если реали�
             <label for= "stack_2_opt_a">  a) 'x'</label><br />
             
             <input type="radio" name="group1" value="b" id="stack_2_opt_b" />
-            <label for= "stack_2_opt_b">  b) the stack is empty</label><br />
+            <label for= "stack_2_opt_b">  b) стек пуст</label><br />
             
             <input type="radio" name="group1" value="c" id="stack_2_opt_c" />
-            <label for= "stack_2_opt_c">  c) an error will occur</label><br />
+            <label for= "stack_2_opt_c">  c) возникнет ошибка</label><br />
             
             <input type="radio" name="group1" value="d" id="stack_2_opt_d" />
             <label for= "stack_2_opt_d">  d) 'z'</label><br />
@@ -628,7 +628,7 @@ n, являются O(n). Очевидно, что даже если реали�
             <script>
             $(document).ready(function(){checkRadio('stack_2');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('stack_2','c',['You may want to check out the docs for isEmpty', 'There is an odd number of things on the stack but each time through the loop 2 things are popped.', 'Good Job.', 'You may want to check out the docs for isEmpty'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('stack_2','c',['Вам стоит проверить docs на пустоту', 'В стеке нечётное количество элементов, но за каждый проход по циклу выталкиваются два из них', 'Отличная работа!', 'Вам стоит проверить docs на пустоту'])">Check Me</button>
             <button class='btn btn-default' id="stack_2_bcomp" disabled name="compare" onclick="compareAnswers('stack_2');">Compare Me</button>
             </form><br />
             <div id="stack_2_feedback">
@@ -660,7 +660,7 @@ from test import testEqual
 from pythonds.basic.stack import Stack
 
 def revstring(mystr):
-    # your code here
+    # место для вашего кода
 
 testEqual(revstring('apple'),'elppa')
 testEqual(revstring('x'),'x')
@@ -784,7 +784,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

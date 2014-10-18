@@ -308,10 +308,10 @@
   
   <div class="section" id="python">
 <h1>Реализация дека в Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
-<p>Создадим новый класс для реализации абстрактного типа данных &#8220;дек&#8221;, как мы
+<p>Создадим новый класс для реализации АТД &#8220;дек&#8221;, как мы
 неоднократно делали в предыдущих разделах. Список Python вновь предоставит
-очень хороший набор методов, с помощью которых мы построим детализацию дека.
-Наша реализация (<a class="reference internal" href="#lst-dequecode"><em>Листинг 1</em></a>) будет предполагать, что хвост
+очень хороший набор методов, с помощью которых мы построим детализацию этой структуры данных.
+Наша реализация (<a class="reference internal" href="#lst-dequecode"><em>листинг 1</em></a>) будет предполагать, что хвост
 дека находится в нулевой позиции списка.</p>
 <p><strong>Листинг 1</strong></p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -363,7 +363,7 @@
 (строка 12) в <tt class="docutils literal"><span class="pre">addRear</span></tt>, поскольку <tt class="docutils literal"><span class="pre">append</span></tt> предполагает добавление
 нового элемента в конец списка.</p>
 <p>CodeLens 1 демонстрирует класс <tt class="docutils literal"><span class="pre">Deque</span></tt> в последовательности действий,
-которую мы представили в <a class="reference internal" href="TheDequeAbstractDataType.html#tbl-dequeoperations"><em>Таблице 1</em></a>.</p>
+которую мы представили в <a class="reference internal" href="TheDequeAbstractDataType.html#tbl-dequeoperations"><em>таблице 1</em></a>.</p>
 
 <div class="alert alert-warning cd_section">
 <div id="deqtest"></div>
@@ -400,12 +400,12 @@ $(window).resize(function() {
     deqtest_vis.redrawConnectors();
 });
 </script>
-<p>Вы можете увидеть много сходства в коде на Python, описывающем стеки и
-очереди. Вы также, вероятно, заметили, что в этой реализации добавление
+<p>Можно найти много сходства в коде на Python, описывающем стеки и
+очереди. Вероятно, вы также заметили, что в этой реализации добавление
 и удаление элементов из головы имеет O(1), в то время как те же операции
 для хвоста - O(n). Это и следовало ожидать, учитывая какие распространённые
 методы использовались для этой цели. Опять же, главное, в чём мы должны
-быть уверены, - так это в том, что в нашей реализации назначено хвостом,
+быть уверены, так это в том, что в нашей реализации назначено хвостом,
 а что головой дека.</p>
 </div>
 
@@ -442,7 +442,7 @@ $(window).resize(function() {
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

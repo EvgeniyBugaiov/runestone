@@ -320,7 +320,7 @@
 инструкцию до тех пор, пока она не будет удовлетворять языковым правилам.
 Чаще всего синтаксические ошибки встречаются, когда вы только начинаете
 изучать новый язык программирования.</p>
-<p>Другой тип ошибок, известный как логические ошибки, имеет отношение к тем
+<p>Другой тип, известный как логические ошибки, имеет отношение к тем
 ситуациям, когда код выполняется, но выдаёт неправильный результат. Причиной
 может быть ошибка в основном алгоритме или неверная трансляция вами этого
 алгоритма. В некоторых случаях логические ошибки приводят к очень плохим
@@ -331,20 +331,12 @@
 <p>Большую часть времени начинающие программисты думают об исключениях, как
 о фатальных ошибках во время выполнения, приводящих экстренному завершению
 программы. Однако, большинство языков программирования предоставляют способ
-иметь дело с такого рода ошибками, что позволяет программисту вмешиваться в
+иметь дело с вещами такого рода, что позволяет программисту вмешиваться в
 процесс, если он того пожелает. Более того, программисты могут создавать
 свои собственные исключения, если они обнаруживают в программе ситуацию,
 когда это может быть оправдано.</p>
-<p>When an exception occurs, we say that it has been “raised.” You can
-“handle” the exception that has been raised by using a <tt class="docutils literal"><span class="pre">try</span></tt>
-statement. For example, consider the following session that asks the
-user for an integer and then calls the square root function from the
-math library. If the user enters a value that is greater than or equal
-to 0, the print will show the square root. However, if the user enters a
-negative value, the square root function will report a <tt class="docutils literal"><span class="pre">ValueError</span></tt>
-exception.</p>
 <p>Когда возникает исключение, мы говорим, что оно &#8220;вызывается&#8221;. Вы можете
-&#8220;обработать&#8221; вызванное исключение, используя оператор &lt;code&gt;try&lt;/code&gt;.
+&#8220;обработать&#8221; вызванное исключение, используя оператор <tt class="docutils literal"><span class="pre">try</span></tt>.
 Рассмотрим, например, следующий код, который запрашивает у пользователя
 целое число, а затем вызывает функцию извлечения квадратного корня из
 математической библиотеки. Если пользователь вводит значение, которое
@@ -361,8 +353,8 @@ exception.</p>
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>Мы можем обработать это исключение, вызвав функцию <tt class="docutils literal"><span class="pre">print</span></tt> внутри <tt class="docutils literal"><span class="pre">try</span></tt>
-блока. Соответствующий <tt class="docutils literal"><span class="pre">except</span></tt>-блок &#8220;поймает&#8221; исключение и напечатает
+<p>Мы можем обработать это исключение, вызвав функцию <tt class="docutils literal"><span class="pre">print</span></tt> внутри блока <tt class="docutils literal"><span class="pre">try</span></tt>.
+Соответствующий <tt class="docutils literal"><span class="pre">except</span></tt>-блок &#8220;поймает&#8221; исключение и напечатает
 сообщение пользователю, в котором сообщит о возникновении исключения.
 Например:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
@@ -440,7 +432,7 @@ exception.</p>
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

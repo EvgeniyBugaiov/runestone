@@ -324,10 +324,10 @@
 <span class="go">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>Синтаксис этого определения функции включает имя (<tt class="docutils literal"><span class="pre">square</span></tt>) и заключённый
+<p>Синтаксис этого определения включает имя (<tt class="docutils literal"><span class="pre">square</span></tt>) и заключённый
 в скобки список формальных параметров. Для этой функции <tt class="docutils literal"><span class="pre">n</span></tt> - всего лишь
 формальный параметр, предполагающий, что <tt class="docutils literal"><span class="pre">square</span></tt> необходим только один
-кусочек данных для её работы. Детали, скрытые &#8220;внутри ящика&#8221;, просто вычисляют
+элемент данных для её работы. Детали, скрытые &#8220;внутри ящика&#8221;, просто вычисляют
 результат <tt class="docutils literal"><span class="pre">n**2</span></tt> и возвращают его. Мы можем вызвать функцию <tt class="docutils literal"><span class="pre">square</span></tt>,
 попросив среду разработки Python вычислить её и поместив внутрь актуальное
 значение параметра (<tt class="docutils literal"><span class="pre">3</span></tt> в данном случае). Заметьте, что вызов <tt class="docutils literal"><span class="pre">square</span></tt>
@@ -344,11 +344,11 @@
 его квадратный корень после совершения 20 предположений. Ещё раз, детали метода
 Ньютона скрыты внутри определения функции, и пользователь ничего не знает о
 реализации, когда использует функцию по её прямому назначению.
-<a class="reference internal" href="#lst-root"><em>Листинг 1</em></a> также показывает использование символа <tt class="docutils literal"><span class="pre">#</span></tt> как
+<a class="reference internal" href="#lst-root"><em>Листинг 1</em></a> также демонстрирует использование символа <tt class="docutils literal"><span class="pre">#</span></tt>, как
 маркера комментария. Любые символы, идущие в строке после <tt class="docutils literal"><span class="pre">#</span></tt>, игнорируются.</p>
 <p id="lst-root"><strong>Листинг 1</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">squareroot</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">root</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span>    <span class="c">#initial guess will be 1/2 of n</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span>    <span class="c">#первоначальная догадка должна составлять 1/2 от n</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
         <span class="n">root</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">root</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">root</span><span class="p">))</span>
 
@@ -365,7 +365,7 @@
 <div class="admonition- admonition">
 <p class="first admonition-title">Самопроверка</p>
 <p>Это задание охватывает весь изложенный выше материал. Вы когда-нибудь слышали
-о теореме о бесконечных обезьянах? В ней утверждается, что если обезьяна будет
+про теорему о бесконечных обезьянах? В ней утверждается, что если обезьяна будет
 беспорядочно нажимать на клавиши клавиатуры бесконечное количество времени, то
 рано или поздно напечатает заданный текст (например, полное собрание сочинений
 Вильяма Шекспира). Что ж, предположим, что мы заменяем обезьяну функцией на Python.
@@ -385,7 +385,7 @@
 <p class="first admonition-title">Усложнённое задание для самопроверки</p>
 <p class="last">Посмотрите, сможете ли вы улучшить программу из самопроверки, сохраняя правильно
 стоящие буквы и изменяя всего лишь одну из оставшихся, чтобы приблизиться к результату.
-Алгоритм такого типа относится к классу &#8220;поиска с восхождением к вершине&#8221;, в которых
+Алгоритм такого типа относится к классу &#8220;поиска с восхождением к вершине&#8221;, в котором
 результат сохраняется только в том случае, если он лучше предыдущего.</p>
 </div>
 <div id="monkeyvid" class="video_popup" >
@@ -446,7 +446,7 @@
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

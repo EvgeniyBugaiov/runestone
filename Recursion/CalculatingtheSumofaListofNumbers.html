@@ -76,6 +76,8 @@
     <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
     <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
     <link rel="top" title="Problem Solving with Algorithms and Data Structures" href="../index.html" />
+    <link rel="next" title="Три закона рекурсии" href="TheThreeLawsofRecursion.html" />
+    <link rel="prev" title="Что такое рекурсия?" href="WhatIsRecursion.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -267,6 +269,18 @@
         
         
           
+  <li id="relations-prev" title="Previous Chapter - Что такое рекурсия?" data-toggle="tooltip">
+    <a href="WhatIsRecursion.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Три закона рекурсии' data-toggle="tooltip" >
+    <a href="TheThreeLawsofRecursion.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
 
 <script type="text/javascript">
   opts = {'placement':'bottom',
@@ -376,10 +390,10 @@ else{
 
 </div>
 
-<p>Представьте на минуту, что вы не можете использовать циклы <tt class="docutils literal"><span class="pre">while</span></tt> или <tt class="docutils literal"><span class="pre">for</span></tt>. Как бы вы подсчитали сумму чисел в списке? Если бы вы были математиками, то могли бы начать с того, что сложение - это функция, которая принимает два параметра (пару чисел). Чтобы переопределить задачу от сложения значений в списке к сложению пар чисел, мы перепишем список в виде выражения с полной расстановкой скобок. Выглядеть оно будет примерно так:</p>
+<p>Представьте на минуту, что вы не можете использовать циклы <tt class="docutils literal"><span class="pre">while</span></tt> или <tt class="docutils literal"><span class="pre">for</span></tt>. Как подсчитать сумму чисел в списке? Если бы вы были математиками, то могли бы начать с того, что сложение - это функция, которая принимает два параметра (пару чисел). Чтобы переопределить задачу от сложения значений в списке к сложению пар чисел, мы перепишем список в виде выражения с полной расстановкой скобок. Выглядеть оно будет примерно так:</p>
 <div class="math">
 \[((((1 + 3) + 5) + 7) + 9)\]</div>
-<p>В прнципе, скобки можно расставить и в обратном порядке:</p>
+<p>В принципе, скобки можно расставить и в обратном порядке:</p>
 <div class="math">
 \[(1 + (3 + (5 + (7 + 9))))\]</div>
 <p>Обратите внимание, что самое внутренне выражение в скобках - <span class="math">\((7 + 9)\)</span> - это задача, которую можно решить без использования циклов или каких-то специальных конструкций. Фактически, мы можем использовать следующую последовательность упрощений для вычисления итоговой суммы:</p>
@@ -479,16 +493,31 @@ else{
 <p>На <a class="reference internal" href="#fig-recsumin"><em>рисунке 1</em></a> показана последовательность <strong>рекурсивных вызовов</strong>, которые требуются для подсчёта суммы списка <span class="math">\([1, 3, 5, 7, 9]\)</span>. Вы можете думать о ней, как о серии упрощений. Каждый раз, когда мы делаем рекурсивный вызов, мы решаем задачу меньшего размера до тех пор пока не достигнем точки, в которой её нельзя будет уменьшить.</p>
 <div class="figure align-center" id="fig-recsumin">
 <img alt="image" src="../_images/sumlistIn.png" />
+<p class="caption">Рисунок 1: Последовательность рекурсивных вызовов для сложения списка чисел.</p>
 </div>
-<p>Когда мы достигаем точки максимального упрощения задачи, то начинаем собирать вместе кусочки решения каждой из маленьких подзадач до тех пор, пока они не сольются в решение первоначальной задачи. <a class="reference internal" href="#fig-recsumout"><em>Рисунок 2</em></a> показывает операции сложения, которые выполняются во время работы <tt class="docutils literal"><span class="pre">listsum</span></tt> в обратном направлении по последовательности вызовов. Когда <tt class="docutils literal"><span class="pre">`listsum`</span></tt> вернёт ответ самой верхней задачи, мы будем иметь итоговое решение.</p>
+<p>Когда мы достигаем точки максимального упрощения задачи, то начинаем собирать вместе кусочки решения каждой из маленьких подзадач до тех пор, пока они не сольются в решение первоначальной задачи. <a class="reference internal" href="#fig-recsumout"><em>Рисунок 2</em></a> показывает операции сложения, которые выполняются во время работы <tt class="docutils literal"><span class="pre">listsum</span></tt> в обратном направлении по последовательности вызовов. Когда <tt class="docutils literal"><span class="pre">listsum</span></tt> вернёт ответ самой верхней задачи, мы будем иметь итоговое решение.</p>
 <div class="figure align-center" id="fig-recsumout">
 <img alt="image" src="../_images/sumlistOut.png" />
+<p class="caption">Рисунок 2: Последовательность рекурсивных возвратов для сложения списка чисел.</p>
 </div>
 </div>
 
 
   
       
+  <li id="relations-prev" class="navLink" title='Previous Section - Что такое рекурсия?' data-toggle="tooltip">
+    <a href="WhatIsRecursion.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="WhatIsRecursion.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - Три закона рекурсии' data-toggle="tooltip" >
+    <a href="TheThreeLawsofRecursion.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="TheThreeLawsofRecursion.html" >Next Section - Три закона рекурсии</a>
 
 <script type="text/javascript">
 
@@ -506,7 +535,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

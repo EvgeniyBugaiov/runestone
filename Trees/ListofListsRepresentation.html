@@ -403,7 +403,7 @@ else{
 
 </div>
 
-<p>Давайте формализируем это определение структуры данных дерева с помощью некоторых функций, которые сделают проще использование списков в качестве деревьев. Обратите внимание, мы не собираемся определять новый класс для двоичного дерева. Функции, которые будут написаны, всего лишь помогут манипулировать стандарным списком, с которым мы работаем, как с деревом.</p>
+<p>Давайте формализуем это определение с помощью некоторых функций, которые сделают проще использование списков в качестве деревьев. Обратите внимание, мы не собираемся определять новый класс для двоичного дерева. Функции, которые будут написаны, всего лишь помогут манипулировать стандарным списком, с которым мы работаем, как с деревом.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">BinaryTree</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[]]</span>
 </pre></div>
@@ -430,7 +430,7 @@ else{
     <span class="k">return</span> <span class="n">root</span>
 </pre></div>
 </div>
-<p>Чтобы закончить с набором дерево-создающих функций (см. <a class="reference internal" href="#lst-treeacc"><em>листинг 3</em></a>), давайте напишем несколько функций доступа для установки и получения значений в корне и правого и левого поддеревьев.</p>
+<p>Чтобы закончить с набором для создания дерева (см. <a class="reference internal" href="#lst-treeacc"><em>листинг 3</em></a>), давайте напишем несколько функций доступа для установки и получения значений в корне и правого и левого поддеревьев.</p>
 <p id="lst-treeacc"><strong>Листинг 3</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">getRootVal</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -594,7 +594,7 @@ else{
             <script>
             $(document).ready(function(){checkRadio('mctree_1');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('mctree_1','c',['Не совсем верно, в этом дереве упущен узел \u0027e\u0027.', 'Близко, но если вы посмотрите внимательнее, то заметите, что левый и правый потомки корня перепутаны местами.', 'Очень хорошо.', 'Близко, но имена левого и правого потомков перепутаны местами вместе со всем содержимым.'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('mctree_1','c',['Не совсем верно, в этом дереве упущен узел 'e'.', 'Близко, но если вы посмотрите внимательнее, то заметите, что левый и правый потомки корня перепутаны местами.', 'Очень хорошо.', 'Близко, но имена левого и правого потомков перепутаны местами вместе со всем содержимым.'])">Check Me</button>
             <button class='btn btn-default' id="mctree_1_bcomp" disabled name="compare" onclick="compareAnswers('mctree_1');">Compare Me</button>
             </form><br />
             <div id="mctree_1_feedback">
@@ -728,7 +728,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

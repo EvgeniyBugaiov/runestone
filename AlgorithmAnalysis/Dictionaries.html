@@ -416,7 +416,7 @@
 <p class="first admonition-title">Самопроверка</p>
 
             <div id="mcpyperform" class="alert alert-warning">
-            Q-36: Какая из перечисленных операций для списков не является O(1)?<form name="mcpyperform_form" method="get" action="" onsubmit="return false;">
+            Q-4: Какая из перечисленных операций для списков не является O(1)?<form name="mcpyperform_form" method="get" action="" onsubmit="return false;">
             <input type="radio" name="group1" value="a" id="mcpyperform_opt_a" />
             <label for= "mcpyperform_opt_a">  a) list.pop(0)</label><br />
             
@@ -436,7 +436,7 @@
             <script>
             $(document).ready(function(){checkRadio('mcpyperform');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('mcpyperform','a',['Когда вы удаляете в списке один элемент, все остальные должны быть сдвинуты вперёд', 'Удаление элемента из конца списка \u002D константная операция', 'Добавление значения в конец списка \u002D константная операция', 'Индексация в списке \u002D константная операция', 'Это единственная операция, которая требует смещения всех элементов списка'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('mcpyperform','a',['Когда вы удаляете в списке один элемент, все остальные должны быть сдвинуты вперёд', 'Удаление элемента из конца списка - константная операция', 'Добавление значения в конец списка - константная операция', 'Индексация в списке - константная операция', 'Это единственная операция, которая требует смещения всех элементов списка'])">Check Me</button>
             <button class='btn btn-default' id="mcpyperform_bcomp" disabled name="compare" onclick="compareAnswers('mcpyperform');">Compare Me</button>
             </form><br />
             <div id="mcpyperform_feedback">
@@ -444,7 +444,7 @@
             </div>
             
             <div id="mcpydictperf" class="alert alert-warning">
-            Q-37: Какая из перечисленных операций для словарей не является O(1)?<form name="mcpydictperf_form" method="get" action="" onsubmit="return false;">
+            Q-5: Какая из перечисленных операций для словарей не является O(1)?<form name="mcpydictperf_form" method="get" action="" onsubmit="return false;">
             <input type="radio" name="group1" value="a" id="mcpydictperf_opt_a" />
             <label for= "mcpydictperf_opt_a">  a) 'x' in mydict</label><br />
             
@@ -464,7 +464,7 @@
             <script>
             $(document).ready(function(){checkRadio('mcpydictperf');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('mcpydictperf','e',['Это константная операция, поскольку вам не нужно итерирование. Есть ответ получше', 'Удаление элемента из словаря \u002D константная операция, есть ответ получше', 'Присвоение по ключу \u002D константа, есть ответ получше', 'Повторное присвоение по ключу \u002D константная опреация, есть ответ получше', 'Единственная операция со словарями, для которой требуются итерации, и поэтому она не O(1)'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('mcpydictperf','e',['Это константная операция, поскольку вам не нужно итерирование. Есть ответ получше', 'Удаление элемента из словаря - константная операция, есть ответ получше', 'Присвоение по ключу - константа, есть ответ получше', 'Повторное присвоение по ключу - константная опреация, есть ответ получше', 'Единственная операция со словарями, для которой требуются итерации, и поэтому она не O(1)'])">Check Me</button>
             <button class='btn btn-default' id="mcpydictperf_bcomp" disabled name="compare" onclick="compareAnswers('mcpydictperf');">Compare Me</button>
             </form><br />
             <div id="mcpydictperf_feedback">
@@ -529,7 +529,7 @@
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

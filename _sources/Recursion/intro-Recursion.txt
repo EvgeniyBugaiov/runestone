@@ -7,8 +7,8 @@
     the license is included in the section entitled "GNU Free Documentation
     License".
 
-Introduction: Recursion
-=========
+Введение: Рекурсия
+=======================
 
 .. index:: mutable, immutable, tuple
 

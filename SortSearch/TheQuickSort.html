@@ -313,17 +313,20 @@
 <p><a class="reference internal" href="#fig-splitvalue"><em>Рисунок 12</em></a> показывает, как 54 выступает в роли первого опорного значения. Поскольку мы уже рассматривали этот пример несколько раз, то знаем, что 54 в итоге окажется на позиции, занятой сейчас 31. Далее происходит процесс <strong>разделения</strong>. Он находит точку разделения и одновременно перемещает элементы по соответствующим сторонам списка, в зависимости от того, больше они или меньше опорной величины.</p>
 <div class="figure align-center" id="fig-splitvalue">
 <img alt="../_images/firstsplit.png" src="../_images/firstsplit.png" />
+<p class="caption">Рисунок 12: Первая опорная величина для быстрой сортировки</p>
 </div>
-<p>Разбиение начинается с определения двух маркеров положения - назовём их <tt class="docutils literal"><span class="pre">leftmark</span></tt> и <tt class="docutils literal"><span class="pre">rightmark</span></tt> - в начале и в конце оставшихся элементов списка (позиции 1 и 8 на <a class="reference internal" href="#fig-partitiona"><em>рисунке 13</em></a>). Целью процесса разбиения является перемещать элементы, лежащие по неправильным сторонам от опорного, пока они не сойдутся в точке разделения. <a class="reference internal" href="#fig-partitiona"><em>Рисунок 13</em></a> показывает этот процесс, когда мы находимся на позиции 54-го элемента.</p>
+<p>Разбиение начинается с определения двух маркеров положения - назовём их <tt class="docutils literal"><span class="pre">leftmark</span></tt> и <tt class="docutils literal"><span class="pre">rightmark</span></tt> - в начале и в конце оставшихся элементов списка (позиции 1 и 8 на <a class="reference internal" href="#fig-partitiona"><em>рисунке 13</em></a>). В процессе разбиения элементы, лежащие по неправильным сторонам от опорного, должны перемещаться пока маркеры не сойдутся в точке разделения. <a class="reference internal" href="#fig-partitiona"><em>Рисунок 13</em></a> показывает этот процесс для опорного значения 54.</p>
 <div class="figure align-center" id="fig-partitiona">
 <img alt="../_images/partitionA.png" src="../_images/partitionA.png" />
+<p class="caption">Рисунок 13: Поиск точки разделения для 54</p>
 </div>
-<p>Мы начинаем с увеличения на единицу <tt class="docutils literal"><span class="pre">leftmark</span></tt>, пока не находим значение, большее опорного. Тогда мы уменьшаем на единицу <tt class="docutils literal"><span class="pre">rightmark</span></tt>, пока не находим значение, меньшее опорного. В этот момент мы имеем два элемента, находящихся на своих местах относительно итоговой точки разбиения. В нашем примере таковыми являются 93 и 20. Теперь можно поменять их местами и повторить процесс заново.</p>
+<p>Мы начинаем с увеличения на единицу <tt class="docutils literal"><span class="pre">leftmark</span></tt>, пока не находим значение, большее опорного. Тогда мы уменьшаем на единицу <tt class="docutils literal"><span class="pre">rightmark</span></tt>, пока не находим значение, меньшее опорного. В этот момент мы имеем два элемента, находящихся не на своих местах относительно итоговой точки разбиения. В нашем примере таковыми являются 93 и 20. Теперь можно поменять их местами и повторить процесс заново.</p>
 <p>Когда <tt class="docutils literal"><span class="pre">rightmark</span></tt> становится меньше <tt class="docutils literal"><span class="pre">leftmark</span></tt>, мы останавливаемся. Позиция <tt class="docutils literal"><span class="pre">rightmark</span></tt> в данный момент - точка разбиения. Опорное значение следует поменять местами с её содержимым, и тогда оно будет стоять на своём месте (<a class="reference internal" href="#fig-partitionb"><em>рисунок 14</em></a>). В дополнение, все элементы слева от точки разбиения теперь меньше опорного значения, а справа - больше. Список поделен на две части, и быстрая сортировка может быть рекурсивно применена к каждой из них.</p>
 <div class="figure align-center" id="fig-partitionb">
 <img alt="../_images/partitionB.png" src="../_images/partitionB.png" />
+<p class="caption">Рисунок 14: Завершение процесса с целью поиска точки разбиения для 54</p>
 </div>
-<p>Функция <tt class="docutils literal"><span class="pre">quickSort</span></tt>, показанная в <a class="reference internal" href="#lst-quick"><em>CodeLens 7</em></a>, вызывает другую рекурсивную функцию - <tt class="docutils literal"><span class="pre">quickSortHelper</span></tt>. Она начинает рабоать с базового случая, аналогичного сортировке слиянием. Если длина списка меньше или равна единице, то он уже отсортирован. Если больше, то он может быть разделен и рекурсивно отсортирован. Функция <tt class="docutils literal"><span class="pre">partition</span></tt> воплощает описанный ранее процесс.</p>
+<p>Функция <tt class="docutils literal"><span class="pre">quickSort</span></tt>, показанная в <a class="reference internal" href="#lst-quick"><em>CodeLens 7</em></a>, вызывает другую рекурсивную функцию - <tt class="docutils literal"><span class="pre">quickSortHelper</span></tt>. Она начинает работать с базового случая, аналогичного сортировке слиянием. Если длина списка меньше или равна единице, то он уже отсортирован. Если больше, то он может быть разделен и рекурсивно отсортирован. Функция <tt class="docutils literal"><span class="pre">partition</span></tt> воплощает описанный ранее процесс.</p>
 
 <div id="cont"></div>
 <div id="lst_quick" lang="python" class="ac_section alert alert-warning" >
@@ -505,9 +508,9 @@ $(window).resize(function() {
     quicktrace_vis.redrawConnectors();
 });
 </script>
-<p>Для анализа функции <tt class="docutils literal"><span class="pre">quickSort</span></tt> стоит отметить, что для списка длиной <em>n</em>, если деление приходится на его середину, мы вновь получим <span class="math">\(\log n\)</span> разделений. С целью найти точку разбиения, каждый из <em>n</em> элементов нуждается в сравнении с опорным значением. Результатом станет <span class="math">\(n\log n\)</span>. При этом не требуется дополнительной памяти, как в сортировке слиянием.</p>
-<p>К сожалению, в наихудшем случае точка разбиения может быть не по середине, а скакать слева направо, делая разделение очень неравномерным. В этом случае сортировка списка из <em>n</em> элементов разделится на сортировку списков размером 0 и <span class="math">\(n-1\)</span> элементов. Далее сортировка списка длиной <span class="math">\(n-1\)</span> опять даст подсписки из 0 и <span class="math">\(n-2\)</span> элементов, и так далее. Результат: <span class="math">\(O(n^{2})\)</span> со всеми накладными расходами, требуемыми для рекурсии.</p>
-<p>Ранее мы упоминали, что есть несколько способов выбора опорного значения. В частности, мы можем попытаться сгладить потенциальный дисбаланс в разбиении с помощью метода, называемого <strong>медианой трёх</strong>. Чтобы выбрать опорное значение, мы рассматриваем первый, средний и последний элементы списка. В нашем примере это будут 54, 77 и 20. Теперь определим из них медиану - 54 в данном случае - и используем её в качестве опоры (естественно, это было опорное значение, которое мы использовали первоначально). Идея в том, что когда первый элемент списка не принадлежит его середине, медиана трёх станет лучшим &#8220;срединным&#8221; значением. Особенно это полезно, если первоначальный список уже подвергался частичной сортировке. Мы вам оставляем реализацию такого выбора опорного значения в качестве упражнения.</p>
+<p>Для анализа функции <tt class="docutils literal"><span class="pre">quickSort</span></tt> стоит отметить, что для списка длиной <span class="math">\(n\)</span> (если деление приходится на его середину) мы вновь получим <span class="math">\(\log n\)</span> разделений. Чтобы найти точку разбиения, каждый из <span class="math">\(n\)</span> элементов нуждается в сравнении с опорным значением. Результатом станет <span class="math">\(n\log n\)</span>. При этом не требуется дополнительной памяти, как в сортировке слиянием.</p>
+<p>К сожалению, в наихудшем случае точка разбиения может быть не посередине, а скакать слева направо, делая разделение очень неравномерным. В этом случае сортировка списка из <span class="math">\(n\)</span> элементов разделится на сортировку списков размером 0 и <span class="math">\(n-1\)</span> элементов. Далее сортировка списка длиной <span class="math">\(n-1\)</span> опять даст подсписки из 0 и <span class="math">\(n-2\)</span> элементов, и так далее. Результат: <span class="math">\(O(n^{2})\)</span> со всеми накладными расходами, требуемыми для рекурсии.</p>
+<p>Ранее мы упоминали, что есть несколько способов выбора опорного значения. В частности, мы можем попытаться сгладить потенциальный дисбаланс в разбиении с помощью метода, называемого <strong>медианой трёх</strong>. Чтобы выбрать опорное значение, мы рассматриваем первый, средний и последний элементы списка. В нашем примере это будут 54, 77 и 20. Теперь определим из них медиану - 54 в данном случае - и возьмём её в качестве опоры (естественно, это было опорное значение, которое мы использовали первоначально). Идея в том, что когда первый элемент списка не принадлежит его середине, медиана трёх станет лучшим &#8220;срединным&#8221; значением. Особенно это полезно, если первоначальный список уже подвергался частичной сортировке. Мы оставляем реализацию такого выбора опорного значения в качестве упражнения для вас.</p>
 <div class="admonition- admonition">
 <p class="first admonition-title">Самопроверка</p>
 
@@ -529,7 +532,7 @@ $(window).resize(function() {
             <script>
             $(document).ready(function(){checkRadio('question_sort_7');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('question_sort_7','d',['Важно помнить, что быстрая сортировка работает со списком целиком, и сортирует его \u0022по месту\u0022.', 'Помните, что быстрая сортировка работает со списком целиком, и сортирует его \u0022по месту\u0022.', 'Первое разбиение работает со списком целиком, второе \u002D с полученной левой (не правой) частью.', 'Первое разбиение работает со списком целиком, второе \u002D с полученной левой частью.'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('question_sort_7','d',['Важно помнить, что быстрая сортировка работает со списком целиком, и сортирует его "по месту".', 'Помните, что быстрая сортировка работает со списком целиком, и сортирует его "по месту".', 'Первое разбиение работает со списком целиком, второе - с полученной левой (не правой) частью.', 'Первое разбиение работает со списком целиком, второе - с полученной левой частью.'])">Check Me</button>
             <button class='btn btn-default' id="question_sort_7_bcomp" disabled name="compare" onclick="compareAnswers('question_sort_7');">Compare Me</button>
             </form><br />
             <div id="question_sort_7_feedback">
@@ -554,7 +557,7 @@ $(window).resize(function() {
             <script>
             $(document).ready(function(){checkRadio('question_sort_8');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('question_sort_8','b',['Три числа, из которых выбирается опорное значение, \u002D это 1, 9, 19.  1 \u002D не медиана и будет в принципе плохим опорным значением, потому как является наименьшим элементом.', 'Отлично!', 'Хотя 16 \u002D медиана для 1, 16, 19, середина списка \u002D len(list) // 2.', 'Три числа, используемые для выбора опорного значения \u002Dэто 1, 9, 19.  9 \u002D медиана.  19 будет плохим выбором, потому что это \u002D наибольшее значение.'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('question_sort_8','b',['Три числа, из которых выбирается опорное значение, - это 1, 9, 19.  1 - не медиана и будет в принципе плохим опорным значением, потому как является наименьшим элементом.', 'Отлично!', 'Хотя 16 - медиана для 1, 16, 19, середина списка - :math:`len(list) // 2`.', 'Три числа, используемые для выбора опорного значения -это 1, 9, 19.  9 - медиана.  19 будет плохим выбором, потому что это - наибольшее значение.'])">Check Me</button>
             <button class='btn btn-default' id="question_sort_8_bcomp" disabled name="compare" onclick="compareAnswers('question_sort_8');">Compare Me</button>
             </form><br />
             <div id="question_sort_8_feedback">
@@ -562,7 +565,7 @@ $(window).resize(function() {
             </div>
             
             <div id="question_sort_9" class="alert alert-warning">
-            Q-26:  Какие из следующих алгоритмов сортировки гарантированно имеют <em>O(n log n)</em> даже для наихудшего случая?<form name="question_sort_9_form" method="get" action="" onsubmit="return false;">
+            Q-26:  Какие из следующих алгоритмов сортировки гарантированно имеют <span class="math">\(O(n log n)\)</span> даже для наихудшего случая?<form name="question_sort_9_form" method="get" action="" onsubmit="return false;">
             <input type="checkbox" name="group1" value="a" id="question_sort_9_opt_a" />
             <label for= "question_sort_9_opt_a">  a) Shell Sort</label><br />
             
@@ -578,7 +581,7 @@ $(window).resize(function() {
             <script>
             $(document).ready(function(){checkMultipleSelect('question_sort_9');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMAStorage('question_sort_9','c',['Сортировка Шелла порядка ``n^1.5``', 'Быстрая сортировка может иметь O(n log n), но если опорная величина выбрана плохо, то она O(n^2).', 'Сортировка слия нием единственная гарантирует O(n log n) даже в наихудшем случае.  Цена этого \u002D использование дополнительного объёма памяти.', 'Сортировка вставками имеет ``O(n^2)``.'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMAStorage('question_sort_9','c',['Сортировка Шелла порядка :math:`n^1.5`', 'Быстрая сортировка может иметь :math:`O(n log n)`, но если опорная величина выбрана плохо, то она :math:`O(n^2)`.', 'Сортировка слия нием единственная гарантирует :math:`O(n log n)` даже в наихудшем случае.  Цена этого - использование дополнительного объёма памяти.', 'Сортировка вставками имеет :math:`O(n^2)`.'])">Check Me</button>
             <button class='btn btn-default' id="question_sort_9_bcomp" disabled name="compare" onclick="compareAnswers('question_sort_9');">Compare Me</button>
             </form><br />
             <div id="question_sort_9_feedback">
@@ -620,7 +623,7 @@ $(window).resize(function() {
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

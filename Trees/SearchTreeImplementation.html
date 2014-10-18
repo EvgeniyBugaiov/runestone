@@ -438,7 +438,7 @@ def replaceNodeData(self,key,value,lc,rc):
             <script>
             $(document).ready(function(){checkRadio('bst_1');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('bst_1','b',['Помните, начиная с корневого узла, ключи, меньшие, чем корень, должны быть в левом поддереве, большие, чем корень, \u002D в правом.', 'Хорошая работа!', 'Это похоже на двоичное дерево, удовлетворяющее свойству полноты, необходимому для кучи.'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('bst_1','b',['Помните, начиная с корневого узла, ключи, меньшие, чем корень, должны быть в левом поддереве, большие, чем корень, - в правом.', 'Хорошая работа!', 'Это похоже на двоичное дерево, удовлетворяющее свойству полноты, необходимому для кучи.'])">Check Me</button>
             <button class='btn btn-default' id="bst_1_bcomp" disabled name="compare" onclick="compareAnswers('bst_1');">Compare Me</button>
             </form><br />
             <div id="bst_1_feedback">
@@ -585,7 +585,7 @@ def __delitem__(self,key):
 <li>Если узел - правый потомок своего родителя и сам правого потомка не имеет, то его преемником будет преемник родителя (исключая сам этот узел).</li>
 </ol>
 <p>Первое условие - единственное имеющее для нас значение при удалении узла из двоичного дерева поиска. Однако, метод <tt class="docutils literal"><span class="pre">findSuccessor</span></tt> имеет ещё одно применение, которое будет исследовано в упражнениях в конце этой главы.</p>
-<p>Метод <tt class="docutils literal"><span class="pre">findMin</span></tt> вызывается для поиска минимального ключа в дереве. Вам следует самостоятельно убедиться, что минимальный ключ в любом двоичном дереве поиска - самый левый из потомков. Поэтому метод <tt class="docutils literal"><span class="pre">findMin</span></tt> всего лишь следует по ссылкам <a href="#id2"><span class="problematic" id="id3">``</span></a>leftChild` до тех пор, пока не достигнет узла, не имеющего левых потомков.</p>
+<p>Метод <tt class="docutils literal"><span class="pre">findMin</span></tt> вызывается для поиска минимального ключа в дереве. Вам следует самостоятельно убедиться, что минимальный ключ в любом двоичном дереве поиска - самый левый из потомков. Поэтому метод <tt class="docutils literal"><span class="pre">findMin</span></tt> всего лишь следует по ссылкам <tt class="docutils literal"><span class="pre">leftChild</span></tt> до тех пор, пока не достигнет узла, не имеющего левых потомков.</p>
 <p id="lst-bst11"><strong>Листинг 11</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">findSuccessor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
   <span class="n">succ</span> <span class="o">=</span> <span class="bp">None</span>
@@ -964,7 +964,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

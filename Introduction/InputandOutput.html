@@ -314,7 +314,7 @@
 <p>У нас часто возникает необходимость взаимодействовать с пользователями:
 получать от них данные или предоставлять им какой-либо результат.
 Большинство программ в наши дни использует диалоговые окна в качестве
-способа запроса у пользователя каких-либо входных данных. Хотя Python
+способа запроса у клиента каких-либо входных данных. Хотя Python
 умеет создавать такие окна, мы будем использовать более простой способ.
 Python предоставляет нам функцию, позволяющую просить пользователя ввести
 какую-то информацию и возвращать ему ссылку на данные в строковом формате.
@@ -328,8 +328,8 @@ Python предоставляет нам функцию, позволяющую 
 </div>
 <p>Теперь, что бы пользователь ни написал после приглашения, оно будет
 сохранено в переменной <tt class="docutils literal"><span class="pre">aName</span></tt>. Используя функцию ввода,
-мы легко можем писать инструкции, которые будут подсказывать
-пользователю какие данные вводить и включать их в дальнейшую обработку.
+мы легко можем писать инструкции, которые будут подсказывать,
+какие данные вводить, и включать их в дальнейшую обработку.
 Например, в следующих двух строках в первой у пользователя спрашивается
 его имя, а вторая печатает результат простейшей обработки полученной строки.</p>
 
@@ -410,7 +410,7 @@ else{
 </div>
 
 <p>Очень важно обратить внимание на то, что значение, возвращаемое
-<tt class="docutils literal"><span class="pre">input</span></tt>, представляет собой строку, состоящую из в точности тех же
+<tt class="docutils literal"><span class="pre">input</span></tt>, представляет собой строку, состоящую из точно тех
 символов, которые были введены после приглашения. Если вы хотите, чтобы
 она интерпретировалась как другой тип, то вам следует осуществить явное
 преобразование типов. В коде ниже строка, введённая пользователем,
@@ -440,8 +440,8 @@ else{
 <span class="go">Hello World***&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>Часто бывает полезно иметь больше способов управления видом вашего
-вывода. К счастью, Python предоставляет нам альтернативу, называемую
+<p>Часто бывает полезно иметь больше способов управления внешним видом вашего
+вывода. К счастью, Python предоставляет нам альтернативу под названием
 <strong>&#8220;форматированная строка&#8221;</strong>. Она представляет из себя шаблон,
 содержащий слова и пробелы, остающиеся неизменными, и заменители для
 переменных, которые будут подставлены в строку. Например, следующий код</p>
@@ -458,18 +458,58 @@ else{
 <tt class="docutils literal"><span class="pre">%</span></tt> является строковым оператором и называется <strong>&#8220;оператор форматирования&#8221;</strong>.
 Левая часть выражения содержит шаблон или строку формата, а правая
 - коллекцию значений, которые будут в неё подставлены. Заметьте,
-что число значений в правосторонней коллекции равно количеству
-символов <tt class="docutils literal"><span class="pre">%</span></tt> в строке форматирования. Эти значения будут браться
-из коллекции по порядку (слева направо) и подставляться в строку
-форматирования.</p>
+что число значений в правой коллекции равно количеству
+символов <tt class="docutils literal"><span class="pre">%</span></tt> в строке форматирования. Эти значения будут по порядку (слева направо)
+извлекаться из коллекции и подставляться в строку форматирования.</p>
 <p>Давайте рассмотрим обе части выражения для форматирования более детально.
 Строка форматирования может содержать один или более спецификаторов
 преобразования. Символ преобразования говорит оператору форматирования о
 типе значения, которое будет подставлено в эту позицию. В примере выше
-<tt class="docutils literal"><span class="pre">%s</span></tt> означает строку, в то время как <tt class="docutils literal"><span class="pre">%d</span></tt> означает целое число.
+<tt class="docutils literal"><span class="pre">%s</span></tt> означает строку, в то время как <tt class="docutils literal"><span class="pre">%d</span></tt> - целое число.
 Другие возможные типы спецификаторов включают <tt class="docutils literal"><span class="pre">i</span></tt>, <tt class="docutils literal"><span class="pre">u</span></tt>, <tt class="docutils literal"><span class="pre">f</span></tt>, <tt class="docutils literal"><span class="pre">e</span></tt>,
 <tt class="docutils literal"><span class="pre">g</span></tt>, <tt class="docutils literal"><span class="pre">c</span></tt> или <tt class="docutils literal"><span class="pre">%</span></tt>. <a class="reference internal" href="#tab-fmta"><em>Таблица&nbsp;9</em></a> суммирует информацию
 обо всех возможных видах спецификаторов.</p>
+<table border="1" class="docutils" id="tab-fmta">
+<caption><strong>Таблица 9: Символы преобразования для строк форматирования</strong></caption>
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Символ</strong></th>
+<th class="head"><strong>Формат вывода</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">d</span></tt>, <tt class="docutils literal"><span class="pre">i</span></tt></td>
+<td>Целое</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">u</span></tt></td>
+<td>Беззнаковое целое</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">f</span></tt></td>
+<td>Вещественное с плавающей запятой в формате m.ddddd</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">e</span></tt></td>
+<td>Вещественное с плавающей запятой в формате m.ddddde+/-xx</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">E</span></tt></td>
+<td>Вещественное с плавающей запятой в формате m.dddddE+/-xx</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">g</span></tt></td>
+<td>Использует <tt class="docutils literal"><span class="pre">%e</span></tt> для степеней меньше -4 и больше +5. В остальных случаях работает как <tt class="docutils literal"><span class="pre">%f</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">c</span></tt></td>
+<td>Одиночный символ</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">s</span></tt></td>
+<td>Строка или любой объект данных Python, который может быть конвертирован в строку с помощью функции <tt class="docutils literal"><span class="pre">str</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">%</span></tt></td>
+<td>Вставляет символ %</td>
+</tr>
+</tbody>
+</table>
 <p>В дополнение к символу форматирования вы также можете включать модификатор
 формата между <tt class="docutils literal"><span class="pre">%</span></tt> и символом форматирования. Модификаторы формата могут
 использоваться для задания левому или правому краю значения определённой
@@ -539,8 +579,8 @@ else{
 </pre></div>
 </div>
 <p>В дополнение к строкам форматирования, использующим символы и модификаторы
-форматирования, тип string в Python также имеет метод <tt class="docutils literal"><span class="pre">format</span></tt>, который
-может использоваться совместно с новым классом <tt class="docutils literal"><span class="pre">Formatter</span></tt> для реализации
+форматирования, тип <tt class="docutils literal"><span class="pre">string</span></tt> в Python также имеет метод <tt class="docutils literal"><span class="pre">format</span></tt>, который
+может использоваться совместно с новым классом <tt class="docutils literal"><span class="pre">Formatter</span></tt> для
 сложного строкового форматирования. Больше об этих особенностях вы сможете
 найти по ссылке на руководство для библиотек Python.</p>
 </div>
@@ -579,7 +619,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>

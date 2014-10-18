@@ -312,16 +312,16 @@
   
   <div class="section" id="id1">
 <h1>Реализация неупорядоченного списка: связанные списки<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>С целью реализовать неупорядоченный список мы создадим то, что обычно
-известно как <strong>связанный список</strong>. Напомним, нам нужно быть уверенными
-в том, что мы сможем поддерживать взаимное расположение элементов.
-Однако, в поддержке такого позиционирования на сопредельных участках
-памяти нет необходимости. Рассмотрим для примера коллекцию элементов,
-показанную на <a class="reference internal" href="#fig-idea"><em>Рисунке 1</em></a>. Похоже, что эти значения
+<p>Для реализации неупорядоченного списка мы создадим то, что обычно
+называют <strong>связанным списком</strong>. Напомним: мы должны быть уверены,
+что сможем поддерживать порядок взаимного расположения элементов.
+Однако, такое позиционирование не обязательно должно быть на смежных участках
+памяти. Рассмотрим для примера коллекцию элементов,
+показанную на <a class="reference internal" href="#fig-idea"><em>рисунке 1</em></a>. Похоже, эти значения
 были размещены случайным образом. Если мы сможем сохранить в каждом
-элементе некую явную информацию о размещении следующего за ним элемента
-(см. <a class="reference internal" href="#fig-idea"><em>Рисунок 1</em></a>), то соответствующая позиция каждого
-элемента может быть выражена простой ссылкой от одного элемента к другому.</p>
+элементе некую явную информацию о размещении его соседа
+(см. <a class="reference internal" href="#fig-idea2"><em>рисунок 2</em></a>), то соответствующая позиция каждого
+из них может быть выражена простой ссылкой от одного к другому.</p>
 <div class="figure align-center" id="fig-idea">
 <img alt="../_images/idea.png" src="../_images/idea.png" />
 <p class="caption">Рисунок 1: Элементы не ограничены в своём физическом размещении.</p>
@@ -337,17 +337,17 @@
 <div class="section" id="node">
 <h2>Класс <tt class="docutils literal"><span class="pre">Node</span></tt><a class="headerlink" href="#node" title="Permalink to this headline">¶</a></h2>
 <p>Основным строительным блоком в реализации связанного списка является <strong>узел</strong>.
-Каждый такой объект должен обладать как минимум двумя кусочками информации.
+Каждый такой объект должен обладать как минимум двумя информационными составляющими.
 Во-первых, узел должен содержать сам элемент списка. Мы назовём это
-<strong>полем данных</strong> узла. Дополнительно, каждый узел должен хранить ссылку на
-следующий узел. <a class="reference internal" href="#lst-nodeclass"><em>Листинг 1</em></a> демонстрирует реализацию на
-Python. Чтобы создать узел, вы должны предоставить начальное значение данных
-узла. Вычисление оператора присваивания ниже даст объект &#8220;узел&#8221;, содержащий
-значение 93 (см. <a class="reference internal" href="#fig-node"><em>Рисунок 3</em></a>). Следует отметить, что обычно
-мы представляем узел-объект, как это показано на <a class="reference internal" href="#fig-node2"><em>Рисунке 4</em></a>.
+<strong>полем данных</strong> узла. Дополнительно он должен хранить ссылку на
+следующий узел. <a class="reference internal" href="#lst-nodeclass"><em>Листинг 1</em></a> демонстрирует реализацию этой идеи на
+Python. Чтобы создать узел, вы должны предоставить начальное значение его данных.
+Вычисление оператора присваивания ниже даст объект &#8220;узел&#8221;, содержащий
+значение 93 (см. <a class="reference internal" href="#fig-node"><em>рисунок 3</em></a>). Следует отметить, что обычно
+мы представляем узел-объект, как это показано на <a class="reference internal" href="#fig-node2"><em>рисунке 4</em></a>.
 Класс <tt class="docutils literal"><span class="pre">Node</span></tt> также включает обычные методы для доступа и модификации полей
 данных и ссылки на следующий узел.</p>
-<p id="lst-nodeclass"><strong>Listing 1</strong></p>
+<p id="lst-nodeclass"><strong>Листинг 1</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">initdata</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">initdata</span>
@@ -376,10 +376,10 @@ Python. Чтобы создать узел, вы должны предостав
 классе <tt class="docutils literal"><span class="pre">Node</span></tt>, и в самом связанном списке. Обратите внимание, что
 конструктор первоначально создаёт узел с <tt class="docutils literal"><span class="pre">next</span></tt>, установленным в
 <tt class="docutils literal"><span class="pre">None</span></tt>. Явное присвоение <tt class="docutils literal"><span class="pre">None</span></tt> начальному значению ссылки на
-следующий элемент - это всегда хорошая идея.</p>
+следующий элемент - неизменно хорошая идея.</p>
 <div class="figure align-center" id="fig-node">
 <img alt="../_images/node.png" src="../_images/node.png" />
-<p class="caption">Рисунок 3: Объект &#8220;Node&#8221;, содержащий значение и ссылку на следующий узел</p>
+<p class="caption">Рисунок 3: Объект <tt class="docutils literal"><span class="pre">Node</span></tt>, содержащий значение и ссылку на следующий узел</p>
 </div>
 <div class="figure align-center" id="fig-node2">
 <img alt="../_images/node2.png" src="../_images/node2.png" />
@@ -393,7 +393,7 @@ Python. Чтобы создать узел, вы должны предостав
 ссылки. Пока мы знаем, как найти первый узел (содержащий первый элемент),
 каждый последующий будет обнаружен с помощью успешного следования по ссылкам.
 Имея это ввиду, класс <tt class="docutils literal"><span class="pre">UnorderedList</span></tt> должен содержать ссылку на первый
-узел. В <a class="reference internal" href="#lst-listclass"><em>Листинге 2</em></a> показан конструктор этого класса.
+узел. В <a class="reference internal" href="#lst-listclass"><em>листинге 2</em></a> показан конструктор такого класса.
 Заметьте, что каждый объект списка будет поддерживать единственную ссылку
 на свою &#8220;голову&#8221;.</p>
 <p id="lst-listclass"><strong>Листинг 2</strong></p>
@@ -403,16 +403,16 @@ Python. Чтобы создать узел, вы должны предостав
         <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">None</span>
 </pre></div>
 </div>
-<p>Первоначально мы создадим пустой список. Оператор присваивания:</p>
+<p>Первоначально мы создадим пустой список. Оператор присваивания</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span> <span class="o">=</span> <span class="n">UnorderedList</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>создаст представление связанного списка, показанного на
-<a class="reference internal" href="#fig-initlinkedlist"><em>Рисунке 5</em></a>. Как мы уже обсуждали в классе <tt class="docutils literal"><span class="pre">Node</span></tt>,
-специальная ссылка <tt class="docutils literal"><span class="pre">None</span></tt> вновь будет использована в качестве состояния,
+<a class="reference internal" href="#fig-initlinkedlist"><em>рисунке 5</em></a>. Как мы уже обсуждали для класса <tt class="docutils literal"><span class="pre">Node</span></tt>,
+специальная ссылка <tt class="docutils literal"><span class="pre">None</span></tt> вновь будет использоваться в качестве состояния,
 когда голова списка ни на что не ссылается. В конечном счёте, список из данного
 ранее примера будет представлен в виде связанного списка, как это показано на
-<a class="reference internal" href="#fig-linkedlist"><em>Рисунке 6</em></a>. Голова списка ссылается на первый узел,
+<a class="reference internal" href="#fig-linkedlist"><em>рисунке 6</em></a>. Голова списка ссылается на первый узел,
 содержащий первый элемент списка. В свою очередь, этот узел содержит ссылку на
 следующий узел (следующий элемент) и так далее. Очень важно отметить, что класс
 списка сам по себе не содержит каких-либо объектов-узлов. Он имеет только
@@ -425,7 +425,7 @@ Python. Чтобы создать узел, вы должны предостав
 <img alt="../_images/linkedlist.png" src="../_images/linkedlist.png" />
 <p class="caption">Рисунок 6: Связанный список целых чисел</p>
 </div>
-<p>Метод <tt class="docutils literal"><span class="pre">isEmpty</span></tt>, показанный в <a class="reference internal" href="#lst-isempty"><em>Листинге 3</em></a>, просто
+<p>Метод <tt class="docutils literal"><span class="pre">isEmpty</span></tt>, показанный в <a class="reference internal" href="#lst-isempty"><em>листинге 3</em></a>, просто
 проверяет, ссылается ли голова списка на <tt class="docutils literal"><span class="pre">None</span></tt>. Результат булева
 выражения <tt class="docutils literal"><span class="pre">self.head==None</span></tt> будет истинным только если в связанном
 списке нет узлов. Поскольку новый список пуст, то конструктор и проверка
@@ -454,7 +454,7 @@ Python. Чтобы создать узел, вы должны предостав
 узла - это голова, начало списка. Другими словами, мы будем создавать
 новый элемент в качестве первого в списке, а существующие элементы
 нужно будет связать так, чтобы они следовали за ним.</p>
-<p>Связанный список, показанный на <a class="reference internal" href="#fig-linkedlist"><em>Рисунке 6</em></a>,
+<p>Связанный список, показанный на <a class="reference internal" href="#fig-linkedlist"><em>рисунке 6</em></a>,
 был построен с помощь вызова метода <tt class="docutils literal"><span class="pre">add</span></tt> несколько раз.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mylist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">77</span><span class="p">)</span>
@@ -469,11 +469,11 @@ Python. Чтобы создать узел, вы должны предостав
 списка, так как все прочие элементы добавляются перед ним. Аналогично,
 54 - последний добавленный элемент, и он будет значением первого узла
 связанного списка.</p>
-<p>Метод <tt class="docutils literal"><span class="pre">add</span></tt> показан в <a class="reference internal" href="#lst-add"><em>Листинге 4</em></a>. Каждый элемент
-должен находиться в объекте &#8220;узел&#8221;. Строка 2 создаёт новый узел и
+<p>Метод <tt class="docutils literal"><span class="pre">add</span></tt> показан в <a class="reference internal" href="#lst-add"><em>листинге 4</em></a>. Каждый элемент
+должен быто обёрнут в объект <tt class="docutils literal"><span class="pre">Node</span></tt>. Строка 2 создаёт новый узел и
 размещает в его поле данных заданный элемент. Теперь нужно завершить
 процесс, связав новый узел с существующей структурой. Это требует
-двух шагов, показанных на <a class="reference internal" href="#fig-addtohead"><em>Рисунке 7</em></a>.
+двух шагов, показанных на <a class="reference internal" href="#fig-addtohead"><em>рисунке 7</em></a>.
 Шаг 1 (строка 3) изменяет ссылку <tt class="docutils literal"><span class="pre">next</span></tt> нового узла, чтобы она
 указывала на предыдущий. Теперь, когда остаток соответствующим образом
 присоединён к новому узлу, мы можем изменить голову списка, чтобы она
@@ -481,7 +481,7 @@ Python. Чтобы создать узел, вы должны предостав
 строке 4.</p>
 <p>Порядок двух описанных выше шагов очень важен. Что произойдёт, если
 поменять местами строки 3 и 4? Если первым произойдёт изменение головы
-списка, то результат можно увидеть на <a class="reference internal" href="#fig-wrongorder"><em>Рисунке 8</em></a>.
+списка, то результат можно увидеть на <a class="reference internal" href="#fig-wrongorder"><em>рисунке 8</em></a>.
 Поскольку голова - единственная внешняя ссылка на список узлов, то все
 изначальные данные будут потеряны и получить к ним доступ больше не удастся.</p>
 <p id="lst-add"><strong>Листинг 4</strong></p>
@@ -506,7 +506,7 @@ Python. Чтобы создать узел, вы должны предостав
 мы посещаем каждый узел, то она будет перемещаться по <tt class="docutils literal"><span class="pre">next</span></tt>-ам элементов списка.</p>
 <p>Для реализации метода <tt class="docutils literal"><span class="pre">size</span></tt> достаточно просто обойти связанный список
 и подсчитать количество встреченных узлов. <a class="reference internal" href="#lst-length"><em>Листинг 5</em></a>
-демонстрирует код Python, выполняющий эту работу. Внешняя ссылка называется
+демонстрирует код на Python, выполняющий эту работу. Внешняя ссылка называется
 <tt class="docutils literal"><span class="pre">current</span></tt> и инициализируется головой списка в строке 2. В начале обработки
 мы не видим каких-либо узлов, поэтому счёт равен нулю. Строки 4-6 реализуют
 собственно обход. До тех пор, пока текущая ссылка не похожа на конец списка
@@ -583,7 +583,7 @@ Python. Чтобы создать узел, вы должны предостав
 пока не достигнет узла, его содержащего. В этот момент переменная <tt class="docutils literal"><span class="pre">found</span></tt>
 будет установлена в <tt class="docutils literal"><span class="pre">True</span></tt> и условие <tt class="docutils literal"><span class="pre">while</span></tt> нарушится, что приведёт к
 возврату значения, как мы видели выше. Этот процесс можно рассмотреть на
-<a class="reference internal" href="#fig-searchpic"><em>Рисунке 10</em></a>.</p>
+<a class="reference internal" href="#fig-searchpic"><em>рисунке 10</em></a>.</p>
 <div class="figure align-center" id="fig-searchpic">
 <img alt="../_images/search.png" src="../_images/search.png" />
 <p class="caption">Рисунок 10: Успешный поиск значения 17</p>
@@ -593,7 +593,7 @@ Python. Чтобы создать узел, вы должны предостав
 предполагаем наличие искомого в списке), последует удаление. Первый шаг
 очень похож на <tt class="docutils literal"><span class="pre">search</span></tt>. Начиная с внешней ссылки, установленной на голову
 списка, мы обходим ссылки до тех пор, пока не найдём искомый элемент.
-Поскольку мы предполагаем его присутствие, то цикл остановится до того,
+Поскольку предполагается его присутствие, то цикл остановится до того,
 как <tt class="docutils literal"><span class="pre">current</span></tt> получит <tt class="docutils literal"><span class="pre">None</span></tt>. Следовательно, в условии можно ограничиться
 одной булевой переменной <tt class="docutils literal"><span class="pre">found</span></tt>.</p>
 <p>Когда <tt class="docutils literal"><span class="pre">found</span></tt> примет значение <tt class="docutils literal"><span class="pre">True</span></tt>, <tt class="docutils literal"><span class="pre">current</span></tt> будет ссылаться на узел,
@@ -607,7 +607,7 @@ Python. Чтобы создать узел, вы должны предостав
 существует возможности перемещаться по связанному списку в обратном направлении.
 Поскольку <tt class="docutils literal"><span class="pre">current</span></tt> ссылается на узел следующий за тем, в котором мы хотели бы
 провести изменения, то для модификации уже слишком поздно.</p>
-<p>Решением этой дилеммы будет использование двух внешних ссылок в процессе обхода
+<p>Решением этой дилеммы станет использование двух внешних ссылок в процессе обхода
 списка. <tt class="docutils literal"><span class="pre">current</span></tt> будет вести себя как раньше, отмечая текущее положение обхода.
 Новая ссылка, которую мы назовём <tt class="docutils literal"><span class="pre">previous</span></tt>, будет всегда идти на один узел позади
 <tt class="docutils literal"><span class="pre">current</span></tt>. Таким образом, когда <tt class="docutils literal"><span class="pre">current</span></tt> остановится на удаляемом узле,
@@ -617,12 +617,12 @@ Python. Чтобы создать узел, вы должны предостав
 2-3 двум ссылкам присваиваются начальные значения. Обратите внимание, что <tt class="docutils literal"><span class="pre">current</span></tt>
 начинает с головы списка, как в предыдущих примерах. Однако, предполагается, что
 <tt class="docutils literal"><span class="pre">previous</span></tt> всегда на узел позади текущего. По этой причине ей присваивается значение
-<tt class="docutils literal"><span class="pre">None</span></tt>, ведь не существует узла перед головой списка (см. <a class="reference internal" href="#fig-removeinit"><em>Рисунок 11</em></a>).
+<tt class="docutils literal"><span class="pre">None</span></tt>, ведь не существует узла перед головой списка (см. <a class="reference internal" href="#fig-removeinit"><em>рисунок 11</em></a>).
 Булева переменная <tt class="docutils literal"><span class="pre">found</span></tt> вновь отвечает за контроль итераций.</p>
 <p>В строках 6-7 мы спрашиваем, совпадает ли хранящийся в узле элемент с тем, который
 хотим удалить. Если да, то <tt class="docutils literal"><span class="pre">found</span></tt> устанавливается в <tt class="docutils literal"><span class="pre">True</span></tt>. Если нет, то
 <tt class="docutils literal"><span class="pre">previous</span></tt> и <tt class="docutils literal"><span class="pre">current</span></tt> перемещаются на один узел вперёд. Порядок двух присваиваний
-вновь очень важен. Прежде нужно переместить <tt class="docutils literal"><span class="pre">`previous</span></tt>, затем <tt class="docutils literal"><span class="pre">current</span></tt>.
+вновь очень важен. Прежде нужно переместить <tt class="docutils literal"><span class="pre">`previous</span></tt>, а затем <tt class="docutils literal"><span class="pre">current</span></tt>.
 Этот процесс часто называют &#8220;червяком&#8221;, так как <tt class="docutils literal"><span class="pre">previous</span></tt> должен догнать <tt class="docutils literal"><span class="pre">current</span></tt>
 до того, как тот вновь уйдёт вперёд. <a class="reference internal" href="#fig-prevcurr"><em>Рисунок 12</em></a> показывает
 перемещения <tt class="docutils literal"><span class="pre">previous</span></tt> и <tt class="docutils literal"><span class="pre">current</span></tt> в процессе спуска по списку в поисках узла,
@@ -668,13 +668,13 @@ Python. Чтобы создать узел, вы должны предостав
 <p class="caption">Рисунок 12: <tt class="docutils literal"><span class="pre">previous</span></tt> и <tt class="docutils literal"><span class="pre">current</span></tt>: вниз по списку</p>
 </div>
 <p>После завершения поискового шага метода <tt class="docutils literal"><span class="pre">remove</span></tt> нам нужно удалить узел
-из связанного списка. На <a class="reference internal" href="#fig-removepic1"><em>Рисунок 13</em></a> показана ссылка,
+из связанного списка. На <a class="reference internal" href="#fig-removepic1"><em>рисунке 13</em></a> показана ссылка,
 которая должна быть изменена. Однако, есть особый случай, по которому
 требуется принять отдельное решение. Если удаляемый элемент - первый в списке,
 то <tt class="docutils literal"><span class="pre">current</span></tt> будет ссылаться на первый узел, а <tt class="docutils literal"><span class="pre">previous</span></tt> равен <tt class="docutils literal"><span class="pre">None</span></tt>.
 Ранее мы говорили, что указанием на узел, чья ссылка потребует изменения для
-завершения операции удаления, будет <tt class="docutils literal"><span class="pre">previous</span></tt>. Но в этом случае в модификации
-нуждается голова списка (см. <a class="reference internal" href="#fig-removehead"><em>Рисунок 14</em></a>).</p>
+завершения операции удаления, служит <tt class="docutils literal"><span class="pre">previous</span></tt>. Но в данном случае в модификации
+нуждается голова списка (см. <a class="reference internal" href="#fig-removehead"><em>рисунок 14</em></a>).</p>
 <div class="figure align-center" id="fig-removepic1">
 <img alt="../_images/remove.png" src="../_images/remove.png" />
 <p class="caption">Рисунок 13: Удаление элемента из середины списка</p>
@@ -694,7 +694,7 @@ Python. Чтобы создать узел, вы должны предостав
 назначения ссылки изменяется с помощью <tt class="docutils literal"><span class="pre">current.getNext()</span></tt>. Часто возникает
 такой вопрос: кроме двух уже рассмотренных случаев, как справиться с ситуацией,
 когда удаляемый элемент находится в последнем узле связанного списка? Мы
-оставляем на вас его рассмотрение.</p>
+оставляем на вас её рассмотрение.</p>
 <p>Вы можете испытать класс <tt class="docutils literal"><span class="pre">UnorderedList</span></tt> в ActiveCode 1.</p>
 
 <div id="cont"></div>
@@ -871,7 +871,7 @@ else{
 <div class="admonition- admonition">
 <p class="first admonition-title">Самопроверка</p>
 <p>Часть I: Реализуйте метод <tt class="docutils literal"><span class="pre">`append`</span></tt> для неупорядоченного списка.
-Какова его временн*а*я сложность?</p>
+Какова его временнАя сложность?</p>
 
 <div id="cont"></div>
 <div id="self_check_list1" lang="python" class="ac_section alert alert-warning" >
@@ -1213,7 +1213,7 @@ else{
     </p>
     <p>
         &copy; Copyright 2014 Brad Miller, David Ranum.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.3.
     </p>
   </div>
 </footer>
