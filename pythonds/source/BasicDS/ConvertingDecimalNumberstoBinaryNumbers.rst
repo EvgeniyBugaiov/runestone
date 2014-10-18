@@ -160,7 +160,7 @@
       :correct: \\b31\\b
       :blankid: bcblank1
 
-      Каково значение 25 в восьмеричной системе счисления? :textfield:`bcblank1::mini`
+      Каково значение 25 в восьмеричной системе счисления :textfield:`bcblank1::mini`
 
    .. fillintheblank:: baseconvert2
       :correct: \\b100\\b
@@ -170,10 +170,10 @@
 
    .. fillintheblank:: baseconvert3
       :correct: \\b10\\b
-      :feedback1: ('.*', 'Возможно, вам потребуется изменить функцию ``baseConverter``или просто найти схему для конвертирования чисел.')
+      :feedback1: ('.*', 'Возможно вам потребуется изменить функцию baseConverter или просто найти схему для конвертирования чисел.')
       :blankid: bcblank3
 
-      Каково значение 26 в системе счисления по основанию 26? :textfield:`bcblank3::mini`
+      Каково значение 26 в системе счисления по основанию 26 :textfield:`bcblank3::mini`
 
 
 .. video:: video_Stack2

@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 # Copyright (C) 2011  Bradley N. Miller
 #
 # This program is free software: you can redistribute it and/or modify
@@ -14,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 __author__ = 'bmiller'
+
 
 from docutils import nodes
 from docutils.parsers.rst import directives
@@ -45,8 +49,8 @@ def escapejs(value):
     if not isinstance(value, basestring):
         value = str(value)
 
-    for bad, good in _js_escapes:
-        value = value.replace(bad, good)
+    # for bad, good in _js_escapes:
+    #     value = value.replace(bad, good)
 
     return value
 
