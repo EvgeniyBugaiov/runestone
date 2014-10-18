@@ -218,10 +218,10 @@
 .. admonition:: Самопроверка
 
    .. mchoicemf:: analysis_1
-       :answer_a: :math:`O(n)`
-       :answer_b: :math:`O(n^2)`
-       :answer_c: :math:`O(log n)`
-       :answer_d: :math:`O(n^3)`
+       :answer_a: `O(n)`
+       :answer_b: `O(n^2)`
+       :answer_c: `O(log n)`
+       :answer_d: `O(n^3)`
        :correct: b
        :feedback_a: В примере, похожем на этот, вам стоит подсчитать вложенные циклы (особенно, если они зависят от одной и той же переменной, как в этом случае)
        :feedback_b: Единственный вложенный цикл, как в этом случае, имеет :math:`O(n^2)`
@@ -238,10 +238,10 @@
                test = test + i * j
 
    .. mchoicemf:: analysis_2
-       :answer_a: :math:`O(n)`
-       :answer_b: :math:`O(n^2)`
-       :answer_c: :math:`O(log n)`
-       :answer_d: :math:`O(n^3)`
+       :answer_a: `O(n)`
+       :answer_b: `O(n^2)`
+       :answer_c: `O(log n)`
+       :answer_d: `O(n^3)`
        :correct: a
        :feedback_b: Будьте внимательны при подсчёте циклов: проверяйте их на вложенность
        :feedback_d: Будьте внимательны при подсчёте циклов: проверяйте их на вложенность
@@ -260,10 +260,10 @@
             test = test - 1
 
    .. mchoicemf:: analysis_3
-       :answer_a: :math:`O(n)`
-       :answer_b: :math:`O(n^2)`
-       :answer_c: :math:`O(log n)`
-       :answer_d: :math:`O(n^3)`
+       :answer_a: `O(n)`
+       :answer_b: `O(n^2)`
+       :answer_c: `O(log n)`
+       :answer_d: `O(n^3)`
        :correct: c
        :feedback_a: Внимательно посмотрите на переменную цикла ``i``.  Обратите внимание, что её значение уменьшается вполовину на каждом цикле.  Это огромная подсказка, что производительность функции должна быть меньше :math:`O(n)`
        :feedback_b: Проверьте ещё раз: это вложенные циклы?
