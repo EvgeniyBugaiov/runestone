@@ -436,7 +436,7 @@ It is just a string of length 1.</p>
             <script>
             $(document).ready(function(){checkRadio('test_question8_2_1');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('test_question8_2_1','b',['Index locations do not start with 1, they start with 0.', 'Yes, index locations start with 0.', 's[\u002D3] would return c, counting from right to left.', '[ ] is the index operator'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('test_question8_2_1','b',['Index locations do not start with 1, they start with 0.', 'Yes, index locations start with 0.', 's[-3] would return c, counting from right to left.', '[ ] is the index operator'])">Check Me</button>
             <button class='btn btn-default' id="test_question8_2_1_bcomp" disabled name="compare" onclick="compareAnswers('test_question8_2_1');">Compare Me</button>
             </form><br />
             <div id="test_question8_2_1_feedback">
@@ -469,7 +469,7 @@ It is just a string of length 1.</p>
             <script>
             $(document).ready(function(){checkRadio('test_question8_2_2');});
             </script>
-            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('test_question8_2_2','b',['Yes, t is at postion 2, counting left to right starting from 0\u003B and s at \u002D4, counting right to left starting from \u002D1.', 'Almost. For \u002D4 you count from right to left, starting with \u002D1.', 'p is at location 0, not 2.', 'n is at location 5, not 2.', '[ ] operator returns a string that can be concatenated with another string.'])">Check Me</button>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('test_question8_2_2','b',['Yes, t is at postion 2, counting left to right starting from 0; and s at -4, counting right to left starting from -1.', 'Almost. For -4 you count from right to left, starting with -1.', 'p is at location 0, not 2.', 'n is at location 5, not 2.', '[ ] operator returns a string that can be concatenated with another string.'])">Check Me</button>
             <button class='btn btn-default' id="test_question8_2_2_bcomp" disabled name="compare" onclick="compareAnswers('test_question8_2_2');">Compare Me</button>
             </form><br />
             <div id="test_question8_2_2_feedback">
