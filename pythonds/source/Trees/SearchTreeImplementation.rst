@@ -34,7 +34,7 @@
         def __init__(self):
           self.root = None
           self.size = 0
-  
+
         def length(self):
           return self.size
 
@@ -65,39 +65,39 @@
       self.rightChild = right
       self.parent = parent
 
-  def hasLeftChild(self):
-      return self.leftChild
+    def hasLeftChild(self):
+        return self.leftChild
 
-  def hasRightChild(self):
-      return self.rightChild
-  
-  def isLeftChild(self):
-      return self.parent and self.parent.leftChild == self
+    def hasRightChild(self):
+        return self.rightChild
 
-  def isRightChild(self):
-      return self.parent and self.parent.rightChild == self
+    def isLeftChild(self):
+        return self.parent and self.parent.leftChild == self
 
-  def isRoot(self):
-      return not self.parent
+    def isRightChild(self):
+        return self.parent and self.parent.rightChild == self
 
-  def isLeaf(self):
-      return not (self.rightChild or self.leftChild)
+    def isRoot(self):
+        return not self.parent
 
-  def hasAnyChildren(self):
-      return self.rightChild or self.leftChild
+    def isLeaf(self):
+        return not (self.rightChild or self.leftChild)
 
-  def hasBothChildren(self):
-      return self.rightChild and self.leftChild
-  
-  def replaceNodeData(self,key,value,lc,rc):
-      self.key = key
-      self.payload = value
-      self.leftChild = lc
-      self.rightChild = rc
-      if self.hasLeftChild():
-    self.leftChild.parent = self
-      if self.hasRightChild():
-    self.rightChild.parent = self
+    def hasAnyChildren(self):
+        return self.rightChild or self.leftChild
+
+    def hasBothChildren(self):
+        return self.rightChild and self.leftChild
+
+    def replaceNodeData(self,key,value,lc,rc):
+        self.key = key
+        self.payload = value
+        self.leftChild = lc
+        self.rightChild = rc
+        if self.hasLeftChild():
+            self.leftChild.parent = self
+        if self.hasRightChild():
+            self.rightChild.parent = self
 
 Теперь, когда у нас есть обёртка ``BinarySearchTree`` и класс ``TreeNode``, пришло время написать метод ``put``, который позволит строить двоичные деревья поиска. Он будет принадлежать классу ``BinarySearchTree``. Метод будет выполнять проверку на наличие корня дерева, и если он отсутствует, то создавать объект ``TreeNode`` и устанавливать его, как корневой узел. В противном случае ``put`` вызовет приватную рекурсивную вспомогательную функцию ``_put`` для поиска места в дереве по следующему алгоритму:
 
@@ -136,7 +136,7 @@
           else:
            currentNode.rightChild = TreeNode(key,val,parent=currentNode)
 
-Определив метод ``put``, можно легко перегрузить оператор ``[]`` для присвоения с помощью вызова метода ``__setitem__`` (см. :ref:`листинг 4 <lst_bst4>`). Это позволит нам писать выражения вида ``myZipTree['Plymouth'] = 55446``, как для словарей Python. 
+Определив метод ``put``, можно легко перегрузить оператор ``[]`` для присвоения с помощью вызова метода ``__setitem__`` (см. :ref:`листинг 4 <lst_bst4>`). Это позволит нам писать выражения вида ``myZipTree['Plymouth'] = 55446``, как для словарей Python.
 
 .. _lst_bst4:
 
@@ -164,12 +164,11 @@
        :feedback_a: Помните, начиная с корневого узла, ключи, меньшие, чем корень, должны быть в левом поддереве, большие, чем корень, - в правом.
        :answer_b: <img src="../_static/bintree_b.png">
        :feedback_b: Хорошая работа!
-       :answer_c: <img src="../_static/bintree_c.png">       
+       :answer_c: <img src="../_static/bintree_c.png">
        :feedback_c: Это похоже на двоичное дерево, удовлетворяющее свойству полноты, необходимому для кучи.
 
        Какое из показанных деревьев будет правильным двоичным деревом поиска, ключи в которое вставлялись в следующем порядке: 5, 30, 2, 40, 25, 4?
 
-    
 Поскольку дерево уже сконструировано, то следующее задание - реализовать поиск значения по заданному ключу. Метод ``get`` проще ``put``, потому что просто делает рекурсивный поиск, пока не дойдёт до листового узла или не найдёт искомое. Когда ключ найдётся, хранимое в полезной нагрузке значение будет возвращено.
 
 :ref:`Листинг 5 <lst_bst5>` демонстрирует код для ``get``, ``_get`` и ``__getitem__``. Код поиска в методе ``_get``использует ту же логику для выбора правого или левого потомка, что и ``_put``. Обратите внимание, ``_get`` возвращает в ``get`` объект ``TreeNode``. Это позволяет использовать ``_get`` в качестве гибкого вспомогательного метода для других методов ``BinarySearchTree``, которым могут потребоваться другие данные из ``TreeNode``, кроме полезной нагрузки.
@@ -186,9 +185,9 @@
       if self.root:
           res = self._get(key,self.root)
           if res:
-           return res.payload
+              return res.payload
           else:
-           return None
+              return None
       else:
           return None
 
@@ -203,7 +202,7 @@
           return self._get(key,currentNode.rightChild)
 
     def __getitem__(self,key):
-      return self.get(key) 
+        return self.get(key)
 
 С использованием ``get`` можно реализовать операцию ``in``, написав метод ``__contains__`` для ``BinarySearchTree``. Он будет просто вызывать ``get`` и выдавать ``True``, если ``get`` возвращает значение, или ``False`` в противном случае. Код для ``__contains__`` показан в :ref:`листинге 6 <lst_bst6>`.
 
@@ -473,7 +472,7 @@
                 self.leftChild.parent = self
             if self.hasRightChild():
                 self.rightChild.parent = self
-            
+
 
     class BinarySearchTree:
 
