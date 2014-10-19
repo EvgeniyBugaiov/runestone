@@ -49,3 +49,5 @@ models/1.py
 /build_info
 node_modules
 */_static/blockly*.html
+.env
+env
