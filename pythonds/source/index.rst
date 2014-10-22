@@ -214,12 +214,12 @@
     Graphs/ProgrammingExercises.rst
 
 
-Acknowledgements
+Благодарности
 ::::::::::::::::
 
 
-Indices and tables
-::::::::::::::::::
+Таблицы и предметный указатель
+::::::::::::::::::::::::::::::
 
 * :ref:`genindex`
 * :ref:`modindex`
