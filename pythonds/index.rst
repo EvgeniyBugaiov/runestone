@@ -14,7 +14,9 @@
 .. image:: _static/PythonDScover.jpg
     :alt: PythonDS Cover
 
-Авторы: Брэд Миллер и Дэвид Рэнум, Luther College, перевод `AveNat <https://github.com/avenat>`_
+Авторы: Брэд Миллер и Дэвид Рэнум, Luther College
+
+Перевод `AveNat <https://github.com/avenat>`_
 
 `Репозиторий книги на Github <https://github.com/aliev/runestone>`_
 
