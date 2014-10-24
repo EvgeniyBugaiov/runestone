@@ -308,13 +308,13 @@
   
   <div class="section" id="id1">
 <h1>Реализация дерева поиска<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>Двоичные деревья поиска полагаются то, что ключи меньше родительского находятся в левом поддереве, а больше - в правом. Мы будем называть это <strong>bst-свойством</strong> (от англ. <em>binary search tree</em> - прим. переводчика). В процессе реализации описанного выше интерфейса <tt class="docutils literal"><span class="pre">Map</span></tt> оно станет нашим верным проводником. <a class="reference internal" href="#fig-simplebst"><em>Рисунок 1</em></a> иллюстрирует это свойство двоичных деревьев поиска, показывая ключи без ассоциированных с ними значений. Обратите внимание, что таким свойством обладают и дети, и родители. Все ключи в левых поддеревьях меньше ключа корня, а в правых - больше, чем он.</p>
+<p>Двоичные деревья поиска полагаются то, что ключи меньше родительского находятся в левом поддереве, а больше - в правом. Мы будем называть это <strong>bst-свойством</strong> (от англ. <em>binary search tree</em> - прим. переводчика). В процессе реализации описанного выше интерфейса <tt class="docutils literal"><span class="pre">Map</span></tt> оно станет нашим верным проводником. <a class="reference internal" href="#fig-simplebst"><em>Рисунок 1</em></a> иллюстрирует это свойство двоичных деревьев поиска, показывая ключи без ассоциированных с ними значений. Обратите внимание: им обладают и узлы-потомки, и узлы-предки. Все ключи в левых поддеревьях меньше ключа корня, а в правых - больше его.</p>
 <div class="figure align-center" id="fig-simplebst">
 <img alt="../_images/simpleBST.png" src="../_images/simpleBST.png" />
 <p class="caption">Рисунок 1: Простое двоичное дерево поиска</p>
 </div>
-<p>Теперь, когда вы знаете, что такое двоичное дерево поиска, можно рассмотреть процесс его создания. Дерево поиска на <a class="reference internal" href="#fig-simplebst"><em>рисунке 1</em></a> содержит узлы, появившиеся после вставки следующих ключей в таком порядке: <span class="math">\(70,31,93,94,14,23,73\)</span>. Так как 70 - первый вставляемый в дерево ключ, то это корень. Число 31 меньше 70-и, поэтому оно уходит в левое поддерево. 93 наоборот больше - и вставляется в правое поддерево 70-и. Теперь у нас заполнены два уровня из трёх, так что следующий ключ должен стать правым или левым потомком 31 или 93. 94 больше, чем 70 и 93, поэтому мы делаем его правым потомком 93. Аналогично, 14 меньше и 70, и 31, следовательно, оно уходит в левое поддерево 31. 23 меньше, чем 31, так что оно тоже должно быть в левом поддереве 31. Однако, это число больше 14, следовательно, становится его правым потомком.</p>
-<p>Для реализации двоичного дерева поиска мы используем узлы и ссылки (аналогично связанному списоку и дереву выражения). Однако, поскольку нам надо быть готовыми использовать двоичное дерево поиска и когда оно пусто, мы создадим два класса. Первый назовём <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>, а второй - <tt class="docutils literal"><span class="pre">TreeNode</span></tt>. <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> будет иметь ссылки на объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt>, который является корнем дерева. В большинстве случаев внешние методы, определённые во внешнем классе, просто проверяют дерево на пустоту. Если у него есть узлы, то запрос просто передаётся в приватный метод, определённый в классе <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>, который принимает корень в качестве параметра. В случае, когда дерево пусто или мы хотим удалить ключ из корня, необходимо предпринять специальные действия. Код для конструктора класса <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> и нескольких других различных функций показан в <a class="reference internal" href="#lst-bst1"><em>листинге 1</em></a>.</p>
+<p>Теперь, когда вы знаете, что такое двоичное дерево поиска, можно рассмотреть процесс его создания. Дерево поиска на <a class="reference internal" href="#fig-simplebst"><em>рисунке 1</em></a> содержит узлы, появившиеся после вставки следующих ключей в таком порядке: <span class="math">\(70,31,93,94,14,23,73\)</span>. Так как 70 - первое вставляемое в дерево значение, то это корень. Число 31 меньше 70-и, поэтому оно уходит в левое поддерево. 93 наоборот больше - и вставляется в правое поддерево. Теперь у нас заполнены два уровня из трёх, так что следующий ключ должен стать потомком 31 или 93. 94 больше, чем 70 и 93, поэтому мы делаем его правым потомком 93. Аналогично, 14 меньше и 70, и 31, следовательно, оно уходит в левое поддерево 31. 23 меньше, чем 31, так что оно тоже должно быть в левом поддереве 31. Однако, это число больше 14, следовательно, становится его правым потомком.</p>
+<p>Для реализации двоичного дерева поиска мы используем узлы и ссылки (аналогично связанному списоку и дереву выражения). Однако, поскольку нам надо быть готовыми использовать двоичное дерево поиска и когда оно пусто, мы создадим два класса. Первый назовём <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>, а второй - <tt class="docutils literal"><span class="pre">TreeNode</span></tt>. <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> будет иметь ссылку на объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt>, который является корнем дерева. В большинстве случаев внешние методы, определённые во внешнем классе, просто проверяют дерево на пустоту. Если у него есть узлы, то запрос просто передаётся в приватный метод из <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>, который принимает корень в качестве параметра. В случае, когда дерево пусто или мы хотим удалить ключ из корня, необходимо проделать специальные действия. Код для конструктора класса <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> и нескольких других различных функций показан в <a class="reference internal" href="#lst-bst1"><em>листинге 1</em></a>.</p>
 <p id="lst-bst1"><strong>Листинг 1</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">BinarySearchTree</span><span class="p">:</span>
 
@@ -332,18 +332,18 @@
       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">__iter__</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Класс <tt class="docutils literal"><span class="pre">TreeNode</span></tt> предоставляет множество вспомогательных функций, которые значительно облегчают работу <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>. Конструктор <tt class="docutils literal"><span class="pre">TreeNode</span></tt> вместе с этими функциями показан в <a class="reference internal" href="#lst-bst2"><em>листинге 2</em></a>. Как вы можете из него видеть, большинство дополнительных функций помогают классифицировать узел в соответствии с его положением как потомка (левого или правого) и типом детей, которых он имеет.</p>
+<p>Класс <tt class="docutils literal"><span class="pre">TreeNode</span></tt> предоставляет множество вспомогательных функций, которые значительно облегчают работу <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>. Конструктор <tt class="docutils literal"><span class="pre">TreeNode</span></tt> вместе с этими функциями показан в <a class="reference internal" href="#lst-bst2"><em>листинге 2</em></a>. Из него видно, что большинство дополнительных функций помогают классифицировать узел в соответствии с его положением как потомка (левого или правого) и типом его детей.</p>
 <p>Так же класс <tt class="docutils literal"><span class="pre">TreeNode</span></tt> явно отслеживает родителя, как атрибут каждого узла. Вы поймёте важность этого, когда мы будем обсуждать реализацию оператора <tt class="docutils literal"><span class="pre">del</span></tt>.</p>
-<p>Другой любопытный аспект реализации <tt class="docutils literal"><span class="pre">TreeNode</span></tt> в <a class="reference internal" href="#lst-bst2"><em>листинге 2</em></a> заключается в использовании опциональных параметров Python. Они позволяют нам упростить создание <tt class="docutils literal"><span class="pre">TreeNode</span></tt> в соответствии с различными обстоятельствами. Иногда мы захотим сконструировать новый объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt>, имеющий и <tt class="docutils literal"><span class="pre">parent</span></tt>, и <tt class="docutils literal"><span class="pre">child</span></tt>. С уже существующими потомком и предком мы можем просто передать их, как параметры. В следующий раз мы создадим <tt class="docutils literal"><span class="pre">TreeNode</span></tt> с парой ключ-значение, не передавая при этом ни <tt class="docutils literal"><span class="pre">parent</span></tt>, ни <tt class="docutils literal"><span class="pre">child</span></tt>. В этом случае для параметров будут использоваться значения по умолчанию.</p>
+<p>Другой любопытный аспект <tt class="docutils literal"><span class="pre">TreeNode</span></tt> в <a class="reference internal" href="#lst-bst2"><em>листинге 2</em></a> заключается в использовании опциональных параметров Python. Они позволяют нам упростить его создание в соответствии с различными обстоятельствами. Иногда мы захотим сконструировать новый объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt>, имеющий и <tt class="docutils literal"><span class="pre">parent</span></tt>, и <tt class="docutils literal"><span class="pre">child</span></tt>. С уже существующими потомком и предком их можно просто передать, как параметры. В следующий раз мы создадим <tt class="docutils literal"><span class="pre">TreeNode</span></tt> с парой ключ-значение, не передавая при этом ни <tt class="docutils literal"><span class="pre">parent</span></tt>, ни <tt class="docutils literal"><span class="pre">child</span></tt>. В этом случае для параметров будут использоваться значения по умолчанию.</p>
 <p id="lst-bst2"><strong>Листинг 2</strong></p>
-<div class="highlight-python"><div class="highlight"><pre>  class TreeNode:
-     def __init__(self,key,val,left=None,right=None,
-           parent=None):
-    self.key = key
-    self.payload = val
-    self.leftChild = left
-    self.rightChild = right
-    self.parent = parent
+<div class="highlight-python"><div class="highlight"><pre>class TreeNode:
+   def __init__(self,key,val,left=None,right=None,
+         parent=None):
+  self.key = key
+  self.payload = val
+  self.leftChild = left
+  self.rightChild = right
+  self.parent = parent
 
 def hasLeftChild(self):
     return self.leftChild
@@ -375,19 +375,19 @@ def replaceNodeData(self,key,value,lc,rc):
     self.leftChild = lc
     self.rightChild = rc
     if self.hasLeftChild():
-  self.leftChild.parent = self
+        self.leftChild.parent = self
     if self.hasRightChild():
-  self.rightChild.parent = self
+        self.rightChild.parent = self
 </pre></div>
 </div>
-<p>Теперь, когда у нас есть обёртка <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> и класс <tt class="docutils literal"><span class="pre">TreeNode</span></tt>, пришло время написать метод <tt class="docutils literal"><span class="pre">put</span></tt>, который позволит строить двоичные деревья поиска. Он будет принадлежать классу <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>. Метод будет выполнять проверку на наличие корня дерева, и если он отсутствует, то создавать объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt> и устанавливать его, как корневой узел. В противном случае <tt class="docutils literal"><span class="pre">put</span></tt> вызовет приватную рекурсивную вспомогательную функцию <tt class="docutils literal"><span class="pre">_put</span></tt> для поиска места в дереве по следующему алгоритму:</p>
+<p>Теперь, когда у нас есть обёртка <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> и класс <tt class="docutils literal"><span class="pre">TreeNode</span></tt>, пришло время написать метод <tt class="docutils literal"><span class="pre">put</span></tt>, который позволит строить двоичные деревья поиска. Он будет принадлежать классу <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>. Метод будет выполнять проверку на наличие корня дерева, а в случае отсутствия последнего создавать объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt> и устанавливать его, как корневой узел. В противном случае <tt class="docutils literal"><span class="pre">put</span></tt> вызовет приватную рекурсивную вспомогательную функцию <tt class="docutils literal"><span class="pre">_put</span></tt> для поиска места в дереве по следующему алгоритму:</p>
 <ul class="simple">
 <li>Начиная от корня, проходим по двоичному дереву, сравнивая новый ключ с ключом текущего узла. Если первый меньше второго, то идём в левое поддерево. Наоборот - в правое.</li>
 <li>Когда не осталось левых или правых потомков для поиска - мы нашли позицию для установки нового узла.</li>
 <li>Чтобы добавить узел в дерево, создаём новый объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt> и помещаем его на найденное за предыдущие шаги место.</li>
 </ul>
-<p><a class="reference internal" href="#lst-bst3"><em>Листинг 3</em></a> показывает код Python для вставки нового узла в дерево. Функция <tt class="docutils literal"><span class="pre">_put</span></tt> написана рекурсивно и следует описанным выше пунктам. Отметьте, что когда в дерево вставляется новый потомок, <tt class="docutils literal"><span class="pre">currentNode</span></tt> передаётся как родитель нового дерева.</p>
-<p>Одной из серьёзных проблем нашей реализации является то, что дубликаты ключей не обрабатываются правильным образом. В нашей реализации дубль создаст новый узел с точно таким же значением ключа и поместит его в правое поддерево узла с оригинальным ключом. В результате новый узел никогда не сможет быть обнаружен в процессе поиска. Лучший способ для управления вставкой дубликатов ключей: сделать так, чтобы значение, ассоциированное с новым ключом, заменяло старое. Мы оставляем вам исправление этого недочёта в качестве упражнения.</p>
+<p><a class="reference internal" href="#lst-bst3"><em>Листинг 3</em></a> показывает код Python для вставки нового узла в дерево. Функция <tt class="docutils literal"><span class="pre">_put</span></tt> написана рекурсивно и следует описанным выше пунктам. Отметьте, что когда в дерево вставляется новый потомок, <tt class="docutils literal"><span class="pre">currentNode</span></tt> передаётся как родитель нового поддерева.</p>
+<p>Одной из серьёзных проблем нашей реализации является то, что дубликаты ключей не обрабатываются правильным образом. У нас дубль создаст новый узел с точно таким же значением ключа и поместит его в правое поддерево узла с оригинальным ключом. В результате новый узел никогда не будет обнаружен в процессе поиска. Для управления вставкой дубликатов ключей есть способ лучше: сделать так, чтобы значение, ассоциированное с новым ключом, заменяло старое. Мы оставляем вам исправление этого недочёта в качестве упражнения.</p>
 <p id="lst-bst3"><strong>Листинг 3</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
   <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
@@ -415,7 +415,7 @@ def replaceNodeData(self,key,value,lc,rc):
     <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="#fig-bstput"><em>Рисунок 2</em></a> иллюстрирует процесс вставки нового узла в двоичное дерево поиска. Слегка затенённые узлы показывают узлы, посещённые во время процесса вставки.</p>
+<p><a class="reference internal" href="#fig-bstput"><em>Рисунок 2</em></a> иллюстрирует процесс вставки нового узла в двоичное дерево поиска. Слегка затенённые узлы - это те, что были посещены в процессе вставки.</p>
 <div class="figure align-center" id="fig-bstput">
 <img alt="../_images/bstput.png" src="../_images/bstput.png" />
 <p class="caption">Рисунок 2: Вставка узла с ключом, равным 19.</p>
@@ -424,7 +424,7 @@ def replaceNodeData(self,key,value,lc,rc):
 <p class="first admonition-title">Самопроверка</p>
 
             <div id="bst_1" class="alert alert-warning">
-            Q-32: Какое из показанных деревьев будет правильным двоичным деревом поиска, ключи в которое вставлялись в следующем порядке: 5, 30, 2, 40, 25, 4?<form name="bst_1_form" method="get" action="" onsubmit="return false;">
+            Q-38: Какое из показанных деревьев будет правильным двоичным деревом поиска, ключи в которое вставлялись в следующем порядке: 5, 30, 2, 40, 25, 4?<form name="bst_1_form" method="get" action="" onsubmit="return false;">
             <input type="radio" name="group1" value="a" id="bst_1_opt_a" />
             <label for= "bst_1_opt_a">  a) <img src="../_static/bintree_a.png"></label><br />
             
@@ -445,17 +445,17 @@ def replaceNodeData(self,key,value,lc,rc):
             </div>
             </div>
             </div>
-<p>Поскольку дерево уже сконструировано, то следующее задание - реализовать поиск значения по заданному ключу. Метод <tt class="docutils literal"><span class="pre">get</span></tt> проще <tt class="docutils literal"><span class="pre">put</span></tt>, потому что просто делает рекурсивный поиск, пока не дойдёт до листового узла или не найдёт искомое. Когда ключ найдётся, хранимое в полезной нагрузке значение будет возвращено.</p>
-<p><a class="reference internal" href="#lst-bst5"><em>Листинг 5</em></a> демонстрирует код для <tt class="docutils literal"><span class="pre">get</span></tt>, <tt class="docutils literal"><span class="pre">_get</span></tt> и <tt class="docutils literal"><span class="pre">__getitem__</span></tt>. Код поиска в методе <tt class="docutils literal"><span class="pre">_get``использует</span> <span class="pre">ту</span> <span class="pre">же</span> <span class="pre">логику</span> <span class="pre">для</span> <span class="pre">выбора</span> <span class="pre">правого</span> <span class="pre">или</span> <span class="pre">левого</span> <span class="pre">потомка,</span> <span class="pre">что</span> <span class="pre">и</span> <span class="pre">``_put</span></tt>. Обратите внимание, <tt class="docutils literal"><span class="pre">_get</span></tt> возвращает в <tt class="docutils literal"><span class="pre">get</span></tt> объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt>. Это позволяет использовать <tt class="docutils literal"><span class="pre">_get</span></tt> в качестве гибкого вспомогательного метода для других методов <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>, которым могут потребоваться другие данные из <tt class="docutils literal"><span class="pre">TreeNode</span></tt>, кроме полезной нагрузки.</p>
-<p>Реализовав метод <tt class="docutils literal"><span class="pre">__getitem__</span></tt>, мы можем писать операторы Python, выглядящие так, будто мы имеем доступ к словарю, когда по факту используется двоичное дерево поиска. Например, <tt class="docutils literal"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">myZipTree['Fargo']</span></tt>. Как вы можете видеть, всё, что делает <tt class="docutils literal"><span class="pre">__getitem__</span></tt>, - это вызывает <tt class="docutils literal"><span class="pre">get</span></tt>.</p>
+<p>Поскольку дерево уже сконструировано, то следующее задание - реализовать поиск значения по заданному ключу. Метод <tt class="docutils literal"><span class="pre">get</span></tt> проще <tt class="docutils literal"><span class="pre">put</span></tt>, потому что просто делает рекурсивный поиск, пока не дойдёт до листового узла или не найдёт искомое. Когда ключ найдётся, хранимое в узле значение будет возвращено.</p>
+<p><a class="reference internal" href="#lst-bst5"><em>Листинг 5</em></a> демонстрирует код для <tt class="docutils literal"><span class="pre">get</span></tt>, <tt class="docutils literal"><span class="pre">_get</span></tt> и <tt class="docutils literal"><span class="pre">__getitem__</span></tt>. Поиск в методе <tt class="docutils literal"><span class="pre">_get``использует</span> <span class="pre">ту</span> <span class="pre">же</span> <span class="pre">логику</span> <span class="pre">для</span> <span class="pre">выбора</span> <span class="pre">правого</span> <span class="pre">или</span> <span class="pre">левого</span> <span class="pre">потомка,</span> <span class="pre">что</span> <span class="pre">и</span> <span class="pre">``_put</span></tt>. Обратите внимание, <tt class="docutils literal"><span class="pre">_get</span></tt> возвращает в <tt class="docutils literal"><span class="pre">get</span></tt> объект <tt class="docutils literal"><span class="pre">TreeNode</span></tt>. Это позволяет использовать <tt class="docutils literal"><span class="pre">_get</span></tt> в качестве гибкого вспомогательного метода для других методов <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>, которым, кроме полезной нагрузки, могут потребоваться и другие данные из <tt class="docutils literal"><span class="pre">TreeNode</span></tt>.</p>
+<p>Реализовав метод <tt class="docutils literal"><span class="pre">__getitem__</span></tt>, можно писать операторы Python, выглядящие так, будто мы имеем доступ к словарю, когда по факту используется двоичное дерево поиска. Например, <tt class="docutils literal"><span class="pre">z</span> <span class="pre">=</span> <span class="pre">myZipTree['Fargo']</span></tt>. Как вы видите, всё, что делает <tt class="docutils literal"><span class="pre">__getitem__</span></tt>, - это вызывает <tt class="docutils literal"><span class="pre">get</span></tt>.</p>
 <p id="lst-bst5"><strong>Листинг 5</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
   <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span>
       <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
       <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-       <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">payload</span>
+          <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">payload</span>
       <span class="k">else</span><span class="p">:</span>
-       <span class="k">return</span> <span class="bp">None</span>
+          <span class="k">return</span> <span class="bp">None</span>
   <span class="k">else</span><span class="p">:</span>
       <span class="k">return</span> <span class="bp">None</span>
 
@@ -470,7 +470,7 @@ def replaceNodeData(self,key,value,lc,rc):
       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="n">currentNode</span><span class="o">.</span><span class="n">rightChild</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
-  <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>С использованием <tt class="docutils literal"><span class="pre">get</span></tt> можно реализовать операцию <tt class="docutils literal"><span class="pre">in</span></tt>, написав метод <tt class="docutils literal"><span class="pre">__contains__</span></tt> для <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt>. Он будет просто вызывать <tt class="docutils literal"><span class="pre">get</span></tt> и выдавать <tt class="docutils literal"><span class="pre">True</span></tt>, если <tt class="docutils literal"><span class="pre">get</span></tt> возвращает значение, или <tt class="docutils literal"><span class="pre">False</span></tt> в противном случае. Код для <tt class="docutils literal"><span class="pre">__contains__</span></tt> показан в <a class="reference internal" href="#lst-bst6"><em>листинге 6</em></a>.</p>
@@ -487,7 +487,7 @@ def replaceNodeData(self,key,value,lc,rc):
     <span class="k">print</span><span class="p">(</span><span class="s">&quot;oom ya ya&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>В завершение обратим наше внимание на наиболее сложный метод для двоичного дерева поиска - удаление ключа (см. <a class="reference internal" href="#lst-bst7"><em>листинг 7</em></a>). Первым заданием будет поиск в дереве удаляемого узла. Если дерево имеет больше одного узла, то для этого используется метод <tt class="docutils literal"><span class="pre">_get</span></tt>. Если же оно состоит из единственного узла, то это подразумевает удаление корня. Однако, проверить корневой ключ на соответствие удаляемому всё же будет необходимо. В обоих случаях, если ключ не найден, то оператор <tt class="docutils literal"><span class="pre">del</span></tt> выдаёт ошибку.</p>
+<p>В завершение обратим наше внимание на наиболее сложный метод для двоичного дерева поиска - удаление ключа (см. <a class="reference internal" href="#lst-bst7"><em>листинг 7</em></a>). Первым заданием будет поиск в дереве удаляемого объекта. Если дерево имеет больше одного узла, то для этого используется метод <tt class="docutils literal"><span class="pre">_get</span></tt>. Если же оно состоит из единственного узла, то это подразумевает удаление корня. Однако, проверить корневой ключ на соответствие удаляемому объекту всё же необходимо. В обоих случаях, если ключ не найден, то оператор <tt class="docutils literal"><span class="pre">del</span></tt> выдаёт ошибку.</p>
 <p id="lst-bst7"><strong>Листинг 7</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>def delete(self,key):
    if self.size &gt; 1:
@@ -507,11 +507,11 @@ def __delitem__(self,key):
   self.delete(key)
 </pre></div>
 </div>
-<p>После того, как мы нашли ключ, содержащий значение, которое хотим удалить, существует три варианта, которые следует рассмотретьпо отдельности:</p>
+<p>После того, как мы нашли ключ удаляемого значения, существует три варианта, каждый из которых следует рассмотреть по отдельности:</p>
 <ol class="arabic simple">
 <li>Удаляемый узел не имеет потомков (см. <a class="reference internal" href="#fig-bstdel1"><em>рисунок 3</em></a>).</li>
 <li>У удаляемого узла есть только один потомок (см. <a class="reference internal" href="#fig-bstdel2"><em>рисунок 4</em></a>).</li>
-<li>У удаляемого узла есть два потомка (см. <a class="reference internal" href="#fig-bstdel3"><em>рисунок 5</em></a>).</li>
+<li>У удаляемого узла есть оба потомка (см. <a class="reference internal" href="#fig-bstdel3"><em>рисунок 5</em></a>).</li>
 </ol>
 <p>В первом случае всё очевидно (см. <a class="reference internal" href="#lst-bst8"><em>листинг 8</em></a>). Если текущий узел не имеет потомков, то всё, что от нас требуется, - это удалить его и ссылку на него у его родителя. Вот код для этого:</p>
 <p id="lst-bst8"><strong>Листинг 8</strong></p>
@@ -526,11 +526,11 @@ def __delitem__(self,key):
 <img alt="../_images/bstdel1.png" src="../_images/bstdel1.png" />
 <p class="caption">Рисунок 3: Удаление узла 16, не имеющего потомков</p>
 </div>
-<p>Второй случай ненамного сложнее (см. <a class="reference internal" href="#lst-bst9"><em>листинг 9</em></a>). Если у узла всего один потомок, то мы просто поможем ему занять место родителя. Код для этого показан в следующем листинге. В нём вы можете видеть, что есть шесть случаев для рассмотрения. Поскольку они симметричны для левого и правого потомков, мы обсудим только вариант, когда узел имеет левого потомка. Процесс поиска решения следующий:</p>
+<p>Второй случай ненамного сложнее (см. <a class="reference internal" href="#lst-bst9"><em>листинг 9</em></a>). Если у узла всего один потомок, то мы просто поможем ему занять место родителя. Код для этого показан в следующем листинге. Из него вы можете видеть, что есть шесть случаев для рассмотрения. Поскольку они симметричны для обоих детей, мы обсудим только вариант, когда узел имеет левого потомка. Процесс поиска решения следующий:</p>
 <ol class="arabic simple">
-<li>Если текущий узел - левый потомок, то нужно всего лишь обновить родительскую ссылку на левого потомка у родителя текущего узла, а затем обновить ссылку потомка, чтобы она указывала на нового родителя.</li>
-<li>Если текущий узел - правый потомок, то мы обновляем его родительскую ссылку, чтобы она указывала на родителя текущего узла, а затем - ссылку на правого потомка у родителя текущего узла.</li>
-<li>Если текущий узел родителя не имеет, то он должен быть корнем. В этом случае мы просто заменяем данные <tt class="docutils literal"><span class="pre">key</span></tt>, <tt class="docutils literal"><span class="pre">payload</span></tt>, <tt class="docutils literal"><span class="pre">leftChild</span></tt> и <tt class="docutils literal"><span class="pre">rightChild</span></tt>, вызвав для корня метод <tt class="docutils literal"><span class="pre">replaceNodeData</span></tt>.</li>
+<li>Если текущий узел - левый потомок, то нужно всего лишь обновить родительскую ссылку на него у предка, а затем обновить ссылку его потомка, чтобы она указывала на нового родителя.</li>
+<li>Если текущий узел - правый потомок, то мы обновляем родительскую ссылку его потомка, чтобы она указывала на предка текущего узла, а затем - ссылку на правого потомка у родителя текущего узла.</li>
+<li>Если текущий узел предка не имеет, то он должен быть корнем. В этом случае мы просто заменяем данные <tt class="docutils literal"><span class="pre">key</span></tt>, <tt class="docutils literal"><span class="pre">payload</span></tt>, <tt class="docutils literal"><span class="pre">leftChild</span></tt> и <tt class="docutils literal"><span class="pre">rightChild</span></tt>, вызвав для корня метод <tt class="docutils literal"><span class="pre">replaceNodeData</span></tt>.</li>
 </ol>
 <p id="lst-bst9"><strong>Листинг 9</strong></p>
 <div class="highlight-python"><div class="highlight"><pre>else: # this node has one child
@@ -564,7 +564,7 @@ def __delitem__(self,key):
 <img alt="../_images/bstdel2.png" src="../_images/bstdel2.png" />
 <p class="caption">Рисунок 4: Удаление узла 25, имеющего единственного потомка.</p>
 </div>
-<p>Третий случай наиболее сложный для обработки (см. <a class="reference internal" href="#lst-bst10"><em>листинг 10</em></a>). Если у узла есть оба потомка, то маловероятно, что можно просто поставить их на место родителя. Однако, мы можем пройти поиском по дереву и найти узел, способный заменить тот, который стоит в списке на выбывание. Нам нужно, чтобы этот узел сохранял принятые в двоичном дереве поиска отношения между существующими правым и левым поддеревьями. Способный на это узел будет иметь следующий по величине ключ. Мы назовём его <strong>преемником</strong> и рассмотрим способ найти как можно быстрее. Преемник гарантированно имеет не более, чем одного потомка, так что мы знаем, как можно его удалить с использованием двух уже рассмотренных и написанных случаев. Как только преемник будет удалён, мы просто вставим его в дерево на место удаляемого узла.</p>
+<p>Третий случай наиболее сложный для обработки (см. <a class="reference internal" href="#lst-bst10"><em>листинг 10</em></a>). Если у узла есть оба потомка, то маловероятно, что можно просто поставить их на место родителя. Однако, мы можем пройти поиском по дереву и найти узел, способный заменить тот, который стоит в списке на выбывание. Нам нужно, чтобы этот узел сохранял принятые в двоичном дереве поиска отношения между существующими правым и левым поддеревьями, т.е. он будет иметь следующий по величине ключ. Мы назовём такой узел <strong>преемником</strong> и рассмотрим способ найти как можно быстрее. Преемник гарантированно имеет не более, чем одного потомка, так что мы знаем, как можно его удалить с использованием двух уже рассмотренных и написанных случаев. Как только преемник будет удалён, мы просто вставим его в дерево на место удаляемого узла.</p>
 <div class="figure align-center" id="fig-bstdel3">
 <img alt="../_images/bstdel3.png" src="../_images/bstdel3.png" />
 <p class="caption">Рисунок 5: Удаление узла 5, имеющего двух потомков.</p>
@@ -578,10 +578,10 @@ def __delitem__(self,key):
   currentNode.payload = succ.payload
 </pre></div>
 </div>
-<p>Код для поиска преемника показан ниже (см. <a class="reference internal" href="#lst-bst11"><em>листинг 11</em></a>) и, как вы можете видеть, это метод класса``TreeNode``. Этот код использует те же свойства двоичных деревьев поиска, что и при распечатке узлов от меньшего к большему при симметричном обходе. Вот три случая, которые следует рассмотреть при поиске преемника:</p>
+<p>Код для поиска преемника показан ниже (см. <a class="reference internal" href="#lst-bst11"><em>листинг 11</em></a>) и, как вы можете видеть, это метод класса``TreeNode``. Здесь используются те же свойства двоичных деревьев поиска, что и при распечатке узлов от меньшего к большему при симметричном обходе. Вот три случая, которые следует рассмотреть при поиске преемника:</p>
 <ol class="arabic simple">
 <li>Если у узла есть правый потомок, то преемник - наименьший ключ в правом поддереве.</li>
-<li>Если у узла нет правого потомка и он левый потомок родителя, то преемником будет родитель.</li>
+<li>Если у узла нет правого потомка и сам он - левый потомок родителя, то преемником будет родитель.</li>
 <li>Если узел - правый потомок своего родителя и сам правого потомка не имеет, то его преемником будет преемник родителя (исключая сам этот узел).</li>
 </ol>
 <p>Первое условие - единственное имеющее для нас значение при удалении узла из двоичного дерева поиска. Однако, метод <tt class="docutils literal"><span class="pre">findSuccessor</span></tt> имеет ещё одно применение, которое будет исследовано в упражнениях в конце этой главы.</p>
@@ -642,7 +642,7 @@ def __delitem__(self,key):
         yield elem
 </pre></div>
 </div>
-<p>Сейчас вы можете захотеть целиком загрузить файл, содержащий полную версию классов <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> и <tt class="docutils literal"><span class="pre">TreeNode</span></tt>.</p>
+<p>Сейчас вам можете захотеться целиком загрузить файл, содержащий полную версию классов <tt class="docutils literal"><span class="pre">BinarySearchTree</span></tt> и <tt class="docutils literal"><span class="pre">TreeNode</span></tt>.</p>
 
 <div id="cont"></div>
 <div id="completebstcode" lang="python" class="ac_section alert alert-warning" >

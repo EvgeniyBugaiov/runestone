@@ -175,7 +175,7 @@
 работать правильно с учётом того, что теперь список упорядочен.
 
 .. activecode:: orderedlistclass
-   :caption: Класс ``OrderedList`` на данный момент
+   :caption: Класс OrderedList на данный момент
    :hidecode:
    
    class Node:

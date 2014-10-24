@@ -308,7 +308,7 @@
   
   <div class="section" id="id1">
 <h1>Построение графа для задачи о ходе коня<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>Чтобы представить задачу о ходе коня в виде графа, воспользуемся следующими двумя соображениями: каждая клетка на доске будет узлом, а каждый возможный ход фигуры - ребром. <a class="reference internal" href="#fig-knightmoves"><em>Рисунок 1</em></a> иллюстрирует соответствие доступные ходов коня рёбрам графа.</p>
+<p>Чтобы представить задачу о ходе коня в виде графа, воспользуемся следующими двумя соображениями: каждая клетка на доске будет узлом, а каждый возможный ход фигуры - ребром. <a class="reference internal" href="#fig-knightmoves"><em>Рисунок 1</em></a> иллюстрирует соответствие доступных фигуре ходов рёбрам графа.</p>
 <div class="figure align-center" id="fig-knightmoves">
 <img alt="../_images/knightmoves.png" src="../_images/knightmoves.png" />
 <p class="caption">Рисунок 1: Доступные ходы коня, стоящего на клетке 12, и соответствующий им граф</p>
@@ -329,7 +329,7 @@
     <span class="k">return</span> <span class="n">ktGraph</span>
 </pre></div>
 </div>
-<p>Функция <tt class="docutils literal"><span class="pre">genLegalMoves</span></tt> (<a class="reference internal" href="#lst-knighttour2"><em>листинг 2</em></a>) принимает позицию коня на доске и генерирует восемь доступных ходов. Вспомогательная функция <tt class="docutils literal"><span class="pre">legalCoord</span></tt> (<a class="reference internal" href="#lst-knighttour2"><em>листинг 2</em></a>) проверяет, что данный сгенерированный ход всё ещё лежит на доске.</p>
+<p>Функция <tt class="docutils literal"><span class="pre">genLegalMoves</span></tt> (<a class="reference internal" href="#lst-knighttour2"><em>листинг 2</em></a>) принимает позицию коня на доске и генерирует восемь доступных ходов. Вспомогательная функция <tt class="docutils literal"><span class="pre">legalCoord</span></tt> (<a class="reference internal" href="#lst-knighttour2"><em>листинг 2</em></a>) проверяет, что сгенерированный ход всё ещё лежит на доске.</p>
 <p id="lst-knighttour2"><strong>Листинг 2</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">genLegalMoves</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">bdSize</span><span class="p">):</span>
     <span class="n">newMoves</span> <span class="o">=</span> <span class="p">[]</span>
@@ -350,7 +350,7 @@
         <span class="k">return</span> <span class="bp">False</span>
 </pre></div>
 </div>
-<p>На <a class="reference internal" href="#fig-bigknight"><em>рисунке 2</em></a> показан полный граф возможных ходов для доски <span class="math">\(8 \times 8\)</span>. Это ровно 336 рёбер. Обратите внимание, что вершины, связанные с клетками на краю доски, имеют меньше связей (возможных ходов), чем вершины из середины. Мы снова видим, насколько граф разрежен. Если бы он был полностью связан, то имел бы 4 096 рёбер. Но поскольку в нём их всего лишь 336, то матрица смежности будет заполнена всего на 8.2%</p>
+<p>На <a class="reference internal" href="#fig-bigknight"><em>рисунке 2</em></a> показан полный граф возможных ходов для доски <span class="math">\(8 \times 8\)</span>. Это ровно 336 рёбер. Обратите внимание: вершины, на которые отображаются клетки на краю доски, имеют меньше связей (возможных ходов), чем вершины из середины. Мы снова видим, насколько граф разрежен. Если бы он был полностью связан, то имел бы 4 096 рёбер. Но поскольку их в нём всего лишь 336, то матрица смежности будет заполнена всего на 8.2%</p>
 <div class="figure align-center" id="fig-bigknight">
 <img alt="../_images/bigknight.png" src="../_images/bigknight.png" />
 <p class="caption">Рисунок 2: Все возможные ходы коня на доске <span class="math">\(8 \times 8\)</span></p>
