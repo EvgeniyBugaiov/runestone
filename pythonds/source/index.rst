@@ -16,37 +16,40 @@
 
 Авторы: Брэд Миллер и Дэвид Рэнум, Luther College
 
-:alt: `Перевод AveNat <https://github.com/avenat>`_
+Перевод `AveNat <https://github.com/avenat>`_
 
-      `Репозиторий книги на Github <https://github.com/aliev/runestone>`_
+`Репозиторий книги на Github <https://github.com/aliev/runestone>`_
 
 Оглавление
 :::::::::::
 
+.. toctree::
+
+   assignments.rst
 
 Введение
 ::::::::
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   Introduction/Objectives.rst
-   Introduction/GettingStarted.rst
-   Introduction/WhatIsComputerScience.rst
-   Introduction/WhatIsProgramming.rst
-   Introduction/WhyStudyDataStructuresandAbstractDataTypes.rst
-   Introduction/WhyStudyAlgorithms.rst
-   Introduction/ReviewofBasicPython.rst
-   Introduction/GettingStartedwithData.rst
-   Introduction/InputandOutput.rst
-   Introduction/ControlStructures.rst
-   Introduction/ExceptionHandling.rst
-   Introduction/DefiningFunctions.rst
-   Introduction/ObjectOrientedProgramminginPythonDefiningClasses.rst
-   Introduction/Summary.rst
-   Introduction/KeyTerms.rst
-   Introduction/DiscussionQuestions.rst
-   Introduction/ProgrammingExercises.rst
+    Introduction/Objectives.rst
+    Introduction/GettingStarted.rst
+    Introduction/WhatIsComputerScience.rst
+    Introduction/WhatIsProgramming.rst
+    Introduction/WhyStudyDataStructuresandAbstractDataTypes.rst
+    Introduction/WhyStudyAlgorithms.rst
+    Introduction/ReviewofBasicPython.rst
+    Introduction/GettingStartedwithData.rst
+    Introduction/InputandOutput.rst
+    Introduction/ControlStructures.rst
+    Introduction/ExceptionHandling.rst
+    Introduction/DefiningFunctions.rst
+    Introduction/ObjectOrientedProgramminginPythonDefiningClasses.rst
+    Introduction/Summary.rst
+    Introduction/KeyTerms.rst
+    Introduction/DiscussionQuestions.rst
+    Introduction/ProgrammingExercises.rst
 
 Анализ
 ::::::
