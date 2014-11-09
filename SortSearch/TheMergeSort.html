@@ -538,23 +538,36 @@ $(window).resize(function() {
 хранения двух извлечённых операцией разбиения частей. Это дополнительное
 пространство может стать критичным фактором, если список велик, и сделать этот
 способ сортировки проблемным для больших наборов данных.</p>
-<div class="admonition-mchoicemf-question-sort-5-correct-b-answer-a-16-49-39-27-43-34-46-40-answer-b-21-1-answer-c-21-1-26-45-answer-d-21-feedback-a-feedback-b-feedback-c-feedback-d admonition">
-<p class="first admonition-title">Самопроверка
-.. mchoicemf:: question_sort_5
-   :correct: b
-   :answer_a: [16, 49, 39, 27, 43, 34, 46, 40]
-   :answer_b: [21,1]
-   :answer_c: [21, 1, 26, 45]
-   :answer_d: [21]
-   :feedback_a: Это вторая часть списка.
-   :feedback_b: Верно, сортировка слиянием будет продолжать рекурсчивно перемещаться к началу списка, пока не достигнет базового случая.
-   :feedback_c: Не забывайте, сортировка слиянием не работает с правой половиной списка, пока полностью не отсортирует левую.
-   :feedback_d: Это список после четырёх рекурсивных вызовов.</p>
-<blockquote>
-<div>Дан следующий список чисел: [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40]. Какой ответ иллюстрирует список после трёх рекурсивных вызовов сортировки слиянием?</div></blockquote>
+<div class="admonition- admonition">
+<p class="first admonition-title">Самопроверка</p>
 
+            <div id="question_sort_5" class="alert alert-warning">
+            Q-23: Дан следующий список чисел: [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40]. Какой ответ иллюстрирует список после трёх рекурсивных вызовов сортировки слиянием?<form name="question_sort_5_form" method="get" action="" onsubmit="return false;">
+            <input type="radio" name="group1" value="a" id="question_sort_5_opt_a" />
+            <label for= "question_sort_5_opt_a">  a) [16, 49, 39, 27, 43, 34, 46, 40]</label><br />
+            
+            <input type="radio" name="group1" value="b" id="question_sort_5_opt_b" />
+            <label for= "question_sort_5_opt_b">  b) [21,1]</label><br />
+            
+            <input type="radio" name="group1" value="c" id="question_sort_5_opt_c" />
+            <label for= "question_sort_5_opt_c">  c) [21, 1, 26, 45]</label><br />
+            
+            <input type="radio" name="group1" value="d" id="question_sort_5_opt_d" />
+            <label for= "question_sort_5_opt_d">  d) [21]</label><br />
+            
+
+            <script>
+            $(document).ready(function(){checkRadio('question_sort_5');});
+            </script>
+            <button class='btn btn-success' name="do answer" onclick="checkMCMFStorage('question_sort_5','b',['Это вторая часть списка.', 'Верно, сортировка слиянием будет продолжать рекурсчивно перемещаться к началу списка, пока не достигнет базового случая.', 'Не забывайте, сортировка слиянием не работает с правой половиной списка, пока полностью не отсортирует левую.', 'Это список после четырёх рекурсивных вызовов.'])">Check Me</button>
+            <button class='btn btn-default' id="question_sort_5_bcomp" disabled name="compare" onclick="compareAnswers('question_sort_5');">Compare Me</button>
+            </form><br />
+            <div id="question_sort_5_feedback">
+            </div>
+            </div>
+            
             <div id="question_sort_6" class="alert alert-warning">
-            Q-23:  Дан следующий список чисел:  [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40]. Какой ответ иллюстрирует первые два списка для слияния?<form name="question_sort_6_form" method="get" action="" onsubmit="return false;">
+            Q-24:  Дан следующий список чисел:  [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40]. Какой ответ иллюстрирует первые два списка для слияния?<form name="question_sort_6_form" method="get" action="" onsubmit="return false;">
             <input type="radio" name="group1" value="a" id="question_sort_6_opt_a" />
             <label for= "question_sort_6_opt_a">  a) [21, 1] and [26, 45]</label><br />
             
