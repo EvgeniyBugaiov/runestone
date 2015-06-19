@@ -33,4 +33,4 @@
 
 Скачать архив учебника можно отсюда: https://github.com/aliev/runestone/archive/gh-pages.zip
 
-Для чтения онлайн книга доступна по адресу: http://aliev.me/runestone/
+Для чтения онлайн книга доступна по адресу: http://aliev.me/runestone/ или http://aliev.github.io/runestone/
