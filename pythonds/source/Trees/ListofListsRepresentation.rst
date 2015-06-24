@@ -198,3 +198,5 @@
       testEqual(getRootVal(getRightChild(ttree)),'c')
       testEqual(getRootVal(getRightChild(getLeftChild(ttree))),'d')      
       testEqual(getRootVal(getRightChild(getRightChild(ttree))),'f') 
+
+.. disqus::

@@ -20,46 +20,20 @@ from docutils.parsers.rst import directives
 from docutils.parsers.rst import Directive
 
 
-DISQUS_BOX = """\
+DISQUS_LINK = """\
+<div id="disqus_thread"></div>
 <script type="text/javascript">
-    function %(identifier)s_disqus(source) { 
-        if (window.DISQUS) {
-
-            $('#disqus_thread').insertAfter(source); //put the DIV for the Disqus box after the link
-
-            //if Disqus exists, call it's reset method with new parameters
-            DISQUS.reset({
-                reload: true,
-                config: function () {
-                    this.page.identifier = '%(identifier)s_' + eBookConfig.course;
-                    this.page.url = 'http://%(identifier)s_'+eBookConfig.course+'.interactivepython.com/#!';
-                }
-            });
-
-        } else {
-            //insert a wrapper in HTML after the relevant "show comments" link
-            $('<div id="disqus_thread"></div>').insertAfter(source);
-
-            // set Disqus required vars
-            disqus_shortname = '%(shortname)s';    
-            disqus_identifier = '%(identifier)s_' + eBookConfig.course;
-            disqus_url = 'http://%(identifier)s_'+eBookConfig.course+'.interactivepython.com/#!';
-
-            //append the Disqus embed script to HTML
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-            $('head').append(dsq);
-
-        }
-    }
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'alialiev';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
-"""
-
-DISQUS_LINK = """
-<a href="#disqus_thread" class='disqus_thread_link' data-disqus-identifier="%(identifier)s" onclick="%(identifier)s_disqus(this);">Show Comments</a>
-<script type='text/javascript'>
-    $("a[data-disqus-identifier='%(identifier)s']").attr('data-disqus-identifier', '%(identifier)s_' + eBookConfig.course);
-</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 """
 
 
@@ -77,10 +51,9 @@ class DisqusNode(nodes.General, nodes.Element):
 
 
 def visit_disqus_node(self, node):
-    res = DISQUS_BOX   
-    res += DISQUS_LINK
+    res = DISQUS_LINK
 
-    res = res % node.disqus_components
+    res = res
 
     self.body.append(res)
 
@@ -99,9 +72,7 @@ class DisqusDirective(Directive):
     optional_arguments = 0
     final_argument_whitespace = True
     has_content = False
-    option_spec = {'shortname':directives.unchanged_required,
-                   'identifier':directives.unchanged_required
-                  }
+    option_spec = {}
 
 
     def run(self):

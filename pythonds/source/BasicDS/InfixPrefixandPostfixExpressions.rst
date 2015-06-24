@@ -497,3 +497,5 @@ B C \*, то произойдёт конвертирование подвыра�
 
     http://media.interactivepython.org/pythondsVideos/Stack3.mov
     http://media.interactivepython.org/pythondsVideos/Stack3.webm
+
+.. disqus::

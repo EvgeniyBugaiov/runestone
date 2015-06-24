@@ -204,3 +204,5 @@ n, являются O(n). Очевидно, что даже если в реал
     http://media.interactivepython.org/pythondsVideos/Stack1.mov
     http://media.interactivepython.org/pythondsVideos/Stack1.webm
 
+
+.. disqus::

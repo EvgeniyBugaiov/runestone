@@ -160,3 +160,5 @@
       testEqual(isPal(removeWhite("")),True)                  
       testEqual(isPal(removeWhite("hannah")),True)      
       testEqual(isPal(removeWhite("madam i'm adam")),True)
+
+.. disqus::

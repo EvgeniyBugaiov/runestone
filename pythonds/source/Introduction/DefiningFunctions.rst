@@ -115,3 +115,5 @@
    http://media.interactivepython.org/pythondsVideos/monkeys.webm
 
 
+
+.. disqus::

@@ -182,3 +182,5 @@
 
     http://media.interactivepython.org/pythondsVideos/Stack2.mov
     http://media.interactivepython.org/pythondsVideos/Stack2.webm
+
+.. disqus::

@@ -195,3 +195,5 @@
         print(coinsUsed)
         
     main() 
+
+.. disqus::

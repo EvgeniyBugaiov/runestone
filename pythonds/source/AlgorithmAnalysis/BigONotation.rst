@@ -177,3 +177,5 @@ Python, показанный в :ref:`листинге 2 <lst_dummycode>`. Не�
 
    http://media.interactivepython.org/pythondsVideos/findmin.mov
    http://media.interactivepython.org/pythondsVideos/findmin.webm
+
+.. disqus::
