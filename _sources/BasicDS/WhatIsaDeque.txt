@@ -29,3 +29,5 @@
    :align: center
 
    Рисунок 1: Дек из объектов данных Python
+
+.. disqus::

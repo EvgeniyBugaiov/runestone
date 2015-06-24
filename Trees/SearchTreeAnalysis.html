@@ -317,6 +317,19 @@
 <p class="caption">Рисунок 6: Перекошенное двоичное дерево будет иметь низкую производительность.</p>
 </div>
 <p>После того, как мы разобрались, что производительность метода <tt class="docutils literal"><span class="pre">put</span></tt> ограничена высотой дерева, возможно, вы сумеете догадатьсяоб ограничениях остальных методов - <tt class="docutils literal"><span class="pre">get,</span> <span class="pre">in,</span></tt> и <tt class="docutils literal"><span class="pre">del</span></tt>. Поскольку <tt class="docutils literal"><span class="pre">get</span></tt> ищет в дереве ключ, то в наихудшем случае искомое окажется в самом низу. На первый взгляд случай <tt class="docutils literal"><span class="pre">del</span></tt> кажется более сложным, поскольку здесь требуется искать преемника для проведения операции удаления. Но вспомните: ограничение для его поиска при наихудшим сценарии - тоже высота дерева, что означает простое дублирование работы. Это константный фактор, так что он не меняет наихудший случай.</p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'alialiev';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
 
 

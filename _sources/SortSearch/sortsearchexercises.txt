@@ -218,3 +218,5 @@ Programming Exercises
    modification to ``quickSort``. Run an experiment to compare the two
    techniques.
 
+
+.. disqus::

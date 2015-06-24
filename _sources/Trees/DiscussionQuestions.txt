@@ -61,3 +61,5 @@
 
 .. figure:: Figures/bfderive.png
          :align: center
+
+.. disqus::

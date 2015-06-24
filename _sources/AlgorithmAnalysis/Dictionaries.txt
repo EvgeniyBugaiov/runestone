@@ -150,3 +150,5 @@
 
    http://media.interactivepython.org/pythondsVideos/pythonops.mov
    http://media.interactivepython.org/pythondsVideos/pythonops.webm
+
+.. disqus::

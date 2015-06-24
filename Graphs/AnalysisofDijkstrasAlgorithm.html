@@ -309,6 +309,19 @@
   <div class="section" id="id1">
 <h1>Анализ алгоритма Дейкстры<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>Наконец, давайте посмотрим на время выполнения алгоритма Дейкстры. Для начал отметим, что создание очереди с приоритетом занимает <span class="math">\(O(V)\)</span> времени, поскольку первоначально мы добавляем в неё каждую вершину из графа. После того, как очередь сформирована, запускается цикл <tt class="docutils literal"><span class="pre">while</span></tt>. Он вычисляется один раз для каждого узла, так как все они добавлены с самого начала, а после только удаляются. Внутри цикла каждый вызов <tt class="docutils literal"><span class="pre">delMin</span></tt> занимает <span class="math">\(O(\log V)\)</span> времени. Вместе цикл и вызов <tt class="docutils literal"><span class="pre">delMin</span></tt> дают <span class="math">\(O(V \log(V))\)</span>. Цикл <tt class="docutils literal"><span class="pre">for</span></tt> вычисляется единожды для каждого ребра графа, а внутри него происходит вызов <tt class="docutils literal"><span class="pre">decreaseKey</span></tt>. Вместе на это уходит <span class="math">\(O(E\log(V))\)</span> времени. Таким образом, общее время выполнения получается равным <span class="math">\(O((V+E) \log(V)).\)</span></p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'alialiev';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
 
 

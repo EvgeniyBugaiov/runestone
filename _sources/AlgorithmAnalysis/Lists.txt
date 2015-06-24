@@ -254,3 +254,5 @@ Python сочли разумными.
 .. figure:: Figures/poptime.png
 
    Рисунок 3: Сравнение производительности ``pop`` и ``pop(0)``
+
+.. disqus::

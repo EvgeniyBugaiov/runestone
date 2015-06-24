@@ -95,3 +95,5 @@
 
 .. figure:: Figures/sccforest.png
    :align: center
+
+.. disqus::

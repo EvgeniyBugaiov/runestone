@@ -416,6 +416,19 @@ else{
 <p>Обратите внимание, что вызов <tt class="docutils literal"><span class="pre">toStr(2//2,</span> <span class="pre">2)</span></tt> оставляет возвращаемое значение <tt class="docutils literal"><span class="pre">&quot;1&quot;</span></tt> в стеке. Затем оно подставляется вместо функции <tt class="docutils literal"><span class="pre">toStr(1,</span> <span class="pre">2)</span></tt> в выражение <tt class="docutils literal"><span class="pre">&quot;1&quot;</span> <span class="pre">+</span> <span class="pre">convertString[2%2]</span></tt>, которое оставляет на вершине стека <tt class="docutils literal"><span class="pre">&quot;10&quot;</span></tt>. Таким образом, стек вызовов Python работает так же, как и стек, который мы явно использовали в <a class="reference internal" href="#lst-recstack"><em>листинге 4</em></a>. В нашем суммирующем список примере вы можете думать о возвращаемом значении в стеке, как об аккумулирующей переменной.</p>
 <p>Также фрейм стека предоставляет область видимости для переменных, используемых функцией. Несмотря на то, что мы вновь и вновь вызываем одну и ту же функцию, каждый вызов создаёт новую область видимости для её локальных переменных.</p>
 <p>Если вы хорошо уясните для себя идею стека, то вам будет намного легче писать соответствующие рекурсивные функции.</p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'alialiev';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
 
 

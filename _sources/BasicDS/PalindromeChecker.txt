@@ -64,3 +64,5 @@
 
    print(palchecker("lsdkjfskf"))
    print(palchecker("radar"))
+
+.. disqus::

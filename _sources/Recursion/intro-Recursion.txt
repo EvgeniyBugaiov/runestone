@@ -16,3 +16,5 @@
     
 .. index:: fractal, fractal; Koch, Koch fractal
     
+
+.. disqus::

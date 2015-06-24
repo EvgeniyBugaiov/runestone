@@ -173,3 +173,5 @@
       testEqual(ttree.getRightChild().getRootVal(),'c')
       testEqual(ttree.getLeftChild().getRightChild().getRootVal(),'d')
       testEqual(ttree.getRightChild().getLeftChild().getRootVal(),'e')
+
+.. disqus::

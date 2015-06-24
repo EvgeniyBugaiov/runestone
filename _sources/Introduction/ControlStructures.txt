@@ -288,3 +288,5 @@ Python также имеет вариант единичной конструк�
 
    http://media.interactivepython.org/pythondsVideos/listcomp.mov
    http://media.interactivepython.org/pythondsVideos/listcomp.webm
+
+.. disqus::

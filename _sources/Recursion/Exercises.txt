@@ -220,3 +220,5 @@ Exercises
    advice is that initially you should fake the deletion of the files --- just print
    the full path names of each file that you intent to delete.  Once you're happy
    that your logic is correct, and you can see that you're not deleting the wrong
+
+.. disqus::

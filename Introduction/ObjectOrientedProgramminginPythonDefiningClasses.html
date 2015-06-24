@@ -1045,8 +1045,8 @@ else{
 </pre></div>
 </div>
 <p><a class="reference internal" href="#lst-logicgateclass"><em>Листинг 9</em></a> и <a class="reference internal" href="#lst-logicgateclass"><em>листинг 10</em></a>
-реализуют эти два класса. Конструкторы их обоих начинаются с явного вызова
-конструктора родительского класса с использованием функции <tt class="docutils literal"><span class="pre">super</span></tt>. Когда
+реализуют эти два класса. Конструкторы обоих начинаются с явного вызова
+конструктора родительского класса с использованием метода <tt class="docutils literal"><span class="pre">__init__</span></tt>. Когда
 мы создаём экземпляр класса <tt class="docutils literal"><span class="pre">BinaryGate</span></tt>, то прежде всего хотим
 инициализировать любые элементы данных, которые наследуются от <tt class="docutils literal"><span class="pre">LogicGate</span></tt>.
 В данном случае это метка вентиля. Затем конструктор добавляет два входа
@@ -1663,6 +1663,19 @@ else{
 	  });
    });
 </script>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'alialiev';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
 </div>
 

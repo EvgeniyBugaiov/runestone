@@ -471,6 +471,19 @@ newBal(B) = oldBal(B) + 1 - min(0 , oldBal(D)) \\\end{split}\]</div>
 <p><a class="reference internal" href="KeyTerms.html#tree-discuss"><em>Вопросы для обсуждения</em></a> предоставят вам возможность отбалансировать дерево, требующее левого, а затем правого поворота. Дополнительно вы сможете отбалансировать несколько более сложных деревьев, чем представленное на <cite>рисунке 8 &lt;fig_rotatelr&gt;</cite>.</p>
 <p>Постоянно поддерживая баланс дерева, мы будем обеспечивать выполнение метода <tt class="docutils literal"><span class="pre">get</span></tt> за время <span class="math">\(O(log_2(n))\)</span>. Но вопрос в том, какова &#8220;стоимость&#8221; этого метода? Давайте разобьём его на операции, выполняемые <tt class="docutils literal"><span class="pre">put</span></tt>. Поскольку новый узел вставляется, как лист, обновление факторов сбалансированности всех его родителей потребует максимум <span class="math">\(log_2(n)\)</span> операций для каждого уровня дерева. Если обнаруживается, что поддерево разбалансировано, то требуется максимум два поворота, чтобы вернуть его в состояние баланса. Каждое из вращений срабатывает за время <span class="math">\(O(1)\)</span>, так что операция <tt class="docutils literal"><span class="pre">put</span></tt> остаётся <span class="math">\(O(log_2(n))\)</span>.</p>
 <p>К этому моменту у нас есть реализованный функционал АВЛ-дерева, но вы также нуждаетесь в возможности удалить узел. Мы оставляем этот метод с последующими обновлением и балансировкой в качестве упражнения.</p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'alialiev';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
 
 

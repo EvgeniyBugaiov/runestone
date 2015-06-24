@@ -311,6 +311,19 @@
 <p>Прежде, чем перейти к другим алгоритмам для графов, давайте проанализируем временнУю производительность поиска в ширину. В первую очередь нужно заметить, что для каждой вершины из <span class="math">\(|V|\)</span> происходит как минимум одно вычисление цикла <tt class="docutils literal"><span class="pre">while</span></tt>. Вы можете убедиться, что это так, поскольку вершина должна быть окрашена в белый перед тем, как быть проверенной и добавленной в очередь. Это даёт нам <span class="math">\(O(V)\)</span> для цикла <tt class="docutils literal"><span class="pre">while</span></tt>. Вложенный цикл <tt class="docutils literal"><span class="pre">for</span></tt> вычисляется минимум один раз для каждого ребра из <span class="math">\(|E|\)</span>. Причина этого в том, что каждая вершина (например, <span class="math">\(u\)</span>) хотя бы единожды извлекается из очереди, и мы проверяем ребро из <span class="math">\(u\)</span> в <span class="math">\(v\)</span> только в этом случае. Это даёт <span class="math">\(O(E)\)</span> для каждого цикла <tt class="docutils literal"><span class="pre">for</span></tt>. Комбинируя два цикла вместе, получим <span class="math">\(O(V + E)\)</span>.</p>
 <p>Конечно, поиск в ширину - всего лишь часть задания. Проследовать по ссылкам от стартового узла до целевого является его второй частью. Наихудшим случаем станет граф в виде обычной длинной цепочки. Тогда проход по всем вершинам даст <span class="math">\(O(V)\)</span>. Обычно же берётся некая часть <span class="math">\(|V|\)</span>, но мы по-прежнему будем писать <span class="math">\(O(V)\)</span>.</p>
 <p>Наконец, для данной задачи потребуется время на постороение начального графа. Мы оставляем анализ функции <tt class="docutils literal"><span class="pre">buildGraph</span></tt> в качестве упражнения для вас.</p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'alialiev';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
 
 

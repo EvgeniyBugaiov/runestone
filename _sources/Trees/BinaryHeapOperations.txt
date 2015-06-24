@@ -49,3 +49,5 @@
     print(bh.delMin())
 
     print(bh.delMin())
+
+.. disqus::

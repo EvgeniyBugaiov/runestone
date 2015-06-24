@@ -309,6 +309,19 @@
   <div class="section" id="id1">
 <h1>Анализ поиска в глубину<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>В общем случае время выполнения поиска в глубину следующее. Оба цикла в <tt class="docutils literal"><span class="pre">dfs</span></tt> выполняются за <span class="math">\(O(V)\)</span> (без учёта происходящего в <tt class="docutils literal"><span class="pre">dfsvisit</span></tt>), поскольку они вычисляются по одному разу для каждой вершины графа. Цикл в <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> вычисляется один раз для каждого ребра из списка смежности текущей вершины. Поскольку <tt class="docutils literal"><span class="pre">dfsvisit</span></tt> вызывается рекурсивно только в том случае, если вершина окрашена в белый, то цикл для каждого ребра графа выполнится максимум единожды (<span class="math">\(O(E)\)</span>). Таким образом, общее время выполнения поиска в глубину равно <span class="math">\(O(V + E)\)</span>.</p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'alialiev';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
 
 
